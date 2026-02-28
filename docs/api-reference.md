@@ -111,7 +111,66 @@ POST /api/auth/token
 
 ## 账户管理 API
 
-### 1. 查询账户余额
+### 1. 创建账户
+
+创建新的用户账户。
+
+```http
+POST /api/account/create
+```
+
+#### 请求体
+
+| 参数 | 类型 | 必填 | 说明 |
+|------|------|------|------|
+| `userId` | string | 是 | 用户唯一标识 |
+| `initialBalance` | number | 否 | 初始余额（默认为 0） |
+| `metadata` | object | 否 | 用户元数据 |
+
+#### 请求示例
+
+```bash
+curl -X POST "https://api.coin-exchange.example.com/api/account/create" \
+  -H "Authorization: Bearer <your-token>" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "userId": "user001",
+    "initialBalance": 0,
+    "metadata": {
+      "nickname": "张三",
+      "email": "user001@example.com"
+    }
+  }'
+```
+
+#### 响应示例
+
+**成功响应 (201)**:
+```json
+{
+  "success": true,
+  "data": {
+    "userId": "user001",
+    "balance": 0,
+    "frozenAmount": 0,
+    "availableBalance": 0,
+    "createdAt": "2026-02-28T10:30:00Z"
+  }
+}
+```
+
+**错误响应 (409)**:
+```json
+{
+  "success": false,
+  "error": "账户已存在",
+  "code": "CONFLICT"
+}
+```
+
+---
+
+### 2. 查询账户余额
 
 查询指定用户的金币余额。
 
@@ -159,7 +218,7 @@ curl -X GET "https://api.coin-exchange.example.com/api/account/balance/user001" 
 
 ---
 
-### 2. 查询交易记录
+### 8. 查询交易记录
 
 查询指定用户的金币交易历史。
 
@@ -223,6 +282,278 @@ curl -X GET "https://api.coin-exchange.example.com/api/account/transactions/user
       "total": 25,
       "totalPages": 3
     }
+  }
+}
+```
+
+---
+
+### 3. 充值
+
+为指定用户账户充值金币。
+
+```http
+POST /api/account/deposit
+```
+
+#### 请求体
+
+| 参数 | 类型 | 必填 | 说明 |
+|------|------|------|------|
+| `userId` | string | 是 | 用户唯一标识 |
+| `amount` | number | 是 | 充值金额（必须大于0） |
+| `description` | string | 否 | 充值描述 |
+
+#### 请求示例
+
+```bash
+curl -X POST "https://api.coin-exchange.example.com/api/account/deposit" \
+  -H "Authorization: Bearer <your-token>" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "userId": "user001",
+    "amount": 100,
+    "description": "任务奖励"
+  }'
+```
+
+#### 响应示例
+
+**成功响应 (200)**:
+```json
+{
+  "success": true,
+  "data": {
+    "transactionId": "tx001",
+    "userId": "user001",
+    "type": "deposit",
+    "amount": 100,
+    "balance": 1100,
+    "description": "任务奖励",
+    "createdAt": "2026-02-28T10:30:00Z"
+  }
+}
+```
+
+**错误响应 (404)**:
+```json
+{
+  "success": false,
+  "error": "用户不存在",
+  "code": "NOT_FOUND"
+}
+```
+
+---
+
+### 4. 提现
+
+从指定用户账户提现金币。
+
+```http
+POST /api/account/withdraw
+```
+
+#### 请求体
+
+| 参数 | 类型 | 必填 | 说明 |
+|------|------|------|------|
+| `userId` | string | 是 | 用户唯一标识 |
+| `amount` | number | 是 | 提现金额（必须大于0） |
+| `description` | string | 否 | 提现描述 |
+
+#### 请求示例
+
+```bash
+curl -X POST "https://api.coin-exchange.example.com/api/account/withdraw" \
+  -H "Authorization: Bearer <your-token>" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "userId": "user001",
+    "amount": 50,
+    "description": "兑换商品"
+  }'
+```
+
+#### 响应示例
+
+**成功响应 (200)**:
+```json
+{
+  "success": true,
+  "data": {
+    "transactionId": "tx002",
+    "userId": "user001",
+    "type": "withdraw",
+    "amount": -50,
+    "balance": 1050,
+    "description": "兑换商品",
+    "createdAt": "2026-02-28T10:35:00Z"
+  }
+}
+```
+
+**错误响应 (400)**:
+```json
+{
+  "success": false,
+  "error": "可用余额不足",
+  "code": "INVALID_PARAMETERS"
+}
+```
+
+---
+
+### 5. 转账
+
+在用户之间转移金币。
+
+```http
+POST /api/account/transfer
+```
+
+#### 请求体
+
+| 参数 | 类型 | 必填 | 说明 |
+|------|------|------|------|
+| `fromUserId` | string | 是 | 转出用户ID |
+| `toUserId` | string | 是 | 转入用户ID |
+| `amount` | number | 是 | 转账金额（必须大于0） |
+| `description` | string | 否 | 转账描述 |
+
+#### 请求示例
+
+```bash
+curl -X POST "https://api.coin-exchange.example.com/api/account/transfer" \
+  -H "Authorization: Bearer <your-token>" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "fromUserId": "user001",
+    "toUserId": "user002",
+    "amount": 30,
+    "description": "朋友转账"
+  }'
+```
+
+#### 响应示例
+
+**成功响应 (200)**:
+```json
+{
+  "success": true,
+  "data": {
+    "transactionId": "tx003",
+    "fromUserId": "user001",
+    "toUserId": "user002",
+    "type": "transfer",
+    "amount": 30,
+    "fromUserBalance": 1020,
+    "toUserBalance": 30,
+    "description": "朋友转账",
+    "createdAt": "2026-02-28T10:40:00Z"
+  }
+}
+```
+
+**错误响应 (400)**:
+```json
+{
+  "success": false,
+  "error": "转出用户可用余额不足",
+  "code": "INVALID_PARAMETERS"
+}
+```
+
+---
+
+### 6. 冻结账户
+
+冻结指定用户账户（管理员操作）。
+
+```http
+POST /api/account/freeze
+```
+
+#### 请求体
+
+| 参数 | 类型 | 必填 | 说明 |
+|------|------|------|------|
+| `userId` | string | 是 | 用户唯一标识 |
+| `reason` | string | 是 | 冻结原因 |
+| `operator` | string | 是 | 操作人ID |
+
+#### 请求示例
+
+```bash
+curl -X POST "https://api.coin-exchange.example.com/api/account/freeze" \
+  -H "Authorization: Bearer <admin-token>" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "userId": "user001",
+    "reason": "违规操作",
+    "operator": "admin001"
+  }'
+```
+
+#### 响应示例
+
+**成功响应 (200)**:
+```json
+{
+  "success": true,
+  "data": {
+    "userId": "user001",
+    "status": "frozen",
+    "reason": "违规操作",
+    "operator": "admin001",
+    "frozenAt": "2026-02-28T11:00:00Z"
+  }
+}
+```
+
+---
+
+### 7. 解冻账户
+
+解除用户账户冻结状态（管理员操作）。
+
+```http
+POST /api/account/unfreeze
+```
+
+#### 请求体
+
+| 参数 | 类型 | 必填 | 说明 |
+|------|------|------|------|
+| `userId` | string | 是 | 用户唯一标识 |
+| `reason` | string | 是 | 解冻原因 |
+| `operator` | string | 是 | 操作人ID |
+
+#### 请求示例
+
+```bash
+curl -X POST "https://api.coin-exchange.example.com/api/account/unfreeze" \
+  -H "Authorization: Bearer <admin-token>" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "userId": "user001",
+    "reason": "问题已解决",
+    "operator": "admin001"
+  }'
+```
+
+#### 响应示例
+
+**成功响应 (200)**:
+```json
+{
+  "success": true,
+  "data": {
+    "userId": "user001",
+    "status": "active",
+    "reason": "问题已解决",
+    "operator": "admin001",
+    "unfrozenAt": "2026-02-28T12:00:00Z"
   }
 }
 ```
