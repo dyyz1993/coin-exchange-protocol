@@ -30,6 +30,19 @@ const server = Bun.serve({
       });
     }
 
+    // 前端页面服务
+    if (path === '/' || path === '/index.html') {
+      try {
+        const file = Bun.file('src/frontend/index.html');
+        return new Response(file, {
+          headers: { 'Content-Type': 'text/html' }
+        });
+      } catch (error) {
+        console.error('Failed to serve frontend:', error);
+        return new Response('Frontend not found', { status: 404 });
+      }
+    }
+
     // 健康检查
     if (path === '/health') {
       return new Response(JSON.stringify({ status: 'ok', timestamp: new Date().toISOString() }), {
@@ -118,9 +131,9 @@ console.log(`
 ╔════════════════════════════════════════════╗
 ║     🪙 金币交易协议 - Token System       ║
 ╠════════════════════════════════════════════╣
-║  Server running on: http://localhost:${PORT}   ║
-║  API Docs: http://localhost:${PORT}/api/docs   ║
-║  Health: http://localhost:${PORT}/health       ║
+║  前端界面: http://localhost:${PORT}           ║
+║  API 文档: http://localhost:${PORT}/api/docs ║
+║  健康检查: http://localhost:${PORT}/health   ║
 ╚════════════════════════════════════════════╝
 `);
 
