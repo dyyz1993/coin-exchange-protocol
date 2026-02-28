@@ -10,66 +10,6 @@
   "initialized": false,
   "events": [
     {
-      "time": "2026-02-28T11:43:18.080Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: write"
-    },
-    {
-      "time": "2026-02-28T11:43:18.080Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: write"
-    },
-    {
-      "time": "2026-02-28T11:45:13.634Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-02-28T11:45:13.634Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-02-28T11:45:13.635Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-02-28T11:45:13.636Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-02-28T11:45:13.636Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-02-28T11:45:13.636Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-02-28T11:45:13.637Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-02-28T11:45:15.414Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
       "time": "2026-02-28T11:45:15.414Z",
       "agent": "backend-developer",
       "type": "tool",
@@ -3005,6 +2945,66 @@
     },
     {
       "time": "2026-02-28T13:11:09.557Z",
+      "agent": "dev-director",
+      "type": "tool",
+      "content": "调用工具: git_commit"
+    },
+    {
+      "time": "2026-02-28T13:11:09.613Z",
+      "agent": "dev-director",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-02-28T13:11:09.613Z",
+      "agent": "dev-director",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-02-28T13:11:09.614Z",
+      "agent": "dev-director",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-02-28T13:11:09.614Z",
+      "agent": "dev-director",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-02-28T13:11:09.614Z",
+      "agent": "dev-director",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-02-28T13:11:09.633Z",
+      "agent": "dev-director",
+      "type": "tool",
+      "content": "调用工具: git_commit"
+    },
+    {
+      "time": "2026-02-28T13:11:09.634Z",
+      "agent": "dev-director",
+      "type": "tool",
+      "content": "调用工具: git_commit"
+    },
+    {
+      "time": "2026-02-28T13:11:09.634Z",
+      "agent": "dev-director",
+      "type": "tool",
+      "content": "调用工具: git_commit"
+    },
+    {
+      "time": "2026-02-28T13:11:09.635Z",
+      "agent": "dev-director",
+      "type": "tool",
+      "content": "调用工具: git_commit"
+    },
+    {
+      "time": "2026-02-28T13:11:09.635Z",
       "agent": "dev-director",
       "type": "tool",
       "content": "调用工具: git_commit"
