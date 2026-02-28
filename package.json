@@ -6,7 +6,12 @@
   "scripts": {
     "dev": "bun run --watch src/index.ts",
     "start": "bun run src/index.ts",
-    "test": "bun test"
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "test:unit": "jest src/__tests__/unit",
+    "test:integration": "jest src/__tests__/integration",
+    "test:bun": "bun test"
   },
   "keywords": ["token", "airdrop", "reward", "blockchain"],
   "author": "金币交易协议团队",
@@ -15,6 +20,10 @@
     "bun": "latest"
   },
   "devDependencies": {
-    "@types/bun": "latest"
+    "@types/bun": "latest",
+    "@types/jest": "^29.5.12",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.1.2",
+    "@jest/globals": "^29.7.0"
   }
 }
