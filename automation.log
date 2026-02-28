@@ -504,3 +504,11 @@ Changes not staged for commit:
   🔧 [requirement-analyst] 调用工具: bash({"command":"git add docs/api-reference.md"}...)
   ✅ [requirement-analyst] 工具完成: bash -> (no output)...
   🔧 [requirement-analyst] 调用工具: git_commit({"message":"docs(api): 添加完整的 API 参考文档\n\n✅ 完成所有 14 个 API 的详细文档：\n\n**AccountController APIs (8个)**:\...)
+  ✅ [requirement-analyst] 工具完成: git_commit -> ✅ 代码已提交: docs(api): 添加完整的 API 参考文档
+
+✅ 完成所有 14 个 API 的详细文档：
+
+**AccountController ...
+  🔧 [requirement-analyst] 调用工具: bash({"command":"git add docs/api-reference.md"}...)
+  ✅ [requirement-analyst] 工具完成: bash -> (no output)...
+  🔧 [requirement-analyst] 调用工具: git_commit({"message":"docs(api): 添加完整的 API 参考文档\n\n✅ 完成所有 14 个 API 的详细文档：\n\n**AccountController APIs (8个)**:\...)
