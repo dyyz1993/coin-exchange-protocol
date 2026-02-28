@@ -35,36 +35,6 @@
   "initialized": false,
   "events": [
     {
-      "time": "2026-02-28T19:56:56.933Z",
-      "agent": "requirement-analyst",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-02-28T19:56:56.940Z",
-      "agent": "requirement-analyst",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-02-28T19:56:56.972Z",
-      "agent": "requirement-analyst",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-02-28T19:56:57.001Z",
-      "agent": "requirement-analyst",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-02-28T19:56:57.024Z",
-      "agent": "requirement-analyst",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
       "time": "2026-02-28T19:56:57.044Z",
       "agent": "requirement-analyst",
       "type": "tool",
@@ -3030,6 +3000,36 @@
     },
     {
       "time": "2026-02-28T20:38:45.889Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: git_commit"
+    },
+    {
+      "time": "2026-02-28T20:38:45.967Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: git_push_branch"
+    },
+    {
+      "time": "2026-02-28T20:38:47.817Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: create_pr"
+    },
+    {
+      "time": "2026-02-28T20:38:48.627Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: report_progress"
+    },
+    {
+      "time": "2026-02-28T20:38:48.630Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-02-28T20:38:48.633Z",
       "agent": "test-engineer",
       "type": "tool",
       "content": "调用工具: git_commit"
