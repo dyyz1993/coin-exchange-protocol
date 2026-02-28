@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>金币交易协议 - 团队监控面板</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #fff;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            font-size: 2em;
+            background: linear-gradient(90deg, #f39c12, #e74c3c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .header .status {
+            margin-top: 10px;
+            padding: 8px 20px;
+            border-radius: 20px;
+            display: inline-block;
+        }
+        .status.running { background: #27ae60; }
+        .status.stopped { background: #c0392b; }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .card {
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            padding: 20px;
+            backdrop-filter: blur(10px);
+        }
+        .card h2 {
+            font-size: 1.2em;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .card h2 .icon { font-size: 1.5em; }
+        
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+        .stat {
+            text-align: center;
+            padding: 15px;
+            background: rgba(0,0,0,0.2);
+            border-radius: 10px;
+        }
+        .stat .value {
+            font-size: 2em;
+            font-weight: bold;
+            color: #f39c12;
+        }
+        .stat .label {
+            font-size: 0.9em;
+            color: #aaa;
+        }
+        
+        .agent-list { list-style: none; }
+        .agent-item {
+            display: flex;
+            align-items: center;
+            padding: 12px;
+            background: rgba(0,0,0,0.2);
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+        .agent-item .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-size: 1.2em;
+        }
+        .agent-item .info { flex: 1; }
+        .agent-item .name { font-weight: bold; }
+        .agent-item .task {
+            font-size: 0.85em;
+            color: #aaa;
+            margin-top: 3px;
+        }
+        .agent-item .status-badge {
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.8em;
+        }
+        .status-badge.idle { background: #7f8c8d; }
+        .status-badge.working { background: #3498db; }
+        .status-badge.completed { background: #27ae60; }
+        .status-badge.error { background: #e74c3c; }
+        
+        .event-log {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        .event-item {
+            padding: 10px 15px;
+            border-left: 3px solid #3498db;
+            margin-bottom: 10px;
+            background: rgba(0,0,0,0.2);
+            border-radius: 0 10px 10px 0;
+        }
+        .event-item.tool { border-color: #f39c12; }
+        .event-item.message { border-color: #27ae60; }
+        .event-item.error { border-color: #e74c3c; }
+        .event-item .time {
+            font-size: 0.8em;
+            color: #888;
+        }
+        .event-item .content {
+            margin-top: 5px;
+            font-size: 0.95em;
+        }
+        
+        .task-list { list-style: none; }
+        .task-item {
+            padding: 12px;
+            background: rgba(0,0,0,0.2);
+            border-radius: 10px;
+            margin-bottom: 8px;
+        }
+        .task-item .task-title {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .task-item .task-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85em;
+            color: #aaa;
+        }
+        
+        .refresh-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 15px 25px;
+            background: linear-gradient(135deg, #f39c12, #e74c3c);
+            border: none;
+            border-radius: 30px;
+            color: white;
+            font-size: 1em;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(243, 156, 18, 0.4);
+        }
+        .refresh-btn:hover {
+            transform: scale(1.05);
+        }
+        
+        .last-update {
+            text-align: center;
+            color: #888;
+            font-size: 0.85em;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🪙 金币交易协议开发团队</h1>
+        <div class="status" id="systemStatus">检查中...</div>
+    </div>
+    
+    <div class="grid">
+        <div class="card">
+            <h2><span class="icon">📊</span> 系统状态</h2>
+            <div class="stat-grid">
+                <div class="stat">
+                    <div class="value" id="iterationCount">-</div>
+                    <div class="label">迭代次数</div>
+                </div>
+                <div class="stat">
+                    <div class="value" id="issueCount">-</div>
+                    <div class="label">开放 Issues</div>
+                </div>
+                <div class="stat">
+                    <div class="value" id="taskCount">-</div>
+                    <div class="label">待处理任务</div>
+                </div>
+                <div class="stat">
+                    <div class="value" id="completedCount">-</div>
+                    <div class="label">已完成任务</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <h2><span class="icon">👥</span> 团队成员</h2>
+            <ul class="agent-list" id="agentList">
+                <li class="agent-item">
+                    <div class="avatar" style="background: #e74c3c;">👔</div>
+                    <div class="info">
+                        <div class="name">开发总监</div>
+                        <div class="task">等待任务...</div>
+                    </div>
+                    <span class="status-badge idle">空闲</span>
+                </li>
+            </ul>
+        </div>
+        
+        <div class="card">
+            <h2><span class="icon">📋</span> 当前任务</h2>
+            <ul class="task-list" id="taskList">
+                <li class="task-item">
+                    <div class="task-title">暂无任务</div>
+                </li>
+            </ul>
+        </div>
+        
+        <div class="card">
+            <h2><span class="icon">📜</span> 事件日志</h2>
+            <div class="event-log" id="eventLog">
+                <div class="event-item">
+                    <div class="time">--:--:--</div>
+                    <div class="content">等待系统启动...</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="last-update" id="lastUpdate">最后更新: --</div>
+    <button class="refresh-btn" onclick="loadData()">🔄 刷新</button>
+    
+    <script>
+        const AGENT_CONFIG = {
+            'dev-director': { name: '开发总监', emoji: '👔', color: '#e74c3c' },
+            'requirement-analyst': { name: '需求分析师', emoji: '📝', color: '#3498db' },
+            'backend-developer': { name: '后端开发者', emoji: '💻', color: '#27ae60' },
+            'frontend-developer': { name: '前端开发者', emoji: '🎨', color: '#9b59b6' },
+            'test-engineer': { name: '测试工程师', emoji: '🔍', color: '#f39c12' },
+            'release-manager': { name: '发布经理', emoji: '🚀', color: '#1abc9c' },
+        };
+        
+        async function loadData() {
+            try {
+                const response = await fetch('./monitor-data.json');
+                const data = await response.json();
+                updateUI(data);
+            } catch (error) {
+                document.getElementById('systemStatus').textContent = '连接失败';
+                document.getElementById('systemStatus').className = 'status stopped';
+            }
+        }
+        
+        function updateUI(data) {
+            document.getElementById('systemStatus').textContent = '运行中';
+            document.getElementById('systemStatus').className = 'status running';
+            
+            document.getElementById('iterationCount').textContent = data.currentIteration || 0;
+            document.getElementById('issueCount').textContent = data.issues?.length || 0;
+            document.getElementById('taskCount').textContent = data.tasks?.length || 0;
+            document.getElementById('completedCount').textContent = data.completedTasks?.length || 0;
+            
+            updateAgentList(data.tasks || []);
+            updateTaskList(data.tasks || []);
+            updateEventLog(data.events || []);
+            
+            document.getElementById('lastUpdate').textContent = 
+                `最后更新: ${new Date().toLocaleString('zh-CN')}`;
+        }
+        
+        function updateAgentList(tasks) {
+            const agentTasks = {};
+            tasks.forEach(t => {
+                if (!agentTasks[t.assignedTo]) {
+                    agentTasks[t.assignedTo] = [];
+                }
+                agentTasks[t.assignedTo].push(t);
+            });
+            
+            const html = Object.entries(AGENT_CONFIG).map(([id, config]) => {
+                const agentTasks = tasks.filter(t => t.assignedTo === id);
+                const workingTask = agentTasks.find(t => t.status === 'in_progress');
+                const status = workingTask ? 'working' : (agentTasks.length > 0 ? 'idle' : 'idle');
+                const statusText = workingTask ? '工作中' : (agentTasks.length > 0 ? '待处理' : '空闲');
+                const taskDesc = workingTask ? workingTask.title.slice(0, 30) + '...' : '无任务';
+                
+                return `
+                    <li class="agent-item">
+                        <div class="avatar" style="background: ${config.color};">${config.emoji}</div>
+                        <div class="info">
+                            <div class="name">${config.name}</div>
+                            <div class="task">${taskDesc}</div>
+                        </div>
+                        <span class="status-badge ${status}">${statusText}</span>
+                    </li>
+                `;
+            }).join('');
+            
+            document.getElementById('agentList').innerHTML = html;
+        }
+        
+        function updateTaskList(tasks) {
+            if (tasks.length === 0) {
+                document.getElementById('taskList').innerHTML = '<li class="task-item"><div class="task-title">暂无任务</div></li>';
+                return;
+            }
+            
+            const html = tasks.slice(0, 10).map(t => {
+                const statusColors = {
+                    'pending': '#7f8c8d',
+                    'in_progress': '#3498db',
+                    'completed': '#27ae60',
+                    'failed': '#e74c3c'
+                };
+                const statusTexts = {
+                    'pending': '待处理',
+                    'in_progress': '进行中',
+                    'completed': '已完成',
+                    'failed': '失败'
+                };
+                
+                return `
+                    <li class="task-item">
+                        <div class="task-title">${t.title.slice(0, 50)}${t.title.length > 50 ? '...' : ''}</div>
+                        <div class="task-meta">
+                            <span>分配给: ${AGENT_CONFIG[t.assignedTo]?.name || t.assignedTo}</span>
+                            <span style="color: ${statusColors[t.status]}">${statusTexts[t.status]}</span>
+                        </div>
+                    </li>
+                `;
+            }).join('');
+            
+            document.getElementById('taskList').innerHTML = html;
+        }
+        
+        function updateEventLog(events) {
+            if (events.length === 0) {
+                return;
+            }
+            
+            const html = events.slice(-50).reverse().map(e => {
+                const typeClass = e.type || '';
+                return `
+                    <div class="event-item ${typeClass}">
+                        <div class="time">${new Date(e.time).toLocaleTimeString('zh-CN')}</div>
+                        <div class="content"><strong>${e.agent}</strong>: ${e.content}</div>
+                    </div>
+                `;
+            }).join('');
+            
+            document.getElementById('eventLog').innerHTML = html;
+        }
+        
+        loadData();
+        setInterval(loadData, 5000);
+    </script>
+</body>
+</html>
