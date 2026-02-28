@@ -245,3 +245,13 @@ GLM 模型: glm-5 @ http://192.168.0.29:3120/v1
   🔧 [test-engineer] 调用工具: bash
   ✅ [test-engineer] 工具完成: bash
   🔧 [test-engineer] 调用工具: git_commit
+  ✅ [test-engineer] 工具完成: git_commit
+  🔧 [test-engineer] 调用工具: git_push_branch
+  ✅ [test-engineer] 工具完成: git_push_branch
+  🔧 [test-engineer] 调用工具: create_pr
+  ✅ [test-engineer] 工具完成: create_pr
+  🔧 [test-engineer] 调用工具: report_progress
+  ✅ [test-engineer] 工具完成: report_progress
+  🔧 [test-engineer] 调用工具: bash
+  ✅ [test-engineer] 工具完成: bash
+  🔧 [test-engineer] 调用工具: git_commit
