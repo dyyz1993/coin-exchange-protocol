@@ -70,3 +70,6 @@ GLM 模型: glm-5 @ http://192.168.0.29:3120/v1
   🔧 [dev-director] 调用工具: bash
   ✅ [dev-director] 工具完成: bash
   🔧 [dev-director] 调用工具: git_commit
+  ✅ [dev-director] 工具完成: git_commit
+  🔧 [dev-director] 调用工具: git_push_branch
+  ✅ [dev-director] 工具完成: git_push_branch

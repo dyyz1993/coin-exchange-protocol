@@ -10,90 +10,6 @@
   "initialized": false,
   "events": [
     {
-      "time": "2026-02-28T13:33:03.592Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: git_create_branch"
-    },
-    {
-      "time": "2026-02-28T13:37:50.951Z",
-      "agent": "dev-director",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-02-28T13:37:50.952Z",
-      "agent": "dev-director",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-02-28T13:37:50.953Z",
-      "agent": "dev-director",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-02-28T13:37:50.954Z",
-      "agent": "dev-director",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-02-28T13:37:50.954Z",
-      "agent": "dev-director",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-02-28T13:37:50.955Z",
-      "agent": "dev-director",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-02-28T13:37:50.956Z",
-      "agent": "dev-director",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-02-28T13:37:50.956Z",
-      "agent": "dev-director",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-02-28T13:37:50.957Z",
-      "agent": "dev-director",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-02-28T13:37:50.963Z",
-      "agent": "dev-director",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-02-28T13:37:50.964Z",
-      "agent": "dev-director",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-02-28T13:37:50.965Z",
-      "agent": "dev-director",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-02-28T13:37:50.965Z",
-      "agent": "dev-director",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
       "time": "2026-02-28T13:37:50.966Z",
       "agent": "dev-director",
       "type": "tool",
@@ -2944,67 +2860,151 @@
       "content": "系统启动"
     },
     {
-      "time": "2026-02-28T13:42:07.243Z",
-      "agent": "system",
-      "type": "message",
-      "content": "系统启动"
+      "time": "2026-02-28T13:42:37.619Z",
+      "agent": "dev-director",
+      "type": "tool",
+      "content": "调用工具: bash"
     },
     {
-      "time": "2026-02-28T13:42:15.194Z",
+      "time": "2026-02-28T13:42:37.628Z",
+      "agent": "dev-director",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-02-28T13:42:37.651Z",
       "agent": "dev-director",
       "type": "tool",
       "content": "调用工具: check_messages"
     },
     {
-      "time": "2026-02-28T13:42:23.058Z",
+      "time": "2026-02-28T13:42:37.651Z",
       "agent": "dev-director",
       "type": "tool",
       "content": "调用工具: bash"
     },
     {
-      "time": "2026-02-28T13:42:34.300Z",
-      "agent": "dev-director",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-02-28T13:42:34.306Z",
-      "agent": "dev-director",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-02-28T13:42:34.316Z",
-      "agent": "dev-director",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-02-28T13:42:34.318Z",
-      "agent": "dev-director",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-02-28T13:42:34.324Z",
-      "agent": "dev-director",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-02-28T13:42:34.325Z",
-      "agent": "dev-director",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-02-28T13:42:53.081Z",
+      "time": "2026-02-28T13:42:37.657Z",
       "agent": "dev-director",
       "type": "tool",
       "content": "调用工具: bash"
     },
     {
-      "time": "2026-02-28T13:43:01.205Z",
+      "time": "2026-02-28T13:42:37.677Z",
+      "agent": "dev-director",
+      "type": "tool",
+      "content": "调用工具: check_messages"
+    },
+    {
+      "time": "2026-02-28T13:42:43.269Z",
+      "agent": "dev-director",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-02-28T13:42:43.274Z",
+      "agent": "dev-director",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-02-28T13:42:43.275Z",
+      "agent": "dev-director",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-02-28T13:42:43.276Z",
+      "agent": "dev-director",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-02-28T13:42:43.283Z",
+      "agent": "dev-director",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-02-28T13:42:43.283Z",
+      "agent": "dev-director",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-02-28T13:42:43.284Z",
+      "agent": "dev-director",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-02-28T13:42:43.285Z",
+      "agent": "dev-director",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-02-28T13:42:50.310Z",
+      "agent": "dev-director",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-02-28T13:42:50.317Z",
+      "agent": "dev-director",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-02-28T13:42:50.323Z",
+      "agent": "dev-director",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-02-28T13:42:50.329Z",
+      "agent": "dev-director",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-02-28T13:42:50.350Z",
+      "agent": "dev-director",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-02-28T13:42:50.370Z",
+      "agent": "dev-director",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-02-28T13:42:50.375Z",
+      "agent": "dev-director",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-02-28T13:42:50.380Z",
+      "agent": "dev-director",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-02-28T13:42:50.385Z",
+      "agent": "dev-director",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-02-28T13:42:50.401Z",
+      "agent": "dev-director",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-02-28T13:43:12.551Z",
       "agent": "dev-director",
       "type": "tool",
       "content": "调用工具: git_commit"
@@ -3140,7 +3140,7 @@
       }
     ]
   },
-  "lastCheck": "2026-02-28T13:42:08.005Z",
+  "lastCheck": "2026-02-28T13:42:29.703Z",
   "issues": [
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/6",
