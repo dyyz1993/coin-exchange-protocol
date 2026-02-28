@@ -16,33 +16,48 @@
 - 第一个 API 调用
 
 ### 2. [API 完整参考](./api-reference.md)
-- 所有接口详细说明
+- 所有接口详细说明（包含冻结系统API）
 - 请求/响应示例
 - 认证机制
+- 错误码说明
 
-### 3. [SDK 使用说明](./sdk-guide.md)
+### 3. [集成指南](./integration-guide.md)
+- 接口签名验证详解
+- SDK 集成教程
+- 3+ 实战场景示例
+- 最佳实践
+- 常见问题
+
+### 4. [系统架构](./architecture.md)
+- 系统架构图
+- 数据流程图
+- 核心模块说明
+- 部署架构
+- 技术栈
+
+### 5. [SDK 使用说明](./sdk-guide.md)
 - JavaScript/TypeScript SDK
 - Python SDK
 - Go SDK
 
-### 4. [最佳实践](./best-practices.md)
+### 6. [最佳实践](./best-practices.md)
 - 安全性建议
 - 性能优化
 - 错误处理
 
-### 5. [常见问题](./faq.md)
+### 7. [常见问题](./faq.md)
 - 常见问题解答
 - 故障排查
 
-### 6. [错误码说明](./error-codes.md)
+### 8. [错误码说明](./error-codes.md)
 - 完整错误码列表
 - 错误处理指南
 
-### 7. [示例代码](./examples/)
+### 9. [示例代码](./examples/)
 - 多语言示例
 - 实战案例
 
-### 8. [Postman 集合](./postman/)
+### 10. [Postman 集合](./postman/)
 - 导入 Postman 集合
 - 快速测试 API
 

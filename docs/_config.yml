@@ -1,0 +1,38 @@
+# GitHub Pages 配置
+theme: jekyll-theme-cayman
+title: 金币交易协议 API 文档
+description: 完整的 API 接入指南和技术文档
+show_downloads: false
+
+# 导航配置
+navigation:
+  - title: 首页
+    url: /
+  - title: API 参考
+    url: /api-guide/api-reference
+  - title: 快速开始
+    url: /api-guide/quick-start
+  - title: 集成指南
+    url: /api-guide/integration-guide
+  - title: 架构文档
+    url: /api-guide/architecture
+
+# Markdown 配置
+markdown: kramdown
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+
+# 插件
+plugins:
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+# SEO 配置
+seo:
+  type: TechArticle
+  author: Coin Exchange Protocol Team
+  publisher: Coin Exchange Protocol
+
+# Google Analytics (可选)
+# google_analytics: UA-XXXXXXXXX-X
