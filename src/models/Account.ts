@@ -3,6 +3,7 @@
  */
 
 import { Account, Transaction, TransactionStatus, TransactionType } from '../types';
+import { validateUserId, validateAmount, validateNonNegativeAmount, validateTransferParams } from '../utils/validators';
 
 export class AccountModel {
   private accounts: Map<string, Account> = new Map();
@@ -61,6 +62,10 @@ export class AccountModel {
    * 增加余额
    */
   addBalance(userId: string, amount: number, description: string, type: TransactionType): Transaction {
+    // 验证输入参数
+    validateUserId(userId);
+    validateAmount(amount, '增加金额');
+    
     const account = this.getOrCreateAccount(userId);
     account.balance += amount;
     account.updatedAt = new Date();
@@ -81,6 +86,10 @@ export class AccountModel {
    * 扣减余额
    */
   deductBalance(userId: string, amount: number, description: string, type: TransactionType): Transaction {
+    // 验证输入参数
+    validateUserId(userId);
+    validateAmount(amount, '扣减金额');
+    
     const account = this.getAccountByUserId(userId);
     if (!account) {
       throw new Error('Account not found');
@@ -109,6 +118,10 @@ export class AccountModel {
    * 冻结余额
    */
   freezeBalance(userId: string, amount: number): Transaction {
+    // 验证输入参数
+    validateUserId(userId);
+    validateAmount(amount, '冻结金额');
+    
     const account = this.getAccountByUserId(userId);
     if (!account) {
       throw new Error('Account not found');
@@ -138,6 +151,10 @@ export class AccountModel {
    * 解冻余额
    */
   unfreezeBalance(userId: string, amount: number): Transaction {
+    // 验证输入参数
+    validateUserId(userId);
+    validateAmount(amount, '解冻金额');
+    
     const account = this.getAccountByUserId(userId);
     if (!account) {
       throw new Error('Account not found');
@@ -167,6 +184,9 @@ export class AccountModel {
    * 转账
    */
   transfer(fromUserId: string, toUserId: string, amount: number, description: string): Transaction {
+    // 验证输入参数
+    validateTransferParams({ fromUserId, toUserId, amount, description });
+    
     const fromAccount = this.getAccountByUserId(fromUserId);
     if (!fromAccount) {
       throw new Error('Source account not found');

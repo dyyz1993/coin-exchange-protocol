@@ -3,6 +3,7 @@
  */
 
 import { Order, Dispute, OrderStatus, DisputeStatus } from '../types';
+import { validateUserId, validateOrderParams } from '../utils/validators';
 
 export class OrderModel {
   private orders: Map<string, Order> = new Map();
@@ -30,6 +31,9 @@ export class OrderModel {
     description: string;
     buyerInfo: Order['buyerInfo'];
   }): Order {
+    // 验证输入参数
+    validateOrderParams(params);
+    
     const orderId = `order_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
     
     const order: Order = {

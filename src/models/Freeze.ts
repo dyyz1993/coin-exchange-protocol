@@ -3,6 +3,7 @@
  */
 
 import { FreezeRecord, FreezeType, FreezeStatus, FREEZE_CONFIG } from '../types';
+import { validateFreezeParams } from '../utils/validators';
 
 export class FreezeModel {
   private freezes: Map<string, FreezeRecord> = new Map();
@@ -18,6 +19,9 @@ export class FreezeModel {
     transactionId?: string;
     remark?: string;
   }): FreezeRecord {
+    // 验证输入参数
+    validateFreezeParams(params);
+    
     const now = new Date();
     const freezeId = `frz_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
     

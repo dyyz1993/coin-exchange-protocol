@@ -4,6 +4,7 @@
  */
 
 import type { TokenAccount, Transaction } from '../types';
+import { validateUserId, validateAccountId, validateAmount } from '../utils/validators';
 
 export class TokenAccountModel {
   private accounts: Map<string, TokenAccount> = new Map();
@@ -15,6 +16,9 @@ export class TokenAccountModel {
    * 创建账户
    */
   createAccount(userId: string): TokenAccount {
+    // 验证输入参数
+    validateUserId(userId);
+    
     const account: TokenAccount = {
       id: `acc_${this.accountCounter++}`,
       userId,
@@ -69,6 +73,10 @@ export class TokenAccountModel {
     description: string,
     referenceId?: string
   ): { account: TokenAccount; transaction: Transaction } | null {
+    // 验证输入参数
+    validateAccountId(accountId);
+    validateAmount(amount, '增加金额');
+    
     const account = this.accounts.get(accountId);
     if (!account) return null;
 
@@ -101,6 +109,10 @@ export class TokenAccountModel {
     amount: number,
     description: string
   ): { account: TokenAccount; transaction: Transaction } | null {
+    // 验证输入参数
+    validateAccountId(accountId);
+    validateAmount(amount, '扣除金额');
+    
     const account = this.accounts.get(accountId);
     if (!account || account.balance < amount) return null;
 
