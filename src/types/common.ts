@@ -29,7 +29,9 @@ export interface Transaction {
 export enum TransactionType {
   AIRDROP = 'airdrop', // 空投
   TASK_REWARD = 'task_reward', // 任务奖励
-  TRANSFER = 'transfer', // 转账
+  TRANSFER = 'transfer', // 通用转账
+  TRANSFER_IN = 'transfer_in', // 转账收入
+  TRANSFER_OUT = 'transfer_out', // 转账支出
   REWARD = 'reward', // 其他奖励
   PENALTY = 'penalty', // 惩罚扣除
   FROZEN = 'frozen', // 冻结
