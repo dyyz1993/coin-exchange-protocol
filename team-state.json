@@ -39,18 +39,6 @@
   "initialized": false,
   "events": [
     {
-      "time": "2026-02-28T20:54:09.187Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-02-28T20:54:09.230Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
       "time": "2026-02-28T20:54:09.248Z",
       "agent": "backend-developer",
       "type": "tool",
@@ -3034,6 +3022,18 @@
     },
     {
       "time": "2026-02-28T21:42:16.124Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: git_commit"
+    },
+    {
+      "time": "2026-02-28T21:42:16.228Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-02-28T21:42:16.248Z",
       "agent": "qa-engineer",
       "type": "tool",
       "content": "调用工具: git_commit"
