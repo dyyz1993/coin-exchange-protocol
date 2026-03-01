@@ -18,6 +18,13 @@ export class FreezeService {
   private autoUnfreezeTimer?: NodeJS.Timeout;
 
   /**
+   * 构造函数 - 自动初始化定时器
+   */
+  constructor() {
+    this.initialize();
+  }
+
+  /**
    * 初始化服务，启动自动解冻定时任务
    */
   initialize() {
