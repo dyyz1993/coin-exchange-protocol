@@ -70,11 +70,12 @@ export class AirdropService {
   }
 
   /**
-   * 用户领取空投
+   * 用户领取空投（并发安全版本）
    */
   async claimAirdrop(
     airdropId: string,
-    userId: string
+    userId: string,
+    nonce?: string // 🔥 添加 nonce 参数用于防重放
   ): Promise<{
     success: boolean;
     amount: number;
@@ -86,36 +87,19 @@ export class AirdropService {
       throw new Error('空投活动不存在');
     }
 
-    // 检查是否已领取
-    if (airdropModel.hasUserClaimed(userId, airdropId)) {
-      throw new Error('您已经领取过此空投');
-    }
+    // 🔥 生成唯一的 requestId（用于幂等性检查）
+    // 如果客户端提供了 nonce，使用它；否则生成一个基于时间戳和用户ID的
+    const requestId = nonce || `claim_${userId}_${airdropId}_${Date.now()}`;
 
-    // 检查空投状态和时间
-    const now = new Date();
-    if (airdrop.status !== AirdropStatus.ACTIVE) {
-      throw new Error('空投活动未激活');
-    }
-
-    if (now < airdrop.startTime) {
-      throw new Error('空投活动尚未开始');
-    }
-
-    if (now > airdrop.endTime) {
-      throw new Error('空投活动已结束');
-    }
-
-    // 检查总金额是否足够
-    const claims = airdropModel.getAirdropClaims(airdropId);
-    const totalClaimed = claims.reduce((sum, claim) => sum + claim.amount, 0);
-    const remainingAmount = airdrop.totalAmount - totalClaimed;
-
-    if (remainingAmount < airdrop.perUserAmount) {
-      throw new Error('空投金额已耗尽');
-    }
-
-    // 创建领取记录
-    const claim = airdropModel.createClaim(airdropId, userId, airdrop.perUserAmount);
+    // 🔥 在 Model 层进行并发安全的领取（包含所有必要的检查）
+    // Model 层会处理：
+    // 1. 防重放攻击（幂等性检查）
+    // 2. 获取锁（防止并发）
+    // 3. 检查是否已领取
+    // 4. 检查空投状态和时间
+    // 5. 检查总金额是否足够
+    // 6. 创建领取记录
+    const claim = airdropModel.createClaim(airdropId, userId, airdrop.perUserAmount, requestId);
 
     // 增加用户代币
     const result = await accountService.addTokens(

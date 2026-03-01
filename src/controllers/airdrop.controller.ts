@@ -26,7 +26,7 @@ export class AirdropController {
     } catch (error) {
       return {
         success: false,
-        error: error instanceof Error ? error.message : '创建空投失败'
+        error: error instanceof Error ? error.message : '创建空投失败',
       };
     }
   }
@@ -38,16 +38,16 @@ export class AirdropController {
   async getAirdrop(params: any): Promise<ApiResponse> {
     try {
       const { airdropId } = params;
-      
+
       if (!airdropId) {
         return { success: false, error: '缺少空投ID' };
       }
 
       return airdropService.getAirdrop(airdropId);
     } catch (error) {
-      return { 
-        success: false, 
-        error: error instanceof Error ? error.message : '查询空投失败' 
+      return {
+        success: false,
+        error: error instanceof Error ? error.message : '查询空投失败',
       };
     }
   }
@@ -75,16 +75,16 @@ export class AirdropController {
   async activateAirdrop(params: any): Promise<ApiResponse> {
     try {
       const { airdropId } = params;
-      
+
       if (!airdropId) {
         return { success: false, error: '缺少空投ID' };
       }
 
       return airdropService.activateAirdrop(airdropId);
     } catch (error) {
-      return { 
-        success: false, 
-        error: error instanceof Error ? error.message : '激活空投失败' 
+      return {
+        success: false,
+        error: error instanceof Error ? error.message : '激活空投失败',
       };
     }
   }
@@ -92,21 +92,22 @@ export class AirdropController {
   /**
    * 领取空投
    * POST /api/airdrop/claim
-   * Body: { airdropId, userId }
+   * Body: { airdropId, userId, nonce? }
+   * nonce: 可选的防重放攻击随机字符串
    */
   async claimAirdrop(params: any): Promise<ApiResponse> {
     try {
-      const { airdropId, userId } = params;
+      const { airdropId, userId, nonce } = params;
 
       if (!airdropId || !userId) {
         return { success: false, error: '缺少必要参数' };
       }
 
-      return airdropService.claimAirdrop(airdropId, userId);
+      return airdropService.claimAirdrop(airdropId, userId, nonce);
     } catch (error) {
       return {
         success: false,
-        error: error instanceof Error ? error.message : '领取空投失败'
+        error: error instanceof Error ? error.message : '领取空投失败',
       };
     }
   }
@@ -118,16 +119,16 @@ export class AirdropController {
   async canUserClaim(params: any): Promise<ApiResponse> {
     try {
       const { airdropId, userId } = params;
-      
+
       if (!airdropId || !userId) {
         return { success: false, error: '缺少必要参数' };
       }
 
       return airdropService.canUserClaim(airdropId, userId);
     } catch (error) {
-      return { 
-        success: false, 
-        error: error instanceof Error ? error.message : '查询失败' 
+      return {
+        success: false,
+        error: error instanceof Error ? error.message : '查询失败',
       };
     }
   }
@@ -139,16 +140,16 @@ export class AirdropController {
   async getUserClaims(params: any): Promise<ApiResponse> {
     try {
       const { userId } = params;
-      
+
       if (!userId) {
         return { success: false, error: '缺少用户ID' };
       }
 
       return airdropService.getUserClaims(userId);
     } catch (error) {
-      return { 
-        success: false, 
-        error: error instanceof Error ? error.message : '查询失败' 
+      return {
+        success: false,
+        error: error instanceof Error ? error.message : '查询失败',
       };
     }
   }
