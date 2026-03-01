@@ -56,9 +56,12 @@ export class AccountService {
       throw new Error('创建账户失败：无法获取账户ID');
     }
 
-    // ❌ 已移除重复的 addTokens 调用
-    // accountModel.createAccount 已经设置了初始余额，不需要再次增加
-    // 修复 Issue #236: 账户创建时初始余额重复计算导致双倍余额的 Bug
+    // ✅ 修复 Issue #236：移除重复的 addTokens 调用
+    // accountModel.createAccount 已经正确设置了初始余额和 totalEarned
+    // 不需要再次调用 addTokens，否则会导致余额重复计算（100 + 100 = 200）
+    //
+    // 注意：如果需要记录初始余额的交易记录，应该在 createAccount 内部处理，
+    // 而不是在这里调用 addTokens（它会修改余额）
 
     return {
       accountId: account.id,
