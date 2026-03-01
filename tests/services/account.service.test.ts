@@ -3,7 +3,6 @@
  * 测试范围：账户创建、余额查询、转账、冻结/解冻
  */
 
-import { describe, test, expect, beforeEach, afterEach } from 'bun:test';
 import { AccountService } from '../../src/services/account.service';
 import { AccountModel } from '../../src/models/Account';
 import { TokenAccountModel } from '../../src/models/TokenAccount';
@@ -30,7 +29,7 @@ describe('AccountService', () => {
       const userId = 'test-user-001';
       const result = await accountService.createAccount(userId, {
         email: 'test@example.com',
-        nickname: 'Test User'
+        nickname: 'Test User',
       });
 
       expect(result).toBeDefined();
@@ -55,7 +54,7 @@ describe('AccountService', () => {
       const result = await accountService.createAccount(userId, {
         email: 'optional@example.com',
         phone: '13800138000',
-        nickname: 'Optional User'
+        nickname: 'Optional User',
       });
 
       expect(result).toBeDefined();
@@ -70,12 +69,12 @@ describe('AccountService', () => {
     test('应该返回完整的账户信息', async () => {
       const userId = 'test-user-004';
       await accountService.createAccount(userId);
-      
+
       // 添加一些代币
       await accountService.addTokens(userId, 100, TransactionType.REWARD, '测试奖励');
 
       const accountInfo = accountService.getAccountInfo(userId);
-      
+
       expect(accountInfo).toBeDefined();
       expect(accountInfo?.account).toBeDefined();
       expect(accountInfo?.tokenBalance).toBe(100);
@@ -93,12 +92,12 @@ describe('AccountService', () => {
     test('应该返回正确的余额信息', async () => {
       const userId = 'test-user-005';
       await accountService.createAccount(userId);
-      
+
       await accountService.addTokens(userId, 500, TransactionType.REWARD, '初始奖励');
       await accountService.freezeTokens(userId, 100, '测试冻结');
 
       const balance = accountService.getTokenBalance(userId);
-      
+
       expect(balance).toBeDefined();
       expect(balance?.balance).toBe(500);
       expect(balance?.frozenBalance).toBe(100);
@@ -148,7 +147,7 @@ describe('AccountService', () => {
       await accountService.createAccount(userId);
 
       await accountService.addTokens(userId, 100, TransactionType.TASK_REWARD, '任务奖励');
-      
+
       const history = accountService.getTransactionHistory(userId);
       expect(history.length).toBeGreaterThan(0);
       expect(history[0].amount).toBe(100);
@@ -192,9 +191,9 @@ describe('AccountService', () => {
       await accountService.addTokens(userId, 200, TransactionType.REWARD, '初始奖励');
 
       await accountService.deductTokens(userId, 50, TransactionType.PENALTY, '惩罚');
-      
+
       const history = accountService.getTransactionHistory(userId);
-      const deductTx = history.find(tx => tx.amount < 0);
+      const deductTx = history.find((tx) => tx.amount < 0);
       expect(deductTx).toBeDefined();
       expect(deductTx?.amount).toBe(-50);
     });
@@ -262,17 +261,12 @@ describe('AccountService', () => {
     test('应该成功在用户间转账', async () => {
       const fromUserId = 'test-user-016';
       const toUserId = 'test-user-017';
-      
+
       await accountService.createAccount(fromUserId);
       await accountService.createAccount(toUserId);
       await accountService.addTokens(fromUserId, 500, TransactionType.REWARD, '初始奖励');
 
-      const result = await accountService.transfer(
-        fromUserId,
-        toUserId,
-        100,
-        '测试转账'
-      );
+      const result = await accountService.transfer(fromUserId, toUserId, 100, '测试转账');
 
       expect(result.success).toBe(true);
       expect(result.fromNewBalance).toBe(400);
@@ -283,7 +277,7 @@ describe('AccountService', () => {
     test('应该在余额不足时拒绝转账', async () => {
       const fromUserId = 'test-user-018';
       const toUserId = 'test-user-019';
-      
+
       await accountService.createAccount(fromUserId);
       await accountService.createAccount(toUserId);
       await accountService.addTokens(fromUserId, 50, TransactionType.REWARD, '初始奖励');
@@ -296,7 +290,7 @@ describe('AccountService', () => {
     test('应该考虑冻结余额', async () => {
       const fromUserId = 'test-user-020';
       const toUserId = 'test-user-021';
-      
+
       await accountService.createAccount(fromUserId);
       await accountService.createAccount(toUserId);
       await accountService.addTokens(fromUserId, 500, TransactionType.REWARD, '初始奖励');
@@ -310,19 +304,19 @@ describe('AccountService', () => {
     test('转账应记录交易历史', async () => {
       const fromUserId = 'test-user-022';
       const toUserId = 'test-user-023';
-      
+
       await accountService.createAccount(fromUserId);
       await accountService.createAccount(toUserId);
       await accountService.addTokens(fromUserId, 500, TransactionType.REWARD, '初始奖励');
 
       await accountService.transfer(fromUserId, toUserId, 100, '测试转账');
-      
+
       const fromHistory = accountService.getTransactionHistory(fromUserId);
       const toHistory = accountService.getTransactionHistory(toUserId);
-      
-      const transferOut = fromHistory.find(tx => tx.type === TransactionType.TRANSFER_OUT);
-      const transferIn = toHistory.find(tx => tx.type === TransactionType.TRANSFER_IN);
-      
+
+      const transferOut = fromHistory.find((tx) => tx.type === TransactionType.TRANSFER_OUT);
+      const transferIn = toHistory.find((tx) => tx.type === TransactionType.TRANSFER_IN);
+
       expect(transferOut).toBeDefined();
       expect(transferIn).toBeDefined();
     });
@@ -358,13 +352,13 @@ describe('AccountService', () => {
     test('应该返回正确的统计数据', async () => {
       const userId = 'test-user-026';
       await accountService.createAccount(userId);
-      
+
       await accountService.addTokens(userId, 100, TransactionType.REWARD, '奖励1');
       await accountService.addTokens(userId, 200, TransactionType.AIRDROP, '空投');
       await accountService.deductTokens(userId, 50, TransactionType.PENALTY, '惩罚');
 
       const stats = accountService.getAccountStats(userId);
-      
+
       expect(stats).toBeDefined();
       expect(stats?.totalTransactions).toBe(3);
       expect(stats?.totalEarned).toBe(300);
@@ -386,7 +380,7 @@ describe('AccountService', () => {
       const updated = accountService.updateAccountInfo(userId, {
         email: 'new@example.com',
         nickname: 'New Name',
-        avatar: 'https://example.com/avatar.png'
+        avatar: 'https://example.com/avatar.png',
       });
 
       expect(updated.email).toBe('new@example.com');
@@ -441,7 +435,12 @@ describe('AccountService', () => {
       await accountService.createAccount(userId);
 
       const largeAmount = Number.MAX_SAFE_INTEGER / 2;
-      const result = await accountService.addTokens(userId, largeAmount, TransactionType.REWARD, '大金额');
+      const result = await accountService.addTokens(
+        userId,
+        largeAmount,
+        TransactionType.REWARD,
+        '大金额'
+      );
       expect(result.newBalance).toBe(largeAmount);
     });
 
@@ -450,9 +449,9 @@ describe('AccountService', () => {
       await accountService.createAccount(userId);
 
       // 模拟并发添加代币
-      const promises = Array(10).fill(null).map((_, i) => 
-        accountService.addTokens(userId, 10, TransactionType.REWARD, `并发${i}`)
-      );
+      const promises = Array(10)
+        .fill(null)
+        .map((_, i) => accountService.addTokens(userId, 10, TransactionType.REWARD, `并发${i}`));
 
       await Promise.all(promises);
 
