@@ -56,10 +56,8 @@ export class AccountService {
       throw new Error('创建账户失败：无法获取账户ID');
     }
 
-    // 如果有初始余额，记录交易
-    if (initialBalance > 0) {
-      await this.addTokens(userId, initialBalance, TransactionType.REWARD, '初始余额');
-    }
+    // 注意：不再调用 addTokens，因为 accountModel.createAccount 已经正确设置了初始余额
+    // 避免余额重复计算（Issue #236）
 
     return {
       accountId: account.id,
