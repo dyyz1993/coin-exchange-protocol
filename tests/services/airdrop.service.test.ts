@@ -3,7 +3,6 @@
  * 测试范围：空投创建、激活、领取验证、重复领取防护
  */
 
-import { describe, test, expect, beforeEach, afterEach } from 'bun:test';
 import { AirdropService } from '../../src/services/airdrop.service';
 import { AccountService } from '../../src/services/account.service';
 import { airdropModel } from '../../src/models/Airdrop';
@@ -45,7 +44,7 @@ describe('AirdropService', () => {
         totalAmount: 10000,
         perUserAmount: 100,
         startTime,
-        endTime
+        endTime,
       });
 
       expect(result).toBeDefined();
@@ -68,7 +67,7 @@ describe('AirdropService', () => {
           totalAmount: 1000,
           perUserAmount: 100,
           startTime,
-          endTime
+          endTime,
         });
       }).toThrow('开始时间必须早于结束时间');
     });
@@ -86,7 +85,7 @@ describe('AirdropService', () => {
           totalAmount: 0,
           perUserAmount: 100,
           startTime,
-          endTime
+          endTime,
         });
       }).toThrow('金额必须大于0');
 
@@ -98,7 +97,7 @@ describe('AirdropService', () => {
           totalAmount: 1000,
           perUserAmount: 0,
           startTime,
-          endTime
+          endTime,
         });
       }).toThrow('金额必须大于0');
 
@@ -110,7 +109,7 @@ describe('AirdropService', () => {
           totalAmount: -100,
           perUserAmount: 100,
           startTime,
-          endTime
+          endTime,
         });
       }).toThrow('金额必须大于0');
     });
@@ -126,7 +125,7 @@ describe('AirdropService', () => {
         totalAmount: 1000000,
         perUserAmount: 1000,
         startTime,
-        endTime
+        endTime,
       });
 
       expect(result.totalAmount).toBe(1000000);
@@ -137,9 +136,9 @@ describe('AirdropService', () => {
   describe('startAirdrop', () => {
     test('应该成功启动空投活动', async () => {
       const airdrop = await createTestAirdrop();
-      
+
       const result = await airdropService.startAirdrop(airdrop.airdropId);
-      
+
       expect(result.success).toBe(true);
       expect(result.status).toBe(AirdropStatus.ACTIVE);
     });
@@ -199,7 +198,7 @@ describe('AirdropService', () => {
 
     test('应该拒绝领取尚未开始的空投', async () => {
       const userId = 'test-user-004';
-      
+
       // 创建一个未来开始的空投
       const now = new Date();
       const startTime = new Date(now.getTime() + 1000 * 60 * 60); // 1小时后
@@ -211,7 +210,7 @@ describe('AirdropService', () => {
         totalAmount: 1000,
         perUserAmount: 100,
         startTime,
-        endTime
+        endTime,
       });
 
       await airdropService.startAirdrop(airdrop.airdropId);
@@ -224,7 +223,7 @@ describe('AirdropService', () => {
 
     test('应该拒绝领取已结束的空投', async () => {
       const userId = 'test-user-005';
-      
+
       // 创建一个已过期的空投
       const now = new Date();
       const startTime = new Date(now.getTime() - 1000 * 60 * 60 * 2); // 2小时前
@@ -236,7 +235,7 @@ describe('AirdropService', () => {
         totalAmount: 1000,
         perUserAmount: 100,
         startTime,
-        endTime
+        endTime,
       });
 
       await airdropService.startAirdrop(airdrop.airdropId);
@@ -258,11 +257,11 @@ describe('AirdropService', () => {
 
     test('多个用户应该可以领取同一个空投', async () => {
       const airdrop = await createActiveAirdrop();
-      
+
       for (let i = 0; i < 10; i++) {
         const userId = `test-user-${i + 10}`;
         await accountService.createAccount(userId);
-        
+
         const result = await airdropService.claimAirdrop(airdrop.airdropId, userId);
         expect(result.success).toBe(true);
         expect(result.newBalance).toBe(100);
@@ -277,9 +276,9 @@ describe('AirdropService', () => {
   describe('endAirdrop', () => {
     test('应该成功结束空投活动', async () => {
       const airdrop = await createActiveAirdrop();
-      
+
       const result = await airdropService.endAirdrop(airdrop.airdropId);
-      
+
       expect(result.success).toBe(true);
       expect(result.status).toBe(AirdropStatus.COMPLETED);
       expect(result.totalClaimed).toBeGreaterThanOrEqual(0);
@@ -287,7 +286,7 @@ describe('AirdropService', () => {
 
     test('应该正确统计已领取数量', async () => {
       const airdrop = await createActiveAirdrop();
-      
+
       // 多个用户领取
       for (let i = 0; i < 5; i++) {
         const userId = `test-user-${i + 20}`;
@@ -309,9 +308,9 @@ describe('AirdropService', () => {
   describe('cancelAirdrop', () => {
     test('应该成功取消空投活动', async () => {
       const airdrop = await createTestAirdrop();
-      
+
       const result = await airdropService.cancelAirdrop(airdrop.airdropId, '测试取消');
-      
+
       expect(result.success).toBe(true);
       expect(result.status).toBe(AirdropStatus.CANCELLED);
     });
@@ -340,7 +339,7 @@ describe('AirdropService', () => {
       await airdropService.claimAirdrop(airdrop.airdropId, userId);
 
       const detail = airdropService.getAirdropDetail(airdrop.airdropId);
-      
+
       expect(detail).toBeDefined();
       expect(detail.airdrop).toBeDefined();
       expect(detail.claimCount).toBe(1);
@@ -383,7 +382,7 @@ describe('AirdropService', () => {
       await createActiveAirdrop('空投3');
 
       const claimables = airdropService.getClaimableAirdrops(userId);
-      
+
       expect(claimables.length).toBe(3);
       expect(claimables[0]).toHaveProperty('id');
       expect(claimables[0]).toHaveProperty('name');
@@ -412,10 +411,10 @@ describe('AirdropService', () => {
 
       // 创建待处理空投
       await createTestAirdrop('待处理空投');
-      
+
       // 创建活跃空投
       await createActiveAirdrop('活跃空投');
-      
+
       // 创建已过期空投
       const now = new Date();
       const expiredAirdrop = await airdropService.createAirdrop({
@@ -424,7 +423,7 @@ describe('AirdropService', () => {
         totalAmount: 1000,
         perUserAmount: 100,
         startTime: new Date(now.getTime() - 1000 * 60 * 60 * 2),
-        endTime: new Date(now.getTime() - 1000 * 60 * 60)
+        endTime: new Date(now.getTime() - 1000 * 60 * 60),
       });
       await airdropService.startAirdrop(expiredAirdrop.airdropId);
 
@@ -446,7 +445,7 @@ describe('AirdropService', () => {
       await airdropService.claimAirdrop(airdrop2.airdropId, userId);
 
       const history = airdropService.getUserClaimHistory(userId);
-      
+
       expect(history.length).toBe(2);
       expect(history[0]).toHaveProperty('claimId');
       expect(history[0]).toHaveProperty('airdropName');
@@ -467,13 +466,13 @@ describe('AirdropService', () => {
     test('应该返回所有空投的统计信息', async () => {
       await createActiveAirdrop('空投1');
       await createActiveAirdrop('空投2');
-      
+
       const airdrop3 = await createTestAirdrop('空投3');
       await airdropService.startAirdrop(airdrop3.airdropId);
       await airdropService.endAirdrop(airdrop3.airdropId);
 
       const stats = airdropService.getAirdropStats();
-      
+
       expect(stats.totalAirdrops).toBe(3);
       expect(stats.activeAirdrops).toBe(2);
       expect(stats.completedAirdrops).toBe(1);
@@ -481,16 +480,16 @@ describe('AirdropService', () => {
 
     test('应该返回单个空投的统计信息', async () => {
       const airdrop = await createActiveAirdrop();
-      
+
       const stats = airdropService.getAirdropStats(airdrop.airdropId);
-      
+
       expect(stats.totalAirdrops).toBe(1);
       expect(stats.activeAirdrops).toBe(1);
     });
 
     test('应该正确计算已分发总额', async () => {
       const airdrop = await createActiveAirdrop();
-      
+
       for (let i = 0; i < 5; i++) {
         const userId = `test-user-${i + 60}`;
         await accountService.createAccount(userId);
@@ -505,7 +504,7 @@ describe('AirdropService', () => {
   describe('边界条件测试', () => {
     test('应该处理大量用户领取', async () => {
       const airdrop = await createActiveAirdrop();
-      
+
       // 模拟 100 个用户领取
       for (let i = 0; i < 100; i++) {
         const userId = `test-user-${i + 100}`;
@@ -520,7 +519,7 @@ describe('AirdropService', () => {
 
     test('应该处理并发领取', async () => {
       const airdrop = await createActiveAirdrop();
-      
+
       // 创建 50 个账户
       const userIds = [];
       for (let i = 0; i < 50; i++) {
@@ -530,7 +529,7 @@ describe('AirdropService', () => {
       }
 
       // 并发领取
-      const promises = userIds.map(userId => 
+      const promises = userIds.map((userId) =>
         airdropService.claimAirdrop(airdrop.airdropId, userId)
       );
 
@@ -551,7 +550,7 @@ describe('AirdropService', () => {
         totalAmount: 1000,
         perUserAmount: 100,
         startTime,
-        endTime
+        endTime,
       });
 
       expect(airdrop).toBeDefined();
@@ -570,7 +569,7 @@ describe('AirdropService', () => {
       totalAmount: 10000,
       perUserAmount: 100,
       startTime,
-      endTime
+      endTime,
     });
   }
 
@@ -585,11 +584,11 @@ describe('AirdropService', () => {
       totalAmount: 10000,
       perUserAmount: 100,
       startTime,
-      endTime
+      endTime,
     });
 
     await airdropService.startAirdrop(airdrop.airdropId);
-    
+
     return airdrop;
   }
 });

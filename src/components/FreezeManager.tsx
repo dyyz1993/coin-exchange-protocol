@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { toast } from '../utils/toast';
+import { validateAmount, validateAccountId, isNotEmpty } from '../utils/validation';
 
 // 类型定义
 interface FreezeRequest {
@@ -32,12 +34,12 @@ export const FreezeManager: React.FC = () => {
   const [showApplyForm, setShowApplyForm] = useState(false);
   const [activeTab, setActiveTab] = useState<'requests' | 'records'>('requests');
   const [loading, setLoading] = useState(false);
-  
+
   // 申请表单状态
   const [applyData, setApplyData] = useState({
     accountId: '',
-    amount: 0,
-    reason: ''
+    amount: '',
+    reason: '',
   });
 
   // 审核筛选
@@ -62,7 +64,7 @@ export const FreezeManager: React.FC = () => {
           reason: '涉嫌违规交易',
           requester: 'admin-001',
           status: 'pending',
-          createdAt: '2024-03-01 10:30'
+          createdAt: '2024-03-01 10:30',
         },
         {
           id: '2',
@@ -74,7 +76,7 @@ export const FreezeManager: React.FC = () => {
           status: 'approved',
           createdAt: '2024-03-02 14:20',
           reviewedAt: '2024-03-02 15:00',
-          reviewer: 'admin-003'
+          reviewer: 'admin-003',
         },
         {
           id: '3',
@@ -86,12 +88,13 @@ export const FreezeManager: React.FC = () => {
           status: 'rejected',
           createdAt: '2024-03-03 09:15',
           reviewedAt: '2024-03-03 10:30',
-          reviewer: 'admin-003'
-        }
+          reviewer: 'admin-003',
+        },
       ];
       setFreezeRequests(mockRequests);
     } catch (error) {
       console.error('加载冻结申请失败:', error);
+      toast.error('加载冻结申请失败：' + (error as Error).message);
     } finally {
       setLoading(false);
     }
@@ -109,7 +112,7 @@ export const FreezeManager: React.FC = () => {
           frozenBy: 'admin-003',
           reason: '异常大额转账',
           status: 'active',
-          frozenAt: '2024-03-02 15:00'
+          frozenAt: '2024-03-02 15:00',
         },
         {
           id: 'fz-002',
@@ -120,27 +123,48 @@ export const FreezeManager: React.FC = () => {
           reason: '安全风险',
           status: 'unfrozen',
           frozenAt: '2024-02-28 11:00',
-          unfrozenAt: '2024-03-01 16:00'
-        }
+          unfrozenAt: '2024-03-01 16:00',
+        },
       ];
       setFreezeRecords(mockRecords);
     } catch (error) {
       console.error('加载冻结记录失败:', error);
+      toast.error('加载冻结记录失败：' + (error as Error).message);
     }
   };
 
   // 提交冻结申请
   const handleApply = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // 验证账户ID
+    if (!validateAccountId(applyData.accountId)) {
+      toast.error('请输入有效的账户ID（3-50个字符）');
+      return;
+    }
+
+    // 验证金额
+    const amount = validateAmount(applyData.amount);
+    if (amount <= 0) {
+      toast.error('请输入有效的冻结金额');
+      return;
+    }
+
+    // 验证原因
+    if (!isNotEmpty(applyData.reason)) {
+      toast.error('请输入冻结原因');
+      return;
+    }
+
     setLoading(true);
     try {
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      alert('冻结申请已提交！');
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+      toast.success('冻结申请已提交！');
       setShowApplyForm(false);
-      setApplyData({ accountId: '', amount: 0, reason: '' });
+      setApplyData({ accountId: '', amount: '', reason: '' });
       loadFreezeRequests();
     } catch (error) {
-      alert('提交失败：' + (error as Error).message);
+      toast.error('提交失败：' + (error as Error).message);
     } finally {
       setLoading(false);
     }
@@ -148,15 +172,17 @@ export const FreezeManager: React.FC = () => {
 
   // 审核通过
   const handleApprove = async (requestId: string) => {
-    if (!confirm('确定要通过此冻结申请吗？')) return;
+    const confirmed = window.confirm('确定要通过此冻结申请吗？');
+    if (!confirmed) return;
+
     setLoading(true);
     try {
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      alert('审核通过，账户已冻结');
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+      toast.success('审核通过，账户已冻结');
       loadFreezeRequests();
       loadFreezeRecords();
     } catch (error) {
-      alert('操作失败：' + (error as Error).message);
+      toast.error('操作失败：' + (error as Error).message);
     } finally {
       setLoading(false);
     }
@@ -164,14 +190,16 @@ export const FreezeManager: React.FC = () => {
 
   // 审核拒绝
   const handleReject = async (requestId: string) => {
-    if (!confirm('确定要拒绝此冻结申请吗？')) return;
+    const confirmed = window.confirm('确定要拒绝此冻结申请吗？');
+    if (!confirmed) return;
+
     setLoading(true);
     try {
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      alert('已拒绝申请');
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+      toast.success('已拒绝申请');
       loadFreezeRequests();
     } catch (error) {
-      alert('操作失败：' + (error as Error).message);
+      toast.error('操作失败：' + (error as Error).message);
     } finally {
       setLoading(false);
     }
@@ -179,14 +207,16 @@ export const FreezeManager: React.FC = () => {
 
   // 解冻账户
   const handleUnfreeze = async (recordId: string) => {
-    if (!confirm('确定要解冻此账户吗？')) return;
+    const confirmed = window.confirm('确定要解冻此账户吗？');
+    if (!confirmed) return;
+
     setLoading(true);
     try {
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      alert('账户已解冻');
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+      toast.success('账户已解冻');
       loadFreezeRecords();
     } catch (error) {
-      alert('操作失败：' + (error as Error).message);
+      toast.error('操作失败：' + (error as Error).message);
     } finally {
       setLoading(false);
     }
@@ -211,7 +241,7 @@ export const FreezeManager: React.FC = () => {
   };
 
   // 筛选申请
-  const filteredRequests = freezeRequests.filter(req => {
+  const filteredRequests = freezeRequests.filter((req) => {
     if (statusFilter === 'all') return true;
     return req.status === statusFilter;
   });
@@ -228,25 +258,28 @@ export const FreezeManager: React.FC = () => {
         <div className="bg-yellow-50 p-4 rounded-lg">
           <p className="text-sm text-yellow-600">待审核申请</p>
           <p className="text-2xl font-bold text-yellow-900">
-            {freezeRequests.filter(r => r.status === 'pending').length}
+            {freezeRequests.filter((r) => r.status === 'pending').length}
           </p>
         </div>
         <div className="bg-green-50 p-4 rounded-lg">
           <p className="text-sm text-green-600">已通过申请</p>
           <p className="text-2xl font-bold text-green-900">
-            {freezeRequests.filter(r => r.status === 'approved').length}
+            {freezeRequests.filter((r) => r.status === 'approved').length}
           </p>
         </div>
         <div className="bg-blue-50 p-4 rounded-lg">
           <p className="text-sm text-blue-600">冻结中账户</p>
           <p className="text-2xl font-bold text-blue-900">
-            {freezeRecords.filter(r => r.status === 'active').length}
+            {freezeRecords.filter((r) => r.status === 'active').length}
           </p>
         </div>
         <div className="bg-purple-50 p-4 rounded-lg">
           <p className="text-sm text-purple-600">总冻结金额</p>
           <p className="text-2xl font-bold text-purple-900">
-            {freezeRecords.filter(r => r.status === 'active').reduce((sum, r) => sum + r.frozenAmount, 0).toFixed(2)}
+            {freezeRecords
+              .filter((r) => r.status === 'active')
+              .reduce((sum, r) => sum + r.frozenAmount, 0)
+              .toFixed(2)}
           </p>
         </div>
       </div>
@@ -348,7 +381,9 @@ export const FreezeManager: React.FC = () => {
                       <span className="text-sm text-gray-900">{request.reason}</span>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
-                      <span className={`px-2 py-1 rounded-full text-xs font-semibold ${getStatusBadge(request.status)}`}>
+                      <span
+                        className={`px-2 py-1 rounded-full text-xs font-semibold ${getStatusBadge(request.status)}`}
+                      >
                         {getStatusText(request.status)}
                       </span>
                     </td>
@@ -431,7 +466,9 @@ export const FreezeManager: React.FC = () => {
                     <span className="text-sm text-gray-900">{record.reason}</span>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
-                    <span className={`px-2 py-1 rounded-full text-xs font-semibold ${getStatusBadge(record.status)}`}>
+                    <span
+                      className={`px-2 py-1 rounded-full text-xs font-semibold ${getStatusBadge(record.status)}`}
+                    >
                       {getStatusText(record.status)}
                     </span>
                   </td>
@@ -464,9 +501,7 @@ export const FreezeManager: React.FC = () => {
             <h3 className="text-xl font-bold mb-4">新建冻结申请</h3>
             <form onSubmit={handleApply}>
               <div className="mb-4">
-                <label className="block text-gray-700 text-sm font-bold mb-2">
-                  账户ID
-                </label>
+                <label className="block text-gray-700 text-sm font-bold mb-2">账户ID</label>
                 <input
                   type="text"
                   value={applyData.accountId}
@@ -477,13 +512,11 @@ export const FreezeManager: React.FC = () => {
                 />
               </div>
               <div className="mb-4">
-                <label className="block text-gray-700 text-sm font-bold mb-2">
-                  冻结金额
-                </label>
+                <label className="block text-gray-700 text-sm font-bold mb-2">冻结金额</label>
                 <input
                   type="number"
                   value={applyData.amount}
-                  onChange={(e) => setApplyData({ ...applyData, amount: parseFloat(e.target.value) })}
+                  onChange={(e) => setApplyData({ ...applyData, amount: e.target.value })}
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                   placeholder="0.00"
                   min="0"
@@ -492,9 +525,7 @@ export const FreezeManager: React.FC = () => {
                 />
               </div>
               <div className="mb-4">
-                <label className="block text-gray-700 text-sm font-bold mb-2">
-                  冻结原因
-                </label>
+                <label className="block text-gray-700 text-sm font-bold mb-2">冻结原因</label>
                 <textarea
                   value={applyData.reason}
                   onChange={(e) => setApplyData({ ...applyData, reason: e.target.value })}

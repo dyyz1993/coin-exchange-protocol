@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { toast } from '../utils/toast';
+import { validateAmount, validateAddress, isAmountInRange } from '../utils/validation';
 
 // 类型定义
 interface Account {
@@ -27,20 +29,20 @@ export const AccountManager: React.FC = () => {
   const [showDepositForm, setShowDepositForm] = useState(false);
   const [showWithdrawForm, setShowWithdrawForm] = useState(false);
   const [loading, setLoading] = useState(false);
-  
+
   // 表单状态
   const [transferData, setTransferData] = useState({
     to: '',
-    amount: 0,
-    note: ''
+    amount: '',
+    note: '',
   });
-  
+
   const [depositData, setDepositData] = useState({
-    amount: 0
+    amount: '',
   });
-  
+
   const [withdrawData, setWithdrawData] = useState({
-    amount: 0
+    amount: '',
   });
 
   // 加载账户列表
@@ -56,23 +58,25 @@ export const AccountManager: React.FC = () => {
         {
           id: '1',
           address: '0x1234...5678',
-          balance: 1000.50,
+          balance: 1000.5,
           frozenAmount: 100,
           status: 'active',
-          createdAt: '2024-01-15'
+          createdAt: '2024-01-15',
         },
         {
           id: '2',
           address: '0xabcd...efgh',
-          balance: 500.00,
+          balance: 500.0,
           frozenAmount: 0,
           status: 'frozen',
-          createdAt: '2024-02-20'
-        }
+          createdAt: '2024-02-20',
+        },
       ];
       setAccounts(mockAccounts);
+      toast.success('账户列表加载成功');
     } catch (error) {
       console.error('加载账户失败:', error);
+      toast.error('加载账户失败：' + (error as Error).message);
     } finally {
       setLoading(false);
     }
@@ -81,15 +85,29 @@ export const AccountManager: React.FC = () => {
   // 处理转账
   const handleTransfer = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // 验证收款地址
+    if (!validateAddress(transferData.to)) {
+      toast.error('请输入有效的收款地址');
+      return;
+    }
+
+    // 验证金额
+    const amount = validateAmount(transferData.amount);
+    if (amount <= 0) {
+      toast.error('请输入有效的转账金额');
+      return;
+    }
+
     setLoading(true);
     try {
       // 模拟 API 调用
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      alert('转账成功！');
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+      toast.success(`转账成功！金额：${amount.toFixed(2)} 金币`);
       setShowTransferForm(false);
-      setTransferData({ to: '', amount: 0, note: '' });
+      setTransferData({ to: '', amount: '', note: '' });
     } catch (error) {
-      alert('转账失败：' + (error as Error).message);
+      toast.error('转账失败：' + (error as Error).message);
     } finally {
       setLoading(false);
     }
@@ -98,14 +116,22 @@ export const AccountManager: React.FC = () => {
   // 处理充值
   const handleDeposit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // 验证金额
+    const amount = validateAmount(depositData.amount);
+    if (amount <= 0) {
+      toast.error('请输入有效的充值金额');
+      return;
+    }
+
     setLoading(true);
     try {
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      alert('充值成功！');
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+      toast.success(`充值成功！金额：${amount.toFixed(2)} 金币`);
       setShowDepositForm(false);
-      setDepositData({ amount: 0 });
+      setDepositData({ amount: '' });
     } catch (error) {
-      alert('充值失败：' + (error as Error).message);
+      toast.error('充值失败：' + (error as Error).message);
     } finally {
       setLoading(false);
     }
@@ -114,14 +140,22 @@ export const AccountManager: React.FC = () => {
   // 处理提现
   const handleWithdraw = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // 验证金额
+    const amount = validateAmount(withdrawData.amount);
+    if (amount <= 0) {
+      toast.error('请输入有效的提现金额');
+      return;
+    }
+
     setLoading(true);
     try {
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      alert('提现成功！');
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+      toast.success(`提现成功！金额：${amount.toFixed(2)} 金币`);
       setShowWithdrawForm(false);
-      setWithdrawData({ amount: 0 });
+      setWithdrawData({ amount: '' });
     } catch (error) {
-      alert('提现失败：' + (error as Error).message);
+      toast.error('提现失败：' + (error as Error).message);
     } finally {
       setLoading(false);
     }
@@ -129,14 +163,17 @@ export const AccountManager: React.FC = () => {
 
   // 冻结账户
   const handleFreeze = async (accountId: string) => {
-    if (!confirm('确定要冻结此账户吗？')) return;
+    // 使用自定义确认对话框（这里简化处理，实际项目中应该创建一个确认对话框组件）
+    const confirmed = window.confirm('确定要冻结此账户吗？');
+    if (!confirmed) return;
+
     setLoading(true);
     try {
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      alert('账户已冻结');
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+      toast.success('账户已冻结');
       loadAccounts();
     } catch (error) {
-      alert('冻结失败：' + (error as Error).message);
+      toast.error('冻结失败：' + (error as Error).message);
     } finally {
       setLoading(false);
     }
@@ -144,14 +181,16 @@ export const AccountManager: React.FC = () => {
 
   // 解冻账户
   const handleUnfreeze = async (accountId: string) => {
-    if (!confirm('确定要解冻此账户吗？')) return;
+    const confirmed = window.confirm('确定要解冻此账户吗？');
+    if (!confirmed) return;
+
     setLoading(true);
     try {
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      alert('账户已解冻');
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+      toast.success('账户已解冻');
       loadAccounts();
     } catch (error) {
-      alert('解冻失败：' + (error as Error).message);
+      toast.error('解冻失败：' + (error as Error).message);
     } finally {
       setLoading(false);
     }
@@ -197,13 +236,13 @@ export const AccountManager: React.FC = () => {
         <div className="bg-green-50 p-4 rounded-lg">
           <p className="text-sm text-green-600">正常账户</p>
           <p className="text-2xl font-bold text-green-900">
-            {accounts.filter(a => a.status === 'active').length}
+            {accounts.filter((a) => a.status === 'active').length}
           </p>
         </div>
         <div className="bg-red-50 p-4 rounded-lg">
           <p className="text-sm text-red-600">冻结账户</p>
           <p className="text-2xl font-bold text-red-900">
-            {accounts.filter(a => a.status === 'frozen').length}
+            {accounts.filter((a) => a.status === 'frozen').length}
           </p>
         </div>
       </div>
@@ -272,7 +311,9 @@ export const AccountManager: React.FC = () => {
                   </span>
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">
-                  <span className={`px-2 py-1 rounded-full text-xs font-semibold ${getStatusBadge(account.status)}`}>
+                  <span
+                    className={`px-2 py-1 rounded-full text-xs font-semibold ${getStatusBadge(account.status)}`}
+                  >
                     {getStatusText(account.status)}
                   </span>
                 </td>
@@ -311,9 +352,7 @@ export const AccountManager: React.FC = () => {
             <h3 className="text-xl font-bold mb-4">转账</h3>
             <form onSubmit={handleTransfer}>
               <div className="mb-4">
-                <label className="block text-gray-700 text-sm font-bold mb-2">
-                  收款地址
-                </label>
+                <label className="block text-gray-700 text-sm font-bold mb-2">收款地址</label>
                 <input
                   type="text"
                   value={transferData.to}
@@ -324,13 +363,11 @@ export const AccountManager: React.FC = () => {
                 />
               </div>
               <div className="mb-4">
-                <label className="block text-gray-700 text-sm font-bold mb-2">
-                  金额
-                </label>
+                <label className="block text-gray-700 text-sm font-bold mb-2">金额</label>
                 <input
                   type="number"
                   value={transferData.amount}
-                  onChange={(e) => setTransferData({ ...transferData, amount: parseFloat(e.target.value) })}
+                  onChange={(e) => setTransferData({ ...transferData, amount: e.target.value })}
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                   placeholder="0.00"
                   min="0"
@@ -339,9 +376,7 @@ export const AccountManager: React.FC = () => {
                 />
               </div>
               <div className="mb-4">
-                <label className="block text-gray-700 text-sm font-bold mb-2">
-                  备注
-                </label>
+                <label className="block text-gray-700 text-sm font-bold mb-2">备注</label>
                 <textarea
                   value={transferData.note}
                   onChange={(e) => setTransferData({ ...transferData, note: e.target.value })}
@@ -378,13 +413,11 @@ export const AccountManager: React.FC = () => {
             <h3 className="text-xl font-bold mb-4">充值</h3>
             <form onSubmit={handleDeposit}>
               <div className="mb-4">
-                <label className="block text-gray-700 text-sm font-bold mb-2">
-                  充值金额
-                </label>
+                <label className="block text-gray-700 text-sm font-bold mb-2">充值金额</label>
                 <input
                   type="number"
                   value={depositData.amount}
-                  onChange={(e) => setDepositData({ ...depositData, amount: parseFloat(e.target.value) })}
+                  onChange={(e) => setDepositData({ ...depositData, amount: e.target.value })}
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
                   placeholder="0.00"
                   min="0"
@@ -420,13 +453,11 @@ export const AccountManager: React.FC = () => {
             <h3 className="text-xl font-bold mb-4">提现</h3>
             <form onSubmit={handleWithdraw}>
               <div className="mb-4">
-                <label className="block text-gray-700 text-sm font-bold mb-2">
-                  提现金额
-                </label>
+                <label className="block text-gray-700 text-sm font-bold mb-2">提现金额</label>
                 <input
                   type="number"
                   value={withdrawData.amount}
-                  onChange={(e) => setWithdrawData({ ...withdrawData, amount: parseFloat(e.target.value) })}
+                  onChange={(e) => setWithdrawData({ ...withdrawData, amount: e.target.value })}
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
                   placeholder="0.00"
                   min="0"
