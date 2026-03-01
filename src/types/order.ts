@@ -43,6 +43,7 @@ export interface Order {
   transactionId?: string; // 代币交易ID
   externalPaymentId?: string; // 外部支付系统交易ID
   disputeId?: string; // 争议ID（如果有）
+  version: number; // 乐观锁版本号，用于并发控制
   createdAt: Date;
   updatedAt: Date;
   paidAt?: Date; // 支付时间

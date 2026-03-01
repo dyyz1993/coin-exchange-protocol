@@ -1,0 +1,162 @@
+name: Performance Testing
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+  schedule:
+    # 每天凌晨2点运行性能测试
+    - cron: '0 2 * * *'
+  workflow_dispatch:
+    # 允许手动触发
+    inputs:
+      test_type:
+        description: '测试类型'
+        required: true
+        default: 'baseline'
+        type: choice
+        options:
+        - baseline
+        - load
+        - stress
+
+jobs:
+  performance-test:
+    name: 运行性能测试
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: 检出代码
+      uses: actions/checkout@v3
+    
+    - name: 设置 Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+        cache: 'npm'
+    
+    - name: 安装依赖
+      run: npm ci
+    
+    - name: 安装 k6
+      run: |
+        sudo gpg -k
+        sudo gpg --no-default-keyring --keyring /usr/share/keyrings/k6-archive-keyring.gpg --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys C5AD17C747E3415A3642D57D77C6C491435B320C
+        echo "deb [signed-by=/usr/share/keyrings/k6-archive-keyring.gpg] https://dl.k6.io/deb stable main" | sudo tee /etc/apt/sources.list.d/k6.list
+        sudo apt-get update
+        sudo apt-get install k6
+    
+    - name: 运行基准测试
+      if: github.event.inputs.test_type == 'baseline' || github.event_name == 'push'
+      run: |
+        echo "🚀 运行基准性能测试..."
+        k6 run tests/performance/benchmark.js --out json=baseline-results.json
+      env:
+        BASE_URL: ${{ secrets.BASE_URL || 'http://localhost:3000/api' }}
+    
+    - name: 运行负载测试
+      if: github.event.inputs.test_type == 'load' || github.event_name == 'schedule'
+      run: |
+        echo "🔥 运行负载测试..."
+        k6 run tests/performance/scenarios/account-scenarios.js --out json=account-load-results.json
+        k6 run tests/performance/scenarios/airdrop-scenarios.js --out json=airdrop-load-results.json
+        k6 run tests/performance/scenarios/task-scenarios.js --out json=task-load-results.json
+      env:
+        BASE_URL: ${{ secrets.BASE_URL || 'http://localhost:3000/api' }}
+    
+    - name: 运行压力测试
+      if: github.event.inputs.test_type == 'stress'
+      run: |
+        echo "💥 运行压力测试..."
+        # 修改为更高的并发数
+        k6 run --vus 500 --duration 10m tests/performance/benchmark.js --out json=stress-results.json
+      env:
+        BASE_URL: ${{ secrets.BASE_URL || 'http://localhost:3000/api' }}
+    
+    - name: 生成性能报告
+      run: |
+        echo "📊 生成性能测试报告..."
+        node -e "
+          const fs = require('fs');
+          const results = JSON.parse(fs.readFileSync('baseline-results.json', 'utf8'));
+          
+          // 计算指标
+          const metrics = {
+            totalRequests: results.length,
+            avgResponseTime: results.reduce((sum, r) => sum + r.metrics.http_req_duration.values.avg, 0) / results.length,
+            p95ResponseTime: results.reduce((sum, r) => sum + r.metrics.http_req_duration.values['p(95)'], 0) / results.length,
+            errorRate: results.reduce((sum, r) => sum + r.metrics.http_req_failed.values.rate, 0) / results.length,
+          };
+          
+          console.log('性能测试结果:');
+          console.log('- 总请求数:', metrics.totalRequests);
+          console.log('- 平均响应时间:', metrics.avgResponseTime.toFixed(2), 'ms');
+          console.log('- P95响应时间:', metrics.p95ResponseTime.toFixed(2), 'ms');
+          console.log('- 错误率:', (metrics.errorRate * 100).toFixed(2), '%');
+          
+          // 检查是否满足SLA
+          if (metrics.p95ResponseTime > 200) {
+            console.error('❌ P95响应时间超过SLA阈值 (200ms)');
+            process.exit(1);
+          }
+          if (metrics.errorRate > 0.01) {
+            console.error('❌ 错误率超过SLA阈值 (1%)');
+            process.exit(1);
+          }
+          
+          console.log('✅ 所有SLA指标达标');
+        "
+    
+    - name: 上传测试结果
+      uses: actions/upload-artifact@v3
+      if: always()
+      with:
+        name: performance-results
+        path: |
+          *-results.json
+          performance-report.html
+    
+    - name: 发布性能报告
+      uses: actions/github-script@v6
+      if: always() && github.event_name == 'pull_request'
+      with:
+        script: |
+          const fs = require('fs');
+          const results = JSON.parse(fs.readFileSync('baseline-results.json', 'utf8'));
+          
+          const metrics = {
+            avgResponseTime: results.reduce((sum, r) => sum + r.metrics.http_req_duration.values.avg, 0) / results.length,
+            p95ResponseTime: results.reduce((sum, r) => sum + r.metrics.http_req_duration.values['p(95)'], 0) / results.length,
+            errorRate: results.reduce((sum, r) => sum + r.metrics.http_req_failed.values.rate, 0) / results.length,
+          };
+          
+          const comment = `## 📊 性能测试结果
+          
+          | 指标 | 值 | SLA | 状态 |
+          |------|-----|-----|------|
+          | 平均响应时间 | ${metrics.avgResponseTime.toFixed(2)}ms | <100ms | ${metrics.avgResponseTime < 100 ? '✅' : '⚠️'} |
+          | P95响应时间 | ${metrics.p95ResponseTime.toFixed(2)}ms | <200ms | ${metrics.p95ResponseTime < 200 ? '✅' : '❌'} |
+          | 错误率 | ${(metrics.errorRate * 100).toFixed(2)}% | <1% | ${metrics.errorRate < 0.01 ? '✅' : '❌'} |
+          
+          ${metrics.p95ResponseTime < 200 && metrics.errorRate < 0.01 ? '✅ **所有SLA指标达标**' : '❌ **部分SLA指标未达标，请检查**'}
+          `;
+          
+          github.rest.issues.createComment({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: comment
+          });
+    
+    - name: Slack 通知
+      uses: 8398a7/action-slack@v3
+      if: failure() && github.event_name == 'schedule'
+      with:
+        status: failure
+        text: |
+          性能测试失败！
+          仓库: ${{ github.repository }}
+          分支: ${{ github.ref }}
+          提交: ${{ github.sha }}
+        webhook_url: ${{ secrets.SLACK_WEBHOOK }}

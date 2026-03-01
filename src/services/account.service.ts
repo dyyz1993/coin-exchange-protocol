@@ -5,6 +5,23 @@
 import { accountModel } from '../models/Account';
 import { TransactionType, Transaction } from '../types/common';
 
+/**
+ * 自定义错误类 - 账户不存在
+ */
+export class AccountNotFoundError extends Error {
+  constructor(userId: string) {
+    super(`账户不存在: 用户ID ${userId}`);
+    this.name = 'AccountNotFoundError';
+  }
+}
+
+export class InsufficientBalanceError extends Error {
+  constructor(userId: string, required: number, available: number) {
+    super(`余额不足: 用户ID ${userId}, 需要 ${required}, 可用 ${available}`);
+    this.name = 'InsufficientBalanceError';
+  }
+}
+
 export class AccountService {
   /**
    * 创建新用户账户
@@ -17,6 +34,7 @@ export class AccountService {
           email?: string;
           phone?: string;
           nickname?: string;
+          initialBalance?: number;
         }
   ): Promise<{
     accountId: string;
@@ -27,13 +45,24 @@ export class AccountService {
     let initialBalance = 0;
     if (typeof initialBalanceOrData === 'number') {
       initialBalance = initialBalanceOrData;
+    } else if (initialBalanceOrData && typeof initialBalanceOrData === 'object') {
+      initialBalance = initialBalanceOrData.initialBalance || 0;
     }
 
     // 创建用户账户，传入初始余额
     const account = await accountModel.createAccount(userId, initialBalance);
 
+    if (!account || !account.id) {
+      throw new Error('创建账户失败：无法获取账户ID');
+    }
+
+    // 如果有初始余额，记录交易
+    if (initialBalance > 0) {
+      await this.addTokens(userId, initialBalance, TransactionType.REWARD, '初始余额');
+    }
+
     return {
-      accountId: account.id!,
+      accountId: account.id,
       createdAt: account.createdAt,
       initialBalance: account.balance,
     };
@@ -99,9 +128,14 @@ export class AccountService {
   }> {
     const transaction = await accountModel.addBalance(userId, amount, description, type);
 
+    const account = accountModel.getAccountByUserId(userId);
+    if (!account) {
+      throw new AccountNotFoundError(userId);
+    }
+
     return {
       success: true,
-      newBalance: accountModel.getAccountByUserId(userId)!.balance,
+      newBalance: account.balance,
       transactionId: transaction.id,
     };
   }
@@ -122,9 +156,14 @@ export class AccountService {
   }> {
     const transaction = await accountModel.deductBalance(userId, amount, description, type);
 
+    const account = accountModel.getAccountByUserId(userId);
+    if (!account) {
+      throw new AccountNotFoundError(userId);
+    }
+
     return {
       success: true,
-      newBalance: accountModel.getAccountByUserId(userId)!.balance,
+      newBalance: account.balance,
       transactionId: transaction.id,
     };
   }
@@ -143,7 +182,11 @@ export class AccountService {
     availableBalance: number;
   }> {
     const transaction = await accountModel.freezeBalance(userId, amount);
-    const account = accountModel.getAccountByUserId(userId)!;
+    const account = accountModel.getAccountByUserId(userId);
+
+    if (!account) {
+      throw new AccountNotFoundError(userId);
+    }
 
     return {
       success: true,
@@ -165,7 +208,11 @@ export class AccountService {
     availableBalance: number;
   }> {
     const transaction = await accountModel.unfreezeBalance(userId, amount);
-    const account = accountModel.getAccountByUserId(userId)!;
+    const account = accountModel.getAccountByUserId(userId);
+
+    if (!account) {
+      throw new AccountNotFoundError(userId);
+    }
 
     return {
       success: true,
@@ -190,15 +237,26 @@ export class AccountService {
   }> {
     // 检查发送方余额
     const fromBalance = this.getTokenBalance(fromUserId);
-    if (!fromBalance || fromBalance.availableBalance < amount) {
-      throw new Error('余额不足');
+    if (!fromBalance) {
+      throw new AccountNotFoundError(fromUserId);
+    }
+    if (fromBalance.availableBalance < amount) {
+      throw new InsufficientBalanceError(fromUserId, amount, fromBalance.availableBalance);
     }
 
     // 使用 AccountModel 的 transfer 方法
     const transaction = await accountModel.transfer(fromUserId, toUserId, amount, description);
 
-    const fromAccount = accountModel.getAccountByUserId(fromUserId)!;
-    const toAccount = accountModel.getAccountByUserId(toUserId)!;
+    // 添加空值检查
+    const fromAccount = accountModel.getAccountByUserId(fromUserId);
+    if (!fromAccount) {
+      throw new AccountNotFoundError(fromUserId);
+    }
+
+    const toAccount = accountModel.getAccountByUserId(toUserId);
+    if (!toAccount) {
+      throw new AccountNotFoundError(toUserId);
+    }
 
     return {
       success: true,

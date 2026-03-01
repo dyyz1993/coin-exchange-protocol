@@ -3,7 +3,7 @@
  * 测试范围：冻结控制器的所有方法、参数验证、错误处理
  */
 
-import { describe, test, expect, beforeEach, afterEach } from 'bun:test';
+// Jest globals (no import needed)
 import { FreezeController } from '../../src/controllers/freeze.controller';
 import { AccountService } from '../../src/services/account.service';
 import { FreezeService } from '../../src/services/freeze.service';
@@ -21,7 +21,7 @@ const TransactionType = {
   TRANSFER_OUT: 'transfer_out',
   PENALTY: 'penalty',
   FROZEN: 'frozen',
-  UNFROZEN: 'unfrozen'
+  UNFROZEN: 'unfrozen',
 };
 
 describe('FreezeController Integration Tests', () => {
@@ -34,7 +34,7 @@ describe('FreezeController Integration Tests', () => {
     accountService = new AccountService();
     freezeService = new FreezeService();
     freezeService.initialize();
-    
+
     // 清空所有测试数据
     (AccountModel as any).accounts.clear();
     (TokenAccountModel as any).tokenAccounts.clear();
@@ -43,7 +43,7 @@ describe('FreezeController Integration Tests', () => {
 
   afterEach(() => {
     freezeService.stopAutoUnfreeze();
-    
+
     // 清理所有测试数据
     (AccountModel as any).accounts.clear();
     (TokenAccountModel as any).tokenAccounts.clear();
@@ -59,7 +59,7 @@ describe('FreezeController Integration Tests', () => {
       const result = await freezeController.applyFreeze({
         userId,
         amount: 500,
-        reason: '测试冻结'
+        reason: '测试冻结',
       });
 
       expect(result.success).toBe(true);
@@ -71,7 +71,7 @@ describe('FreezeController Integration Tests', () => {
       const result = await freezeController.applyFreeze({
         userId: '',
         amount: 100,
-        reason: '测试'
+        reason: '测试',
       });
 
       expect(result.success).toBe(false);
@@ -85,7 +85,7 @@ describe('FreezeController Integration Tests', () => {
       const result = await freezeController.applyFreeze({
         userId,
         amount: -100,
-        reason: '测试'
+        reason: '测试',
       });
 
       expect(result.success).toBe(false);
@@ -100,7 +100,7 @@ describe('FreezeController Integration Tests', () => {
       const result = await freezeController.applyFreeze({
         userId,
         amount: 100,
-        reason: ''
+        reason: '',
       });
 
       expect(result.success).toBe(false);
@@ -115,7 +115,7 @@ describe('FreezeController Integration Tests', () => {
       const result = await freezeController.applyFreeze({
         userId,
         amount: 500,
-        reason: '超额冻结'
+        reason: '超额冻结',
       });
 
       expect(result.success).toBe(false);
@@ -132,7 +132,7 @@ describe('FreezeController Integration Tests', () => {
       const applyResult = await freezeController.applyFreeze({
         userId,
         amount: 500,
-        reason: '测试冻结'
+        reason: '测试冻结',
       });
 
       expect(applyResult.success).toBe(true);
@@ -142,7 +142,7 @@ describe('FreezeController Integration Tests', () => {
       const approveResult = await freezeController.approveFreeze({
         freezeId,
         approver: 'admin-001',
-        comment: '审核通过'
+        comment: '审核通过',
       });
 
       expect(approveResult.success).toBe(true);
@@ -153,7 +153,7 @@ describe('FreezeController Integration Tests', () => {
       const result = await freezeController.approveFreeze({
         freezeId: '',
         approver: 'admin-001',
-        comment: '测试'
+        comment: '测试',
       });
 
       expect(result.success).toBe(false);
@@ -164,7 +164,7 @@ describe('FreezeController Integration Tests', () => {
       const result = await freezeController.approveFreeze({
         freezeId: 'freeze-001',
         approver: '',
-        comment: '测试'
+        comment: '测试',
       });
 
       expect(result.success).toBe(false);
@@ -182,7 +182,7 @@ describe('FreezeController Integration Tests', () => {
       const applyResult = await freezeController.applyFreeze({
         userId,
         amount: 500,
-        reason: '测试冻结'
+        reason: '测试冻结',
       });
 
       const freezeId = applyResult.data?.id;
@@ -191,7 +191,7 @@ describe('FreezeController Integration Tests', () => {
       const rejectResult = await freezeController.rejectFreeze({
         freezeId,
         approver: 'admin-001',
-        reason: '不符合冻结条件'
+        reason: '不符合冻结条件',
       });
 
       expect(rejectResult.success).toBe(true);
@@ -202,7 +202,7 @@ describe('FreezeController Integration Tests', () => {
       const result = await freezeController.rejectFreeze({
         freezeId: 'freeze-001',
         approver: 'admin-001',
-        reason: ''
+        reason: '',
       });
 
       expect(result.success).toBe(false);
@@ -220,7 +220,7 @@ describe('FreezeController Integration Tests', () => {
       const applyResult = await freezeController.applyFreeze({
         userId,
         amount: 500,
-        reason: '测试冻结'
+        reason: '测试冻结',
       });
 
       const freezeId = applyResult.data?.id;
@@ -228,14 +228,14 @@ describe('FreezeController Integration Tests', () => {
       await freezeController.approveFreeze({
         freezeId,
         approver: 'admin-001',
-        comment: '审核通过'
+        comment: '审核通过',
       });
 
       // 解冻
       const unfreezeResult = await freezeController.unfreeze({
         freezeId,
         operator: 'admin-001',
-        reason: '解冻测试'
+        reason: '解冻测试',
       });
 
       expect(unfreezeResult.success).toBe(true);
@@ -246,7 +246,7 @@ describe('FreezeController Integration Tests', () => {
       const result = await freezeController.unfreeze({
         freezeId: '',
         operator: 'admin-001',
-        reason: '测试'
+        reason: '测试',
       });
 
       expect(result.success).toBe(false);
@@ -257,7 +257,7 @@ describe('FreezeController Integration Tests', () => {
       const result = await freezeController.unfreeze({
         freezeId: 'freeze-001',
         operator: '',
-        reason: '测试'
+        reason: '测试',
       });
 
       expect(result.success).toBe(false);
@@ -268,7 +268,7 @@ describe('FreezeController Integration Tests', () => {
       const result = await freezeController.unfreeze({
         freezeId: 'freeze-001',
         operator: 'admin-001',
-        reason: ''
+        reason: '',
       });
 
       expect(result.success).toBe(false);
@@ -286,19 +286,19 @@ describe('FreezeController Integration Tests', () => {
       await freezeController.applyFreeze({
         userId,
         amount: 100,
-        reason: '冻结1'
+        reason: '冻结1',
       });
 
       await freezeController.applyFreeze({
         userId,
         amount: 200,
-        reason: '冻结2'
+        reason: '冻结2',
       });
 
       const result = await freezeController.getFreezeList({
         userId,
         page: 1,
-        pageSize: 10
+        pageSize: 10,
       });
 
       expect(result.success).toBe(true);
@@ -309,7 +309,7 @@ describe('FreezeController Integration Tests', () => {
     test('应该拒绝无效的分页参数 - page < 1', async () => {
       const result = await freezeController.getFreezeList({
         page: 0,
-        pageSize: 10
+        pageSize: 10,
       });
 
       expect(result.success).toBe(false);
@@ -319,7 +319,7 @@ describe('FreezeController Integration Tests', () => {
     test('应该拒绝无效的分页参数 - pageSize > 100', async () => {
       const result = await freezeController.getFreezeList({
         page: 1,
-        pageSize: 101
+        pageSize: 101,
       });
 
       expect(result.success).toBe(false);
@@ -329,7 +329,7 @@ describe('FreezeController Integration Tests', () => {
     test('应该正确过滤用户ID', async () => {
       const userId1 = 'filter-user-001';
       const userId2 = 'filter-user-002';
-      
+
       await accountService.createAccount(userId1);
       await accountService.createAccount(userId2);
       await accountService.addTokens(userId1, 1000, TransactionType.REWARD, '初始奖励');
@@ -338,19 +338,19 @@ describe('FreezeController Integration Tests', () => {
       await freezeController.applyFreeze({
         userId: userId1,
         amount: 100,
-        reason: '冻结1'
+        reason: '冻结1',
       });
 
       await freezeController.applyFreeze({
         userId: userId2,
         amount: 200,
-        reason: '冻结2'
+        reason: '冻结2',
       });
 
       const result = await freezeController.getFreezeList({
         userId: userId1,
         page: 1,
-        pageSize: 10
+        pageSize: 10,
       });
 
       expect(result.success).toBe(true);
@@ -368,7 +368,7 @@ describe('FreezeController Integration Tests', () => {
       const applyResult = await freezeController.applyFreeze({
         userId,
         amount: 500,
-        reason: '测试冻结'
+        reason: '测试冻结',
       });
 
       const freezeId = applyResult.data?.id;
@@ -404,7 +404,7 @@ describe('FreezeController Integration Tests', () => {
       const applyResult = await freezeController.applyFreeze({
         userId,
         amount: 500,
-        reason: '测试冻结申请'
+        reason: '测试冻结申请',
       });
 
       expect(applyResult.success).toBe(true);
@@ -414,7 +414,7 @@ describe('FreezeController Integration Tests', () => {
       const approveResult = await freezeController.approveFreeze({
         freezeId,
         approver: 'admin-001',
-        comment: '审核通过'
+        comment: '审核通过',
       });
 
       expect(approveResult.success).toBe(true);
@@ -424,7 +424,7 @@ describe('FreezeController Integration Tests', () => {
       const unfreezeResult = await freezeController.unfreeze({
         freezeId,
         operator: 'admin-001',
-        reason: '测试解冻'
+        reason: '测试解冻',
       });
 
       expect(unfreezeResult.success).toBe(true);
@@ -440,7 +440,7 @@ describe('FreezeController Integration Tests', () => {
       const applyResult = await freezeController.applyFreeze({
         userId,
         amount: 500,
-        reason: '测试冻结申请'
+        reason: '测试冻结申请',
       });
 
       const freezeId = applyResult.data?.id;
@@ -449,7 +449,7 @@ describe('FreezeController Integration Tests', () => {
       const rejectResult = await freezeController.rejectFreeze({
         freezeId,
         approver: 'admin-001',
-        reason: '不符合冻结条件'
+        reason: '不符合冻结条件',
       });
 
       expect(rejectResult.success).toBe(true);
@@ -473,7 +473,7 @@ describe('FreezeController Integration Tests', () => {
       const result = await freezeController.applyFreeze({
         userId,
         amount: '100' as any,
-        reason: '测试'
+        reason: '测试',
       });
 
       expect(result.success).toBe(false);
@@ -487,7 +487,7 @@ describe('FreezeController Integration Tests', () => {
       const result = await freezeController.applyFreeze({
         userId,
         amount: Number.MAX_SAFE_INTEGER,
-        reason: '超大金额'
+        reason: '超大金额',
       });
 
       expect(result.success).toBe(false);

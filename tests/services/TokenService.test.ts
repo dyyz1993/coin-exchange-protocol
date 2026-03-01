@@ -3,7 +3,7 @@
  * 测试范围：余额查询、转账、冻结、解冻、交易历史
  */
 
-import { describe, test, expect, beforeEach, afterEach } from 'bun:test';
+// Jest globals (no import needed)
 import { TokenService } from '../../src/services/TokenService';
 import { AccountModel } from '../../src/models/Account';
 import { TransactionType } from '../../src/types/common';
@@ -50,7 +50,7 @@ describe('TokenService', () => {
     test('应该正确返回冻结余额', () => {
       const userId = 'test-user-002';
       AccountModel.createAccount(userId, 1000);
-      
+
       // 冻结部分余额
       AccountModel.freezeBalance(userId, 300);
 
@@ -67,12 +67,7 @@ describe('TokenService', () => {
       const userId = 'test-user-003';
       AccountModel.createAccount(userId, 0);
 
-      const transaction = tokenService.addBalance(
-        userId,
-        500,
-        '测试充值',
-        TransactionType.REWARD
-      );
+      const transaction = tokenService.addBalance(userId, 500, '测试充值', TransactionType.REWARD);
 
       expect(transaction).toBeDefined();
       expect(transaction.amount).toBe(500);
@@ -137,7 +132,7 @@ describe('TokenService', () => {
       tokenService.deductBalance(userId, 300, '测试');
 
       const history = tokenService.getTransactionHistory(userId);
-      const deductTx = history.find(tx => tx.amount < 0);
+      const deductTx = history.find((tx) => tx.amount < 0);
       expect(deductTx).toBeDefined();
       expect(deductTx?.amount).toBe(-300);
     });
@@ -147,16 +142,11 @@ describe('TokenService', () => {
     test('应该成功在用户间转账', () => {
       const fromUserId = 'test-user-009';
       const toUserId = 'test-user-010';
-      
+
       AccountModel.createAccount(fromUserId, 1000);
       AccountModel.createAccount(toUserId, 0);
 
-      const transaction = tokenService.transfer(
-        fromUserId,
-        toUserId,
-        300,
-        '测试转账'
-      );
+      const transaction = tokenService.transfer(fromUserId, toUserId, 300, '测试转账');
 
       expect(transaction).toBeDefined();
       expect(transaction.amount).toBe(300);
@@ -171,7 +161,7 @@ describe('TokenService', () => {
     test('应该在余额不足时拒绝转账', () => {
       const fromUserId = 'test-user-011';
       const toUserId = 'test-user-012';
-      
+
       AccountModel.createAccount(fromUserId, 100);
       AccountModel.createAccount(toUserId, 0);
 
@@ -183,7 +173,7 @@ describe('TokenService', () => {
     test('转账应记录在双方交易历史中', () => {
       const fromUserId = 'test-user-013';
       const toUserId = 'test-user-014';
-      
+
       AccountModel.createAccount(fromUserId, 1000);
       AccountModel.createAccount(toUserId, 0);
 
@@ -225,7 +215,7 @@ describe('TokenService', () => {
     test('应该成功解冻用户余额', () => {
       const userId = 'test-user-017';
       AccountModel.createAccount(userId, 1000);
-      
+
       // 先冻结
       tokenService.freezeBalance(userId, 300);
 
@@ -240,7 +230,7 @@ describe('TokenService', () => {
     test('应该在冻结余额不足时拒绝解冻', () => {
       const userId = 'test-user-018';
       AccountModel.createAccount(userId, 1000);
-      
+
       // 先冻结少量
       tokenService.freezeBalance(userId, 100);
 
@@ -284,12 +274,7 @@ describe('TokenService', () => {
       const userId = 'test-user-021';
       AccountModel.createAccount(userId, 0);
 
-      const transaction = tokenService.addBalance(
-        userId,
-        100,
-        '测试交易',
-        TransactionType.REWARD
-      );
+      const transaction = tokenService.addBalance(userId, 100, '测试交易', TransactionType.REWARD);
 
       const retrieved = tokenService.getTransaction(transaction.id);
 
@@ -310,12 +295,7 @@ describe('TokenService', () => {
       const userId = 'test-user-022';
       AccountModel.createAccount(userId, 0);
 
-      const transaction = tokenService.addBalance(
-        userId,
-        0,
-        '零金额',
-        TransactionType.REWARD
-      );
+      const transaction = tokenService.addBalance(userId, 0, '零金额', TransactionType.REWARD);
 
       expect(transaction.amount).toBe(0);
 
@@ -346,11 +326,11 @@ describe('TokenService', () => {
       AccountModel.createAccount(userId, 0);
 
       // 模拟并发添加代币
-      const promises = Array(10).fill(null).map((_, i) => 
-        Promise.resolve(
-          tokenService.addBalance(userId, 10, `并发${i}`, TransactionType.REWARD)
-        )
-      );
+      const promises = Array(10)
+        .fill(null)
+        .map((_, i) =>
+          Promise.resolve(tokenService.addBalance(userId, 10, `并发${i}`, TransactionType.REWARD))
+        );
 
       await Promise.all(promises);
 

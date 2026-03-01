@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest';
+// Jest globals (no import needed)
 
 describe('API Integration Tests', () => {
   it('should create account', async () => {

@@ -1,6 +1,6 @@
 /**
  * 账户模型 - 管理代币账户和交易记录
- * 
+ *
  * 修复并发竞态条件问题：
  * 1. 添加版本号实现乐观锁（Optimistic Locking）
  * 2. 使用 async-mutex 确保同一账户操作串行化
@@ -8,13 +8,13 @@
  */
 
 import { Account, Transaction, TransactionStatus, TransactionType } from '../types';
-import { Mutex, MutexInterface } from 'async-mutex';
+import { Mutex } from 'async-mutex';
 
 export class AccountModel {
   private accounts: Map<string, Account> = new Map();
   private transactions: Map<string, Transaction> = new Map();
   private userAccounts: Map<string, string> = new Map(); // userId -> accountId
-  
+
   // 并发控制：使用 async-mutex 替代 busy wait
   private accountMutexes: Map<string, Mutex> = new Map(); // userId -> Mutex
 
@@ -52,7 +52,7 @@ export class AccountModel {
     if (account.version !== expectedVersion) {
       throw new Error(
         `Concurrent modification detected for account ${account.userId}. ` +
-        `Expected version ${expectedVersion}, but got ${account.version}`
+          `Expected version ${expectedVersion}, but got ${account.version}`
       );
     }
     updateFn();
@@ -72,7 +72,7 @@ export class AccountModel {
       }
 
       const accountId = `acc_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
-      
+
       const account: Account = {
         id: accountId,
         userId,
@@ -82,12 +82,12 @@ export class AccountModel {
         totalSpent: 0,
         version: 0, // 初始版本号
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       };
 
       this.accounts.set(accountId, account);
       this.userAccounts.set(userId, accountId);
-      
+
       return account;
     });
   }
@@ -122,7 +122,12 @@ export class AccountModel {
   /**
    * 增加余额（带锁和版本控制）
    */
-  async addBalance(userId: string, amount: number, description: string, type: TransactionType): Promise<Transaction> {
+  async addBalance(
+    userId: string,
+    amount: number,
+    description: string,
+    type: TransactionType
+  ): Promise<Transaction> {
     return this.withLock(userId, async () => {
       const account = await this.getOrCreateAccount(userId);
       const currentVersion = account.version || 0;
@@ -141,7 +146,7 @@ export class AccountModel {
         type,
         status: TransactionStatus.SUCCESS,
         description,
-        balanceAfter: account.balance
+        balanceAfter: account.balance,
       });
 
       return transaction;
@@ -151,7 +156,12 @@ export class AccountModel {
   /**
    * 扣减余额（带锁和版本控制）
    */
-  async deductBalance(userId: string, amount: number, description: string, type: TransactionType): Promise<Transaction> {
+  async deductBalance(
+    userId: string,
+    amount: number,
+    description: string,
+    type: TransactionType
+  ): Promise<Transaction> {
     return this.withLock(userId, async () => {
       const account = this.getAccountByUserId(userId);
       if (!account) {
@@ -176,7 +186,7 @@ export class AccountModel {
         type,
         status: TransactionStatus.SUCCESS,
         description,
-        balanceAfter: account.balance
+        balanceAfter: account.balance,
       });
 
       return transaction;
@@ -185,6 +195,13 @@ export class AccountModel {
 
   /**
    * 冻结余额（带锁和版本控制）
+   *
+   * 修复说明（Issue #200）：
+   * - balance 字段存储总余额（包括可用余额 + 冻结余额）
+   * - frozenBalance 字段存储冻结金额
+   * - availableBalance = balance - frozenBalance
+   * - 冻结时只增加 frozenBalance，不扣减 balance
+   * - 解冻时只减少 frozenBalance，不增加 balance
    */
   async freezeBalance(userId: string, amount: number): Promise<Transaction> {
     return this.withLock(userId, async () => {
@@ -197,10 +214,12 @@ export class AccountModel {
 
       // 原子操作：检查 + 冻结
       this.validateAndUpdateBalance(account, currentVersion, () => {
-        if (account.balance < amount) {
-          throw new Error('Insufficient balance');
+        // ✅ 修复：检查可用余额（balance - frozenBalance）
+        const availableBalance = account.balance - account.frozenBalance;
+        if (availableBalance < amount) {
+          throw new Error('Insufficient available balance');
         }
-        account.balance -= amount;
+        // ✅ 修复：只增加 frozenBalance，不扣减 balance
         account.frozenBalance += amount;
       });
 
@@ -211,7 +230,7 @@ export class AccountModel {
         type: TransactionType.FROZEN,
         status: TransactionStatus.SUCCESS,
         description: 'Freeze balance',
-        balanceAfter: account.balance
+        balanceAfter: account.balance,
       });
 
       return transaction;
@@ -220,6 +239,10 @@ export class AccountModel {
 
   /**
    * 解冻余额（带锁和版本控制）
+   *
+   * 修复说明（Issue #200）：
+   * - 解冻时只减少 frozenBalance，不增加 balance
+   * - balance 始终保持总余额不变
    */
   async unfreezeBalance(userId: string, amount: number): Promise<Transaction> {
     return this.withLock(userId, async () => {
@@ -235,8 +258,8 @@ export class AccountModel {
         if (account.frozenBalance < amount) {
           throw new Error('Insufficient frozen balance');
         }
+        // ✅ 修复：只减少 frozenBalance，不增加 balance
         account.frozenBalance -= amount;
-        account.balance += amount;
       });
 
       const transaction = this.createTransaction({
@@ -246,7 +269,7 @@ export class AccountModel {
         type: TransactionType.UNFROZEN,
         status: TransactionStatus.SUCCESS,
         description: 'Unfreeze balance',
-        balanceAfter: account.balance
+        balanceAfter: account.balance,
       });
 
       return transaction;
@@ -256,10 +279,15 @@ export class AccountModel {
   /**
    * 转账（带双重锁和版本控制）
    */
-  async transfer(fromUserId: string, toUserId: string, amount: number, description: string): Promise<Transaction> {
+  async transfer(
+    fromUserId: string,
+    toUserId: string,
+    amount: number,
+    description: string
+  ): Promise<Transaction> {
     // 按用户ID排序加锁，避免死锁
     const [firstUserId, secondUserId] = [fromUserId, toUserId].sort();
-    
+
     return this.withLock(firstUserId, async () => {
       return this.withLock(secondUserId, async () => {
         const fromAccount = this.getAccountByUserId(fromUserId);
@@ -294,7 +322,7 @@ export class AccountModel {
           type: TransactionType.TRANSFER,
           status: TransactionStatus.SUCCESS,
           description,
-          balanceAfter: fromAccount.balance
+          balanceAfter: fromAccount.balance,
         });
 
         return transaction;
@@ -315,7 +343,7 @@ export class AccountModel {
     balanceAfter?: number;
   }): Transaction {
     const transactionId = `tx_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
-    
+
     const transaction: Transaction = {
       id: transactionId,
       fromUserId: params.fromUserId,
@@ -325,11 +353,11 @@ export class AccountModel {
       status: params.status,
       description: params.description,
       balanceAfter: params.balanceAfter,
-      createdAt: new Date()
+      createdAt: new Date(),
     };
 
     this.transactions.set(transactionId, transaction);
-    
+
     return transaction;
   }
 

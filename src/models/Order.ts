@@ -3,6 +3,7 @@
  */
 
 import { Order, Dispute, OrderStatus, DisputeStatus } from '../types';
+import { randomUUID } from 'crypto';
 
 export class OrderModel {
   private orders: Map<string, Order> = new Map();
@@ -10,12 +11,32 @@ export class OrderModel {
   private orderCounter = 1;
 
   /**
-   * 生成订单号
+   * 生成订单号（使用 UUID v4 的一部分）
+   * 格式: ORD-{timestamp}-{uuid8}
+   * 更可靠且唯一
    */
   private generateOrderNo(): string {
-    const timestamp = Date.now();
-    const random = Math.floor(Math.random() * 10000).toString().padStart(4, '0');
-    return `ORD${timestamp}${random}`;
+    const timestamp = Date.now().toString(36).toUpperCase();
+    const uuid = randomUUID().split('-')[0].toUpperCase();
+    return `ORD-${timestamp}-${uuid}`;
+  }
+
+  /**
+   * 验证状态转换是否合法
+   * 定义订单状态机
+   */
+  private isValidTransition(from: OrderStatus, to: OrderStatus): boolean {
+    const validTransitions: Record<OrderStatus, OrderStatus[]> = {
+      [OrderStatus.DRAFT]: [OrderStatus.PENDING_PAYMENT, OrderStatus.CANCELLED],
+      [OrderStatus.PENDING_PAYMENT]: [OrderStatus.PAID, OrderStatus.CANCELLED],
+      [OrderStatus.PAID]: [OrderStatus.CONFIRMED, OrderStatus.DISPUTED, OrderStatus.CANCELLED],
+      [OrderStatus.CONFIRMED]: [OrderStatus.COMPLETED, OrderStatus.DISPUTED],
+      [OrderStatus.COMPLETED]: [], // 已完成不能再转换
+      [OrderStatus.DISPUTED]: [OrderStatus.COMPLETED, OrderStatus.CANCELLED],
+      [OrderStatus.CANCELLED]: [], // 已取消不能再转换
+    };
+
+    return validTransitions[from]?.includes(to) ?? false;
   }
 
   /**
@@ -30,8 +51,8 @@ export class OrderModel {
     description: string;
     buyerInfo: Order['buyerInfo'];
   }): Order {
-    const orderId = `order_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
-    
+    const orderId = `order_${Date.now()}_${randomUUID()}`;
+
     const order: Order = {
       id: orderId,
       orderNo: this.generateOrderNo(),
@@ -43,12 +64,13 @@ export class OrderModel {
       status: OrderStatus.DRAFT,
       description: params.description,
       buyerInfo: params.buyerInfo,
+      version: 1, // 初始版本号
       createdAt: new Date(),
-      updatedAt: new Date()
+      updatedAt: new Date(),
     };
 
     this.orders.set(orderId, order);
-    
+
     return order;
   }
 
@@ -105,15 +127,34 @@ export class OrderModel {
   }
 
   /**
-   * 更新订单状态
+   * 更新订单状态（带乐观锁）
+   * @param orderId 订单ID
+   * @param status 新状态
+   * @param expectedVersion 预期版本号（乐观锁）
+   * @returns 更新后的订单
+   * @throws 如果订单不存在、版本号不匹配或状态转换非法
    */
-  updateOrderStatus(orderId: string, status: OrderStatus): Order {
+  updateOrderStatus(orderId: string, status: OrderStatus, expectedVersion?: number): Order {
     const order = this.orders.get(orderId);
     if (!order) {
       throw new Error('Order not found');
     }
 
+    // 乐观锁验证
+    if (expectedVersion !== undefined && order.version !== expectedVersion) {
+      throw new Error(
+        `Concurrent modification detected. Expected version ${expectedVersion}, but current is ${order.version}`
+      );
+    }
+
+    // 状态转换验证
+    if (!this.isValidTransition(order.status, status)) {
+      throw new Error(`Invalid status transition from ${order.status} to ${status}`);
+    }
+
+    // 更新状态和版本号
     order.status = status;
+    order.version++;
     order.updatedAt = new Date();
 
     // 根据状态设置时间戳
@@ -132,61 +173,102 @@ export class OrderModel {
   }
 
   /**
-   * 设置冻结金额
+   * 设置冻结金额（带乐观锁）
    */
-  setFrozenAmount(orderId: string, frozenAmount: number): Order {
+  setFrozenAmount(orderId: string, frozenAmount: number, expectedVersion?: number): Order {
     const order = this.orders.get(orderId);
     if (!order) {
       throw new Error('Order not found');
+    }
+
+    // 乐观锁验证
+    if (expectedVersion !== undefined && order.version !== expectedVersion) {
+      throw new Error(
+        `Concurrent modification detected. Expected version ${expectedVersion}, but current is ${order.version}`
+      );
     }
 
     order.frozenAmount = frozenAmount;
+    order.version++;
     order.updatedAt = new Date();
 
     return order;
   }
 
   /**
-   * 设置代币交易ID
+   * 设置代币交易ID（带乐观锁）
    */
-  setTransactionId(orderId: string, transactionId: string): Order {
+  setTransactionId(orderId: string, transactionId: string, expectedVersion?: number): Order {
     const order = this.orders.get(orderId);
     if (!order) {
       throw new Error('Order not found');
+    }
+
+    // 乐观锁验证
+    if (expectedVersion !== undefined && order.version !== expectedVersion) {
+      throw new Error(
+        `Concurrent modification detected. Expected version ${expectedVersion}, but current is ${order.version}`
+      );
     }
 
     order.transactionId = transactionId;
+    order.version++;
     order.updatedAt = new Date();
 
     return order;
   }
 
   /**
-   * 设置外部支付ID
+   * 设置外部支付ID（带乐观锁）
    */
-  setExternalPaymentId(orderId: string, externalPaymentId: string): Order {
+  setExternalPaymentId(
+    orderId: string,
+    externalPaymentId: string,
+    expectedVersion?: number
+  ): Order {
     const order = this.orders.get(orderId);
     if (!order) {
       throw new Error('Order not found');
     }
 
+    // 乐观锁验证
+    if (expectedVersion !== undefined && order.version !== expectedVersion) {
+      throw new Error(
+        `Concurrent modification detected. Expected version ${expectedVersion}, but current is ${order.version}`
+      );
+    }
+
     order.externalPaymentId = externalPaymentId;
+    order.version++;
     order.updatedAt = new Date();
 
     return order;
   }
 
   /**
-   * 设置争议ID
+   * 设置争议ID（带乐观锁）
    */
-  setDisputeId(orderId: string, disputeId: string): Order {
+  setDisputeId(orderId: string, disputeId: string, expectedVersion?: number): Order {
     const order = this.orders.get(orderId);
     if (!order) {
       throw new Error('Order not found');
+    }
+
+    // 乐观锁验证
+    if (expectedVersion !== undefined && order.version !== expectedVersion) {
+      throw new Error(
+        `Concurrent modification detected. Expected version ${expectedVersion}, but current is ${order.version}`
+      );
+    }
+
+    // 状态转换验证
+    if (!this.isValidTransition(order.status, OrderStatus.DISPUTED)) {
+      throw new Error(`Invalid status transition from ${order.status} to disputed`);
     }
 
     order.disputeId = disputeId;
     order.status = OrderStatus.DISPUTED;
+    order.version++;
     order.updatedAt = new Date();
 
     return order;
@@ -202,8 +284,8 @@ export class OrderModel {
     description: string;
     evidence?: string[];
   }): Dispute {
-    const disputeId = `dispute_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
-    
+    const disputeId = `dispute_${Date.now()}_${randomUUID()}`;
+
     const order = this.getOrder(params.orderId);
     if (!order) {
       throw new Error('Order not found');
@@ -218,13 +300,13 @@ export class OrderModel {
       evidence: params.evidence,
       status: DisputeStatus.PENDING,
       createdAt: new Date(),
-      updatedAt: new Date()
+      updatedAt: new Date(),
     };
 
     this.disputes.set(disputeId, dispute);
 
-    // 更新订单状态
-    this.setDisputeId(params.orderId, disputeId);
+    // 更新订单状态（带乐观锁）
+    this.setDisputeId(params.orderId, disputeId, order.version);
 
     return dispute;
   }
@@ -266,11 +348,7 @@ export class OrderModel {
   /**
    * 解决争议
    */
-  resolveDispute(
-    disputeId: string,
-    resolution: string,
-    resolvedBy: string
-  ): Dispute {
+  resolveDispute(disputeId: string, resolution: string, resolvedBy: string): Dispute {
     const dispute = this.disputes.get(disputeId);
     if (!dispute) {
       throw new Error('Dispute not found');

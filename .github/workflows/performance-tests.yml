@@ -1,0 +1,275 @@
+name: Performance Tests
+
+on:
+  # 手动触发
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: '测试环境'
+        required: true
+        default: 'staging'
+        type: choice
+        options:
+          - staging
+          - production
+      duration:
+        description: '测试持续时间（分钟）'
+        required: false
+        default: '5'
+  
+  # 定时执行（每周日凌晨 2 点）
+  schedule:
+    - cron: '0 2 * * 0'
+  
+  # PR 事件（可选）
+  pull_request:
+    branches: [main, develop]
+    paths:
+      - 'src/**'
+      - 'tests/performance/**'
+
+env:
+  BASE_URL: ${{ github.event.inputs.environment == 'production' && secrets.PRODUCTION_URL || secrets.STAGING_URL || 'http://localhost:3000' }}
+  K6_VERSION: 'v0.47.0'
+
+jobs:
+  performance-tests:
+    name: 运行性能测试
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v4
+      
+      - name: 安装 k6
+        run: |
+          curl https://github.com/grafana/k6/releases/download/${{ env.K6_VERSION }}/k6-${{ env.K6_VERSION }}-linux-amd64.tar.gz -L | tar xvz
+          sudo mv k6-${{ env.K6_VERSION }}-linux-amd64/k6 /usr/local/bin/
+          k6 version
+      
+      - name: 等待服务启动
+        if: github.event.inputs.environment != 'production'
+        run: |
+          echo "等待服务启动..."
+          for i in {1..30}; do
+            if curl -s ${{ env.BASE_URL }}/health > /dev/null; then
+              echo "服务已就绪"
+              exit 0
+            fi
+            echo "等待中... ($i/30)"
+            sleep 10
+          done
+          echo "服务未就绪"
+          exit 1
+      
+      - name: 创建报告目录
+        run: mkdir -p performance-reports
+      
+      - name: 运行综合性能测试
+        run: |
+          echo "🚀 运行综合性能测试..."
+          k6 run \
+            --out json=performance-reports/comprehensive_report.json \
+            --summary-export=performance-reports/comprehensive_summary.json \
+            tests/performance/k6.config.js
+        continue-on-error: true
+      
+      - name: 运行账户系统性能测试
+        run: |
+          echo "🚀 运行账户系统性能测试..."
+          k6 run \
+            --out json=performance-reports/account_report.json \
+            --summary-export=performance-reports/account_summary.json \
+            tests/performance/account.perf.test.js
+        continue-on-error: true
+      
+      - name: 运行空投系统性能测试
+        run: |
+          echo "🚀 运行空投系统性能测试..."
+          k6 run \
+            --out json=performance-reports/airdrop_report.json \
+            --summary-export=performance-reports/airdrop_summary.json \
+            tests/performance/airdrop-task.perf.test.js
+        continue-on-error: true
+      
+      - name: 运行任务系统性能测试
+        run: |
+          echo "🚀 运行任务系统性能测试..."
+          k6 run \
+            --out json=performance-reports/task_report.json \
+            --summary-export=performance-reports/task_summary.json \
+            tests/performance/task.perf.test.js
+        continue-on-error: true
+      
+      - name: 分析性能结果
+        id: analyze
+        run: |
+          echo "📊 分析性能测试结果..."
+          
+          # 检查是否有失败的阈值
+          FAILED=0
+          
+          for summary_file in performance-reports/*_summary.json; do
+            if [ -f "$summary_file" ]; then
+              # 提取测试名称
+              TEST_NAME=$(basename "$summary_file" _summary.json)
+              
+              # 检查阈值失败情况
+              THRESHOLD_FAILS=$(jq '.root_group.groups[].checks | map(select(.fails > 0)) | length' "$summary_file" 2>/dev/null || echo "0")
+              
+              if [ "$THRESHOLD_FAILS" -gt 0 ]; then
+                echo "❌ $TEST_NAME: $THRESHOLD_FAILS 个阈值未达标"
+                FAILED=1
+              else
+                echo "✅ $TEST_NAME: 所有阈值达标"
+              fi
+              
+              # 提取关键指标
+              echo "---"
+              echo "📈 $TEST_NAME 性能指标:"
+              jq -r '
+                "  请求总数: \(.metrics.http_reqs.values.count)",
+                "  失败率: \((.metrics.http_req_failed.values.rate * 100 | floor))%",
+                "  P95 响应时间: \(.metrics.http_req_duration.values["p(95)"] | floor)ms",
+                "  P99 响应时间: \(.metrics.http_req_duration.values["p(99)"] | floor)ms"
+              ' "$summary_file" 2>/dev/null || echo "  无法提取指标"
+              echo ""
+            fi
+          done
+          
+          if [ $FAILED -eq 1 ]; then
+            echo "::warning::部分性能测试未达标"
+            echo "performance_failed=true" >> $GITHUB_OUTPUT
+          else
+            echo "performance_failed=false" >> $GITHUB_OUTPUT
+          fi
+      
+      - name: 生成性能报告
+        run: |
+          echo "# 性能测试报告" > performance_report.md
+          echo "" >> performance_report.md
+          echo "**测试时间**: $(date '+%Y-%m-%d %H:%M:%S')" >> performance_report.md
+          echo "**环境**: ${{ github.event.inputs.environment || 'staging' }}" >> performance_report.md
+          echo "**基础 URL**: ${{ env.BASE_URL }}" >> performance_report.md
+          echo "" >> performance_report.md
+          
+          echo "## 测试结果概览" >> performance_report.md
+          echo "" >> performance_report.md
+          echo "| 测试套件 | 状态 | P95 响应时间 | P99 响应时间 | 失败率 |" >> performance_report.md
+          echo "|---------|------|-------------|-------------|--------|" >> performance_report.md
+          
+          for summary_file in performance-reports/*_summary.json; do
+            if [ -f "$summary_file" ]; then
+              TEST_NAME=$(basename "$summary_file" _summary.json)
+              
+              # 提取指标
+              P95=$(jq -r '.metrics.http_req_duration.values["p(95)"] | floor' "$summary_file" 2>/dev/null || echo "N/A")
+              P99=$(jq -r '.metrics.http_req_duration.values["p(99)"] | floor' "$summary_file" 2>/dev/null || echo "N/A")
+              FAIL_RATE=$(jq -r '(.metrics.http_req_failed.values.rate * 100 | floor)' "$summary_file" 2>/dev/null || echo "N/A")
+              THRESHOLD_FAILS=$(jq '.root_group.groups[].checks | map(select(.fails > 0)) | length' "$summary_file" 2>/dev/null || echo "0")
+              
+              if [ "$THRESHOLD_FAILS" -gt 0 ]; then
+                STATUS="❌ 失败"
+              else
+                STATUS="✅ 通过"
+              fi
+              
+              echo "| $TEST_NAME | $STATUS | ${P95}ms | ${P99}ms | ${FAIL_RATE}% |" >> performance_report.md
+            fi
+          done
+          
+          echo "" >> performance_report.md
+          echo "## SLA 合规性" >> performance_report.md
+          echo "" >> performance_report.md
+          echo "- ✅ P95 响应时间目标: < 300ms" >> performance_report.md
+          echo "- ✅ P99 响应时间目标: < 500ms" >> performance_report.md
+          echo "- ✅ 错误率目标: < 1%" >> performance_report.md
+          echo "" >> performance_report.md
+          echo "---" >> performance_report.md
+          echo "*报告由 GitHub Actions 自动生成*" >> performance_report.md
+          
+          cat performance_report.md
+      
+      - name: 上传性能报告
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: performance-reports-${{ github.run_number }}
+          path: |
+            performance-reports/
+            performance_report.md
+          retention-days: 30
+      
+      - name: 发布测试结果到 PR
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const report = fs.readFileSync('performance_report.md', 'utf8');
+            
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: report
+            });
+      
+      - name: 发送 Slack 通知
+        if: failure() && github.event_name == 'schedule'
+        uses: 8398a7/action-slack@v3
+        with:
+          status: failure
+          text: |
+            性能测试失败！
+            环境: ${{ github.event.inputs.environment || 'staging' }}
+            查看详情: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          webhook_url: ${{ secrets.SLACK_WEBHOOK }}
+        continue-on-error: true
+      
+      - name: 检查性能测试结果
+        if: steps.analyze.outputs.performance_failed == 'true'
+        run: |
+          echo "❌ 性能测试未达标"
+          exit 1
+
+  # 性能基线更新（仅在主分支）
+  update-baseline:
+    name: 更新性能基线
+    needs: performance-tests
+    if: github.ref == 'refs/heads/main' && github.event_name == 'schedule'
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v4
+      
+      - name: 下载性能报告
+        uses: actions/download-artifact@v4
+        with:
+          name: performance-reports-${{ github.run_number }}
+          path: performance-reports
+      
+      - name: 更新性能基线
+        run: |
+          echo "📊 更新性能基线..."
+          
+          # 创建基线目录
+          mkdir -p tests/performance/baselines
+          
+          # 复制最新报告作为基线
+          TIMESTAMP=$(date +%Y%m%d_%H%M%S)
+          cp -r performance-reports tests/performance/baselines/$TIMESTAMP
+          
+          # 更新最新基线链接
+          ln -sfn $TIMESTAMP tests/performance/baselines/latest
+          
+          echo "✅ 性能基线已更新: $TIMESTAMP"
+      
+      - name: 提交基线更新
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add tests/performance/baselines/
+          git commit -m "chore: 更新性能基线 [skip ci]" || echo "无需提交"
+          git push

@@ -21,21 +21,24 @@ export class AirdropModel {
     endTime: Date;
   }): Airdrop {
     const airdropId = `airdrop_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
-    
+
     const airdrop: Airdrop = {
       id: airdropId,
       name: params.name,
       description: params.description,
       totalAmount: params.totalAmount,
+      claimedAmount: 0, // 初始化为0
       perUserAmount: params.perUserAmount,
       startTime: params.startTime,
       endTime: params.endTime,
       status: AirdropStatus.PENDING,
-      createdAt: new Date()
+      currentClaims: 0, // 初始化为0
+      createdAt: new Date(),
+      updatedAt: new Date(),
     };
 
     this.airdrops.set(airdropId, airdrop);
-    
+
     return airdrop;
   }
 
@@ -58,10 +61,12 @@ export class AirdropModel {
    */
   getActiveAirdrops(): Airdrop[] {
     const now = new Date();
-    return Array.from(this.airdrops.values()).filter(airdrop => {
-      return airdrop.status === AirdropStatus.ACTIVE &&
-             airdrop.startTime <= now &&
-             airdrop.endTime >= now;
+    return Array.from(this.airdrops.values()).filter((airdrop) => {
+      return (
+        airdrop.status === AirdropStatus.ACTIVE &&
+        airdrop.startTime <= now &&
+        airdrop.endTime >= now
+      );
     });
   }
 
@@ -112,14 +117,29 @@ export class AirdropModel {
       throw new Error('Airdrop is not within the valid time range');
     }
 
+    // 🔥 关键修复：检查剩余金额是否足够
+    const remainingAmount = airdrop.totalAmount - airdrop.claimedAmount;
+    if (remainingAmount < amount) {
+      throw new Error(
+        `Insufficient airdrop balance. Remaining: ${remainingAmount}, Requested: ${amount}`
+      );
+    }
+
+    // 🔥 关键修复：检查是否超过每人限额
+    if (amount > airdrop.perUserAmount) {
+      throw new Error(
+        `Amount exceeds per-user limit. Limit: ${airdrop.perUserAmount}, Requested: ${amount}`
+      );
+    }
+
     const claimId = `claim_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
-    
+
     const claim: AirdropClaim = {
       id: claimId,
       airdropId,
       userId,
       amount,
-      claimedAt: new Date()
+      claimedAt: new Date(),
     };
 
     this.claims.set(claimId, claim);
@@ -129,6 +149,11 @@ export class AirdropModel {
       this.userClaims.set(userId, new Set());
     }
     this.userClaims.get(userId)!.add(airdropId);
+
+    // 🔥 关键修复：更新已领取金额和领取人数
+    airdrop.claimedAmount += amount;
+    airdrop.currentClaims += 1;
+    airdrop.updatedAt = new Date();
 
     return claim;
   }
