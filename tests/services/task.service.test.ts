@@ -3,7 +3,7 @@
  * 测试范围：任务创建、完成、奖励发放
  */
 
-import { describe, test, expect, beforeEach, afterEach } from 'bun:test';
+// Jest 全局变量，无需导入
 import { TaskService } from '../../src/services/task.service';
 import { AccountService } from '../../src/services/account.service';
 import { taskModel } from '../../src/models/Task';
@@ -45,7 +45,7 @@ describe('TaskService', () => {
         reward: 100,
         maxCompletions: 10,
         startTime,
-        endTime
+        endTime,
       });
 
       expect(result).toBeDefined();
@@ -67,7 +67,7 @@ describe('TaskService', () => {
           reward: 100,
           maxCompletions: 10,
           startTime,
-          endTime
+          endTime,
         });
       }).toThrow('开始时间必须早于结束时间');
     });
@@ -84,7 +84,7 @@ describe('TaskService', () => {
           reward: 0,
           maxCompletions: 10,
           startTime,
-          endTime
+          endTime,
         });
       }).toThrow('奖励金额必须大于0');
 
@@ -95,7 +95,7 @@ describe('TaskService', () => {
           reward: -100,
           maxCompletions: 10,
           startTime,
-          endTime
+          endTime,
         });
       }).toThrow('奖励金额必须大于0');
     });
@@ -112,7 +112,7 @@ describe('TaskService', () => {
           reward: 100,
           maxCompletions: 0,
           startTime,
-          endTime
+          endTime,
         });
       }).toThrow('最大完成次数必须大于0');
     });
@@ -128,7 +128,7 @@ describe('TaskService', () => {
         reward: 1000,
         maxCompletions: 1000,
         startTime,
-        endTime
+        endTime,
       });
 
       expect(result.reward).toBe(1000);
@@ -138,9 +138,9 @@ describe('TaskService', () => {
   describe('activateTask', () => {
     test('应该成功激活任务', async () => {
       const task = await createTestTask();
-      
+
       const result = await taskService.activateTask(task.taskId);
-      
+
       expect(result.success).toBe(true);
       expect(result.status).toBe(TaskStatus.ACTIVE);
     });
@@ -164,9 +164,9 @@ describe('TaskService', () => {
   describe('pauseTask', () => {
     test('应该成功暂停任务', async () => {
       const task = await createActiveTask();
-      
+
       const result = await taskService.pauseTask(task.taskId);
-      
+
       expect(result.success).toBe(true);
       expect(result.status).toBe(TaskStatus.PAUSED);
     });
@@ -189,9 +189,9 @@ describe('TaskService', () => {
   describe('cancelTask', () => {
     test('应该成功取消任务', async () => {
       const task = await createTestTask();
-      
+
       const result = await taskService.cancelTask(task.taskId);
-      
+
       expect(result.success).toBe(true);
       expect(result.status).toBe(TaskStatus.CANCELLED);
     });
@@ -250,7 +250,7 @@ describe('TaskService', () => {
 
     test('应该拒绝完成尚未开始的任务', async () => {
       const userId = 'test-user-004';
-      
+
       const now = new Date();
       const startTime = new Date(now.getTime() + 1000 * 60 * 60);
       const endTime = new Date(now.getTime() + 1000 * 60 * 60 * 2);
@@ -261,7 +261,7 @@ describe('TaskService', () => {
         reward: 100,
         maxCompletions: 10,
         startTime,
-        endTime
+        endTime,
       });
 
       await taskService.activateTask(task.taskId);
@@ -274,7 +274,7 @@ describe('TaskService', () => {
 
     test('应该拒绝完成已结束的任务', async () => {
       const userId = 'test-user-005';
-      
+
       const now = new Date();
       const startTime = new Date(now.getTime() - 1000 * 60 * 60 * 2);
       const endTime = new Date(now.getTime() - 1000 * 60 * 60);
@@ -285,7 +285,7 @@ describe('TaskService', () => {
         reward: 100,
         maxCompletions: 10,
         startTime,
-        endTime
+        endTime,
       });
 
       await taskService.activateTask(task.taskId);
@@ -298,7 +298,7 @@ describe('TaskService', () => {
 
     test('应该在达到完成上限后拒绝新完成', async () => {
       const task = await createActiveTaskWithLimit(2);
-      
+
       // 两个不同用户完成
       for (let i = 0; i < 2; i++) {
         const userId = `test-user-${i + 10}`;
@@ -333,7 +333,7 @@ describe('TaskService', () => {
       await taskService.completeTask(task.taskId, userId);
 
       const detail = taskService.getTaskDetail(task.taskId);
-      
+
       expect(detail).toBeDefined();
       expect(detail.task).toBeDefined();
       expect(detail.completionCount).toBe(1);
@@ -381,7 +381,7 @@ describe('TaskService', () => {
 
       const activeTasks = taskService.getActiveTasks();
       expect(activeTasks.length).toBe(2);
-      expect(activeTasks.every(t => t.status === TaskStatus.ACTIVE)).toBe(true);
+      expect(activeTasks.every((t) => t.status === TaskStatus.ACTIVE)).toBe(true);
     });
   });
 
@@ -429,7 +429,7 @@ describe('TaskService', () => {
       await taskService.completeTask(task2.taskId, userId);
 
       const completions = taskService.getUserCompletions(userId);
-      
+
       expect(completions.length).toBe(2);
       expect(completions[0]).toHaveProperty('completionId');
       expect(completions[0]).toHaveProperty('taskTitle');
@@ -490,23 +490,23 @@ describe('TaskService', () => {
       await createTestTask('任务3');
 
       const stats = taskService.getTaskStats();
-      
+
       expect(stats.totalTasks).toBe(3);
       expect(stats.activeTasks).toBe(2);
     });
 
     test('应该返回单个任务的统计信息', async () => {
       const task = await createActiveTask();
-      
+
       const stats = taskService.getTaskStats(task.taskId);
-      
+
       expect(stats.totalTasks).toBe(1);
       expect(stats.activeTasks).toBe(1);
     });
 
     test('应该正确计算已分发奖励总额', async () => {
       const task = await createActiveTask();
-      
+
       for (let i = 0; i < 5; i++) {
         const userId = `test-user-${i + 60}`;
         await accountService.createAccount(userId);
@@ -521,7 +521,7 @@ describe('TaskService', () => {
   describe('边界条件测试', () => {
     test('应该处理大量用户完成任务', async () => {
       const task = await createActiveTaskWithLimit(100);
-      
+
       for (let i = 0; i < 100; i++) {
         const userId = `test-user-${i + 100}`;
         await accountService.createAccount(userId);
@@ -534,7 +534,7 @@ describe('TaskService', () => {
 
     test('应该处理并发任务完成', async () => {
       const task = await createActiveTaskWithLimit(50);
-      
+
       // 创建 50 个账户
       const userIds = [];
       for (let i = 0; i < 50; i++) {
@@ -544,9 +544,7 @@ describe('TaskService', () => {
       }
 
       // 并发完成
-      const promises = userIds.map(userId => 
-        taskService.completeTask(task.taskId, userId)
-      );
+      const promises = userIds.map((userId) => taskService.completeTask(task.taskId, userId));
 
       await Promise.all(promises);
 
@@ -565,7 +563,7 @@ describe('TaskService', () => {
         reward: 1000000,
         maxCompletions: 10,
         startTime,
-        endTime
+        endTime,
       });
 
       expect(task.reward).toBe(1000000);
@@ -582,7 +580,7 @@ describe('TaskService', () => {
         reward: 10,
         maxCompletions: 10000,
         startTime,
-        endTime
+        endTime,
       });
 
       expect(task).toBeDefined();
@@ -601,7 +599,7 @@ describe('TaskService', () => {
       reward: 100,
       maxCompletions: 10,
       startTime,
-      endTime
+      endTime,
     });
   }
 
@@ -616,11 +614,11 @@ describe('TaskService', () => {
       reward: 100,
       maxCompletions: 10,
       startTime,
-      endTime
+      endTime,
     });
 
     await taskService.activateTask(task.taskId);
-    
+
     return task;
   }
 
@@ -635,11 +633,11 @@ describe('TaskService', () => {
       reward: 100,
       maxCompletions,
       startTime,
-      endTime
+      endTime,
     });
 
     await taskService.activateTask(task.taskId);
-    
+
     return task;
   }
 });

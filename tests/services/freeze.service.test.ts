@@ -3,7 +3,7 @@
  * 测试范围：冻结创建、自动解冻、冻结查询
  */
 
-import { describe, test, expect, beforeEach, afterEach } from 'bun:test';
+// Jest 全局变量，无需导入
 import { FreezeService } from '../../src/services/freeze.service';
 import { AccountService } from '../../src/services/account.service';
 import { freezeModel } from '../../src/models/Freeze';
@@ -40,11 +40,11 @@ describe('FreezeService', () => {
       await accountService.createAccount(userId);
       await accountService.addTokens(userId, 1000, TransactionType.REWARD, '初始奖励');
 
-      const freeze = freezeService.createInitialFreeze({
+      const freeze = await freezeService.createInitialFreeze({
         userId,
         amount: 500,
         transactionId: 'tx-001',
-        remark: '交易冻结'
+        remark: '交易冻结',
       });
 
       expect(freeze).toBeDefined();
@@ -61,7 +61,7 @@ describe('FreezeService', () => {
         freezeService.createInitialFreeze({
           userId: 'non-existent',
           amount: 100,
-          transactionId: 'tx-002'
+          transactionId: 'tx-002',
         });
       }).toThrow('用户账户不存在');
     });
@@ -75,7 +75,7 @@ describe('FreezeService', () => {
         freezeService.createInitialFreeze({
           userId,
           amount: 200,
-          transactionId: 'tx-003'
+          transactionId: 'tx-003',
         });
       }).toThrow('余额不足');
     });
@@ -89,7 +89,7 @@ describe('FreezeService', () => {
       freezeService.createInitialFreeze({
         userId,
         amount: 600,
-        transactionId: 'tx-004'
+        transactionId: 'tx-004',
       });
 
       // 第二次冻结应该考虑第一次冻结
@@ -97,7 +97,7 @@ describe('FreezeService', () => {
         freezeService.createInitialFreeze({
           userId,
           amount: 500,
-          transactionId: 'tx-005'
+          transactionId: 'tx-005',
         });
       }).toThrow('余额不足');
     });
@@ -108,20 +108,18 @@ describe('FreezeService', () => {
       await accountService.addTokens(userId, 1000, TransactionType.REWARD, '初始奖励');
 
       const before = new Date();
-      const freeze = freezeService.createInitialFreeze({
+      const freeze = await freezeService.createInitialFreeze({
         userId,
         amount: 500,
-        transactionId: 'tx-006'
+        transactionId: 'tx-006',
       });
       const after = new Date();
 
-      const expectedExpiry = new Date(
-        before.getTime() + FREEZE_CONFIG.INITIAL_FREEZE_DURATION
-      );
+      const expectedExpiry = new Date(before.getTime() + FREEZE_CONFIG.INITIAL_DURATION);
 
       expect(freeze.expiresAt.getTime()).toBeGreaterThanOrEqual(expectedExpiry.getTime() - 1000);
       expect(freeze.expiresAt.getTime()).toBeLessThanOrEqual(
-        after.getTime() + FREEZE_CONFIG.INITIAL_FREEZE_DURATION + 1000
+        after.getTime() + FREEZE_CONFIG.INITIAL_DURATION + 1000
       );
     });
   });
@@ -136,7 +134,7 @@ describe('FreezeService', () => {
         userId,
         amount: 500,
         transactionId: 'tx-007',
-        remark: '争议冻结'
+        remark: '争议冻结',
       });
 
       expect(freeze).toBeDefined();
@@ -152,18 +150,16 @@ describe('FreezeService', () => {
       const initialFreeze = freezeService.createInitialFreeze({
         userId,
         amount: 500,
-        transactionId: 'tx-008'
+        transactionId: 'tx-008',
       });
 
       const disputeFreeze = freezeService.createDisputeFreeze({
         userId,
         amount: 500,
-        transactionId: 'tx-009'
+        transactionId: 'tx-009',
       });
 
-      expect(disputeFreeze.expiresAt.getTime()).toBeGreaterThan(
-        initialFreeze.expiresAt.getTime()
-      );
+      expect(disputeFreeze.expiresAt.getTime()).toBeGreaterThan(initialFreeze.expiresAt.getTime());
     });
   });
 
@@ -176,7 +172,7 @@ describe('FreezeService', () => {
       const freeze = freezeService.createInitialFreeze({
         userId,
         amount: 500,
-        transactionId: 'tx-010'
+        transactionId: 'tx-010',
       });
 
       const result = freezeService.unfreeze(freeze.id, '手动解冻');
@@ -200,7 +196,7 @@ describe('FreezeService', () => {
       const freeze = freezeService.createInitialFreeze({
         userId,
         amount: 500,
-        transactionId: 'tx-011'
+        transactionId: 'tx-011',
       });
 
       await freezeService.unfreeze(freeze.id, '第一次解冻');
@@ -218,7 +214,7 @@ describe('FreezeService', () => {
       const freeze = freezeService.createInitialFreeze({
         userId,
         amount: 500,
-        transactionId: 'tx-012'
+        transactionId: 'tx-012',
       });
 
       let available = freezeService.getAvailableBalance(userId);
@@ -240,7 +236,7 @@ describe('FreezeService', () => {
       const freeze = freezeService.createInitialFreeze({
         userId,
         amount: 500,
-        transactionId: 'tx-013'
+        transactionId: 'tx-013',
       });
 
       const result = freezeService.manualUnfreeze(freeze.id, '客服手动解冻');
@@ -260,7 +256,7 @@ describe('FreezeService', () => {
       const freeze = freezeService.createInitialFreeze({
         userId,
         amount: 500,
-        transactionId: 'tx-014'
+        transactionId: 'tx-014',
       });
 
       // 手动设置过期时间为过去
@@ -281,7 +277,7 @@ describe('FreezeService', () => {
       freezeService.createInitialFreeze({
         userId,
         amount: 500,
-        transactionId: 'tx-015'
+        transactionId: 'tx-015',
       });
 
       const results = freezeService.autoUnfreezeExpired();
@@ -297,13 +293,13 @@ describe('FreezeService', () => {
       const freeze1 = freezeService.createInitialFreeze({
         userId,
         amount: 500,
-        transactionId: 'tx-016'
+        transactionId: 'tx-016',
       });
 
       const freeze2 = freezeService.createInitialFreeze({
         userId,
         amount: 500,
-        transactionId: 'tx-017'
+        transactionId: 'tx-017',
       });
 
       // 手动设置过期
@@ -313,7 +309,7 @@ describe('FreezeService', () => {
       const results = freezeService.autoUnfreezeExpired();
 
       expect(results.length).toBe(2);
-      expect(results.every(r => r.success)).toBe(true);
+      expect(results.every((r) => r.success)).toBe(true);
     });
   });
 
@@ -326,7 +322,7 @@ describe('FreezeService', () => {
       const freeze = freezeService.createInitialFreeze({
         userId,
         amount: 500,
-        transactionId: 'tx-018'
+        transactionId: 'tx-018',
       });
 
       const status = freezeService.getFreezeStatus(freeze.id);
@@ -348,7 +344,7 @@ describe('FreezeService', () => {
       const freeze = freezeService.createInitialFreeze({
         userId,
         amount: 500,
-        transactionId: 'tx-019'
+        transactionId: 'tx-019',
       });
 
       await freezeService.unfreeze(freeze.id, '解冻');
@@ -373,13 +369,13 @@ describe('FreezeService', () => {
       await freezeService.createInitialFreeze({
         userId,
         amount: 500,
-        transactionId: 'tx-020'
+        transactionId: 'tx-020',
       });
 
       await freezeService.createDisputeFreeze({
         userId,
         amount: 500,
-        transactionId: 'tx-021'
+        transactionId: 'tx-021',
       });
 
       const freezes = freezeService.getUserFreezes(userId);
@@ -395,13 +391,13 @@ describe('FreezeService', () => {
       const freeze1 = freezeService.createInitialFreeze({
         userId,
         amount: 500,
-        transactionId: 'tx-022'
+        transactionId: 'tx-022',
       });
 
       await freezeService.createInitialFreeze({
         userId,
         amount: 500,
-        transactionId: 'tx-023'
+        transactionId: 'tx-023',
       });
 
       await freezeService.unfreeze(freeze1.id, '解冻');
@@ -423,13 +419,13 @@ describe('FreezeService', () => {
       const freeze1 = freezeService.createInitialFreeze({
         userId,
         amount: 500,
-        transactionId: 'tx-024'
+        transactionId: 'tx-024',
       });
 
       await freezeService.createInitialFreeze({
         userId,
         amount: 500,
-        transactionId: 'tx-025'
+        transactionId: 'tx-025',
       });
 
       await freezeService.unfreeze(freeze1.id, '解冻');
@@ -450,7 +446,7 @@ describe('FreezeService', () => {
       const freeze = freezeService.createInitialFreeze({
         userId,
         amount: 500,
-        transactionId: 'tx-026'
+        transactionId: 'tx-026',
       });
 
       const found = freezeService.getFreezeByTransactionId('tx-026');
@@ -477,7 +473,7 @@ describe('FreezeService', () => {
       await freezeService.createInitialFreeze({
         userId,
         amount: 300,
-        transactionId: 'tx-027'
+        transactionId: 'tx-027',
       });
 
       available = freezeService.getAvailableBalance(userId);
@@ -509,7 +505,7 @@ describe('FreezeService', () => {
       await freezeService.createInitialFreeze({
         userId,
         amount: 600,
-        transactionId: 'tx-028'
+        transactionId: 'tx-028',
       });
 
       expect(freezeService.canFreeze(userId, 400)).toBe(true);
@@ -526,13 +522,13 @@ describe('FreezeService', () => {
       await freezeService.createInitialFreeze({
         userId,
         amount: 500,
-        transactionId: 'tx-029'
+        transactionId: 'tx-029',
       });
 
       await freezeService.createDisputeFreeze({
         userId,
         amount: 500,
-        transactionId: 'tx-030'
+        transactionId: 'tx-030',
       });
 
       const stats = freezeService.getFreezeStats();
@@ -547,7 +543,7 @@ describe('FreezeService', () => {
     test('应该返回所有活跃的冻结记录', async () => {
       const userId1 = 'test-user-024';
       const userId2 = 'test-user-025';
-      
+
       await accountService.createAccount(userId1);
       await accountService.createAccount(userId2);
       await accountService.addTokens(userId1, 1000, TransactionType.REWARD, '初始奖励');
@@ -556,19 +552,19 @@ describe('FreezeService', () => {
       await freezeService.createInitialFreeze({
         userId: userId1,
         amount: 500,
-        transactionId: 'tx-031'
+        transactionId: 'tx-031',
       });
 
       await freezeService.createInitialFreeze({
         userId: userId2,
         amount: 500,
-        transactionId: 'tx-032'
+        transactionId: 'tx-032',
       });
 
       const allActive = freezeService.getAllActiveFreezes();
 
       expect(allActive.length).toBeGreaterThanOrEqual(2);
-      expect(allActive.every(f => f.status === FreezeStatus.FROZEN)).toBe(true);
+      expect(allActive.every((f) => f.status === FreezeStatus.FROZEN)).toBe(true);
     });
   });
 
@@ -581,19 +577,19 @@ describe('FreezeService', () => {
       const freeze1 = freezeService.createInitialFreeze({
         userId,
         amount: 500,
-        transactionId: 'tx-033'
+        transactionId: 'tx-033',
       });
 
       const freeze2 = freezeService.createInitialFreeze({
         userId,
         amount: 500,
-        transactionId: 'tx-034'
+        transactionId: 'tx-034',
       });
 
       const freeze3 = freezeService.createInitialFreeze({
         userId,
         amount: 500,
-        transactionId: 'tx-035'
+        transactionId: 'tx-035',
       });
 
       const results = freezeService.unfreezeMultiple(
@@ -602,7 +598,7 @@ describe('FreezeService', () => {
       );
 
       expect(results.length).toBe(3);
-      expect(results.every(r => r.success)).toBe(true);
+      expect(results.every((r) => r.success)).toBe(true);
     });
 
     test('应该处理部分失败的情况', async () => {
@@ -613,13 +609,10 @@ describe('FreezeService', () => {
       const freeze1 = freezeService.createInitialFreeze({
         userId,
         amount: 500,
-        transactionId: 'tx-036'
+        transactionId: 'tx-036',
       });
 
-      const results = freezeService.unfreezeMultiple(
-        [freeze1.id, 'non-existent'],
-        '批量解冻'
-      );
+      const results = freezeService.unfreezeMultiple([freeze1.id, 'non-existent'], '批量解冻');
 
       expect(results.length).toBe(2);
       expect(results[0].success).toBe(true);
@@ -638,7 +631,7 @@ describe('FreezeService', () => {
         freezeService.createInitialFreeze({
           userId,
           amount: 100,
-          transactionId: `tx-${i + 100}`
+          transactionId: `tx-${i + 100}`,
         });
       }
 
@@ -652,14 +645,14 @@ describe('FreezeService', () => {
     test('应该处理极大冻结金额', async () => {
       const userId = 'test-user-029';
       await accountService.createAccount(userId);
-      
+
       const largeAmount = Number.MAX_SAFE_INTEGER / 2;
       await accountService.addTokens(userId, largeAmount, TransactionType.REWARD, '大额奖励');
 
       const freeze = freezeService.createInitialFreeze({
         userId,
         amount: largeAmount / 2,
-        transactionId: 'tx-large'
+        transactionId: 'tx-large',
       });
 
       expect(freeze.amount).toBe(largeAmount / 2);
@@ -671,23 +664,25 @@ describe('FreezeService', () => {
       await accountService.addTokens(userId, 10000, TransactionType.REWARD, '初始奖励');
 
       // 并发创建 50 个冻结
-      const promises = Array(50).fill(null).map((_, i) => {
-        return new Promise((resolve) => {
-          try {
-            const freeze = freezeService.createInitialFreeze({
-              userId,
-              amount: 100,
-              transactionId: `tx-concurrent-${i}`
-            });
-            resolve({ success: true, freeze });
-          } catch (error) {
-            resolve({ success: false, error });
-          }
+      const promises = Array(50)
+        .fill(null)
+        .map((_, i) => {
+          return new Promise((resolve) => {
+            try {
+              const freeze = freezeService.createInitialFreeze({
+                userId,
+                amount: 100,
+                transactionId: `tx-concurrent-${i}`,
+              });
+              resolve({ success: true, freeze });
+            } catch (error) {
+              resolve({ success: false, error });
+            }
+          });
         });
-      });
 
-      const results = await Promise.all(promises) as any[];
-      const successCount = results.filter(r => r.success).length;
+      const results = (await Promise.all(promises)) as any[];
+      const successCount = results.filter((r) => r.success).length;
 
       expect(successCount).toBe(50);
     });
@@ -701,26 +696,26 @@ describe('FreezeService', () => {
         const freeze = freezeService.createInitialFreeze({
           userId,
           amount: 100,
-          transactionId: `tx-fast-${i}`
+          transactionId: `tx-fast-${i}`,
         });
         await freezeService.unfreeze(freeze.id, '快速解冻');
       }
 
       const freezes = freezeService.getUserFreezes(userId);
       expect(freezes.length).toBe(10);
-      expect(freezes.every(f => f.status === FreezeStatus.UNFROZEN)).toBe(true);
+      expect(freezes.every((f) => f.status === FreezeStatus.UNFROZEN)).toBe(true);
     });
   });
 
   describe('定时任务测试', () => {
     test('应该能够启动和停止自动解冻定时任务', () => {
       freezeService.initialize();
-      
+
       // 验证定时器已启动
       expect((freezeService as any).autoUnfreezeTimer).toBeDefined();
-      
+
       freezeService.stopAutoUnfreeze();
-      
+
       // 验证定时器已停止
       expect((freezeService as any).autoUnfreezeTimer).toBeUndefined();
     });
