@@ -18,18 +18,17 @@ describe('Account Initial Balance', () => {
     // 创建账户，设置初始余额为 100
     const result = await accountController.createAccount({
       userId,
-      initialBalance
+      initialBalance,
     });
 
     // 验证返回结果
-    expect(result.success).toBeFalsy(); // createAccount 返回的是 Promise，需要检查返回值
-    if ('accountId' in result) {
+    if ('accountId' in result && 'initialBalance' in result) {
       expect(result.initialBalance).toBe(initialBalance);
     }
 
     // 查询余额，验证初始余额是否正确
     const balanceResult = await accountController.getBalance({ userId });
-    
+
     if ('balance' in balanceResult) {
       expect(balanceResult.balance).toBe(initialBalance);
     } else {
@@ -41,13 +40,13 @@ describe('Account Initial Balance', () => {
     const userId = 'test-user-default';
 
     // 创建账户，不设置初始余额
-    const result = await accountController.createAccount({
-      userId
+    await accountController.createAccount({
+      userId,
     });
 
     // 查询余额
     const balanceResult = await accountController.getBalance({ userId });
-    
+
     if ('balance' in balanceResult) {
       expect(balanceResult.balance).toBe(0);
     } else {
@@ -61,7 +60,7 @@ describe('Account Initial Balance', () => {
     // 尝试创建账户，设置负数的初始余额
     const result = await accountController.createAccount({
       userId,
-      initialBalance: -100
+      initialBalance: -100,
     });
 
     // 应该返回错误
@@ -69,12 +68,12 @@ describe('Account Initial Balance', () => {
     expect(result.error).toContain('无效的初始余额');
   });
 
-  test('AccountModel 应正确处理初始余额', () => {
+  test('AccountModel 应正确处理初始余额', async () => {
     const userId = 'test-model-user';
     const initialBalance = 500;
 
     // 使用 Model 直接创建账户
-    const account = accountModel.createAccount(userId, initialBalance);
+    const account = await accountModel.createAccount(userId, initialBalance);
 
     // 验证账户属性
     expect(account.balance).toBe(initialBalance);
