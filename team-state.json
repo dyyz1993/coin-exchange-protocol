@@ -63,48 +63,6 @@
   "initialized": false,
   "events": [
     {
-      "time": "2026-03-01T01:47:52.639Z",
-      "agent": "qa-engineer",
-      "type": "tool",
-      "content": "调用工具: edit"
-    },
-    {
-      "time": "2026-03-01T01:48:32.344Z",
-      "agent": "qa-engineer",
-      "type": "tool",
-      "content": "调用工具: edit"
-    },
-    {
-      "time": "2026-03-01T01:48:38.828Z",
-      "agent": "qa-engineer",
-      "type": "tool",
-      "content": "调用工具: edit"
-    },
-    {
-      "time": "2026-03-01T01:48:42.993Z",
-      "agent": "qa-engineer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T01:48:48.771Z",
-      "agent": "qa-engineer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T01:48:57.990Z",
-      "agent": "qa-engineer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T01:49:02.034Z",
-      "agent": "qa-engineer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
       "time": "2026-03-01T01:49:04.262Z",
       "agent": "qa-engineer",
       "type": "tool",
@@ -3058,6 +3016,48 @@
     },
     {
       "time": "2026-03-01T02:57:45.052Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T02:57:47.953Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: git_create_branch"
+    },
+    {
+      "time": "2026-03-01T02:57:51.278Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T02:57:57.147Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T02:58:06.255Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T02:58:11.838Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: git_create_branch"
+    },
+    {
+      "time": "2026-03-01T02:58:14.867Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T02:58:21.514Z",
       "agent": "qa-engineer",
       "type": "tool",
       "content": "调用工具: bash"
