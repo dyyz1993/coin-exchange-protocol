@@ -80,748 +80,12 @@
     112,
     108,
     107,
-    106
+    106,
+    121,
+    120
   ],
   "initialized": false,
   "events": [
-    {
-      "time": "2026-03-01T04:49:54.041Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T04:50:24.051Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T04:50:24.318Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T04:50:54.324Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T04:51:04.951Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T04:51:04.982Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T04:51:05.015Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T04:51:05.042Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T04:51:05.050Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T04:51:05.070Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T04:51:05.081Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T04:51:05.102Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T04:51:12.076Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T04:51:38.681Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: report_progress"
-    },
-    {
-      "time": "2026-03-01T04:52:00.492Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: report_progress"
-    },
-    {
-      "time": "2026-03-01T04:52:00.498Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: git_create_branch"
-    },
-    {
-      "time": "2026-03-01T04:52:00.573Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: report_progress"
-    },
-    {
-      "time": "2026-03-01T04:52:00.577Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: git_create_branch"
-    },
-    {
-      "time": "2026-03-01T04:52:03.064Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T04:52:06.273Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: git_create_branch"
-    },
-    {
-      "time": "2026-03-01T04:52:09.937Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T04:52:14.779Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T04:52:14.804Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T04:52:14.820Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T04:52:14.961Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T04:52:23.268Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T04:52:23.300Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T04:52:23.663Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T04:52:23.681Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T04:52:31.173Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T04:52:33.252Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T04:52:35.162Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T04:52:36.795Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T04:52:50.312Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T04:53:04.306Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T04:53:04.491Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: git_commit"
-    },
-    {
-      "time": "2026-03-01T04:53:04.945Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T04:53:05.049Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: git_commit"
-    },
-    {
-      "time": "2026-03-01T04:53:58.557Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: git_push_branch"
-    },
-    {
-      "time": "2026-03-01T04:54:01.479Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: create_pr"
-    },
-    {
-      "time": "2026-03-01T04:54:02.213Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: git_push_branch"
-    },
-    {
-      "time": "2026-03-01T04:54:03.912Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: create_pr"
-    },
-    {
-      "time": "2026-03-01T04:54:04.733Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: git_push_branch"
-    },
-    {
-      "time": "2026-03-01T04:54:07.031Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: create_pr"
-    },
-    {
-      "time": "2026-03-01T04:54:07.542Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: git_push_branch"
-    },
-    {
-      "time": "2026-03-01T04:54:09.494Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: create_pr"
-    },
-    {
-      "time": "2026-03-01T04:54:40.960Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T04:54:42.396Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: create_pr"
-    },
-    {
-      "time": "2026-03-01T04:54:43.523Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T04:54:44.299Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: create_pr"
-    },
-    {
-      "time": "2026-03-01T04:54:45.226Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T04:54:46.152Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: create_pr"
-    },
-    {
-      "time": "2026-03-01T04:54:46.597Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T04:54:47.308Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: create_pr"
-    },
-    {
-      "time": "2026-03-01T04:55:10.011Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: create_pr"
-    },
-    {
-      "time": "2026-03-01T04:55:29.335Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: report_progress"
-    },
-    {
-      "time": "2026-03-01T04:56:01.727Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: report_progress"
-    },
-    {
-      "time": "2026-03-01T04:56:01.732Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T04:56:01.748Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: report_progress"
-    },
-    {
-      "time": "2026-03-01T04:56:01.752Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T04:56:10.528Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T04:56:10.608Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T04:56:10.859Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T04:56:10.870Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T04:56:21.087Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T04:56:27.070Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T04:56:27.086Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T04:56:32.574Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T04:56:47.233Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T04:56:47.262Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T04:56:47.274Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T04:56:47.283Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T04:56:47.293Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T04:56:47.299Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T04:56:47.304Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T04:56:47.308Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T04:56:53.588Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T04:56:53.607Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T04:56:53.615Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T04:56:53.627Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T04:56:53.631Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T04:56:53.640Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T04:56:53.647Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T04:56:53.650Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T04:57:00.242Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T04:57:00.296Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T04:57:00.321Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T04:57:00.372Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T04:57:05.239Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T04:57:54.440Z",
-      "agent": "qa-engineer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T04:57:54.496Z",
-      "agent": "qa-engineer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T04:57:54.543Z",
-      "agent": "qa-engineer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T04:57:54.566Z",
-      "agent": "qa-engineer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T04:58:01.908Z",
-      "agent": "qa-engineer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T04:58:01.917Z",
-      "agent": "qa-engineer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T04:58:01.924Z",
-      "agent": "qa-engineer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T04:58:01.941Z",
-      "agent": "qa-engineer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T04:58:01.945Z",
-      "agent": "qa-engineer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T04:58:01.961Z",
-      "agent": "qa-engineer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T04:58:02.004Z",
-      "agent": "qa-engineer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T04:58:02.012Z",
-      "agent": "qa-engineer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T04:58:02.021Z",
-      "agent": "qa-engineer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T04:58:02.024Z",
-      "agent": "qa-engineer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T04:58:20.744Z",
-      "agent": "qa-engineer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T04:58:20.772Z",
-      "agent": "qa-engineer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T04:58:20.795Z",
-      "agent": "qa-engineer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T04:58:20.801Z",
-      "agent": "qa-engineer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T04:58:20.819Z",
-      "agent": "qa-engineer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T05:19:02.163Z",
-      "agent": "system",
-      "type": "message",
-      "content": "系统启动"
-    },
-    {
-      "time": "2026-03-01T05:19:16.591Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: report_progress"
-    },
-    {
-      "time": "2026-03-01T05:19:16.596Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T05:19:16.630Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: report_progress"
-    },
-    {
-      "time": "2026-03-01T05:19:16.657Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T05:19:19.601Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T05:19:23.388Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T05:19:23.403Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T05:19:23.834Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T05:19:23.844Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T05:19:28.363Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T05:19:28.609Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T05:19:28.618Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T05:19:28.854Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T05:19:38.807Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
     {
       "time": "2026-03-01T05:19:43.096Z",
       "agent": "backend-developer",
@@ -3083,6 +2347,744 @@
       "agent": "qa-engineer",
       "type": "tool",
       "content": "调用工具: git_commit"
+    },
+    {
+      "time": "2026-03-01T06:09:31.747Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T06:09:37.767Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T06:09:40.506Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: git_push_branch"
+    },
+    {
+      "time": "2026-03-01T06:10:01.434Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: create_pr"
+    },
+    {
+      "time": "2026-03-01T06:10:06.043Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T06:10:23.633Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: create_pr"
+    },
+    {
+      "time": "2026-03-01T06:10:39.881Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: report_progress"
+    },
+    {
+      "time": "2026-03-01T06:11:09.186Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: git_create_branch"
+    },
+    {
+      "time": "2026-03-01T06:11:09.241Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T06:11:09.252Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: git_create_branch"
+    },
+    {
+      "time": "2026-03-01T06:11:09.295Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T06:11:18.156Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T06:11:18.164Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T06:11:18.196Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T06:11:18.209Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T06:11:18.215Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T06:11:18.223Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T06:11:29.244Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T06:11:29.270Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T06:11:29.277Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T06:30:59.159Z",
+      "agent": "system",
+      "type": "message",
+      "content": "系统启动"
+    },
+    {
+      "time": "2026-03-01T06:31:40.894Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T06:31:40.934Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T06:31:40.943Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T06:31:40.970Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T06:32:00.361Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T06:32:20.497Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: report_progress"
+    },
+    {
+      "time": "2026-03-01T06:32:46.749Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T06:32:46.756Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T06:32:46.783Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T06:32:46.815Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T06:32:46.826Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T06:32:46.833Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T06:32:57.022Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: git_create_branch"
+    },
+    {
+      "time": "2026-03-01T06:32:59.655Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T06:33:06.721Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: git_create_branch"
+    },
+    {
+      "time": "2026-03-01T06:33:08.853Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T06:33:11.213Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T06:33:15.864Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T06:33:18.923Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T06:33:46.728Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: edit"
+    },
+    {
+      "time": "2026-03-01T06:33:50.118Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T06:33:50.139Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T06:33:50.161Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T06:33:50.169Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T06:33:59.469Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T06:33:59.480Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T06:33:59.484Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T06:33:59.490Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T06:34:03.607Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T06:34:53.215Z",
+      "agent": "product-director",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T06:35:23.231Z",
+      "agent": "product-director",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T06:35:23.237Z",
+      "agent": "product-director",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T06:35:23.243Z",
+      "agent": "product-director",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T06:35:53.256Z",
+      "agent": "product-director",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T06:35:53.273Z",
+      "agent": "product-director",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T06:36:01.799Z",
+      "agent": "product-director",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T06:36:01.938Z",
+      "agent": "product-director",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T06:36:01.976Z",
+      "agent": "product-director",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T06:36:02.211Z",
+      "agent": "product-director",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T06:36:08.575Z",
+      "agent": "product-director",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T06:36:08.580Z",
+      "agent": "product-director",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T06:36:08.588Z",
+      "agent": "product-director",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T06:36:09.250Z",
+      "agent": "product-director",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T06:36:09.254Z",
+      "agent": "product-director",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T06:36:09.260Z",
+      "agent": "product-director",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T06:36:09.822Z",
+      "agent": "product-director",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T06:36:09.826Z",
+      "agent": "product-director",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T06:36:09.831Z",
+      "agent": "product-director",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T06:36:10.824Z",
+      "agent": "product-director",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T06:36:10.829Z",
+      "agent": "product-director",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T06:36:10.836Z",
+      "agent": "product-director",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T06:36:25.783Z",
+      "agent": "product-director",
+      "type": "tool",
+      "content": "调用工具: report_progress"
+    },
+    {
+      "time": "2026-03-01T06:36:33.191Z",
+      "agent": "product-director",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T06:36:33.197Z",
+      "agent": "product-director",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T06:36:33.300Z",
+      "agent": "product-director",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T06:36:33.306Z",
+      "agent": "product-director",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T06:36:49.679Z",
+      "agent": "product-director",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T06:36:49.709Z",
+      "agent": "product-director",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T06:36:49.715Z",
+      "agent": "product-director",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T06:39:37.554Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T06:39:37.578Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T06:39:37.592Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T06:39:37.678Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T06:39:45.228Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T06:39:45.233Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T06:39:45.240Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T06:39:45.244Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T06:39:45.248Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T06:39:45.253Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T06:39:45.256Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T06:39:45.263Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T06:39:54.280Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T06:39:54.295Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T06:39:54.300Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T06:39:54.322Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T06:39:54.328Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T06:39:54.340Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T06:39:54.347Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T06:39:54.358Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T06:39:54.364Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T06:39:54.376Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T06:39:54.381Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T06:39:54.386Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T06:40:04.343Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T06:40:04.369Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T06:40:04.382Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T06:40:04.389Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T06:40:04.407Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T06:40:04.423Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T06:40:37.234Z",
+      "agent": "system",
+      "type": "message",
+      "content": "系统启动"
+    },
+    {
+      "time": "2026-03-01T06:40:57.051Z",
+      "agent": "dev-director",
+      "type": "tool",
+      "content": "调用工具: check_messages"
+    },
+    {
+      "time": "2026-03-01T06:41:22.755Z",
+      "agent": "dev-director",
+      "type": "tool",
+      "content": "调用工具: assign_task"
+    },
+    {
+      "time": "2026-03-01T06:41:22.786Z",
+      "agent": "dev-director",
+      "type": "tool",
+      "content": "调用工具: assign_task"
+    },
+    {
+      "time": "2026-03-01T06:41:22.808Z",
+      "agent": "dev-director",
+      "type": "tool",
+      "content": "调用工具: assign_task"
+    },
+    {
+      "time": "2026-03-01T06:41:22.831Z",
+      "agent": "dev-director",
+      "type": "tool",
+      "content": "调用工具: assign_task"
+    },
+    {
+      "time": "2026-03-01T06:41:52.626Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T06:41:52.662Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T06:41:52.683Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T06:41:52.697Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T06:41:52.726Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T06:41:52.759Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T06:42:10.670Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: git_commit"
     }
   ],
   "agentHistories": {
@@ -4005,8 +4007,230 @@
       }
     ]
   },
-  "lastCheck": "2026-03-01T06:07:57.787Z",
+  "lastCheck": "2026-03-01T06:40:38.794Z",
   "issues": [
+    {
+      "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/121",
+      "repository_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol",
+      "labels_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/121/labels{/name}",
+      "comments_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/121/comments",
+      "events_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/121/events",
+      "html_url": "https://github.com/dyyz1993/coin-exchange-protocol/issues/121",
+      "id": 4006473554,
+      "node_id": "I_kwDORa8Ecs7uze9S",
+      "number": 121,
+      "title": "[数据一致性] 状态枚举值大小写不一致导致测试失败",
+      "user": {
+        "login": "dyyz1993",
+        "id": 17736821,
+        "node_id": "MDQ6VXNlcjE3NzM2ODIx",
+        "avatar_url": "https://avatars.githubusercontent.com/u/17736821?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/dyyz1993",
+        "html_url": "https://github.com/dyyz1993",
+        "followers_url": "https://api.github.com/users/dyyz1993/followers",
+        "following_url": "https://api.github.com/users/dyyz1993/following{/other_user}",
+        "gists_url": "https://api.github.com/users/dyyz1993/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/dyyz1993/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/dyyz1993/subscriptions",
+        "organizations_url": "https://api.github.com/users/dyyz1993/orgs",
+        "repos_url": "https://api.github.com/users/dyyz1993/repos",
+        "events_url": "https://api.github.com/users/dyyz1993/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/dyyz1993/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "labels": [
+        {
+          "id": 10311284263,
+          "node_id": "LA_kwDORa8Ecs8AAAACZpm2Jw",
+          "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/labels/bug",
+          "name": "bug",
+          "color": "d73a4a",
+          "default": true,
+          "description": "Something isn't working"
+        },
+        {
+          "id": 10313351880,
+          "node_id": "LA_kwDORa8Ecs8AAAACZrlCyA",
+          "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/labels/testing",
+          "name": "testing",
+          "color": "ededed",
+          "default": false,
+          "description": null
+        },
+        {
+          "id": 10315225033,
+          "node_id": "LA_kwDORa8Ecs8AAAACZtXXyQ",
+          "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/labels/P1",
+          "name": "P1",
+          "color": "ededed",
+          "default": false,
+          "description": null
+        },
+        {
+          "id": 10317275063,
+          "node_id": "LA_kwDORa8Ecs8AAAACZvUftw",
+          "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/labels/data-consistency",
+          "name": "data-consistency",
+          "color": "ededed",
+          "default": false,
+          "description": null
+        }
+      ],
+      "state": "open",
+      "locked": false,
+      "assignees": [],
+      "milestone": null,
+      "comments": 1,
+      "created_at": "2026-03-01T06:38:34Z",
+      "updated_at": "2026-03-01T06:38:48Z",
+      "closed_at": null,
+      "assignee": null,
+      "author_association": "OWNER",
+      "active_lock_reason": null,
+      "sub_issues_summary": {
+        "total": 0,
+        "completed": 0,
+        "percent_completed": 0
+      },
+      "issue_dependencies_summary": {
+        "blocked_by": 0,
+        "total_blocked_by": 0,
+        "blocking": 0,
+        "total_blocking": 0
+      },
+      "body": "## 问题描述\n\n从用户角度出发，系统状态管理存在不一致性，导致端到端测试失败，影响产品可靠性。\n\n## 具体表现\n\n### 枚举定义（小写）\n**src/types/airdrop.ts**:\n```typescript\nexport enum AirdropStatus {\n  DRAFT = 'draft',     // 小写\n  PENDING = 'pending', // 小写\n  ACTIVE = 'active',   // 小写\n  ...\n}\n```\n\n**src/types/task.ts**:\n```typescript\nexport enum TaskStatus {\n  DRAFT = 'draft',     // 小写\n  PENDING = 'pending', // 小写\n  ...\n}\n```\n\n### 测试期望（大写）\n**tests/integration/e2e.test.ts**:\n```typescript\n// 第233行\nexpect(airdrop.status).toBe('PENDING'); // ❌ 期望大写，实际是小写 'pending'\n\n// 第320行\nexpect(task.status).toBe('PENDING'); // ❌ 期望大写，实际是小写 'draft'\n```\n\n### 测试失败信息\n```\nerror: expect(received).toBe(expected)\n\nExpected: \"PENDING\"\nReceived: \"pending\"  // 或 \"draft\"\n```\n\n## 影响范围\n\n1. **测试失败**：空投和任务相关的所有测试\n2. **API一致性**：状态值在不同场景下表现不一致\n3. **用户体验**：前端展示可能混乱\n\n## 根本原因\n\n测试代码使用了硬编码的字符串字面量（'PENDING'），而不是使用枚举常量。\n\n## 解决方案\n\n### 方案1：修改测试代码（推荐）✅\n\n使用枚举常量而不是字符串字面量：\n\n```typescript\nimport { AirdropStatus, TaskStatus } from '../../src/types';\n\n// 修改前\nexpect(airdrop.status).toBe('PENDING');\n\n// 修改后\nexpect(airdrop.status).toBe(AirdropStatus.PENDING);\n// 或者\nexpect(airdrop.status).toBe('pending');\n```\n\n**优点**：\n- 不破坏现有API\n- 保持枚举值的小写约定（更符合RESTful API风格）\n- 避免魔法字符串\n\n### 方案2：修改枚举定义（不推荐）\n\n将所有枚举值改为大写：\n```typescript\nexport enum AirdropStatus {\n  DRAFT = 'DRAFT',\n  PENDING = 'PENDING',\n  ...\n}\n```\n\n**缺点**：\n- 破坏现有API\n- 需要修改所有使用这些枚举的代码\n- 不符合Web API的小写约定\n\n## 优先级\n\n**P1 - 高优先级**\n\n这是导致大量测试失败的根本原因之一，需要立即修复。\n\n## 相关 Issue\n\n- #83: 测试失败率高达84%\n- #102: 缺少输入验证\n\n## 建议行动\n\n1. **立即**：修改所有测试代码，使用枚举常量\n2. **短期**：添加ESLint规则，禁止在测试中使用魔法字符串\n3. **中期**：审查所有状态比较逻辑，确保使用枚举常量\n4. **长期**：建立API设计规范，明确状态值的命名约定\n\n## 代码审查清单\n\n- [ ] 检查所有测试文件中的状态比较\n- [ ] 替换所有硬编码的状态字符串为枚举常量\n- [ ] 验证修复后测试通过\n- [ ] 更新测试编写规范文档",
+      "closed_by": null,
+      "reactions": {
+        "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/121/reactions",
+        "total_count": 0,
+        "+1": 0,
+        "-1": 0,
+        "laugh": 0,
+        "hooray": 0,
+        "confused": 0,
+        "heart": 0,
+        "rocket": 0,
+        "eyes": 0
+      },
+      "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/121/timeline",
+      "performed_via_github_app": null,
+      "state_reason": null,
+      "pinned_comment": null
+    },
+    {
+      "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/120",
+      "repository_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol",
+      "labels_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/120/labels{/name}",
+      "comments_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/120/comments",
+      "events_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/120/events",
+      "html_url": "https://github.com/dyyz1993/coin-exchange-protocol/issues/120",
+      "id": 4006473547,
+      "node_id": "I_kwDORa8Ecs7uze9L",
+      "number": 120,
+      "title": "[测试问题] e2e测试与实现不匹配 - getTokenBalance 返回值缺少 transactions 属性",
+      "user": {
+        "login": "dyyz1993",
+        "id": 17736821,
+        "node_id": "MDQ6VXNlcjE3NzM2ODIx",
+        "avatar_url": "https://avatars.githubusercontent.com/u/17736821?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/dyyz1993",
+        "html_url": "https://github.com/dyyz1993",
+        "followers_url": "https://api.github.com/users/dyyz1993/followers",
+        "following_url": "https://api.github.com/users/dyyz1993/following{/other_user}",
+        "gists_url": "https://api.github.com/users/dyyz1993/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/dyyz1993/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/dyyz1993/subscriptions",
+        "organizations_url": "https://api.github.com/users/dyyz1993/orgs",
+        "repos_url": "https://api.github.com/users/dyyz1993/repos",
+        "events_url": "https://api.github.com/users/dyyz1993/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/dyyz1993/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "labels": [
+        {
+          "id": 10311284263,
+          "node_id": "LA_kwDORa8Ecs8AAAACZpm2Jw",
+          "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/labels/bug",
+          "name": "bug",
+          "color": "d73a4a",
+          "default": true,
+          "description": "Something isn't working"
+        },
+        {
+          "id": 10313351880,
+          "node_id": "LA_kwDORa8Ecs8AAAACZrlCyA",
+          "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/labels/testing",
+          "name": "testing",
+          "color": "ededed",
+          "default": false,
+          "description": null
+        },
+        {
+          "id": 10315225033,
+          "node_id": "LA_kwDORa8Ecs8AAAACZtXXyQ",
+          "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/labels/P1",
+          "name": "P1",
+          "color": "ededed",
+          "default": false,
+          "description": null
+        },
+        {
+          "id": 10315225036,
+          "node_id": "LA_kwDORa8Ecs8AAAACZtXXzA",
+          "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/labels/e2e",
+          "name": "e2e",
+          "color": "ededed",
+          "default": false,
+          "description": null
+        }
+      ],
+      "state": "open",
+      "locked": false,
+      "assignees": [],
+      "milestone": null,
+      "comments": 1,
+      "created_at": "2026-03-01T06:38:33Z",
+      "updated_at": "2026-03-01T06:39:17Z",
+      "closed_at": null,
+      "assignee": null,
+      "author_association": "OWNER",
+      "active_lock_reason": null,
+      "sub_issues_summary": {
+        "total": 0,
+        "completed": 0,
+        "percent_completed": 0
+      },
+      "issue_dependencies_summary": {
+        "blocked_by": 0,
+        "total_blocked_by": 0,
+        "blocking": 0,
+        "total_blocking": 0
+      },
+      "body": "## 问题描述\n\n从用户角度出发，端到端测试失败严重影响了产品验收。经过深入分析，发现测试代码与实际实现不匹配。\n\n## 具体表现\n\n**测试代码** (tests/integration/e2e.test.ts:119)：\n```typescript\nconst balance = accountService.getTokenBalance(user);\nexpect(balance?.balance).toBe(350);\nexpect(balance?.transactions.length).toBeGreaterThanOrEqual(3); // ❌ 期望有 transactions 属性\n```\n\n**实际实现** (src/services/account.service.ts:54-66)：\n```typescript\ngetTokenBalance(userId: string): {\n  balance: number;\n  frozenBalance: number;\n  availableBalance: number;\n} | null {\n  // ... 实现\n  return {\n    balance: account.balance,\n    frozenBalance: account.frozenBalance,\n    availableBalance: account.balance\n  };\n}\n```\n\n**问题**：返回值没有 `transactions` 属性，但测试期望有。\n\n## 影响范围\n\n- 导致测试失败：`TypeError: undefined is not an object (evaluating 'balance?.transactions.length')`\n- 测试失败率：91% (454/497 失败)\n- 影响用户场景验证\n\n## 可能的解决方案\n\n### 方案1：修改测试（推荐）\n测试应该分别调用 `getTokenBalance` 和 `getTransactionHistory`：\n```typescript\nconst balance = accountService.getTokenBalance(user);\nconst transactions = accountService.getTransactionHistory(user);\nexpect(balance?.balance).toBe(350);\nexpect(transactions.length).toBeGreaterThanOrEqual(3);\n```\n\n### 方案2：修改实现\n让 `getTokenBalance` 返回交易历史（不推荐，违反单一职责原则）\n\n## 优先级\n\n**P1 - 高优先级**\n\n虽然这是测试问题，但严重影响产品验收和CI/CD流程，需要尽快修复。\n\n## 相关 Issue\n\n- #83: 测试失败率高达84%\n- #93: AccountService 可用余额计算错误\n\n## 建议行动\n\n1. 立即修复测试代码，使用正确的方法调用\n2. 审查所有e2e测试，确保与实际API匹配\n3. 添加API文档，明确各方法的返回值结构",
+      "closed_by": null,
+      "reactions": {
+        "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/120/reactions",
+        "total_count": 0,
+        "+1": 0,
+        "-1": 0,
+        "laugh": 0,
+        "hooray": 0,
+        "confused": 0,
+        "heart": 0,
+        "rocket": 0,
+        "eyes": 0
+      },
+      "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/120/timeline",
+      "performed_via_github_app": null,
+      "state_reason": null,
+      "pinned_comment": null
+    },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/112",
       "repository_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol",
@@ -9464,37 +9688,15 @@
   ],
   "tasks": [
     {
-      "id": "task-1772307992562",
-      "issueNumber": 26,
-      "title": "【💀 最后警告】FreezeController 创建 - 50分钟已过\n\n## ⚠️ 极度紧急\n- 任务已卡住49分钟\n- 文件完全不存在\n- 需要从零创建\n\n## 📋 立即执行\n**文件：**",
-      "description": "【💀 最后警告】FreezeController 创建 - 50分钟已过\n\n## ⚠️ 极度紧急\n- 任务已卡住49分钟\n- 文件完全不存在\n- 需要从零创建\n\n## 📋 立即执行\n**文件：** src/controllers/freeze.controller.ts（需创建）\n\n**需要实现的6个方法：**\n1. freezeAccount - 冻结账户\n2. unfreezeAccount - 解冻账户\n3. getFrozenAccounts - 获取冻结账户列表\n4. getFreezeStatus - 获取冻结状态\n5. batchFreeze - 批量冻结\n6. batchUnfreeze - 批量解冻\n\n## 📖 参考文档\n- 实施指南：docs/implementation-guide-freeze-controller.md（13KB）\n\n## ⏱️ 时间限制\n立即开始，10分钟内完成\n\n## ✅ 验收标准\n- 文件创建成功\n- 包含6个方法\n- TypeScript 编译通过\n\n## 📌 如果无法完成\n立即回复说明具体原因",
-      "assignedTo": "backend-developer",
-      "status": "in_progress",
-      "createdAt": "2026-02-28T19:46:32.562Z",
-      "updatedAt": "2026-03-01T06:04:43.535Z",
-      "iterations": 3
-    },
-    {
-      "id": "task-1772307992580",
-      "issueNumber": 25,
-      "title": "【💀 最后警告】AccountController 修复 - 50分钟已过\n\n## ⚠️ 极度紧急\n- 任务已卡住50分钟\n- 已分配16次，成功率6.25%\n- backend-developer",
-      "description": "【💀 最后警告】AccountController 修复 - 50分钟已过\n\n## ⚠️ 极度紧急\n- 任务已卡住50分钟\n- 已分配16次，成功率6.25%\n- backend-developer 一直在待处理状态，从未执行任何任务\n\n## 📋 立即执行\n**文件：** src/controllers/account.controller.ts\n\n**当前状态：** 976 bytes（严重不足）\n\n**目标：** 添加6个方法，使文件达到约4KB\n\n**方法列表：**\n1. createAccount\n2. deposit\n3. withdraw\n4. transfer\n5. freezeAccount\n6. unfreezeAccount\n\n## ⏱️ 时间限制\n立即开始，5分钟内完成\n\n## ✅ 验收标准\n- 文件大小 > 3KB\n- 包含8个方法（2个现有 + 6个新增）\n- TypeScript 编译通过\n\n## 📌 如果无法完成\n立即回复说明具体原因，不要延迟",
-      "assignedTo": "backend-developer",
-      "status": "pending",
-      "createdAt": "2026-02-28T19:46:32.580Z",
-      "updatedAt": "2026-02-28T19:46:32.580Z",
-      "iterations": 0
-    },
-    {
       "id": "task-1772307992581",
       "issueNumber": 26,
       "title": "【💀 最后警告】FreezeController 创建 - 50分钟已过\n\n## ⚠️ 极度紧急\n- 任务已卡住49分钟\n- 文件完全不存在\n- 需要从零创建\n\n## 📋 立即执行\n**文件：**",
       "description": "【💀 最后警告】FreezeController 创建 - 50分钟已过\n\n## ⚠️ 极度紧急\n- 任务已卡住49分钟\n- 文件完全不存在\n- 需要从零创建\n\n## 📋 立即执行\n**文件：** src/controllers/freeze.controller.ts（需创建）\n\n**需要实现的6个方法：**\n1. freezeAccount - 冻结账户\n2. unfreezeAccount - 解冻账户\n3. getFrozenAccounts - 获取冻结账户列表\n4. getFreezeStatus - 获取冻结状态\n5. batchFreeze - 批量冻结\n6. batchUnfreeze - 批量解冻\n\n## 📖 参考文档\n- 实施指南：docs/implementation-guide-freeze-controller.md（13KB）\n\n## ⏱️ 时间限制\n立即开始，10分钟内完成\n\n## ✅ 验收标准\n- 文件创建成功\n- 包含6个方法\n- TypeScript 编译通过\n\n## 📌 如果无法完成\n立即回复说明具体原因",
       "assignedTo": "backend-developer",
-      "status": "pending",
+      "status": "in_progress",
       "createdAt": "2026-02-28T19:46:32.581Z",
-      "updatedAt": "2026-02-28T19:46:32.581Z",
-      "iterations": 0
+      "updatedAt": "2026-03-01T06:41:40.012Z",
+      "iterations": 3
     },
     {
       "id": "task-1772308874733",
@@ -9502,22 +9704,10 @@
       "title": "【紧急】立即创建 FreezeController - 冻结系统 API 控制器\n\n**任务详情：**\n- 文件路径：src/controllers/freeze.controller.ts\n- 需要",
       "description": "【紧急】立即创建 FreezeController - 冻结系统 API 控制器\n\n**任务详情：**\n- 文件路径：src/controllers/freeze.controller.ts\n- 需要创建的控制器类：FreezeController\n- 依赖服务：src/services/freeze.service.ts（已存在，8.1KB）\n- 类型定义：src/types/freeze.ts（已存在）\n\n**必须包含的方法：**\n1. freezeAccount(req: Request) - 冻结账户\n2. unfreezeAccount(req: Request) - 解冻账户\n3. getFrozenAccounts(req: Request) - 获取冻结账户列表\n4. getFreezeInfo(req: Request) - 获取冻结信息\n\n**重要：**\n- 参考 src/controllers/account.controller.ts 的代码风格\n- 导入 freezeService 从 '../services/freeze.service'\n- 使用 ApiResponse 类型\n- 立即创建文件，不要等待",
       "assignedTo": "requirement-analyst",
-      "status": "in_progress",
+      "status": "pending",
       "createdAt": "2026-02-28T20:01:14.733Z",
-      "updatedAt": "2026-03-01T06:06:29.023Z",
-      "iterations": 1
-    },
-    {
-      "id": "task-1772311242581",
-      "issueNumber": 49,
-      "title": "【P0 紧急】修复 AccountController 缺失的关键方法（Issue #49）\n\n**问题描述**：\nAccountController 缺少以下方法，导致核心功能不可用：\n1. get",
-      "description": "【P0 紧急】修复 AccountController 缺失的关键方法（Issue #49）\n\n**问题描述**：\nAccountController 缺少以下方法，导致核心功能不可用：\n1. getTransactionHistory（当前是 getTransactions，需重命名）\n2. transfer（完全缺失）\n3. freezeBalance（完全缺失）\n4. unfreezeBalance（完全缺失）\n\n**实施步骤**：\n1. 读取当前 `src/controllers/account.controller.ts`\n2. 重命名 getTransactions → getTransactionHistory\n3. 添加 transfer 方法（调用 accountService.transfer）\n4. 添加 freezeBalance 方法（调用 accountService.freezeBalance）\n5. 添加 unfreezeBalance 方法（调用 accountService.unfreezeBalance）\n6. 确保所有方法正确处理请求和响应\n\n**验证**：\n- 运行 `npm test tests/integration/route-mapping.test.ts`\n- 确认所有方法存在且路由正确映射\n\n**优先级**：P0 - 严重（核心功能缺失）",
-      "assignedTo": "qa-engineer",
-      "status": "in_progress",
-      "createdAt": "2026-02-28T20:40:42.581Z",
-      "updatedAt": "2026-03-01T06:07:57.802Z",
-      "iterations": 2,
-      "result": "已完成新 Issue 处理：\n- Issue #49 (P0) 分配给 qa-engineer - 修复 AccountController 缺失方法\n- Issue #50 (P1) 分配给 test-engineer - 修复 e2e 测试类型导入错误\n- 关闭重复 Issue #47 和 #48\n\n⚠️ 风险提示：AccountController 问题现在有多个成员处理（backend-developer + qa-engineer），需要协调避免重复工作"
+      "updatedAt": "2026-03-01T06:14:41.799Z",
+      "iterations": 2
     },
     {
       "id": "task-1772311242582",
@@ -9527,8 +9717,8 @@
       "assignedTo": "test-engineer",
       "status": "pending",
       "createdAt": "2026-02-28T20:40:42.582Z",
-      "updatedAt": "2026-02-28T20:40:42.582Z",
-      "iterations": 0
+      "updatedAt": "2026-03-01T06:19:41.792Z",
+      "iterations": 2
     },
     {
       "id": "task-1772333163790",
@@ -9704,6 +9894,50 @@
       "status": "pending",
       "createdAt": "2026-03-01T04:30:56.514Z",
       "updatedAt": "2026-03-01T04:30:56.514Z",
+      "iterations": 0
+    },
+    {
+      "id": "task-1772347282741",
+      "issueNumber": 121,
+      "title": "修复测试代码中的状态枚举值大小写不一致问题\n\n**任务描述**：\n测试代码使用硬编码字符串字面量（'PENDING'），而实际枚举值是小写的 'pending'，导致测试失败。\n\n**需要做的事**：",
+      "description": "修复测试代码中的状态枚举值大小写不一致问题\n\n**任务描述**：\n测试代码使用硬编码字符串字面量（'PENDING'），而实际枚举值是小写的 'pending'，导致测试失败。\n\n**需要做的事**：\n1. 修改 tests/integration/e2e.test.ts 中所有硬编码的状态字符串\n2. 替换为枚举常量（AirdropStatus.PENDING, TaskStatus.DRAFT 等）\n3. 确保所有状态比较使用枚举常量而非魔法字符串\n4. 运行测试验证修复效果\n\n**位置**：\n- tests/integration/e2e.test.ts:233\n- tests/integration/e2e.test.ts:320\n\n**预期结果**：\n- 所有测试通过\n- 没有硬编码的状态字符串",
+      "assignedTo": "test-engineer",
+      "status": "pending",
+      "createdAt": "2026-03-01T06:41:22.741Z",
+      "updatedAt": "2026-03-01T06:41:22.741Z",
+      "iterations": 0
+    },
+    {
+      "id": "task-1772347282751",
+      "issueNumber": 120,
+      "title": "修复e2e测试中getTokenBalance返回值不匹配问题\n\n**任务描述**：\n测试代码期望 getTokenBalance 返回 transactions 属性，但实际实现只返回 balanc",
+      "description": "修复e2e测试中getTokenBalance返回值不匹配问题\n\n**任务描述**：\n测试代码期望 getTokenBalance 返回 transactions 属性，但实际实现只返回 balance 相关数据。\n\n**需要做的事**：\n1. 修改 tests/integration/e2e.test.ts:119 处的测试代码\n2. 分别调用 getTokenBalance 和 getTransactionHistory\n3. 调整断言逻辑，匹配实际的 API 返回值结构\n4. 运行测试验证修复效果\n\n**位置**：\n- tests/integration/e2e.test.ts:119\n\n**预期结果**：\n- 测试通过\n- API 调用方式正确\n- 符合单一职责原则",
+      "assignedTo": "test-engineer",
+      "status": "pending",
+      "createdAt": "2026-03-01T06:41:22.751Z",
+      "updatedAt": "2026-03-01T06:41:22.751Z",
+      "iterations": 0
+    },
+    {
+      "id": "task-1772347282765",
+      "issueNumber": 121,
+      "title": "修复测试代码中的状态枚举值大小写不一致问题\n\n**任务描述**：\n测试代码使用硬编码字符串字面量（'PENDING'），而实际枚举值是小写的 'pending'，导致测试失败。\n\n**需要做的事**：",
+      "description": "修复测试代码中的状态枚举值大小写不一致问题\n\n**任务描述**：\n测试代码使用硬编码字符串字面量（'PENDING'），而实际枚举值是小写的 'pending'，导致测试失败。\n\n**需要做的事**：\n1. 修改 tests/integration/e2e.test.ts 中所有硬编码的状态字符串\n2. 替换为枚举常量（AirdropStatus.PENDING, TaskStatus.DRAFT 等）\n3. 确保所有状态比较使用枚举常量而非魔法字符串\n4. 运行测试验证修复效果\n\n**位置**：\n- tests/integration/e2e.test.ts:233\n- tests/integration/e2e.test.ts:320\n\n**预期结果**：\n- 所有测试通过\n- 没有硬编码的状态字符串",
+      "assignedTo": "test-engineer",
+      "status": "pending",
+      "createdAt": "2026-03-01T06:41:22.765Z",
+      "updatedAt": "2026-03-01T06:41:22.765Z",
+      "iterations": 0
+    },
+    {
+      "id": "task-1772347282774",
+      "issueNumber": 120,
+      "title": "修复e2e测试中getTokenBalance返回值不匹配问题\n\n**任务描述**：\n测试代码期望 getTokenBalance 返回 transactions 属性，但实际实现只返回 balanc",
+      "description": "修复e2e测试中getTokenBalance返回值不匹配问题\n\n**任务描述**：\n测试代码期望 getTokenBalance 返回 transactions 属性，但实际实现只返回 balance 相关数据。\n\n**需要做的事**：\n1. 修改 tests/integration/e2e.test.ts:119 处的测试代码\n2. 分别调用 getTokenBalance 和 getTransactionHistory\n3. 调整断言逻辑，匹配实际的 API 返回值结构\n4. 运行测试验证修复效果\n\n**位置**：\n- tests/integration/e2e.test.ts:119\n\n**预期结果**：\n- 测试通过\n- API 调用方式正确\n- 符合单一职责原则",
+      "assignedTo": "test-engineer",
+      "status": "pending",
+      "createdAt": "2026-03-01T06:41:22.774Z",
+      "updatedAt": "2026-03-01T06:41:22.774Z",
       "iterations": 0
     }
   ],
@@ -11003,6 +11237,42 @@
       "updatedAt": "2026-03-01T06:07:27.188Z",
       "iterations": 4,
       "result": "达到最大迭代次数，自动完成"
+    },
+    {
+      "id": "task-1772311242581",
+      "issueNumber": 49,
+      "title": "【P0 紧急】修复 AccountController 缺失的关键方法（Issue #49）\n\n**问题描述**：\nAccountController 缺少以下方法，导致核心功能不可用：\n1. get",
+      "description": "【P0 紧急】修复 AccountController 缺失的关键方法（Issue #49）\n\n**问题描述**：\nAccountController 缺少以下方法，导致核心功能不可用：\n1. getTransactionHistory（当前是 getTransactions，需重命名）\n2. transfer（完全缺失）\n3. freezeBalance（完全缺失）\n4. unfreezeBalance（完全缺失）\n\n**实施步骤**：\n1. 读取当前 `src/controllers/account.controller.ts`\n2. 重命名 getTransactions → getTransactionHistory\n3. 添加 transfer 方法（调用 accountService.transfer）\n4. 添加 freezeBalance 方法（调用 accountService.freezeBalance）\n5. 添加 unfreezeBalance 方法（调用 accountService.unfreezeBalance）\n6. 确保所有方法正确处理请求和响应\n\n**验证**：\n- 运行 `npm test tests/integration/route-mapping.test.ts`\n- 确认所有方法存在且路由正确映射\n\n**优先级**：P0 - 严重（核心功能缺失）",
+      "assignedTo": "qa-engineer",
+      "status": "completed",
+      "createdAt": "2026-02-28T20:40:42.581Z",
+      "updatedAt": "2026-03-01T06:10:39.865Z",
+      "iterations": 2,
+      "result": "✅ **任务完成：AccountController 缺失方法已修复**\n\n## 🎯 完成内容\n\n### 1. 代码审查结果\n经过检查，发现：\n- ✅ `getTransactionHistory` 方法已存在\n- ✅ `getTransactions` 方法已存在（兼容方法）\n- ✅ `transfer` 方法已存在\n- ❌ `freezeBalance` 方法缺失\n- ❌ `unfreezeBalance` 方法缺失\n\n### 2. 新增功能\n已添加以下两个缺失的方法：\n1. **freezeBalance** - 冻结指定金额的余额\n2. **unfreezeBalance** - 解冻指定金额的余额\n\n### 3. 测试验证\n- ✅ 33 个测试通过\n- ✅ 所有路由映射测试通过\n- ✅ 所有账户相关路由正常工作\n\n### 4. 代码提交\n- ✅ 分支：`feature/freeze-controller-urgent`\n- ✅ 提交信息：详细说明了变更内容\n- ✅ PR #119 已创建：https://github.com/dyyz1993/coin-exchange-protocol/pull/119\n\n## 📊 影响范围\n- 文件：`src/controllers/account.controller.ts`\n- 新增代码：约 55 行\n- 无破坏性变更\n- 向后兼容\n\n## 🔗 关联 Issue\nFixes #49"
+    },
+    {
+      "id": "task-1772307992562",
+      "issueNumber": 26,
+      "title": "【💀 最后警告】FreezeController 创建 - 50分钟已过\n\n## ⚠️ 极度紧急\n- 任务已卡住49分钟\n- 文件完全不存在\n- 需要从零创建\n\n## 📋 立即执行\n**文件：**",
+      "description": "【💀 最后警告】FreezeController 创建 - 50分钟已过\n\n## ⚠️ 极度紧急\n- 任务已卡住49分钟\n- 文件完全不存在\n- 需要从零创建\n\n## 📋 立即执行\n**文件：** src/controllers/freeze.controller.ts（需创建）\n\n**需要实现的6个方法：**\n1. freezeAccount - 冻结账户\n2. unfreezeAccount - 解冻账户\n3. getFrozenAccounts - 获取冻结账户列表\n4. getFreezeStatus - 获取冻结状态\n5. batchFreeze - 批量冻结\n6. batchUnfreeze - 批量解冻\n\n## 📖 参考文档\n- 实施指南：docs/implementation-guide-freeze-controller.md（13KB）\n\n## ⏱️ 时间限制\n立即开始，10分钟内完成\n\n## ✅ 验收标准\n- 文件创建成功\n- 包含6个方法\n- TypeScript 编译通过\n\n## 📌 如果无法完成\n立即回复说明具体原因",
+      "assignedTo": "backend-developer",
+      "status": "completed",
+      "createdAt": "2026-02-28T19:46:32.562Z",
+      "updatedAt": "2026-03-01T06:31:01.159Z",
+      "iterations": 4,
+      "result": "达到最大迭代次数，自动完成"
+    },
+    {
+      "id": "task-1772307992580",
+      "issueNumber": 25,
+      "title": "【💀 最后警告】AccountController 修复 - 50分钟已过\n\n## ⚠️ 极度紧急\n- 任务已卡住50分钟\n- 已分配16次，成功率6.25%\n- backend-developer",
+      "description": "【💀 最后警告】AccountController 修复 - 50分钟已过\n\n## ⚠️ 极度紧急\n- 任务已卡住50分钟\n- 已分配16次，成功率6.25%\n- backend-developer 一直在待处理状态，从未执行任何任务\n\n## 📋 立即执行\n**文件：** src/controllers/account.controller.ts\n\n**当前状态：** 976 bytes（严重不足）\n\n**目标：** 添加6个方法，使文件达到约4KB\n\n**方法列表：**\n1. createAccount\n2. deposit\n3. withdraw\n4. transfer\n5. freezeAccount\n6. unfreezeAccount\n\n## ⏱️ 时间限制\n立即开始，5分钟内完成\n\n## ✅ 验收标准\n- 文件大小 > 3KB\n- 包含8个方法（2个现有 + 6个新增）\n- TypeScript 编译通过\n\n## 📌 如果无法完成\n立即回复说明具体原因，不要延迟",
+      "assignedTo": "backend-developer",
+      "status": "completed",
+      "createdAt": "2026-02-28T19:46:32.580Z",
+      "updatedAt": "2026-03-01T06:32:20.491Z",
+      "iterations": 1,
+      "result": "✅ AccountController 任务已完成！\n\n## 验证结果\n**文件：** src/controllers/account.controller.ts\n- ✅ **文件大小：** 9.4K（远超3KB要求）\n- ✅ **代码行数：** 350行\n- ✅ **方法数量：** 14个方法（远超8个要求）\n\n## 已实现的任务要求的6个方法\n1. ✅ createAccount - 创建账户\n2. ✅ deposit - 充值/存款\n3. ✅ withdraw - 提现/取款\n4. ✅ transfer - 转账\n5. ✅ freezeAccount - 冻结账户\n6. ✅ unfreezeAccount - 解冻账户\n\n## 额外实现的功能（共14个方法）\n7. getBalance - 查询余额\n8. getTransactionHistory - 查询交易记录\n9. getTransactions - 兼容方法\n10. freezeBalance - 冻结余额\n11. unfreezeBalance - 解冻余额\n12. getFrozenAccounts - 获取冻结账户列表\n13. getAccountInfo - 获取账户信息\n14. updateAccountStatus - 更新账户状态\n\n## 验收标准达成\n- ✅ 文件大小 > 3KB（实际9.4K）\n- ✅ 包含8个方法（实际14个）\n- ✅ TypeScript 编译通过（无语法错误）\n- ✅ 所有方法包含完整输入验证\n- ✅ 完整的错误处理机制\n- ✅ 集成 AccountService 服务层\n\n任务已在之前完成，本次验证确认文件状态完全符合要求！"
     }
   ],
   "errors": [
@@ -11027,6 +11297,6 @@
       "error": "Error: Agent is already processing a prompt. Use steer() or followUp() to queue messages, or wait for completion."
     }
   ],
-  "currentIteration": 296,
-  "lastDirectorActivity": "2026-03-01T05:59:36.623Z"
+  "currentIteration": 301,
+  "lastDirectorActivity": "2026-03-01T14:40:35.763241"
 }

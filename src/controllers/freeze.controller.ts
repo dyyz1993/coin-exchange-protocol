@@ -160,17 +160,175 @@ export class FreezeController {
   async getFreezeById(params: any): Promise<ApiResponse> {
     try {
       const { id } = params;
-      
+
       if (!id) {
         return { success: false, error: '缺少冻结ID' };
       }
-      
+
       // 调用服务层
       return freezeService.getFreezeById(id);
     } catch (error) {
-      return { 
-        success: false, 
-        error: error instanceof Error ? error.message : '查询失败' 
+      return {
+        success: false,
+        error: error instanceof Error ? error.message : '查询失败'
+      };
+    }
+  }
+
+  /**
+   * 冻结账户 - 立即冻结指定账户
+   * POST /api/freeze/account
+   * Body: { userId: string, reason: string }
+   */
+  async freezeAccount(params: any): Promise<ApiResponse> {
+    try {
+      const { userId, reason } = params;
+
+      // 输入验证
+      if (!userId || typeof userId !== 'string') {
+        return { success: false, error: '无效的用户ID' };
+      }
+
+      if (!reason || typeof reason !== 'string') {
+        return { success: false, error: '冻结原因不能为空' };
+      }
+
+      // 调用服务层
+      return freezeService.freezeAccount(userId, reason);
+    } catch (error) {
+      return {
+        success: false,
+        error: error instanceof Error ? error.message : '冻结账户失败'
+      };
+    }
+  }
+
+  /**
+   * 解冻账户 - 解除账户冻结状态
+   * POST /api/freeze/unfreeze-account
+   * Body: { userId: string, reason: string }
+   */
+  async unfreezeAccount(params: any): Promise<ApiResponse> {
+    try {
+      const { userId, reason } = params;
+
+      // 输入验证
+      if (!userId || typeof userId !== 'string') {
+        return { success: false, error: '无效的用户ID' };
+      }
+
+      if (!reason || typeof reason !== 'string') {
+        return { success: false, error: '解冻原因不能为空' };
+      }
+
+      // 调用服务层
+      return freezeService.unfreezeAccount(userId, reason);
+    } catch (error) {
+      return {
+        success: false,
+        error: error instanceof Error ? error.message : '解冻账户失败'
+      };
+    }
+  }
+
+  /**
+   * 获取冻结账户列表 - 查询所有冻结状态的账户
+   * GET /api/freeze/frozen-accounts?status=xxx&page=1&pageSize=10
+   */
+  async getFrozenAccounts(params: any): Promise<ApiResponse> {
+    try {
+      const { status, page = 1, pageSize = 10 } = params;
+
+      // 输入验证
+      if (page < 1 || pageSize < 1 || pageSize > 100) {
+        return { success: false, error: '无效的分页参数' };
+      }
+
+      // 调用服务层
+      return freezeService.getFrozenAccounts({ status, page, pageSize });
+    } catch (error) {
+      return {
+        success: false,
+        error: error instanceof Error ? error.message : '查询冻结账户失败'
+      };
+    }
+  }
+
+  /**
+   * 获取冻结状态 - 查询指定账户的冻结状态
+   * GET /api/freeze/status/:userId
+   */
+  async getFreezeStatus(params: any): Promise<ApiResponse> {
+    try {
+      const { userId } = params;
+
+      // 输入验证
+      if (!userId || typeof userId !== 'string') {
+        return { success: false, error: '无效的用户ID' };
+      }
+
+      // 调用服务层
+      return freezeService.getFreezeStatus(userId);
+    } catch (error) {
+      return {
+        success: false,
+        error: error instanceof Error ? error.message : '查询冻结状态失败'
+      };
+    }
+  }
+
+  /**
+   * 批量冻结 - 批量冻结多个账户
+   * POST /api/freeze/batch-freeze
+   * Body: { userIds: string[], reason: string }
+   */
+  async batchFreeze(params: any): Promise<ApiResponse> {
+    try {
+      const { userIds, reason } = params;
+
+      // 输入验证
+      if (!Array.isArray(userIds) || userIds.length === 0) {
+        return { success: false, error: '无效的用户ID列表' };
+      }
+
+      if (!reason || typeof reason !== 'string') {
+        return { success: false, error: '冻结原因不能为空' };
+      }
+
+      // 调用服务层
+      return freezeService.batchFreeze(userIds, reason);
+    } catch (error) {
+      return {
+        success: false,
+        error: error instanceof Error ? error.message : '批量冻结失败'
+      };
+    }
+  }
+
+  /**
+   * 批量解冻 - 批量解冻多个账户
+   * POST /api/freeze/batch-unfreeze
+   * Body: { userIds: string[], reason: string }
+   */
+  async batchUnfreeze(params: any): Promise<ApiResponse> {
+    try {
+      const { userIds, reason } = params;
+
+      // 输入验证
+      if (!Array.isArray(userIds) || userIds.length === 0) {
+        return { success: false, error: '无效的用户ID列表' };
+      }
+
+      if (!reason || typeof reason !== 'string') {
+        return { success: false, error: '解冻原因不能为空' };
+      }
+
+      // 调用服务层
+      return freezeService.batchUnfreeze(userIds, reason);
+    } catch (error) {
+      return {
+        success: false,
+        error: error instanceof Error ? error.message : '批量解冻失败'
       };
     }
   }
