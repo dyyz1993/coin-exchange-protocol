@@ -651,7 +651,7 @@ describe('FreezeService', () => {
       const largeAmount = Number.MAX_SAFE_INTEGER / 2;
       await accountService.addTokens(userId, largeAmount, TransactionType.REWARD, '大额奖励');
 
-      const freeze = freezeService.createInitialFreeze({
+      const freeze = await freezeService.createInitialFreeze({
         userId,
         amount: largeAmount / 2,
         transactionId: 'tx-large',
