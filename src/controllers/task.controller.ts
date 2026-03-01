@@ -3,29 +3,55 @@
  */
 
 import { taskService } from '../services/task.service';
-import { ApiResponse, Task } from '../types';
+import { ApiResponse } from '../types';
 
 export class TaskController {
   /**
    * 创建任务
    * POST /api/task/create
-   * Body: { title, description, reward, type }
    */
-  async createTask(req: Request): Promise<ApiResponse> {
+  async createTask(params: any): Promise<ApiResponse> {
     try {
-      const body = await req.json();
-      const { title, description, reward, type } = body;
+      const { title, description, reward, type, maxCompletions, startTime, endTime } = params;
 
-      return taskService.createTask(
+      if (!title || !reward) {
+        return { success: false, error: '缺少必要参数' };
+      }
+
+      return taskService.createTask({
         title,
-        description || '',
-        Number(reward),
-        (type as Task['type']) || 'daily'
-      );
+        description: description || '',
+        reward: Number(reward),
+        type: type || 'daily',
+        maxCompletions: maxCompletions || 0,
+        startTime: startTime ? new Date(startTime) : new Date(),
+        endTime: endTime ? new Date(endTime) : undefined
+      });
     } catch (error) {
-      return {
-        success: false,
-        error: error instanceof Error ? error.message : '创建任务失败'
+      return { 
+        success: false, 
+        error: error instanceof Error ? error.message : '创建任务失败' 
+      };
+    }
+  }
+
+  /**
+   * 查询任务详情
+   * GET /api/task/:taskId
+   */
+  async getTask(params: any): Promise<ApiResponse> {
+    try {
+      const { taskId } = params;
+      
+      if (!taskId) {
+        return { success: false, error: '缺少任务ID' };
+      }
+
+      return taskService.getTaskDetail(taskId);
+    } catch (error) {
+      return { 
+        success: false, 
+        error: error instanceof Error ? error.message : '查询任务失败' 
       };
     }
   }
@@ -35,48 +61,122 @@ export class TaskController {
    * GET /api/task/list
    */
   async getAllTasks(): Promise<ApiResponse> {
-    return taskService.getAllTasks();
+    try {
+      return taskService.getAllTasks();
+    } catch (error) {
+      return { 
+        success: false, 
+        error: error instanceof Error ? error.message : '获取任务列表失败' 
+      };
+    }
   }
 
   /**
-   * 获取任务详情
-   * GET /api/task/:taskId
+   * 获取活跃任务
+   * GET /api/task/active
    */
-  async getTask(req: Request): Promise<ApiResponse> {
-    const url = new URL(req.url);
-    const taskId = url.pathname.split('/').pop();
-    
-    if (!taskId) {
-      return { success: false, error: '缺少任务ID' };
+  async getActiveTasks(): Promise<ApiResponse> {
+    try {
+      return taskService.getActiveTasks();
+    } catch (error) {
+      return { 
+        success: false, 
+        error: error instanceof Error ? error.message : '获取活跃任务失败' 
+      };
     }
-
-    return taskService.getTask(taskId);
   }
 
   /**
-   * 获取用户可完成的任务
-   * GET /api/task/available/:userId
+   * 激活任务
+   * POST /api/task/activate/:taskId
    */
-  async getAvailableTasks(req: Request): Promise<ApiResponse> {
-    const url = new URL(req.url);
-    const userId = url.pathname.split('/').pop();
-    
-    if (!userId) {
-      return { success: false, error: '缺少用户ID' };
-    }
+  async activateTask(params: any): Promise<ApiResponse> {
+    try {
+      const { taskId } = params;
+      
+      if (!taskId) {
+        return { success: false, error: '缺少任务ID' };
+      }
 
-    return taskService.getAvailableTasks(userId);
+      return taskService.activateTask(taskId);
+    } catch (error) {
+      return { 
+        success: false, 
+        error: error instanceof Error ? error.message : '激活任务失败' 
+      };
+    }
+  }
+
+  /**
+   * 检查用户是否可完成任务
+   * GET /api/task/can-complete/:taskId/:userId
+   */
+  async canUserComplete(params: any): Promise<ApiResponse> {
+    try {
+      const { taskId, userId } = params;
+      
+      if (!taskId || !userId) {
+        return { success: false, error: '缺少必要参数' };
+      }
+
+      return taskService.canUserComplete(taskId, userId);
+    } catch (error) {
+      return { 
+        success: false, 
+        error: error instanceof Error ? error.message : '检查任务失败' 
+      };
+    }
+  }
+
+  /**
+   * 暂停任务
+   * POST /api/task/pause/:taskId
+   */
+  async pauseTask(params: any): Promise<ApiResponse> {
+    try {
+      const { taskId } = params;
+      
+      if (!taskId) {
+        return { success: false, error: '缺少任务ID' };
+      }
+
+      return taskService.pauseTask(taskId);
+    } catch (error) {
+      return { 
+        success: false, 
+        error: error instanceof Error ? error.message : '暂停任务失败' 
+      };
+    }
+  }
+
+  /**
+   * 取消任务
+   * POST /api/task/cancel/:taskId
+   */
+  async cancelTask(params: any): Promise<ApiResponse> {
+    try {
+      const { taskId } = params;
+      
+      if (!taskId) {
+        return { success: false, error: '缺少任务ID' };
+      }
+
+      return taskService.cancelTask(taskId);
+    } catch (error) {
+      return { 
+        success: false, 
+        error: error instanceof Error ? error.message : '取消任务失败' 
+      };
+    }
   }
 
   /**
    * 完成任务
    * POST /api/task/complete
-   * Body: { taskId, userId }
    */
-  async completeTask(req: Request): Promise<ApiResponse> {
+  async completeTask(params: any): Promise<ApiResponse> {
     try {
-      const body = await req.json();
-      const { taskId, userId } = body;
+      const { taskId, userId } = params;
 
       if (!taskId || !userId) {
         return { success: false, error: '缺少必要参数' };
@@ -92,39 +192,43 @@ export class TaskController {
   }
 
   /**
-   * 获取用户任务完成记录
-   * GET /api/task/completions/:userId
+   * 获取用户可完成的任务
+   * GET /api/task/available/:userId
    */
-  async getUserCompletions(req: Request): Promise<ApiResponse> {
-    const url = new URL(req.url);
-    const userId = url.pathname.split('/').pop();
-    
-    if (!userId) {
-      return { success: false, error: '缺少用户ID' };
-    }
-
-    return taskService.getUserCompletions(userId);
-  }
-
-  /**
-   * 更新任务状态
-   * PUT /api/task/status
-   * Body: { taskId, isActive }
-   */
-  async updateTaskStatus(req: Request): Promise<ApiResponse> {
+  async getAvailableTasks(params: any): Promise<ApiResponse> {
     try {
-      const body = await req.json();
-      const { taskId, isActive } = body;
-
-      if (!taskId) {
-        return { success: false, error: '缺少任务ID' };
+      const { userId } = params;
+      
+      if (!userId) {
+        return { success: false, error: '缺少用户ID' };
       }
 
-      return taskService.updateTaskStatus(taskId, isActive);
+      return taskService.getAvailableTasks(userId);
     } catch (error) {
       return {
         success: false,
-        error: error instanceof Error ? error.message : '更新任务状态失败'
+        error: error instanceof Error ? error.message : '获取可用任务失败'
+      };
+    }
+  }
+
+  /**
+   * 获取用户任务完成记录
+   * GET /api/task/completions/:userId
+   */
+  async getUserCompletions(params: any): Promise<ApiResponse> {
+    try {
+      const { userId } = params;
+      
+      if (!userId) {
+        return { success: false, error: '缺少用户ID' };
+      }
+
+      return taskService.getUserCompletions(userId);
+    } catch (error) {
+      return {
+        success: false,
+        error: error instanceof Error ? error.message : '获取完成记录失败'
       };
     }
   }

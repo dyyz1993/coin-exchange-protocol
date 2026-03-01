@@ -3,11 +3,9 @@
  */
 
 // 从 common.ts 导入统一的类型定义
-export { 
-  Transaction, 
-  TransactionType, 
-  TransactionStatus 
-} from './common';
+// 使用 export type 导出接口，使用 export 导出枚举
+export type { Transaction, Account } from './common';
+export { TransactionType, TransactionStatus } from './common';
 
 export interface TokenAccount {
   id: string;
