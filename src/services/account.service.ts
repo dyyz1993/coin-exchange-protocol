@@ -6,7 +6,7 @@ import { accountModel } from '../models/Account';
 import { TransactionType, Transaction } from '../types/common';
 
 /**
- * 自定义错误类型
+ * 自定义错误类 - 账户不存在
  */
 export class AccountNotFoundError extends Error {
   constructor(userId: string) {
@@ -237,19 +237,23 @@ export class AccountService {
   }> {
     // 检查发送方余额
     const fromBalance = this.getTokenBalance(fromUserId);
-    if (!fromBalance || fromBalance.availableBalance < amount) {
-      throw new InsufficientBalanceError(fromUserId, amount, fromBalance?.availableBalance ?? 0);
+    if (!fromBalance) {
+      throw new AccountNotFoundError(fromUserId);
+    }
+    if (fromBalance.availableBalance < amount) {
+      throw new InsufficientBalanceError(fromUserId, amount, fromBalance.availableBalance);
     }
 
     // 使用 AccountModel 的 transfer 方法
     const transaction = await accountModel.transfer(fromUserId, toUserId, amount, description);
 
+    // 添加空值检查
     const fromAccount = accountModel.getAccountByUserId(fromUserId);
-    const toAccount = accountModel.getAccountByUserId(toUserId);
-
     if (!fromAccount) {
       throw new AccountNotFoundError(fromUserId);
     }
+
+    const toAccount = accountModel.getAccountByUserId(toUserId);
     if (!toAccount) {
       throw new AccountNotFoundError(toUserId);
     }
