@@ -11,6 +11,7 @@ import { FreezeService } from '../../src/services/freeze.service';
 import { TransactionType } from '../../src/types/token';
 import { AirdropStatus } from '../../src/types/airdrop';
 import { TaskStatus } from '../../src/types/task';
+import { FreezeStatus } from '../../src/types/freeze';
 
 describe('端到端业务流程测试', () => {
   let accountService: AccountService;
@@ -143,7 +144,7 @@ describe('端到端业务流程测试', () => {
         remark: '交易保证金'
       });
 
-      expect(freeze.status).toBe('FROZEN');
+      expect(freeze.status).toBe(FreezeStatus.FROZEN);
       expect(freeze.amount).toBe(freezeAmount);
 
       // 3. 验证可用余额减少
@@ -153,7 +154,7 @@ describe('端到端业务流程测试', () => {
 
       // 4. 查询冻结状态
       const freezeStatus = freezeService.getFreezeStatus(freeze.id);
-      expect(freezeStatus.status).toBe('FROZEN');
+      expect(freezeStatus.status).toBe(FreezeStatus.FROZEN);
       expect(freezeStatus.amount).toBe(freezeAmount);
       expect(freezeStatus.remainingTime).toBeGreaterThan(0);
 
@@ -164,7 +165,7 @@ describe('端到端业务流程测试', () => {
 
       // 6. 解冻
       const unfreezeResult = freezeService.unfreeze(freeze.id, '交易完成，释放保证金');
-      expect(unfreezeResult.status).toBe('UNFROZEN');
+      expect(unfreezeResult.status).toBe(FreezeStatus.UNFROZEN);
 
       // 7. 验证余额恢复
       const afterUnfreeze = accountService.getTokenBalance(user);
@@ -173,7 +174,7 @@ describe('端到端业务流程测试', () => {
 
       // 8. 验证冻结记录状态更新
       const finalFreezeStatus = freezeService.getFreezeStatus(freeze.id);
-      expect(finalFreezeStatus.status).toBe('UNFROZEN');
+      expect(finalFreezeStatus.status).toBe(FreezeStatus.UNFROZEN);
     });
 
     test('多次冻结和部分解冻场景', async () => {
