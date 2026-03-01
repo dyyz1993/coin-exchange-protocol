@@ -17,5 +17,19 @@ export * from './freeze';
 // 请求类型
 export * from './requests';
 
-// 响应类型
-export * from './responses';
+// 响应类型（排除重复的 ApiResponse 和 PaginatedResponse）
+export {
+  SuccessResponse,
+  ErrorResponse,
+  BalanceResponse,
+  AccountInfoResponse,
+  TransactionResponse,
+  TransactionListResponse,
+  FrozenAccountsListResponse,
+  AirdropInfoResponse,
+  ClaimAirdropResponse,
+  TaskInfoResponse,
+  CanUserCompleteResponse,
+  FreezeRecordResponse,
+  FreezeRecordsListResponse,
+} from './responses';
