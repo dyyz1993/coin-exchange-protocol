@@ -13,3 +13,9 @@ export * from './task';
 
 // 冻结类型
 export * from './freeze';
+
+// 请求类型
+export * from './requests';
+
+// 响应类型
+export * from './responses';
