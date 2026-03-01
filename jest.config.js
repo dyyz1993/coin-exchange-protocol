@@ -93,8 +93,8 @@ module.exports = {
   ],
   
   // 监听时的插件
-  watchPlugins: [
-    'jest-watch-typeahead/filename',
-    'jest-watch-typeahead/testname',
-  ],
+  // watchPlugins: [
+  //   'jest-watch-typeahead/filename',
+  //   'jest-watch-typeahead/testname',
+  // ],
 };
