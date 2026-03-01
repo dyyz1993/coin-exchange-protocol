@@ -29,6 +29,7 @@ export interface Account {
   frozenBalance: number; // 冻结余额
   totalEarned: number; // 累计获得
   totalSpent: number; // 累计消费
+  version?: number; // 乐观锁版本号，用于并发控制
   createdAt: Date;
   updatedAt: Date;
 }
