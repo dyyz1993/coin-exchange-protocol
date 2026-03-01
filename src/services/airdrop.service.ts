@@ -105,11 +105,9 @@ export class AirdropService {
       throw new Error('空投活动已结束');
     }
 
-    // 检查总金额是否足够
-    const claims = airdropModel.getAirdropClaims(airdropId);
-    const totalClaimed = claims.reduce((sum, claim) => sum + claim.amount, 0);
-    const remainingAmount = airdrop.totalAmount - totalClaimed;
-
+    // 🔥 P0修复：统一使用 airdrop.claimedAmount 检查总金额是否足够
+    // 确保与 Model 层的检查逻辑一致，避免并发问题
+    const remainingAmount = airdrop.totalAmount - airdrop.claimedAmount;
     if (remainingAmount < airdrop.perUserAmount) {
       throw new Error('空投金额已耗尽');
     }
