@@ -25,7 +25,7 @@ export class AccountService {
     }
     
     // 创建用户账户，传入初始余额
-    const account = accountModel.createAccount(userId, initialBalance);
+    const account = await accountModel.createAccount(userId, initialBalance);
 
     return {
       accountId: account.id!,
@@ -92,7 +92,7 @@ export class AccountService {
     newBalance: number;
     transactionId: string;
   }> {
-    const transaction = accountModel.addBalance(userId, amount, description, type);
+    const transaction = await accountModel.addBalance(userId, amount, description, type);
 
     return {
       success: true,
@@ -115,7 +115,7 @@ export class AccountService {
     newBalance: number;
     transactionId: string;
   }> {
-    const transaction = accountModel.deductBalance(userId, amount, description, type);
+    const transaction = await accountModel.deductBalance(userId, amount, description, type);
 
     return {
       success: true,
@@ -137,7 +137,7 @@ export class AccountService {
     frozenAmount: number;
     availableBalance: number;
   }> {
-    const transaction = accountModel.freezeBalance(userId, amount);
+    const transaction = await accountModel.freezeBalance(userId, amount);
     const account = accountModel.getAccountByUserId(userId)!;
 
     return {
@@ -159,7 +159,7 @@ export class AccountService {
     unfrozenAmount: number;
     availableBalance: number;
   }> {
-    const transaction = accountModel.unfreezeBalance(userId, amount);
+    const transaction = await accountModel.unfreezeBalance(userId, amount);
     const account = accountModel.getAccountByUserId(userId)!;
 
     return {
@@ -190,7 +190,7 @@ export class AccountService {
     }
 
     // 使用 AccountModel 的 transfer 方法
-    const transaction = accountModel.transfer(fromUserId, toUserId, amount, description);
+    const transaction = await accountModel.transfer(fromUserId, toUserId, amount, description);
 
     const fromAccount = accountModel.getAccountByUserId(fromUserId)!;
     const toAccount = accountModel.getAccountByUserId(toUserId)!;
