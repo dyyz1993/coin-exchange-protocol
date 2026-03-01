@@ -79,7 +79,7 @@ export class AccountModel {
   /**
    * 创建账户
    */
-  createAccount(userId: string): Account {
+  createAccount(userId: string, initialBalance: number = 0): Account {
     return this.withLock(userId, () => {
       // 检查是否已存在
       if (this.userAccounts.has(userId)) {
@@ -92,9 +92,9 @@ export class AccountModel {
       const account: Account = {
         id: accountId,
         userId,
-        balance: 0,
+        balance: initialBalance,
         frozenBalance: 0,
-        totalEarned: 0,
+        totalEarned: initialBalance > 0 ? initialBalance : 0, // 如果有初始余额，计入 totalEarned
         totalSpent: 0,
         version: 0, // 初始版本号
         createdAt: new Date(),
