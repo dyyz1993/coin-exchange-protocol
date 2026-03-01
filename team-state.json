@@ -81,24 +81,6 @@
   "initialized": false,
   "events": [
     {
-      "time": "2026-03-01T03:38:32.143Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T03:38:33.223Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T03:38:34.250Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
       "time": "2026-03-01T03:38:53.811Z",
       "agent": "backend-developer",
       "type": "tool",
@@ -3076,6 +3058,24 @@
     },
     {
       "time": "2026-03-01T04:19:09.589Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: git_commit"
+    },
+    {
+      "time": "2026-03-01T04:19:09.768Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T04:19:09.792Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T04:19:09.815Z",
       "agent": "backend-developer",
       "type": "tool",
       "content": "调用工具: git_commit"
