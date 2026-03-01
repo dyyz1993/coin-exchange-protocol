@@ -118,7 +118,10 @@ describe('端到端业务流程测试', () => {
 
       const balance = accountService.getTokenBalance(user);
       expect(balance?.balance).toBe(350);
-      expect(balance?.transactions.length).toBeGreaterThanOrEqual(3);
+
+      // 分别调用 getTransactionHistory 获取交易记录
+      const transactions = accountService.getTransactionHistory(user);
+      expect(transactions.length).toBeGreaterThanOrEqual(3);
     });
   });
 
@@ -319,7 +322,7 @@ describe('端到端业务流程测试', () => {
       });
 
       expect(task.taskId).toBeDefined();
-      expect(task.status).toBe(TaskStatus.PENDING);
+      expect(task.status).toBe(TaskStatus.DRAFT);
 
       // 2. 激活任务
       await taskService.activateTask(task.taskId);
