@@ -93,24 +93,6 @@
   "initialized": false,
   "events": [
     {
-      "time": "2026-03-01T06:51:20.095Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:51:20.102Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:51:20.106Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
       "time": "2026-03-01T06:51:20.111Z",
       "agent": "backend-developer",
       "type": "tool",
@@ -3088,6 +3070,24 @@
     },
     {
       "time": "2026-03-01T07:48:23.131Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: git_commit"
+    },
+    {
+      "time": "2026-03-01T07:48:23.411Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: git_push_branch"
+    },
+    {
+      "time": "2026-03-01T07:48:26.107Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: create_pr"
+    },
+    {
+      "time": "2026-03-01T07:48:27.003Z",
       "agent": "qa-engineer",
       "type": "tool",
       "content": "调用工具: git_commit"
