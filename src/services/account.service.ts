@@ -78,7 +78,7 @@ export class AccountService {
     return {
       balance: account.balance,
       frozenBalance: account.frozenBalance,
-      availableBalance: account.balance,
+      availableBalance: account.balance - account.frozenBalance,
       totalEarned: account.totalEarned,
       totalSpent: account.totalSpent,
     };
@@ -100,7 +100,7 @@ export class AccountService {
     return {
       balance: account.balance,
       frozenBalance: account.frozenBalance,
-      availableBalance: account.balance, // 可用余额 = 总余额 - 冻结余额
+      availableBalance: account.balance - account.frozenBalance,
     };
   }
 
@@ -209,7 +209,7 @@ export class AccountService {
     return {
       success: true,
       unfrozenAmount: amount,
-      availableBalance: account.balance,
+      availableBalance: account.balance - account.frozenBalance,
     };
   }
 
@@ -440,7 +440,7 @@ export class AccountService {
       return {
         success: true,
         frozenAmount: 0,
-        availableBalance: account.balance,
+        availableBalance: account.balance - account.frozenBalance,
       };
     }
 
@@ -470,7 +470,7 @@ export class AccountService {
       return {
         success: true,
         unfrozenAmount: 0,
-        availableBalance: account.balance,
+        availableBalance: account.balance - account.frozenBalance,
       };
     }
 
