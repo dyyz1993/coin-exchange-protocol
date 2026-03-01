@@ -14,8 +14,7 @@
 | 1. 输入验证检查 | 5 | ⭐⭐⭐⭐⭐ |
 | 2. 并发安全检查 | 5 | ⭐⭐⭐⭐⭐ |
 | 3. 错误处理检查 | 5 | ⭐⭐⭐⭐⭐ |
-| 4. 事务保护检查 | 3 | ⭐⭐⭐⭐ |
-| 5. API 规范检查 | 2 | ⭐⭐⭐⭐ |
+| 4. API 规范检查 | 5 | ⭐⭐⭐⭐ |
 | **总计** | **20** | - |
 
 ---
@@ -326,68 +325,9 @@ console.error({
 
 ---
 
-## 4️⃣ 事务保护检查（3项）
+## 4️⃣ API 规范检查（5项）
 
-### ✅ 4.1 关键操作使用事务
-**检查内容**:
-- [ ] 转账操作使用事务
-- [ ] 冻结/解冻操作使用事务
-- [ ] 多步骤操作使用事务
-
-**审查要点**:
-```typescript
-// 事务的使用
-await db.transaction(async (trx) => {
-  await trx('accounts').where({ userId }).update({ balance });
-  await trx('transactions').insert(transaction);
-});
-```
-
----
-
-### ✅ 4.2 事务正确提交/回滚
-**检查内容**:
-- [ ] 成功时提交事务
-- [ ] 失败时回滚事务
-- [ ] 异常时自动回滚
-
-**审查要点**:
-```typescript
-// 事务的提交和回滚
-try {
-  await db.transaction(async (trx) => {
-    // 多个操作
-    await operation1(trx);
-    await operation2(trx);
-    // 自动提交
-  });
-} catch (error) {
-  // 自动回滚
-  throw error;
-}
-```
-
----
-
-### ✅ 4.3 事务隔离级别
-**检查内容**:
-- [ ] 使用合适的隔离级别
-- [ ] 避免脏读、不可重复读、幻读
-- [ ] 性能与一致性平衡
-
-**审查要点**:
-```typescript
-// Knex 事务配置
-await db.transaction(async (trx) => {
-  // 默认隔离级别通常足够
-}, { isolationLevel: 'read committed' });
-```
-
----
-
-## 5️⃣ API 规范检查（2项）
-
-### ✅ 5.1 返回格式符合 ApiResponse
+### ✅ 4.1 返回格式符合 ApiResponse 类型
 **检查内容**:
 - [ ] 成功响应使用 `success(data)` 格式
 - [ ] 错误响应使用 `error(code, message)` 格式
@@ -415,7 +355,7 @@ return error('INVALID_INPUT', '参数错误');
 
 ---
 
-### ✅ 5.2 HTTP 状态码正确
+### ✅ 4.2 HTTP 状态码正确
 **检查内容**:
 - [ ] 成功: 200 OK
 - [ ] 创建成功: 201 Created
@@ -430,6 +370,81 @@ res.status(200).json(success(data));
 res.status(400).json(error('INVALID_INPUT', '参数错误'));
 res.status(500).json(error('INTERNAL_ERROR', '服务器错误'));
 ```
+
+---
+
+### ✅ 4.3 路由定义正确
+**检查内容**:
+- [ ] 路由路径符合 RESTful 规范
+- [ ] HTTP 方法正确（GET、POST、PUT、DELETE）
+- [ ] 路由参数和查询参数定义清晰
+- [ ] 路由中间件正确配置
+
+**审查要点**:
+```typescript
+// RESTful 路由示例
+router.get('/accounts/:userId', getAccount);        // 获取账户
+router.post('/accounts', createAccount);            // 创建账户
+router.post('/accounts/deposit', deposit);          // 存款
+router.post('/accounts/withdraw', withdraw);        // 取款
+router.post('/accounts/transfer', transfer);        // 转账
+```
+
+---
+
+### ✅ 4.4 参数验证完整
+**检查内容**:
+- [ ] 必填参数验证
+- [ ] 参数类型验证
+- [ ] 参数格式验证
+- [ ] 参数范围验证
+
+**审查要点**:
+```typescript
+// 参数验证示例
+const { userId, amount } = req.body;
+
+// 验证必填参数
+if (!userId || !amount) {
+  return error('MISSING_PARAMETER', '缺少必要参数');
+}
+
+// 验证参数类型
+if (typeof amount !== 'number') {
+  return error('INVALID_TYPE', '金额必须是数字');
+}
+
+// 验证参数范围
+if (amount <= 0) {
+  return error('INVALID_AMOUNT', '金额必须大于0');
+}
+```
+
+---
+
+### ✅ 4.5 响应时间合理
+**检查内容**:
+- [ ] 单个 API 响应时间 < 500ms
+- [ ] 数据库查询优化（避免 N+1 问题）
+- [ ] 使用索引优化查询
+- [ ] 避免同步阻塞操作
+
+**审查要点**:
+```typescript
+// 性能优化示例
+// ❌ 错误示例：N+1 查询问题
+for (const userId of userIds) {
+  const account = await getAccount(userId); // 每次循环都查询
+}
+
+// ✅ 正确示例：批量查询
+const accounts = await getAccounts(userIds); // 一次查询获取所有
+```
+
+**性能指标**:
+- 简单查询: < 100ms
+- 复杂查询: < 300ms
+- 带事务的操作: < 500ms
 
 ---
 
@@ -475,7 +490,6 @@ res.status(500).json(error('INTERNAL_ERROR', '服务器错误'));
 - [实施指南 - AccountController](./implementation-guide-account-controller.md)
 - [实施指南 - FreezeController](./implementation-guide-freeze-controller.md)
 - [API 规范](./api-guide/README.md)
-- [测试指南](./testing.md)
 
 ---
 
