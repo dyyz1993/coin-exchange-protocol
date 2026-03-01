@@ -47,7 +47,11 @@ export interface Transaction {
   createdAt: Date;
 }
 
-export interface ApiResponse<T = any> {
+/**
+ * 通用 API 响应类型
+ * 使用泛型 T 来约束 data 的类型，而不是使用 any
+ */
+export interface ApiResponse<T = unknown> {
   success: boolean;
   data?: T;
   error?: string;
