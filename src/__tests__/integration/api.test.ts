@@ -1,5 +1,3 @@
-import { describe, it, expect } from 'vitest';
-
 describe('API Integration Tests', () => {
   it('should create account', async () => {
     // 测试创建账户功能
