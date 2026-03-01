@@ -225,6 +225,62 @@ export class AccountController {
   }
 
   /**
+   * 冻结余额（冻结特定金额）
+   * POST /api/account/freeze-balance
+   * Body: { userId: string, amount: number, reason?: string }
+   */
+  async freezeBalance(params: any): Promise<ApiResponse> {
+    try {
+      const { userId, amount, reason } = params;
+
+      // 输入验证
+      if (!userId || typeof userId !== 'string') {
+        return { success: false, error: '无效的用户ID' };
+      }
+
+      if (!amount || typeof amount !== 'number' || amount <= 0) {
+        return { success: false, error: '无效的冻结金额' };
+      }
+
+      // 调用服务层
+      return accountService.freezeTokens(userId, amount, reason || '冻结余额');
+    } catch (error) {
+      return {
+        success: false,
+        error: error instanceof Error ? error.message : '冻结余额失败'
+      };
+    }
+  }
+
+  /**
+   * 解冻余额（解冻特定金额）
+   * POST /api/account/unfreeze-balance
+   * Body: { userId: string, amount: number, reason?: string }
+   */
+  async unfreezeBalance(params: any): Promise<ApiResponse> {
+    try {
+      const { userId, amount, reason } = params;
+
+      // 输入验证
+      if (!userId || typeof userId !== 'string') {
+        return { success: false, error: '无效的用户ID' };
+      }
+
+      if (!amount || typeof amount !== 'number' || amount <= 0) {
+        return { success: false, error: '无效的解冻金额' };
+      }
+
+      // 调用服务层
+      return accountService.unfreezeTokens(userId, amount, reason || '解冻余额');
+    } catch (error) {
+      return {
+        success: false,
+        error: error instanceof Error ? error.message : '解冻余额失败'
+      };
+    }
+  }
+
+  /**
    * 获取冻结账户列表
    * GET /api/account/frozen
    */
@@ -233,9 +289,9 @@ export class AccountController {
       // 调用服务层获取冻结账户列表
       return accountService.getFrozenAccounts();
     } catch (error) {
-      return { 
-        success: false, 
-        error: error instanceof Error ? error.message : '获取冻结账户列表失败' 
+      return {
+        success: false,
+        error: error instanceof Error ? error.message : '获取冻结账户列表失败'
       };
     }
   }
