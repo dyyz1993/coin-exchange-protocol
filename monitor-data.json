@@ -82,1912 +82,16 @@
     107,
     106,
     121,
-    120
+    120,
+    129,
+    128,
+    133,
+    132,
+    131,
+    130
   ],
   "initialized": false,
   "events": [
-    {
-      "time": "2026-03-01T05:47:10.449Z",
-      "agent": "requirement-analyst",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T05:47:10.455Z",
-      "agent": "requirement-analyst",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T05:47:10.458Z",
-      "agent": "requirement-analyst",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T05:47:10.462Z",
-      "agent": "requirement-analyst",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T05:48:45.738Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T05:48:45.746Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T05:48:45.765Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T05:48:45.771Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T05:48:55.268Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T05:48:55.280Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T05:48:55.306Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T05:48:55.312Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T05:49:00.939Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T05:49:10.050Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T05:49:10.067Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T05:49:10.072Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T05:49:10.082Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T05:49:10.092Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T05:49:10.100Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T05:49:34.975Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: git_create_branch"
-    },
-    {
-      "time": "2026-03-01T05:49:35.035Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: edit"
-    },
-    {
-      "time": "2026-03-01T05:49:35.045Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: git_create_branch"
-    },
-    {
-      "time": "2026-03-01T05:49:35.081Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: edit"
-    },
-    {
-      "time": "2026-03-01T05:49:41.951Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T05:49:41.957Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T05:49:42.538Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T05:49:42.544Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T05:49:42.981Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T05:49:42.987Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T05:49:43.428Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T05:49:43.433Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T05:49:52.227Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T05:49:52.232Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T05:49:52.249Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T05:49:52.277Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T05:49:52.283Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T05:49:52.318Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T05:50:01.594Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T05:50:01.690Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T05:50:01.719Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T05:50:01.732Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T05:50:01.800Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T05:50:01.818Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T05:50:01.832Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T05:50:01.898Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T05:50:01.921Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T05:50:01.929Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T05:50:02.018Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T05:50:02.037Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T05:50:18.056Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: write"
-    },
-    {
-      "time": "2026-03-01T05:50:18.069Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T05:50:18.148Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T05:50:18.155Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: write"
-    },
-    {
-      "time": "2026-03-01T05:50:18.159Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T05:50:18.183Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T05:50:18.193Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: write"
-    },
-    {
-      "time": "2026-03-01T05:50:18.198Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T05:50:18.225Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T05:50:18.229Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: write"
-    },
-    {
-      "time": "2026-03-01T05:50:18.233Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T05:50:18.267Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T05:50:18.274Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: write"
-    },
-    {
-      "time": "2026-03-01T05:50:18.277Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T05:50:18.301Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T05:50:18.307Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: write"
-    },
-    {
-      "time": "2026-03-01T05:50:18.317Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T05:50:18.342Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T05:50:35.150Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: edit"
-    },
-    {
-      "time": "2026-03-01T05:50:35.159Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T05:50:35.211Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: edit"
-    },
-    {
-      "time": "2026-03-01T05:50:35.216Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T05:50:35.247Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: edit"
-    },
-    {
-      "time": "2026-03-01T05:50:35.252Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T05:50:35.283Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: edit"
-    },
-    {
-      "time": "2026-03-01T05:50:35.287Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T05:50:35.316Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: edit"
-    },
-    {
-      "time": "2026-03-01T05:50:35.319Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:04:41.741Z",
-      "agent": "system",
-      "type": "message",
-      "content": "系统启动"
-    },
-    {
-      "time": "2026-03-01T06:04:50.326Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:04:50.470Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:04:50.491Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:04:50.497Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:04:50.518Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:04:50.524Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:04:54.494Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:04:54.524Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:04:54.548Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:04:54.563Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:05:08.719Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: git_create_branch"
-    },
-    {
-      "time": "2026-03-01T06:05:11.144Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:06:39.200Z",
-      "agent": "requirement-analyst",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:06:39.226Z",
-      "agent": "requirement-analyst",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:06:39.238Z",
-      "agent": "requirement-analyst",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:06:39.241Z",
-      "agent": "requirement-analyst",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:06:39.245Z",
-      "agent": "requirement-analyst",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:06:39.267Z",
-      "agent": "requirement-analyst",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:06:39.275Z",
-      "agent": "requirement-analyst",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:06:39.278Z",
-      "agent": "requirement-analyst",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:08:05.962Z",
-      "agent": "qa-engineer",
-      "type": "tool",
-      "content": "调用工具: git_create_branch"
-    },
-    {
-      "time": "2026-03-01T06:08:09.063Z",
-      "agent": "qa-engineer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:08:15.243Z",
-      "agent": "qa-engineer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:08:21.693Z",
-      "agent": "qa-engineer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:08:55.598Z",
-      "agent": "qa-engineer",
-      "type": "tool",
-      "content": "调用工具: edit"
-    },
-    {
-      "time": "2026-03-01T06:09:01.559Z",
-      "agent": "qa-engineer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:09:13.893Z",
-      "agent": "qa-engineer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:09:22.292Z",
-      "agent": "qa-engineer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:09:28.342Z",
-      "agent": "qa-engineer",
-      "type": "tool",
-      "content": "调用工具: git_commit"
-    },
-    {
-      "time": "2026-03-01T06:09:31.747Z",
-      "agent": "qa-engineer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:09:37.767Z",
-      "agent": "qa-engineer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:09:40.506Z",
-      "agent": "qa-engineer",
-      "type": "tool",
-      "content": "调用工具: git_push_branch"
-    },
-    {
-      "time": "2026-03-01T06:10:01.434Z",
-      "agent": "qa-engineer",
-      "type": "tool",
-      "content": "调用工具: create_pr"
-    },
-    {
-      "time": "2026-03-01T06:10:06.043Z",
-      "agent": "qa-engineer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:10:23.633Z",
-      "agent": "qa-engineer",
-      "type": "tool",
-      "content": "调用工具: create_pr"
-    },
-    {
-      "time": "2026-03-01T06:10:39.881Z",
-      "agent": "qa-engineer",
-      "type": "tool",
-      "content": "调用工具: report_progress"
-    },
-    {
-      "time": "2026-03-01T06:11:09.186Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: git_create_branch"
-    },
-    {
-      "time": "2026-03-01T06:11:09.241Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:11:09.252Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: git_create_branch"
-    },
-    {
-      "time": "2026-03-01T06:11:09.295Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:11:18.156Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:11:18.164Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:11:18.196Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:11:18.209Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:11:18.215Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:11:18.223Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:11:29.244Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:11:29.270Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:11:29.277Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:30:59.159Z",
-      "agent": "system",
-      "type": "message",
-      "content": "系统启动"
-    },
-    {
-      "time": "2026-03-01T06:31:40.894Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:31:40.934Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:31:40.943Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:31:40.970Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:32:00.361Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:32:20.497Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: report_progress"
-    },
-    {
-      "time": "2026-03-01T06:32:46.749Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:32:46.756Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:32:46.783Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:32:46.815Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:32:46.826Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:32:46.833Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:32:57.022Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: git_create_branch"
-    },
-    {
-      "time": "2026-03-01T06:32:59.655Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:33:06.721Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: git_create_branch"
-    },
-    {
-      "time": "2026-03-01T06:33:08.853Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:33:11.213Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:33:15.864Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:33:18.923Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:33:46.728Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: edit"
-    },
-    {
-      "time": "2026-03-01T06:33:50.118Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:33:50.139Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:33:50.161Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:33:50.169Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:33:59.469Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:33:59.480Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:33:59.484Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:33:59.490Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:34:03.607Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:34:53.215Z",
-      "agent": "product-director",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:35:23.231Z",
-      "agent": "product-director",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:35:23.237Z",
-      "agent": "product-director",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:35:23.243Z",
-      "agent": "product-director",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:35:53.256Z",
-      "agent": "product-director",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:35:53.273Z",
-      "agent": "product-director",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:36:01.799Z",
-      "agent": "product-director",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:36:01.938Z",
-      "agent": "product-director",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:36:01.976Z",
-      "agent": "product-director",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:36:02.211Z",
-      "agent": "product-director",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:36:08.575Z",
-      "agent": "product-director",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:36:08.580Z",
-      "agent": "product-director",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:36:08.588Z",
-      "agent": "product-director",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:36:09.250Z",
-      "agent": "product-director",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:36:09.254Z",
-      "agent": "product-director",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:36:09.260Z",
-      "agent": "product-director",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:36:09.822Z",
-      "agent": "product-director",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:36:09.826Z",
-      "agent": "product-director",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:36:09.831Z",
-      "agent": "product-director",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:36:10.824Z",
-      "agent": "product-director",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:36:10.829Z",
-      "agent": "product-director",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:36:10.836Z",
-      "agent": "product-director",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:36:25.783Z",
-      "agent": "product-director",
-      "type": "tool",
-      "content": "调用工具: report_progress"
-    },
-    {
-      "time": "2026-03-01T06:36:33.191Z",
-      "agent": "product-director",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:36:33.197Z",
-      "agent": "product-director",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:36:33.300Z",
-      "agent": "product-director",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:36:33.306Z",
-      "agent": "product-director",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:36:49.679Z",
-      "agent": "product-director",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:36:49.709Z",
-      "agent": "product-director",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:36:49.715Z",
-      "agent": "product-director",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:39:37.554Z",
-      "agent": "qa-engineer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:39:37.578Z",
-      "agent": "qa-engineer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:39:37.592Z",
-      "agent": "qa-engineer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:39:37.678Z",
-      "agent": "qa-engineer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:39:45.228Z",
-      "agent": "qa-engineer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:39:45.233Z",
-      "agent": "qa-engineer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:39:45.240Z",
-      "agent": "qa-engineer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:39:45.244Z",
-      "agent": "qa-engineer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:39:45.248Z",
-      "agent": "qa-engineer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:39:45.253Z",
-      "agent": "qa-engineer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:39:45.256Z",
-      "agent": "qa-engineer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:39:45.263Z",
-      "agent": "qa-engineer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:39:54.280Z",
-      "agent": "qa-engineer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:39:54.295Z",
-      "agent": "qa-engineer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:39:54.300Z",
-      "agent": "qa-engineer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:39:54.322Z",
-      "agent": "qa-engineer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:39:54.328Z",
-      "agent": "qa-engineer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:39:54.340Z",
-      "agent": "qa-engineer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:39:54.347Z",
-      "agent": "qa-engineer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:39:54.358Z",
-      "agent": "qa-engineer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:39:54.364Z",
-      "agent": "qa-engineer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:39:54.376Z",
-      "agent": "qa-engineer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:39:54.381Z",
-      "agent": "qa-engineer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:39:54.386Z",
-      "agent": "qa-engineer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:40:04.343Z",
-      "agent": "qa-engineer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:40:04.369Z",
-      "agent": "qa-engineer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:40:04.382Z",
-      "agent": "qa-engineer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:40:04.389Z",
-      "agent": "qa-engineer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:40:04.407Z",
-      "agent": "qa-engineer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:40:04.423Z",
-      "agent": "qa-engineer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:40:37.234Z",
-      "agent": "system",
-      "type": "message",
-      "content": "系统启动"
-    },
-    {
-      "time": "2026-03-01T06:40:57.051Z",
-      "agent": "dev-director",
-      "type": "tool",
-      "content": "调用工具: check_messages"
-    },
-    {
-      "time": "2026-03-01T06:41:22.755Z",
-      "agent": "dev-director",
-      "type": "tool",
-      "content": "调用工具: assign_task"
-    },
-    {
-      "time": "2026-03-01T06:41:22.786Z",
-      "agent": "dev-director",
-      "type": "tool",
-      "content": "调用工具: assign_task"
-    },
-    {
-      "time": "2026-03-01T06:41:22.808Z",
-      "agent": "dev-director",
-      "type": "tool",
-      "content": "调用工具: assign_task"
-    },
-    {
-      "time": "2026-03-01T06:41:22.831Z",
-      "agent": "dev-director",
-      "type": "tool",
-      "content": "调用工具: assign_task"
-    },
-    {
-      "time": "2026-03-01T06:41:52.626Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:41:52.662Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:41:52.683Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:41:52.697Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:41:52.726Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:41:52.759Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:42:10.670Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: git_commit"
-    },
-    {
-      "time": "2026-03-01T06:42:14.683Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: git_push_branch"
-    },
-    {
-      "time": "2026-03-01T06:42:34.568Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: create_pr"
-    },
-    {
-      "time": "2026-03-01T06:42:38.607Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:42:54.854Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: create_pr"
-    },
-    {
-      "time": "2026-03-01T06:42:59.595Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:43:18.545Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: report_progress"
-    },
-    {
-      "time": "2026-03-01T06:43:46.599Z",
-      "agent": "requirement-analyst",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:43:46.640Z",
-      "agent": "requirement-analyst",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:43:46.661Z",
-      "agent": "requirement-analyst",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:43:46.681Z",
-      "agent": "requirement-analyst",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:43:49.648Z",
-      "agent": "requirement-analyst",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:43:49.708Z",
-      "agent": "requirement-analyst",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:43:49.735Z",
-      "agent": "requirement-analyst",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:43:49.756Z",
-      "agent": "requirement-analyst",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:43:57.925Z",
-      "agent": "requirement-analyst",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:43:57.970Z",
-      "agent": "requirement-analyst",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:43:57.992Z",
-      "agent": "requirement-analyst",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:43:58.009Z",
-      "agent": "requirement-analyst",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:44:03.460Z",
-      "agent": "requirement-analyst",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:44:03.498Z",
-      "agent": "requirement-analyst",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:44:03.505Z",
-      "agent": "requirement-analyst",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:44:03.536Z",
-      "agent": "requirement-analyst",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:44:03.570Z",
-      "agent": "requirement-analyst",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:44:03.614Z",
-      "agent": "requirement-analyst",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:44:03.633Z",
-      "agent": "requirement-analyst",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:44:03.647Z",
-      "agent": "requirement-analyst",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:44:17.055Z",
-      "agent": "requirement-analyst",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:44:17.102Z",
-      "agent": "requirement-analyst",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:44:17.135Z",
-      "agent": "requirement-analyst",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:44:17.175Z",
-      "agent": "requirement-analyst",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:44:17.203Z",
-      "agent": "requirement-analyst",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:44:17.305Z",
-      "agent": "requirement-analyst",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:44:17.340Z",
-      "agent": "requirement-analyst",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:44:17.376Z",
-      "agent": "requirement-analyst",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:44:24.200Z",
-      "agent": "requirement-analyst",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:44:24.239Z",
-      "agent": "requirement-analyst",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:47:02.334Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: git_create_branch"
-    },
-    {
-      "time": "2026-03-01T06:47:02.420Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:47:02.429Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:47:02.437Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: git_create_branch"
-    },
-    {
-      "time": "2026-03-01T06:47:02.486Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:47:02.505Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:47:09.182Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:47:09.218Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:47:09.233Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:47:09.261Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:47:16.963Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:47:41.488Z",
-      "agent": "system",
-      "type": "message",
-      "content": "系统启动"
-    },
-    {
-      "time": "2026-03-01T06:47:52.182Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:47:52.253Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:47:52.270Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:47:52.326Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:48:03.614Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: git_create_branch"
-    },
-    {
-      "time": "2026-03-01T06:48:09.437Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:48:11.520Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: git_create_branch"
-    },
-    {
-      "time": "2026-03-01T06:48:11.565Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:48:12.903Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: git_create_branch"
-    },
-    {
-      "time": "2026-03-01T06:48:17.644Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:48:17.882Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:48:17.910Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: git_create_branch"
-    },
-    {
-      "time": "2026-03-01T06:48:17.941Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:48:18.001Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:48:18.032Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: git_create_branch"
-    },
-    {
-      "time": "2026-03-01T06:48:21.362Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:48:27.883Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:48:30.075Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:49:52.955Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: write"
-    },
-    {
-      "time": "2026-03-01T06:49:55.192Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:50:01.685Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: edit"
-    },
-    {
-      "time": "2026-03-01T06:50:06.444Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:50:17.727Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:50:22.622Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:50:27.371Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:50:27.379Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:50:29.490Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:50:29.501Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:50:36.282Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:50:44.798Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:50:56.229Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:50:56.278Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:50:56.297Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:50:56.322Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:51:03.270Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:51:03.297Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:51:03.322Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:51:03.346Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:51:07.495Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
     {
       "time": "2026-03-01T06:51:07.508Z",
       "agent": "backend-developer",
@@ -3085,6 +1189,1908 @@
       "agent": "backend-developer",
       "type": "tool",
       "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:12:40.290Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: git_create_branch"
+    },
+    {
+      "time": "2026-03-01T07:12:40.371Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T07:12:40.380Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: git_create_branch"
+    },
+    {
+      "time": "2026-03-01T07:12:40.429Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T07:12:52.462Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:12:57.933Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: git_create_branch"
+    },
+    {
+      "time": "2026-03-01T07:13:00.708Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:13:06.550Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:13:10.721Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:13:14.351Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:13:19.058Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:13:22.297Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:13:35.728Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: edit"
+    },
+    {
+      "time": "2026-03-01T07:13:43.484Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: edit"
+    },
+    {
+      "time": "2026-03-01T07:13:53.697Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: edit"
+    },
+    {
+      "time": "2026-03-01T07:14:01.091Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: edit"
+    },
+    {
+      "time": "2026-03-01T07:14:10.278Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: edit"
+    },
+    {
+      "time": "2026-03-01T07:14:25.357Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: edit"
+    },
+    {
+      "time": "2026-03-01T07:14:29.107Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:14:33.406Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:14:49.920Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: git_commit"
+    },
+    {
+      "time": "2026-03-01T07:14:53.121Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: git_push_branch"
+    },
+    {
+      "time": "2026-03-01T07:15:41.579Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: create_pr"
+    },
+    {
+      "time": "2026-03-01T07:16:28.278Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: create_pr"
+    },
+    {
+      "time": "2026-03-01T07:16:32.756Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:17:16.828Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: create_pr"
+    },
+    {
+      "time": "2026-03-01T07:17:38.452Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:17:38.500Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:17:38.557Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T07:17:38.576Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:17:38.607Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:17:38.640Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T07:17:46.455Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:17:56.634Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: report_progress"
+    },
+    {
+      "time": "2026-03-01T07:18:11.884Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: report_progress"
+    },
+    {
+      "time": "2026-03-01T07:18:44.851Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:18:44.872Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:18:44.888Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:18:44.902Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:18:52.980Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T07:18:53.012Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T07:18:53.028Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T07:18:53.038Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T07:18:53.047Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T07:18:53.055Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T07:18:53.063Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T07:18:53.067Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T07:18:53.074Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T07:18:53.078Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T07:19:06.929Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T07:19:06.952Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T07:19:06.970Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T07:19:06.976Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T07:19:06.990Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T07:19:06.997Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T07:19:07.006Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T07:19:07.012Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T07:19:07.019Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T07:19:07.028Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T07:19:07.033Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T07:19:07.036Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T07:21:28.102Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: create_issue"
+    },
+    {
+      "time": "2026-03-01T07:21:29.218Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: create_issue"
+    },
+    {
+      "time": "2026-03-01T07:21:30.093Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: create_issue"
+    },
+    {
+      "time": "2026-03-01T07:21:30.942Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: create_issue"
+    },
+    {
+      "time": "2026-03-01T07:21:53.679Z",
+      "agent": "dev-director",
+      "type": "tool",
+      "content": "调用工具: check_messages"
+    },
+    {
+      "time": "2026-03-01T07:22:28.689Z",
+      "agent": "dev-director",
+      "type": "tool",
+      "content": "调用工具: assign_task"
+    },
+    {
+      "time": "2026-03-01T07:22:28.705Z",
+      "agent": "dev-director",
+      "type": "tool",
+      "content": "调用工具: assign_task"
+    },
+    {
+      "time": "2026-03-01T07:22:28.721Z",
+      "agent": "dev-director",
+      "type": "tool",
+      "content": "调用工具: assign_task"
+    },
+    {
+      "time": "2026-03-01T07:22:28.732Z",
+      "agent": "dev-director",
+      "type": "tool",
+      "content": "调用工具: assign_task"
+    },
+    {
+      "time": "2026-03-01T07:23:24.783Z",
+      "agent": "dev-director",
+      "type": "tool",
+      "content": "调用工具: write"
+    },
+    {
+      "time": "2026-03-01T07:24:08.015Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: git_create_branch"
+    },
+    {
+      "time": "2026-03-01T07:24:08.120Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T07:24:08.129Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: git_create_branch"
+    },
+    {
+      "time": "2026-03-01T07:24:08.177Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T07:24:16.779Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:24:25.536Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:24:25.748Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: git_create_branch"
+    },
+    {
+      "time": "2026-03-01T07:24:27.257Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:24:27.282Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: git_create_branch"
+    },
+    {
+      "time": "2026-03-01T07:24:34.518Z",
+      "agent": "system",
+      "type": "message",
+      "content": "系统启动"
+    },
+    {
+      "time": "2026-03-01T07:25:06.681Z",
+      "agent": "dev-director",
+      "type": "tool",
+      "content": "调用工具: check_messages"
+    },
+    {
+      "time": "2026-03-01T07:25:24.725Z",
+      "agent": "dev-director",
+      "type": "tool",
+      "content": "调用工具: close_issue"
+    },
+    {
+      "time": "2026-03-01T07:26:03.959Z",
+      "agent": "dev-director",
+      "type": "tool",
+      "content": "调用工具: assign_task"
+    },
+    {
+      "time": "2026-03-01T07:26:03.971Z",
+      "agent": "dev-director",
+      "type": "tool",
+      "content": "调用工具: assign_task"
+    },
+    {
+      "time": "2026-03-01T07:26:03.979Z",
+      "agent": "dev-director",
+      "type": "tool",
+      "content": "调用工具: assign_task"
+    },
+    {
+      "time": "2026-03-01T07:26:03.982Z",
+      "agent": "dev-director",
+      "type": "tool",
+      "content": "调用工具: assign_task"
+    },
+    {
+      "time": "2026-03-01T07:26:21.990Z",
+      "agent": "dev-director",
+      "type": "tool",
+      "content": "调用工具: report_progress"
+    },
+    {
+      "time": "2026-03-01T07:26:54.069Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: git_create_branch"
+    },
+    {
+      "time": "2026-03-01T07:26:56.108Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T07:26:56.119Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T07:26:56.132Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: git_create_branch"
+    },
+    {
+      "time": "2026-03-01T07:26:57.182Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T07:26:57.186Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T07:27:14.040Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:27:18.093Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: git_create_branch"
+    },
+    {
+      "time": "2026-03-01T07:27:22.970Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:28:17.348Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: write"
+    },
+    {
+      "time": "2026-03-01T07:28:44.022Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T07:28:55.517Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:28:59.268Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T07:28:59.274Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T07:28:59.280Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T07:28:59.292Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T07:28:59.297Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T07:28:59.301Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T07:29:10.698Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:29:14.061Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T07:29:39.042Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: git_create_branch"
+    },
+    {
+      "time": "2026-03-01T07:29:43.804Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:29:48.751Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:29:54.638Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:29:57.798Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: git_create_branch"
+    },
+    {
+      "time": "2026-03-01T07:30:04.748Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:30:09.468Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:30:13.316Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:30:16.498Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:30:18.935Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:30:20.947Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:30:26.411Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:30:29.623Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:30:35.310Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:30:38.833Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:30:43.423Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: git_create_branch"
+    },
+    {
+      "time": "2026-03-01T07:30:56.581Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: edit"
+    },
+    {
+      "time": "2026-03-01T07:31:28.858Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: edit"
+    },
+    {
+      "time": "2026-03-01T07:31:28.878Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: edit"
+    },
+    {
+      "time": "2026-03-01T07:31:28.891Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: edit"
+    },
+    {
+      "time": "2026-03-01T07:31:40.837Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: git_create_branch"
+    },
+    {
+      "time": "2026-03-01T07:31:47.431Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T07:32:01.129Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: edit"
+    },
+    {
+      "time": "2026-03-01T07:32:05.828Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:32:05.840Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:32:10.381Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:32:10.387Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:32:30.799Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: git_commit"
+    },
+    {
+      "time": "2026-03-01T07:32:33.232Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: git_push_branch"
+    },
+    {
+      "time": "2026-03-01T07:32:53.932Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: create_pr"
+    },
+    {
+      "time": "2026-03-01T07:32:57.573Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:33:13.005Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: create_pr"
+    },
+    {
+      "time": "2026-03-01T07:33:26.370Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: report_progress"
+    },
+    {
+      "time": "2026-03-01T07:33:50.996Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:33:51.022Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:33:51.041Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:33:51.073Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:33:56.386Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:33:56.446Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:33:56.517Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:33:56.557Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:33:56.605Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:33:56.651Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:34:06.723Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:34:08.911Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:34:08.939Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:34:08.990Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:34:11.026Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:34:11.058Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:34:11.088Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:34:15.995Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:34:16.032Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:34:16.089Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:34:19.064Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:34:19.103Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:34:31.871Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:34:31.943Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:34:31.998Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T07:34:32.012Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:34:32.046Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:34:32.083Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T07:34:32.091Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:34:32.124Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:34:39.767Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T07:34:39.778Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:34:39.874Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:34:39.892Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T07:34:39.897Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:34:39.936Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:34:46.405Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:34:46.417Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:34:46.429Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T07:34:46.445Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:34:46.464Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:34:46.475Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T07:34:53.148Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:34:53.164Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:34:53.173Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:34:53.191Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:34:53.197Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:34:53.209Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:34:53.217Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:34:53.228Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:35:03.685Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:35:03.697Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:35:03.702Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:35:03.710Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:35:03.719Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:35:03.732Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:35:03.748Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:35:03.758Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:35:03.773Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:35:03.793Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:35:18.581Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T07:35:18.591Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:35:18.631Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T07:35:18.637Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:35:40.655Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: report_progress"
+    },
+    {
+      "time": "2026-03-01T07:36:07.084Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T07:36:07.093Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T07:36:07.097Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T07:36:07.105Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T07:36:53.560Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: report_progress"
+    },
+    {
+      "time": "2026-03-01T07:37:21.875Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:37:21.961Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:37:21.992Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:37:22.022Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:37:22.085Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:37:22.102Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:37:26.434Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T07:37:26.481Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:37:26.499Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T07:37:26.588Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:37:35.027Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T07:37:45.162Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: git_create_branch"
+    },
+    {
+      "time": "2026-03-01T07:37:49.482Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:37:49.512Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:37:49.565Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:37:49.593Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:37:52.758Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:37:54.753Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:37:54.947Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:37:54.983Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:37:56.641Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:37:56.676Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:38:02.345Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:38:02.413Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:38:02.462Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:38:02.494Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:38:02.523Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:38:02.554Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:38:02.582Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:38:02.614Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:38:15.483Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:38:20.183Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: git_create_branch"
+    },
+    {
+      "time": "2026-03-01T07:38:24.415Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:38:27.655Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:38:33.394Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:38:36.218Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:38:39.537Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:38:43.772Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:38:56.767Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:39:01.732Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:39:07.219Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: git_push_branch"
+    },
+    {
+      "time": "2026-03-01T07:39:14.107Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:39:18.398Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:39:25.909Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:39:39.725Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:40:02.114Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: report_progress"
+    },
+    {
+      "time": "2026-03-01T07:40:25.563Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: git_create_branch"
+    },
+    {
+      "time": "2026-03-01T07:40:25.636Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T07:40:25.642Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: git_create_branch"
+    },
+    {
+      "time": "2026-03-01T07:40:25.681Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T07:40:37.193Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:40:42.230Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: git_create_branch"
+    },
+    {
+      "time": "2026-03-01T07:40:45.839Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:40:50.339Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: git_create_branch"
+    },
+    {
+      "time": "2026-03-01T07:40:53.544Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:40:57.991Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:41:11.694Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T07:42:12.721Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: edit"
+    },
+    {
+      "time": "2026-03-01T07:42:12.728Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: edit"
+    },
+    {
+      "time": "2026-03-01T07:42:12.733Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: edit"
+    },
+    {
+      "time": "2026-03-01T07:42:12.738Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: edit"
+    },
+    {
+      "time": "2026-03-01T07:42:12.742Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: edit"
+    },
+    {
+      "time": "2026-03-01T07:42:12.749Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: edit"
+    },
+    {
+      "time": "2026-03-01T07:42:12.753Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: edit"
+    },
+    {
+      "time": "2026-03-01T07:42:12.757Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: edit"
+    },
+    {
+      "time": "2026-03-01T07:42:12.760Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: edit"
+    },
+    {
+      "time": "2026-03-01T07:42:12.763Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: edit"
+    },
+    {
+      "time": "2026-03-01T07:42:12.768Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: edit"
+    },
+    {
+      "time": "2026-03-01T07:42:12.771Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: edit"
+    },
+    {
+      "time": "2026-03-01T07:42:18.361Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:42:18.372Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T07:42:18.378Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:42:18.386Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T07:42:23.582Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T07:43:25.324Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: write"
+    },
+    {
+      "time": "2026-03-01T07:43:27.856Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:43:56.171Z",
+      "agent": "product-director",
+      "type": "tool",
+      "content": "调用工具: report_progress"
+    },
+    {
+      "time": "2026-03-01T07:44:04.851Z",
+      "agent": "product-director",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:44:07.850Z",
+      "agent": "product-director",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T07:44:07.854Z",
+      "agent": "product-director",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:44:10.413Z",
+      "agent": "product-director",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T07:44:15.593Z",
+      "agent": "product-director",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:44:19.890Z",
+      "agent": "product-director",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:44:24.840Z",
+      "agent": "product-director",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T07:44:24.846Z",
+      "agent": "product-director",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T07:44:24.854Z",
+      "agent": "product-director",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:44:27.490Z",
+      "agent": "product-director",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T07:44:27.494Z",
+      "agent": "product-director",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T07:44:27.504Z",
+      "agent": "product-director",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:44:35.392Z",
+      "agent": "product-director",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:45:46.918Z",
+      "agent": "product-director",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T07:45:46.929Z",
+      "agent": "product-director",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:45:46.936Z",
+      "agent": "product-director",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T07:45:46.942Z",
+      "agent": "product-director",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:45:55.580Z",
+      "agent": "product-director",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:45:55.592Z",
+      "agent": "product-director",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T07:45:55.607Z",
+      "agent": "product-director",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:45:55.620Z",
+      "agent": "product-director",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T07:45:55.629Z",
+      "agent": "product-director",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:45:55.635Z",
+      "agent": "product-director",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T07:45:55.642Z",
+      "agent": "product-director",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:45:55.654Z",
+      "agent": "product-director",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T07:46:03.518Z",
+      "agent": "product-director",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:46:03.533Z",
+      "agent": "product-director",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:46:03.540Z",
+      "agent": "product-director",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:46:03.547Z",
+      "agent": "product-director",
+      "type": "tool",
+      "content": "调用工具: bash"
     }
   ],
   "agentHistories": {
@@ -4007,8 +4013,576 @@
       }
     ]
   },
-  "lastCheck": "2026-03-01T07:12:00.417Z",
+  "lastCheck": "2026-03-01T07:46:09.378Z",
   "issues": [
+    {
+      "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/133",
+      "repository_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol",
+      "labels_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/133/labels{/name}",
+      "comments_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/133/comments",
+      "events_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/133/events",
+      "html_url": "https://github.com/dyyz1993/coin-exchange-protocol/issues/133",
+      "id": 4006544827,
+      "node_id": "I_kwDORa8Ecs7uzwW7",
+      "number": 133,
+      "title": "【P1代码改进】使用废弃的 substr 方法",
+      "user": {
+        "login": "dyyz1993",
+        "id": 17736821,
+        "node_id": "MDQ6VXNlcjE3NzM2ODIx",
+        "avatar_url": "https://avatars.githubusercontent.com/u/17736821?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/dyyz1993",
+        "html_url": "https://github.com/dyyz1993",
+        "followers_url": "https://api.github.com/users/dyyz1993/followers",
+        "following_url": "https://api.github.com/users/dyyz1993/following{/other_user}",
+        "gists_url": "https://api.github.com/users/dyyz1993/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/dyyz1993/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/dyyz1993/subscriptions",
+        "organizations_url": "https://api.github.com/users/dyyz1993/orgs",
+        "repos_url": "https://api.github.com/users/dyyz1993/repos",
+        "events_url": "https://api.github.com/users/dyyz1993/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/dyyz1993/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "labels": [
+        {
+          "id": 10316700164,
+          "node_id": "LA_kwDORa8Ecs8AAAACZuxaBA",
+          "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/labels/%E4%BB%A3%E7%A0%81%E8%B4%A8%E9%87%8F",
+          "name": "代码质量",
+          "color": "ededed",
+          "default": false,
+          "description": null
+        },
+        {
+          "id": 10317442931,
+          "node_id": "LA_kwDORa8Ecs8AAAACZvevcw",
+          "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/labels/%E4%BB%A3%E7%A0%81%E6%94%B9%E8%BF%9B",
+          "name": "代码改进",
+          "color": "ededed",
+          "default": false,
+          "description": null
+        },
+        {
+          "id": 10317442932,
+          "node_id": "LA_kwDORa8Ecs8AAAACZvevdA",
+          "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/labels/P1-%E4%B8%AD%E7%AD%89",
+          "name": "P1-中等",
+          "color": "ededed",
+          "default": false,
+          "description": null
+        },
+        {
+          "id": 10317442933,
+          "node_id": "LA_kwDORa8Ecs8AAAACZvevdQ",
+          "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/labels/%E5%BA%9F%E5%BC%83API",
+          "name": "废弃API",
+          "color": "ededed",
+          "default": false,
+          "description": null
+        }
+      ],
+      "state": "open",
+      "locked": false,
+      "assignees": [],
+      "milestone": null,
+      "comments": 1,
+      "created_at": "2026-03-01T07:21:33Z",
+      "updated_at": "2026-03-01T07:21:49Z",
+      "closed_at": null,
+      "assignee": null,
+      "author_association": "OWNER",
+      "active_lock_reason": null,
+      "sub_issues_summary": {
+        "total": 0,
+        "completed": 0,
+        "percent_completed": 0
+      },
+      "issue_dependencies_summary": {
+        "blocked_by": 0,
+        "total_blocked_by": 0,
+        "blocking": 0,
+        "total_blocking": 0
+      },
+      "body": "## 📝 代码改进建议\n\n代码中使用了已废弃的 `substr` 方法，建议替换为现代的 `substring` 或 `slice` 方法。\n\n## 📍 问题位置\n\n**文件**: \n- `src/models/Airdrop.ts` (第 29 行)\n- `src/models/Task.ts` (第 27 行)\n\n**优先级**: 🟡 P1 - 代码改进\n\n## ❌ 问题详情\n\n### Airdrop.ts (第 29 行)\n```typescript\nconst airdropId = `airdrop_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;\n```\n\n### Task.ts (第 27 行)\n```typescript\nconst taskId = `task_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;\n```\n\n**问题**:\n- `String.prototype.substr()` 方法已被标记为废弃（deprecated）\n- 虽然 currently 仍然可用，但未来可能被移除\n- ECMAScript 标准推荐使用 `substring()` 或 `slice()` 替代\n\n**参考**: \n- [MDN - String.prototype.substr()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/substr)\n- 该方法在 ECMAScript 标准中已被标记为 Annex B（附加特性，仅用于向后兼容）\n\n## 💥 影响\n\n- **严重性**: 🟡 P1 - 代码改进\n- **当前影响**: 无，代码仍能正常运行\n- **未来影响**: 可能在未来的 JavaScript 引擎版本中移除，导致运行时错误\n- **代码质量**: 使用废弃 API 会降低代码可维护性\n\n## 🔧 修复建议\n\n### 方案 A: 使用 `substring` (推荐)\n\n```typescript\n// Airdrop.ts\nconst airdropId = `airdrop_${Date.now()}_${Math.random().toString(36).substring(2, 11)}`;\n\n// Task.ts\nconst taskId = `task_${Date.now()}_${Math.random().toString(36).substring(2, 11)}`;\n```\n\n**注意**: `substring(start, end)` 的第二个参数是结束位置（不包含），所以 `substring(2, 11)` 会提取从索引 2 到 10 的字符（共 9 个字符）\n\n### 方案 B: 使用 `slice` (也可以)\n\n```typescript\n// Airdrop.ts\nconst airdropId = `airdrop_${Date.now()}_${Math.random().toString(36).slice(2, 11)}`;\n\n// Task.ts\nconst taskId = `task_${Date.now()}_${Math.random().toString(36).slice(2, 11)}`;\n```\n\n**注意**: `slice(start, end)` 的用法与 `substring` 类似，也支持负数索引\n\n## 📊 对比\n\n| 方法 | 状态 | 推荐度 | 备注 |\n|------|------|--------|------|\n| `substr(start, length)` | ❌ 已废弃 | 不推荐 | 第二个参数是长度 |\n| `substring(start, end)` | ✅ 标准 | 推荐 | 第二个参数是结束位置 |\n| `slice(start, end)` | ✅ 标准 | 推荐 | 支持负数索引 |\n\n## 🧪 测试建议\n\n修复后需要验证生成的 ID 格式正确：\n```typescript\nconst randomStr = Math.random().toString(36);\nconsole.log(randomStr.substr(2, 9));    // 旧方法\nconsole.log(randomStr.substring(2, 11)); // 新方法\n// 两者应该产生相同的结果\n```\n\n## 📊 优先级\n\n🟡 **P1 - 代码改进**\n\n虽然不是紧急问题，但建议尽快修复以提高代码质量和未来兼容性。可以在下次代码维护时一并处理。\n\n## 🔍 其他发现\n\n建议全局搜索项目中所有使用 `substr` 的地方并一并修复：\n```bash\ngrep -r \"\\.substr(\" src/\n```",
+      "closed_by": null,
+      "reactions": {
+        "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/133/reactions",
+        "total_count": 0,
+        "+1": 0,
+        "-1": 0,
+        "laugh": 0,
+        "hooray": 0,
+        "confused": 0,
+        "heart": 0,
+        "rocket": 0,
+        "eyes": 0
+      },
+      "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/133/timeline",
+      "performed_via_github_app": null,
+      "state_reason": null
+    },
+    {
+      "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/132",
+      "repository_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol",
+      "labels_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/132/labels{/name}",
+      "comments_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/132/comments",
+      "events_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/132/events",
+      "html_url": "https://github.com/dyyz1993/coin-exchange-protocol/issues/132",
+      "id": 4006544808,
+      "node_id": "I_kwDORa8Ecs7uzwWo",
+      "number": 132,
+      "title": "【P0严重Bug】任务控制器参数验证缺失和服务接口不匹配",
+      "user": {
+        "login": "dyyz1993",
+        "id": 17736821,
+        "node_id": "MDQ6VXNlcjE3NzM2ODIx",
+        "avatar_url": "https://avatars.githubusercontent.com/u/17736821?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/dyyz1993",
+        "html_url": "https://github.com/dyyz1993",
+        "followers_url": "https://api.github.com/users/dyyz1993/followers",
+        "following_url": "https://api.github.com/users/dyyz1993/following{/other_user}",
+        "gists_url": "https://api.github.com/users/dyyz1993/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/dyyz1993/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/dyyz1993/subscriptions",
+        "organizations_url": "https://api.github.com/users/dyyz1993/orgs",
+        "repos_url": "https://api.github.com/users/dyyz1993/repos",
+        "events_url": "https://api.github.com/users/dyyz1993/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/dyyz1993/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "labels": [
+        {
+          "id": 10311284263,
+          "node_id": "LA_kwDORa8Ecs8AAAACZpm2Jw",
+          "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/labels/bug",
+          "name": "bug",
+          "color": "d73a4a",
+          "default": true,
+          "description": "Something isn't working"
+        },
+        {
+          "id": 10316699957,
+          "node_id": "LA_kwDORa8Ecs8AAAACZuxZNQ",
+          "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/labels/%E9%9C%80%E8%A6%81%E7%AB%8B%E5%8D%B3%E4%BF%AE%E5%A4%8D",
+          "name": "需要立即修复",
+          "color": "ededed",
+          "default": false,
+          "description": null
+        },
+        {
+          "id": 10317442818,
+          "node_id": "LA_kwDORa8Ecs8AAAACZvevAg",
+          "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/labels/P0-%E4%B8%A5%E9%87%8D",
+          "name": "P0-严重",
+          "color": "ededed",
+          "default": false,
+          "description": null
+        },
+        {
+          "id": 10317442872,
+          "node_id": "LA_kwDORa8Ecs8AAAACZvevOA",
+          "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/labels/%E4%BB%BB%E5%8A%A1%E6%A8%A1%E5%9D%97",
+          "name": "任务模块",
+          "color": "ededed",
+          "default": false,
+          "description": null
+        },
+        {
+          "id": 10317442873,
+          "node_id": "LA_kwDORa8Ecs8AAAACZvevOQ",
+          "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/labels/%E5%8F%82%E6%95%B0%E9%AA%8C%E8%AF%81",
+          "name": "参数验证",
+          "color": "ededed",
+          "default": false,
+          "description": null
+        }
+      ],
+      "state": "open",
+      "locked": false,
+      "assignees": [],
+      "milestone": null,
+      "comments": 2,
+      "created_at": "2026-03-01T07:21:32Z",
+      "updated_at": "2026-03-01T07:23:49Z",
+      "closed_at": null,
+      "assignee": null,
+      "author_association": "OWNER",
+      "active_lock_reason": null,
+      "sub_issues_summary": {
+        "total": 0,
+        "completed": 0,
+        "percent_completed": 0
+      },
+      "issue_dependencies_summary": {
+        "blocked_by": 0,
+        "total_blocked_by": 0,
+        "blocking": 0,
+        "total_blocking": 0
+      },
+      "body": "## 🐛 Bug 描述\n\n任务控制器 (`task.controller.ts`) 存在参数验证缺失和服务接口不匹配的问题，会导致运行时错误。\n\n## 📍 问题位置\n\n**文件**: `src/controllers/task.controller.ts` 和 `src/services/task.service.ts`\n**优先级**: 🔴 P0 - 严重Bug\n\n## ❌ 问题详情\n\n### 1. **`createTask` 方法允许 undefined 参数**\n\n**控制器代码** (第 17-27 行):\n```typescript\nasync createTask(params: any): Promise<ApiResponse> {\n  try {\n    const { title, description, reward, type, maxCompletions, startTime, endTime } = params;\n\n    if (!title || !reward) {\n      return { success: false, error: '缺少必要参数' };\n    }\n\n    return taskService.createTask({\n      title,\n      description: description || '',\n      reward: Number(reward),\n      type: type || 'daily',  // ❌ 服务不接受 type 参数\n      maxCompletions: maxCompletions || 0,\n      startTime: startTime ? new Date(startTime) : new Date(),\n      endTime: endTime ? new Date(endTime) : undefined  // ❌ 可能传递 undefined\n    });\n  } catch (error) {\n    // ...\n  }\n}\n```\n\n**服务层期望** (`task.service.ts` 第 11-17 行):\n```typescript\nasync createTask(params: {\n  title: string;\n  description: string;\n  reward: number;\n  maxCompletions: number;\n  startTime: Date;\n  endTime: Date;  // ❌ 必填，不能是 undefined\n}): Promise<{...}>\n```\n\n**问题**:\n1. **`endTime` 可能是 `undefined`**: 如果调用方不提供 `endTime`，控制器会传递 `undefined`，但服务层期望必填的 `Date` 类型\n2. **`type` 参数多余**: 控制器传递了 `type` 参数，但服务层根本不接受这个参数\n3. **缺少验证**: 没有验证 `startTime < endTime`\n\n**结果**: \n- 如果不提供 `endTime`，服务层会收到 `undefined`，可能导致后续时间比较出错\n- `type` 参数会被忽略，但可能造成困惑\n\n---\n\n### 2. **服务层时间验证不完整**\n\n**服务层代码** (`task.service.ts` 第 24-26 行):\n```typescript\n// 验证时间\nif (params.startTime >= params.endTime) {\n  throw new Error('开始时间必须早于结束时间');\n}\n```\n\n**问题**: 如果 `endTime` 是 `undefined`，这个比较会失败或产生意外结果\n\n**结果**: 运行时可能抛出 \"Cannot read property 'getTime' of undefined\" 或比较结果不正确\n\n---\n\n### 3. **最大完成次数验证不足**\n\n**控制器代码**:\n```typescript\nmaxCompletions: maxCompletions || 0,\n```\n\n**服务层验证** (`task.service.ts` 第 33-35 行):\n```typescript\n// 验证最大完成次数\nif (params.maxCompletions <= 0) {\n  throw new Error('最大完成次数必须大于0');\n}\n```\n\n**问题**: \n- 控制器默认值是 `0`，但服务层要求 `> 0`\n- 这会导致使用默认值的请求总是失败\n\n**结果**: 如果不提供 `maxCompletions`，会默认为 `0`，然后被服务层拒绝\n\n---\n\n## 💥 影响\n\n- **严重性**: 🔴 P0 - 会导致任务创建失败\n- **影响范围**: 所有任务创建请求\n- **用户体验**: 用户无法创建任务，或创建的任务参数不符合预期\n\n## 🔧 修复建议\n\n### 修复方案：\n\n**1. 修改控制器，添加完整参数验证**:\n\n```typescript\nasync createTask(params: any): Promise<ApiResponse> {\n  try {\n    const { title, description, reward, maxCompletions, startTime, endTime } = params;\n\n    // 基本参数验证\n    if (!title || !reward) {\n      return { success: false, error: '缺少必要参数' };\n    }\n\n    // 奖励验证\n    const rewardNum = Number(reward);\n    if (isNaN(rewardNum) || rewardNum <= 0) {\n      return { success: false, error: '奖励金额必须大于0' };\n    }\n\n    // 最大完成次数验证\n    const maxCompletionsNum = Number(maxCompletions) || 100; // 默认100次\n    if (maxCompletionsNum <= 0) {\n      return { success: false, error: '最大完成次数必须大于0' };\n    }\n\n    // 时间处理\n    const startTimeDate = startTime ? new Date(startTime) : new Date();\n    let endTimeDate: Date;\n    \n    if (endTime) {\n      endTimeDate = new Date(endTime);\n    } else {\n      // 默认结束时间为开始时间后7天\n      endTimeDate = new Date(startTimeDate.getTime() + 7 * 24 * 60 * 60 * 1000);\n    }\n\n    // 时间验证\n    if (startTimeDate >= endTimeDate) {\n      return { success: false, error: '开始时间必须早于结束时间' };\n    }\n\n    // 移除 type 参数（服务不接受）\n    return taskService.createTask({\n      title,\n      description: description || '',\n      reward: rewardNum,\n      maxCompletions: maxCompletionsNum,\n      startTime: startTimeDate,\n      endTime: endTimeDate\n    });\n  } catch (error) {\n    return { \n      success: false, \n      error: error instanceof Error ? error.message : '创建任务失败' \n    };\n  }\n}\n```\n\n**2. 或者修改服务层，使参数可选并提供默认值**:\n\n```typescript\nasync createTask(params: {\n  title: string;\n  description?: string;\n  reward: number;\n  maxCompletions?: number;\n  startTime?: Date;\n  endTime?: Date;\n}): Promise<{...}> {\n  // 设置默认值\n  const startTime = params.startTime || new Date();\n  const endTime = params.endTime || new Date(startTime.getTime() + 7 * 24 * 60 * 60 * 1000);\n  const maxCompletions = params.maxCompletions || 100;\n  const description = params.description || '';\n\n  // 验证时间\n  if (startTime >= endTime) {\n    throw new Error('开始时间必须早于结束时间');\n  }\n\n  // 验证奖励金额\n  if (params.reward <= 0) {\n    throw new Error('奖励金额必须大于0');\n  }\n\n  // 验证最大完成次数\n  if (maxCompletions <= 0) {\n    throw new Error('最大完成次数必须大于0');\n  }\n\n  const task = taskModel.createTask({\n    title: params.title,\n    description,\n    reward: params.reward,\n    maxCompletions,\n    startTime,\n    endTime\n  });\n\n  return {\n    taskId: task.id,\n    title: task.title,\n    reward: task.reward,\n    status: task.status\n  };\n}\n```\n\n## 🧪 测试建议\n\n修复后需要测试以下场景：\n1. ✅ 创建任务时提供所有参数\n2. ✅ 创建任务时不提供 `endTime`（应使用默认值）\n3. ✅ 创建任务时不提供 `maxCompletions`（应使用默认值）\n4. ✅ 创建任务时 `startTime >= endTime`（应返回错误）\n5. ✅ 创建任务时 `maxCompletions <= 0`（应返回错误）\n6. ✅ 创建任务时 `reward <= 0`（应返回错误）\n\n## 📊 优先级\n\n🔴 **P0 - 立即修复**\n\n这个 Bug 会导致任务创建功能不稳定，影响用户体验。",
+      "closed_by": null,
+      "reactions": {
+        "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/132/reactions",
+        "total_count": 0,
+        "+1": 0,
+        "-1": 0,
+        "laugh": 0,
+        "hooray": 0,
+        "confused": 0,
+        "heart": 0,
+        "rocket": 0,
+        "eyes": 0
+      },
+      "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/132/timeline",
+      "performed_via_github_app": null,
+      "state_reason": null
+    },
+    {
+      "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/131",
+      "repository_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol",
+      "labels_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/131/labels{/name}",
+      "comments_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/131/comments",
+      "events_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/131/events",
+      "html_url": "https://github.com/dyyz1993/coin-exchange-protocol/issues/131",
+      "id": 4006544793,
+      "node_id": "I_kwDORa8Ecs7uzwWZ",
+      "number": 131,
+      "title": "【P0严重Bug】空投控制器-服务层接口不匹配导致运行时崩溃",
+      "user": {
+        "login": "dyyz1993",
+        "id": 17736821,
+        "node_id": "MDQ6VXNlcjE3NzM2ODIx",
+        "avatar_url": "https://avatars.githubusercontent.com/u/17736821?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/dyyz1993",
+        "html_url": "https://github.com/dyyz1993",
+        "followers_url": "https://api.github.com/users/dyyz1993/followers",
+        "following_url": "https://api.github.com/users/dyyz1993/following{/other_user}",
+        "gists_url": "https://api.github.com/users/dyyz1993/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/dyyz1993/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/dyyz1993/subscriptions",
+        "organizations_url": "https://api.github.com/users/dyyz1993/orgs",
+        "repos_url": "https://api.github.com/users/dyyz1993/repos",
+        "events_url": "https://api.github.com/users/dyyz1993/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/dyyz1993/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "labels": [
+        {
+          "id": 10311284263,
+          "node_id": "LA_kwDORa8Ecs8AAAACZpm2Jw",
+          "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/labels/bug",
+          "name": "bug",
+          "color": "d73a4a",
+          "default": true,
+          "description": "Something isn't working"
+        },
+        {
+          "id": 10316699957,
+          "node_id": "LA_kwDORa8Ecs8AAAACZuxZNQ",
+          "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/labels/%E9%9C%80%E8%A6%81%E7%AB%8B%E5%8D%B3%E4%BF%AE%E5%A4%8D",
+          "name": "需要立即修复",
+          "color": "ededed",
+          "default": false,
+          "description": null
+        },
+        {
+          "id": 10317442818,
+          "node_id": "LA_kwDORa8Ecs8AAAACZvevAg",
+          "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/labels/P0-%E4%B8%A5%E9%87%8D",
+          "name": "P0-严重",
+          "color": "ededed",
+          "default": false,
+          "description": null
+        },
+        {
+          "id": 10317442820,
+          "node_id": "LA_kwDORa8Ecs8AAAACZvevBA",
+          "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/labels/%E7%A9%BA%E6%8A%95%E6%A8%A1%E5%9D%97",
+          "name": "空投模块",
+          "color": "ededed",
+          "default": false,
+          "description": null
+        }
+      ],
+      "state": "open",
+      "locked": false,
+      "assignees": [],
+      "milestone": null,
+      "comments": 1,
+      "created_at": "2026-03-01T07:21:31Z",
+      "updated_at": "2026-03-01T07:22:48Z",
+      "closed_at": null,
+      "assignee": null,
+      "author_association": "OWNER",
+      "active_lock_reason": null,
+      "sub_issues_summary": {
+        "total": 0,
+        "completed": 0,
+        "percent_completed": 0
+      },
+      "issue_dependencies_summary": {
+        "blocked_by": 0,
+        "total_blocked_by": 0,
+        "blocking": 0,
+        "total_blocking": 0
+      },
+      "body": "## 🐛 Bug 描述\n\n空投控制器 (`airdrop.controller.ts`) 调用服务层方法时存在严重的接口不匹配问题，会导致运行时崩溃。\n\n## 📍 问题位置\n\n**文件**: `src/controllers/airdrop.controller.ts`\n**优先级**: 🔴 P0 - 严重Bug，会导致运行时崩溃\n\n## ❌ 问题详情\n\n### 1. **`createAirdrop` 方法签名不匹配**\n\n**控制器调用** (第 20-26 行):\n```typescript\nreturn airdropService.createAirdrop(\n  name,\n  description,\n  Number(totalAmount),\n  Number(perUserAmount),\n  new Date(startTime),\n  new Date(endTime)\n);\n```\n\n**服务层期望** (`airdrop.service.ts` 第 13 行):\n```typescript\nasync createAirdrop(params: {\n  name: string;\n  description: string;\n  totalAmount: number;\n  perUserAmount: number;\n  startTime: Date;\n  endTime: Date;\n}): Promise<{...}>\n```\n\n**问题**: 控制器传递 6 个独立参数，但服务期望一个对象参数！\n\n**结果**: 运行时会抛出类型错误或参数 undefined 错误\n\n---\n\n### 2. **方法名不匹配 - `getAirdrop`**\n\n**控制器调用** (第 37 行):\n```typescript\nreturn airdropService.getAirdrop(airdropId);\n```\n\n**服务层实际方法名**:\n```typescript\ngetAirdropDetail(airdropId: string) {...}\n```\n\n**问题**: 服务中没有 `getAirdrop` 方法，只有 `getAirdropDetail`\n\n**结果**: 运行时会抛出 \"airdropService.getAirdrop is not a function\" 错误\n\n---\n\n### 3. **缺少方法 - `getAllAirdrops`**\n\n**控制器调用** (第 47 行):\n```typescript\nasync getAllAirdrops(): Promise<ApiResponse> {\n  return airdropService.getAllAirdrops();\n}\n```\n\n**问题**: 服务层完全没有 `getAllAirdrops` 方法\n\n**结果**: 运行时会抛出 \"airdropService.getAllAirdrops is not a function\" 错误\n\n---\n\n### 4. **缺少方法 - `getActiveAirdrops`**\n\n**控制器调用** (第 55 行):\n```typescript\nasync getActiveAirdrops(): Promise<ApiResponse> {\n  return airdropService.getActiveAirdrops();\n}\n```\n\n**问题**: 服务层完全没有 `getActiveAirdrops` 方法（虽然模型层有）\n\n**结果**: 运行时会抛出 \"airdropService.getActiveAirdrops is not a function\" 错误\n\n---\n\n### 5. **方法名不匹配 - `activateAirdrop`**\n\n**控制器调用** (第 66 行):\n```typescript\nreturn airdropService.activateAirdrop(airdropId);\n```\n\n**服务层实际方法名**:\n```typescript\nasync startAirdrop(airdropId: string) {...}\n```\n\n**问题**: 服务中没有 `activateAirdrop` 方法，只有 `startAirdrop`\n\n**结果**: 运行时会抛出 \"airdropService.activateAirdrop is not a function\" 错误\n\n---\n\n### 6. **缺少方法 - `canUserClaim`**\n\n**控制器调用** (第 100 行):\n```typescript\nreturn airdropService.canUserClaim(airdropId, userId);\n```\n\n**问题**: 服务层完全没有 `canUserClaim` 方法\n\n**结果**: 运行时会抛出 \"airdropService.canUserClaim is not a function\" 错误\n\n---\n\n### 7. **方法名不匹配 - `getUserClaims`**\n\n**控制器调用** (第 115 行):\n```typescript\nreturn airdropService.getUserClaims(userId);\n```\n\n**服务层实际方法名**:\n```typescript\ngetUserClaimHistory(userId: string) {...}\n```\n\n**问题**: 服务中没有 `getUserClaims` 方法，只有 `getUserClaimHistory`\n\n**结果**: 运行时会抛出 \"airdropService.getUserClaims is not a function\" 错误\n\n---\n\n## 💥 影响\n\n- **严重性**: 🔴 P0 - 会导致所有空投相关 API 端点运行时崩溃\n- **影响范围**: 所有空投功能的 HTTP 请求都会失败\n- **用户体验**: 用户无法使用任何空投功能\n\n## 🔧 修复建议\n\n需要统一控制器和服务层的接口，有两种方案：\n\n### 方案 A: 修改控制器（推荐）\n修改控制器代码，使其调用正确的服务方法，例如：\n```typescript\n// 修改 createAirdrop\nasync createAirdrop(params: any): Promise<ApiResponse> {\n  try {\n    const { name, description, totalAmount, perUserAmount, startTime, endTime } = params;\n    return airdropService.createAirdrop({\n      name,\n      description,\n      totalAmount: Number(totalAmount),\n      perUserAmount: Number(perUserAmount),\n      startTime: new Date(startTime),\n      endTime: new Date(endTime)\n    });\n  } catch (error) {\n    return {\n      success: false,\n      error: error instanceof Error ? error.message : '创建空投失败'\n    };\n  }\n}\n\n// 修改 getAirdrop\nasync getAirdrop(params: any): Promise<ApiResponse> {\n  try {\n    const { airdropId } = params;\n    if (!airdropId) {\n      return { success: false, error: '缺少空投ID' };\n    }\n    return airdropService.getAirdropDetail(airdropId); // 使用正确的方法名\n  } catch (error) {\n    return { \n      success: false, \n      error: error instanceof Error ? error.message : '查询空投失败' \n    };\n  }\n}\n```\n\n### 方案 B: 修改服务层\n在服务层添加缺失的方法作为别名或实现：\n```typescript\n// 在 AirdropService 中添加\ngetAirdrop(airdropId: string) {\n  return this.getAirdropDetail(airdropId);\n}\n\ngetAllAirdrops() {\n  return this.airdropModel.getAllAirdrops();\n}\n\ngetActiveAirdrops() {\n  return this.airdropModel.getActiveAirdrops();\n}\n\nactivateAirdrop(airdropId: string) {\n  return this.startAirdrop(airdropId);\n}\n\ncanUserClaim(airdropId: string, userId: string) {\n  // 实现检查逻辑\n}\n\ngetUserClaims(userId: string) {\n  return this.getUserClaimHistory(userId);\n}\n```\n\n## 🧪 测试建议\n\n修复后需要测试所有空投相关的 API 端点：\n- POST /api/airdrop/create\n- GET /api/airdrop/:airdropId\n- GET /api/airdrop/list\n- GET /api/airdrop/active\n- POST /api/airdrop/activate/:airdropId\n- POST /api/airdrop/claim\n- GET /api/airdrop/can-claim/:airdropId/:userId\n- GET /api/airdrop/claims/:userId\n\n## 📊 优先级\n\n🔴 **P0 - 立即修复**\n\n这是一个阻塞性的严重 Bug，会导致整个空投模块无法使用。",
+      "closed_by": null,
+      "reactions": {
+        "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/131/reactions",
+        "total_count": 0,
+        "+1": 0,
+        "-1": 0,
+        "laugh": 0,
+        "hooray": 0,
+        "confused": 0,
+        "heart": 0,
+        "rocket": 0,
+        "eyes": 0
+      },
+      "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/131/timeline",
+      "performed_via_github_app": null,
+      "state_reason": null
+    },
+    {
+      "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/129",
+      "repository_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol",
+      "labels_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/129/labels{/name}",
+      "comments_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/129/comments",
+      "events_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/129/events",
+      "html_url": "https://github.com/dyyz1993/coin-exchange-protocol/issues/129",
+      "id": 4006544752,
+      "node_id": "I_kwDORa8Ecs7uzwVw",
+      "number": 129,
+      "title": "【P0严重Bug】任务控制器参数验证缺失和服务接口不匹配",
+      "user": {
+        "login": "dyyz1993",
+        "id": 17736821,
+        "node_id": "MDQ6VXNlcjE3NzM2ODIx",
+        "avatar_url": "https://avatars.githubusercontent.com/u/17736821?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/dyyz1993",
+        "html_url": "https://github.com/dyyz1993",
+        "followers_url": "https://api.github.com/users/dyyz1993/followers",
+        "following_url": "https://api.github.com/users/dyyz1993/following{/other_user}",
+        "gists_url": "https://api.github.com/users/dyyz1993/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/dyyz1993/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/dyyz1993/subscriptions",
+        "organizations_url": "https://api.github.com/users/dyyz1993/orgs",
+        "repos_url": "https://api.github.com/users/dyyz1993/repos",
+        "events_url": "https://api.github.com/users/dyyz1993/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/dyyz1993/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "labels": [
+        {
+          "id": 10311284263,
+          "node_id": "LA_kwDORa8Ecs8AAAACZpm2Jw",
+          "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/labels/bug",
+          "name": "bug",
+          "color": "d73a4a",
+          "default": true,
+          "description": "Something isn't working"
+        },
+        {
+          "id": 10316699957,
+          "node_id": "LA_kwDORa8Ecs8AAAACZuxZNQ",
+          "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/labels/%E9%9C%80%E8%A6%81%E7%AB%8B%E5%8D%B3%E4%BF%AE%E5%A4%8D",
+          "name": "需要立即修复",
+          "color": "ededed",
+          "default": false,
+          "description": null
+        },
+        {
+          "id": 10317442818,
+          "node_id": "LA_kwDORa8Ecs8AAAACZvevAg",
+          "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/labels/P0-%E4%B8%A5%E9%87%8D",
+          "name": "P0-严重",
+          "color": "ededed",
+          "default": false,
+          "description": null
+        },
+        {
+          "id": 10317442872,
+          "node_id": "LA_kwDORa8Ecs8AAAACZvevOA",
+          "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/labels/%E4%BB%BB%E5%8A%A1%E6%A8%A1%E5%9D%97",
+          "name": "任务模块",
+          "color": "ededed",
+          "default": false,
+          "description": null
+        },
+        {
+          "id": 10317442873,
+          "node_id": "LA_kwDORa8Ecs8AAAACZvevOQ",
+          "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/labels/%E5%8F%82%E6%95%B0%E9%AA%8C%E8%AF%81",
+          "name": "参数验证",
+          "color": "ededed",
+          "default": false,
+          "description": null
+        }
+      ],
+      "state": "open",
+      "locked": false,
+      "assignees": [],
+      "milestone": null,
+      "comments": 2,
+      "created_at": "2026-03-01T07:21:29Z",
+      "updated_at": "2026-03-01T07:23:49Z",
+      "closed_at": null,
+      "assignee": null,
+      "author_association": "OWNER",
+      "active_lock_reason": null,
+      "sub_issues_summary": {
+        "total": 0,
+        "completed": 0,
+        "percent_completed": 0
+      },
+      "issue_dependencies_summary": {
+        "blocked_by": 0,
+        "total_blocked_by": 0,
+        "blocking": 0,
+        "total_blocking": 0
+      },
+      "body": "## 🐛 Bug 描述\n\n任务控制器 (`task.controller.ts`) 存在参数验证缺失和服务接口不匹配的问题，会导致运行时错误。\n\n## 📍 问题位置\n\n**文件**: `src/controllers/task.controller.ts` 和 `src/services/task.service.ts`\n**优先级**: 🔴 P0 - 严重Bug\n\n## ❌ 问题详情\n\n### 1. **`createTask` 方法允许 undefined 参数**\n\n**控制器代码** (第 17-27 行):\n```typescript\nasync createTask(params: any): Promise<ApiResponse> {\n  try {\n    const { title, description, reward, type, maxCompletions, startTime, endTime } = params;\n\n    if (!title || !reward) {\n      return { success: false, error: '缺少必要参数' };\n    }\n\n    return taskService.createTask({\n      title,\n      description: description || '',\n      reward: Number(reward),\n      type: type || 'daily',  // ❌ 服务不接受 type 参数\n      maxCompletions: maxCompletions || 0,\n      startTime: startTime ? new Date(startTime) : new Date(),\n      endTime: endTime ? new Date(endTime) : undefined  // ❌ 可能传递 undefined\n    });\n  } catch (error) {\n    // ...\n  }\n}\n```\n\n**服务层期望** (`task.service.ts` 第 11-17 行):\n```typescript\nasync createTask(params: {\n  title: string;\n  description: string;\n  reward: number;\n  maxCompletions: number;\n  startTime: Date;\n  endTime: Date;  // ❌ 必填，不能是 undefined\n}): Promise<{...}>\n```\n\n**问题**:\n1. **`endTime` 可能是 `undefined`**: 如果调用方不提供 `endTime`，控制器会传递 `undefined`，但服务层期望必填的 `Date` 类型\n2. **`type` 参数多余**: 控制器传递了 `type` 参数，但服务层根本不接受这个参数\n3. **缺少验证**: 没有验证 `startTime < endTime`\n\n**结果**: \n- 如果不提供 `endTime`，服务层会收到 `undefined`，可能导致后续时间比较出错\n- `type` 参数会被忽略，但可能造成困惑\n\n---\n\n### 2. **服务层时间验证不完整**\n\n**服务层代码** (`task.service.ts` 第 24-26 行):\n```typescript\n// 验证时间\nif (params.startTime >= params.endTime) {\n  throw new Error('开始时间必须早于结束时间');\n}\n```\n\n**问题**: 如果 `endTime` 是 `undefined`，这个比较会失败或产生意外结果\n\n**结果**: 运行时可能抛出 \"Cannot read property 'getTime' of undefined\" 或比较结果不正确\n\n---\n\n### 3. **最大完成次数验证不足**\n\n**控制器代码**:\n```typescript\nmaxCompletions: maxCompletions || 0,\n```\n\n**服务层验证** (`task.service.ts` 第 33-35 行):\n```typescript\n// 验证最大完成次数\nif (params.maxCompletions <= 0) {\n  throw new Error('最大完成次数必须大于0');\n}\n```\n\n**问题**: \n- 控制器默认值是 `0`，但服务层要求 `> 0`\n- 这会导致使用默认值的请求总是失败\n\n**结果**: 如果不提供 `maxCompletions`，会默认为 `0`，然后被服务层拒绝\n\n---\n\n## 💥 影响\n\n- **严重性**: 🔴 P0 - 会导致任务创建失败\n- **影响范围**: 所有任务创建请求\n- **用户体验**: 用户无法创建任务，或创建的任务参数不符合预期\n\n## 🔧 修复建议\n\n### 修复方案：\n\n**1. 修改控制器，添加完整参数验证**:\n\n```typescript\nasync createTask(params: any): Promise<ApiResponse> {\n  try {\n    const { title, description, reward, maxCompletions, startTime, endTime } = params;\n\n    // 基本参数验证\n    if (!title || !reward) {\n      return { success: false, error: '缺少必要参数' };\n    }\n\n    // 奖励验证\n    const rewardNum = Number(reward);\n    if (isNaN(rewardNum) || rewardNum <= 0) {\n      return { success: false, error: '奖励金额必须大于0' };\n    }\n\n    // 最大完成次数验证\n    const maxCompletionsNum = Number(maxCompletions) || 100; // 默认100次\n    if (maxCompletionsNum <= 0) {\n      return { success: false, error: '最大完成次数必须大于0' };\n    }\n\n    // 时间处理\n    const startTimeDate = startTime ? new Date(startTime) : new Date();\n    let endTimeDate: Date;\n    \n    if (endTime) {\n      endTimeDate = new Date(endTime);\n    } else {\n      // 默认结束时间为开始时间后7天\n      endTimeDate = new Date(startTimeDate.getTime() + 7 * 24 * 60 * 60 * 1000);\n    }\n\n    // 时间验证\n    if (startTimeDate >= endTimeDate) {\n      return { success: false, error: '开始时间必须早于结束时间' };\n    }\n\n    // 移除 type 参数（服务不接受）\n    return taskService.createTask({\n      title,\n      description: description || '',\n      reward: rewardNum,\n      maxCompletions: maxCompletionsNum,\n      startTime: startTimeDate,\n      endTime: endTimeDate\n    });\n  } catch (error) {\n    return { \n      success: false, \n      error: error instanceof Error ? error.message : '创建任务失败' \n    };\n  }\n}\n```\n\n**2. 或者修改服务层，使参数可选并提供默认值**:\n\n```typescript\nasync createTask(params: {\n  title: string;\n  description?: string;\n  reward: number;\n  maxCompletions?: number;\n  startTime?: Date;\n  endTime?: Date;\n}): Promise<{...}> {\n  // 设置默认值\n  const startTime = params.startTime || new Date();\n  const endTime = params.endTime || new Date(startTime.getTime() + 7 * 24 * 60 * 60 * 1000);\n  const maxCompletions = params.maxCompletions || 100;\n  const description = params.description || '';\n\n  // 验证时间\n  if (startTime >= endTime) {\n    throw new Error('开始时间必须早于结束时间');\n  }\n\n  // 验证奖励金额\n  if (params.reward <= 0) {\n    throw new Error('奖励金额必须大于0');\n  }\n\n  // 验证最大完成次数\n  if (maxCompletions <= 0) {\n    throw new Error('最大完成次数必须大于0');\n  }\n\n  const task = taskModel.createTask({\n    title: params.title,\n    description,\n    reward: params.reward,\n    maxCompletions,\n    startTime,\n    endTime\n  });\n\n  return {\n    taskId: task.id,\n    title: task.title,\n    reward: task.reward,\n    status: task.status\n  };\n}\n```\n\n## 🧪 测试建议\n\n修复后需要测试以下场景：\n1. ✅ 创建任务时提供所有参数\n2. ✅ 创建任务时不提供 `endTime`（应使用默认值）\n3. ✅ 创建任务时不提供 `maxCompletions`（应使用默认值）\n4. ✅ 创建任务时 `startTime >= endTime`（应返回错误）\n5. ✅ 创建任务时 `maxCompletions <= 0`（应返回错误）\n6. ✅ 创建任务时 `reward <= 0`（应返回错误）\n\n## 📊 优先级\n\n🔴 **P0 - 立即修复**\n\n这个 Bug 会导致任务创建功能不稳定，影响用户体验。",
+      "closed_by": null,
+      "reactions": {
+        "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/129/reactions",
+        "total_count": 0,
+        "+1": 0,
+        "-1": 0,
+        "laugh": 0,
+        "hooray": 0,
+        "confused": 0,
+        "heart": 0,
+        "rocket": 0,
+        "eyes": 0
+      },
+      "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/129/timeline",
+      "performed_via_github_app": null,
+      "state_reason": null
+    },
+    {
+      "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/128",
+      "repository_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol",
+      "labels_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/128/labels{/name}",
+      "comments_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/128/comments",
+      "events_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/128/events",
+      "html_url": "https://github.com/dyyz1993/coin-exchange-protocol/issues/128",
+      "id": 4006544735,
+      "node_id": "I_kwDORa8Ecs7uzwVf",
+      "number": 128,
+      "title": "【P0严重Bug】空投控制器-服务层接口不匹配导致运行时崩溃",
+      "user": {
+        "login": "dyyz1993",
+        "id": 17736821,
+        "node_id": "MDQ6VXNlcjE3NzM2ODIx",
+        "avatar_url": "https://avatars.githubusercontent.com/u/17736821?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/dyyz1993",
+        "html_url": "https://github.com/dyyz1993",
+        "followers_url": "https://api.github.com/users/dyyz1993/followers",
+        "following_url": "https://api.github.com/users/dyyz1993/following{/other_user}",
+        "gists_url": "https://api.github.com/users/dyyz1993/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/dyyz1993/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/dyyz1993/subscriptions",
+        "organizations_url": "https://api.github.com/users/dyyz1993/orgs",
+        "repos_url": "https://api.github.com/users/dyyz1993/repos",
+        "events_url": "https://api.github.com/users/dyyz1993/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/dyyz1993/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "labels": [
+        {
+          "id": 10311284263,
+          "node_id": "LA_kwDORa8Ecs8AAAACZpm2Jw",
+          "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/labels/bug",
+          "name": "bug",
+          "color": "d73a4a",
+          "default": true,
+          "description": "Something isn't working"
+        },
+        {
+          "id": 10316699957,
+          "node_id": "LA_kwDORa8Ecs8AAAACZuxZNQ",
+          "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/labels/%E9%9C%80%E8%A6%81%E7%AB%8B%E5%8D%B3%E4%BF%AE%E5%A4%8D",
+          "name": "需要立即修复",
+          "color": "ededed",
+          "default": false,
+          "description": null
+        },
+        {
+          "id": 10317442818,
+          "node_id": "LA_kwDORa8Ecs8AAAACZvevAg",
+          "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/labels/P0-%E4%B8%A5%E9%87%8D",
+          "name": "P0-严重",
+          "color": "ededed",
+          "default": false,
+          "description": null
+        },
+        {
+          "id": 10317442820,
+          "node_id": "LA_kwDORa8Ecs8AAAACZvevBA",
+          "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/labels/%E7%A9%BA%E6%8A%95%E6%A8%A1%E5%9D%97",
+          "name": "空投模块",
+          "color": "ededed",
+          "default": false,
+          "description": null
+        }
+      ],
+      "state": "open",
+      "locked": false,
+      "assignees": [],
+      "milestone": null,
+      "comments": 1,
+      "created_at": "2026-03-01T07:21:28Z",
+      "updated_at": "2026-03-01T07:24:18Z",
+      "closed_at": null,
+      "assignee": null,
+      "author_association": "OWNER",
+      "active_lock_reason": null,
+      "sub_issues_summary": {
+        "total": 0,
+        "completed": 0,
+        "percent_completed": 0
+      },
+      "issue_dependencies_summary": {
+        "blocked_by": 0,
+        "total_blocked_by": 0,
+        "blocking": 0,
+        "total_blocking": 0
+      },
+      "body": "## 🐛 Bug 描述\n\n空投控制器 (`airdrop.controller.ts`) 调用服务层方法时存在严重的接口不匹配问题，会导致运行时崩溃。\n\n## 📍 问题位置\n\n**文件**: `src/controllers/airdrop.controller.ts`\n**优先级**: 🔴 P0 - 严重Bug，会导致运行时崩溃\n\n## ❌ 问题详情\n\n### 1. **`createAirdrop` 方法签名不匹配**\n\n**控制器调用** (第 20-26 行):\n```typescript\nreturn airdropService.createAirdrop(\n  name,\n  description,\n  Number(totalAmount),\n  Number(perUserAmount),\n  new Date(startTime),\n  new Date(endTime)\n);\n```\n\n**服务层期望** (`airdrop.service.ts` 第 13 行):\n```typescript\nasync createAirdrop(params: {\n  name: string;\n  description: string;\n  totalAmount: number;\n  perUserAmount: number;\n  startTime: Date;\n  endTime: Date;\n}): Promise<{...}>\n```\n\n**问题**: 控制器传递 6 个独立参数，但服务期望一个对象参数！\n\n**结果**: 运行时会抛出类型错误或参数 undefined 错误\n\n---\n\n### 2. **方法名不匹配 - `getAirdrop`**\n\n**控制器调用** (第 37 行):\n```typescript\nreturn airdropService.getAirdrop(airdropId);\n```\n\n**服务层实际方法名**:\n```typescript\ngetAirdropDetail(airdropId: string) {...}\n```\n\n**问题**: 服务中没有 `getAirdrop` 方法，只有 `getAirdropDetail`\n\n**结果**: 运行时会抛出 \"airdropService.getAirdrop is not a function\" 错误\n\n---\n\n### 3. **缺少方法 - `getAllAirdrops`**\n\n**控制器调用** (第 47 行):\n```typescript\nasync getAllAirdrops(): Promise<ApiResponse> {\n  return airdropService.getAllAirdrops();\n}\n```\n\n**问题**: 服务层完全没有 `getAllAirdrops` 方法\n\n**结果**: 运行时会抛出 \"airdropService.getAllAirdrops is not a function\" 错误\n\n---\n\n### 4. **缺少方法 - `getActiveAirdrops`**\n\n**控制器调用** (第 55 行):\n```typescript\nasync getActiveAirdrops(): Promise<ApiResponse> {\n  return airdropService.getActiveAirdrops();\n}\n```\n\n**问题**: 服务层完全没有 `getActiveAirdrops` 方法（虽然模型层有）\n\n**结果**: 运行时会抛出 \"airdropService.getActiveAirdrops is not a function\" 错误\n\n---\n\n### 5. **方法名不匹配 - `activateAirdrop`**\n\n**控制器调用** (第 66 行):\n```typescript\nreturn airdropService.activateAirdrop(airdropId);\n```\n\n**服务层实际方法名**:\n```typescript\nasync startAirdrop(airdropId: string) {...}\n```\n\n**问题**: 服务中没有 `activateAirdrop` 方法，只有 `startAirdrop`\n\n**结果**: 运行时会抛出 \"airdropService.activateAirdrop is not a function\" 错误\n\n---\n\n### 6. **缺少方法 - `canUserClaim`**\n\n**控制器调用** (第 100 行):\n```typescript\nreturn airdropService.canUserClaim(airdropId, userId);\n```\n\n**问题**: 服务层完全没有 `canUserClaim` 方法\n\n**结果**: 运行时会抛出 \"airdropService.canUserClaim is not a function\" 错误\n\n---\n\n### 7. **方法名不匹配 - `getUserClaims`**\n\n**控制器调用** (第 115 行):\n```typescript\nreturn airdropService.getUserClaims(userId);\n```\n\n**服务层实际方法名**:\n```typescript\ngetUserClaimHistory(userId: string) {...}\n```\n\n**问题**: 服务中没有 `getUserClaims` 方法，只有 `getUserClaimHistory`\n\n**结果**: 运行时会抛出 \"airdropService.getUserClaims is not a function\" 错误\n\n---\n\n## 💥 影响\n\n- **严重性**: 🔴 P0 - 会导致所有空投相关 API 端点运行时崩溃\n- **影响范围**: 所有空投功能的 HTTP 请求都会失败\n- **用户体验**: 用户无法使用任何空投功能\n\n## 🔧 修复建议\n\n需要统一控制器和服务层的接口，有两种方案：\n\n### 方案 A: 修改控制器（推荐）\n修改控制器代码，使其调用正确的服务方法，例如：\n```typescript\n// 修改 createAirdrop\nasync createAirdrop(params: any): Promise<ApiResponse> {\n  try {\n    const { name, description, totalAmount, perUserAmount, startTime, endTime } = params;\n    return airdropService.createAirdrop({\n      name,\n      description,\n      totalAmount: Number(totalAmount),\n      perUserAmount: Number(perUserAmount),\n      startTime: new Date(startTime),\n      endTime: new Date(endTime)\n    });\n  } catch (error) {\n    return {\n      success: false,\n      error: error instanceof Error ? error.message : '创建空投失败'\n    };\n  }\n}\n\n// 修改 getAirdrop\nasync getAirdrop(params: any): Promise<ApiResponse> {\n  try {\n    const { airdropId } = params;\n    if (!airdropId) {\n      return { success: false, error: '缺少空投ID' };\n    }\n    return airdropService.getAirdropDetail(airdropId); // 使用正确的方法名\n  } catch (error) {\n    return { \n      success: false, \n      error: error instanceof Error ? error.message : '查询空投失败' \n    };\n  }\n}\n```\n\n### 方案 B: 修改服务层\n在服务层添加缺失的方法作为别名或实现：\n```typescript\n// 在 AirdropService 中添加\ngetAirdrop(airdropId: string) {\n  return this.getAirdropDetail(airdropId);\n}\n\ngetAllAirdrops() {\n  return this.airdropModel.getAllAirdrops();\n}\n\ngetActiveAirdrops() {\n  return this.airdropModel.getActiveAirdrops();\n}\n\nactivateAirdrop(airdropId: string) {\n  return this.startAirdrop(airdropId);\n}\n\ncanUserClaim(airdropId: string, userId: string) {\n  // 实现检查逻辑\n}\n\ngetUserClaims(userId: string) {\n  return this.getUserClaimHistory(userId);\n}\n```\n\n## 🧪 测试建议\n\n修复后需要测试所有空投相关的 API 端点：\n- POST /api/airdrop/create\n- GET /api/airdrop/:airdropId\n- GET /api/airdrop/list\n- GET /api/airdrop/active\n- POST /api/airdrop/activate/:airdropId\n- POST /api/airdrop/claim\n- GET /api/airdrop/can-claim/:airdropId/:userId\n- GET /api/airdrop/claims/:userId\n\n## 📊 优先级\n\n🔴 **P0 - 立即修复**\n\n这是一个阻塞性的严重 Bug，会导致整个空投模块无法使用。",
+      "closed_by": null,
+      "reactions": {
+        "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/128/reactions",
+        "total_count": 0,
+        "+1": 0,
+        "-1": 0,
+        "laugh": 0,
+        "hooray": 0,
+        "confused": 0,
+        "heart": 0,
+        "rocket": 0,
+        "eyes": 0
+      },
+      "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/128/timeline",
+      "performed_via_github_app": null,
+      "state_reason": null
+    },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/121",
       "repository_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol",
@@ -4117,8 +4691,7 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/121/timeline",
       "performed_via_github_app": null,
-      "state_reason": null,
-      "pinned_comment": null
+      "state_reason": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/120",
@@ -4228,8 +4801,7 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/120/timeline",
       "performed_via_github_app": null,
-      "state_reason": null,
-      "pinned_comment": null
+      "state_reason": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/112",
@@ -4339,8 +4911,7 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/112/timeline",
       "performed_via_github_app": null,
-      "state_reason": null,
-      "pinned_comment": null
+      "state_reason": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/108",
@@ -4450,8 +5021,7 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/108/timeline",
       "performed_via_github_app": null,
-      "state_reason": null,
-      "pinned_comment": null
+      "state_reason": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/107",
@@ -4552,8 +5122,7 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/107/timeline",
       "performed_via_github_app": null,
-      "state_reason": null,
-      "pinned_comment": null
+      "state_reason": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/106",
@@ -4663,8 +5232,7 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/106/timeline",
       "performed_via_github_app": null,
-      "state_reason": null,
-      "pinned_comment": null
+      "state_reason": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/105",
@@ -4774,8 +5342,7 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/105/timeline",
       "performed_via_github_app": null,
-      "state_reason": null,
-      "pinned_comment": null
+      "state_reason": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/104",
@@ -4885,8 +5452,7 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/104/timeline",
       "performed_via_github_app": null,
-      "state_reason": null,
-      "pinned_comment": null
+      "state_reason": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/103",
@@ -4987,8 +5553,7 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/103/timeline",
       "performed_via_github_app": null,
-      "state_reason": null,
-      "pinned_comment": null
+      "state_reason": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/102",
@@ -5098,8 +5663,7 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/102/timeline",
       "performed_via_github_app": null,
-      "state_reason": null,
-      "pinned_comment": null
+      "state_reason": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/97",
@@ -5200,8 +5764,7 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/97/timeline",
       "performed_via_github_app": null,
-      "state_reason": null,
-      "pinned_comment": null
+      "state_reason": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/96",
@@ -5302,8 +5865,7 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/96/timeline",
       "performed_via_github_app": null,
-      "state_reason": null,
-      "pinned_comment": null
+      "state_reason": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/95",
@@ -5413,8 +5975,7 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/95/timeline",
       "performed_via_github_app": null,
-      "state_reason": null,
-      "pinned_comment": null
+      "state_reason": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/94",
@@ -5515,8 +6076,7 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/94/timeline",
       "performed_via_github_app": null,
-      "state_reason": null,
-      "pinned_comment": null
+      "state_reason": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/93",
@@ -5617,8 +6177,7 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/93/timeline",
       "performed_via_github_app": null,
-      "state_reason": null,
-      "pinned_comment": null
+      "state_reason": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/85",
@@ -5710,8 +6269,7 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/85/timeline",
       "performed_via_github_app": null,
-      "state_reason": null,
-      "pinned_comment": null
+      "state_reason": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/83",
@@ -5812,8 +6370,7 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/83/timeline",
       "performed_via_github_app": null,
-      "state_reason": null,
-      "pinned_comment": null
+      "state_reason": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/77",
@@ -5914,8 +6471,7 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/77/timeline",
       "performed_via_github_app": null,
-      "state_reason": null,
-      "pinned_comment": null
+      "state_reason": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/76",
@@ -6016,8 +6572,7 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/76/timeline",
       "performed_via_github_app": null,
-      "state_reason": null,
-      "pinned_comment": null
+      "state_reason": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/75",
@@ -6118,8 +6673,7 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/75/timeline",
       "performed_via_github_app": null,
-      "state_reason": null,
-      "pinned_comment": null
+      "state_reason": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/74",
@@ -6220,8 +6774,7 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/74/timeline",
       "performed_via_github_app": null,
-      "state_reason": null,
-      "pinned_comment": null
+      "state_reason": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/73",
@@ -6322,8 +6875,7 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/73/timeline",
       "performed_via_github_app": null,
-      "state_reason": null,
-      "pinned_comment": null
+      "state_reason": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/72",
@@ -6424,8 +6976,7 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/72/timeline",
       "performed_via_github_app": null,
-      "state_reason": null,
-      "pinned_comment": null
+      "state_reason": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/71",
@@ -6526,8 +7077,7 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/71/timeline",
       "performed_via_github_app": null,
-      "state_reason": null,
-      "pinned_comment": null
+      "state_reason": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/70",
@@ -6628,8 +7178,7 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/70/timeline",
       "performed_via_github_app": null,
-      "state_reason": null,
-      "pinned_comment": null
+      "state_reason": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/69",
@@ -6739,8 +7288,7 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/69/timeline",
       "performed_via_github_app": null,
-      "state_reason": null,
-      "pinned_comment": null
+      "state_reason": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/68",
@@ -6850,8 +7398,7 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/68/timeline",
       "performed_via_github_app": null,
-      "state_reason": null,
-      "pinned_comment": null
+      "state_reason": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/67",
@@ -6961,8 +7508,7 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/67/timeline",
       "performed_via_github_app": null,
-      "state_reason": null,
-      "pinned_comment": null
+      "state_reason": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/66",
@@ -7072,8 +7618,7 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/66/timeline",
       "performed_via_github_app": null,
-      "state_reason": null,
-      "pinned_comment": null
+      "state_reason": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/65",
@@ -7183,8 +7728,7 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/65/timeline",
       "performed_via_github_app": null,
-      "state_reason": null,
-      "pinned_comment": null
+      "state_reason": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/64",
@@ -7294,8 +7838,7 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/64/timeline",
       "performed_via_github_app": null,
-      "state_reason": null,
-      "pinned_comment": null
+      "state_reason": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/63",
@@ -7405,8 +7948,7 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/63/timeline",
       "performed_via_github_app": null,
-      "state_reason": null,
-      "pinned_comment": null
+      "state_reason": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/62",
@@ -7516,8 +8058,7 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/62/timeline",
       "performed_via_github_app": null,
-      "state_reason": null,
-      "pinned_comment": null
+      "state_reason": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/61",
@@ -7627,8 +8168,7 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/61/timeline",
       "performed_via_github_app": null,
-      "state_reason": null,
-      "pinned_comment": null
+      "state_reason": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/60",
@@ -7738,8 +8278,7 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/60/timeline",
       "performed_via_github_app": null,
-      "state_reason": null,
-      "pinned_comment": null
+      "state_reason": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/50",
@@ -7849,8 +8388,7 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/50/timeline",
       "performed_via_github_app": null,
-      "state_reason": null,
-      "pinned_comment": null
+      "state_reason": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/49",
@@ -7960,8 +8498,7 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/49/timeline",
       "performed_via_github_app": null,
-      "state_reason": null,
-      "pinned_comment": null
+      "state_reason": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/45",
@@ -8062,8 +8599,7 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/45/timeline",
       "performed_via_github_app": null,
-      "state_reason": null,
-      "pinned_comment": null
+      "state_reason": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/39",
@@ -8173,8 +8709,7 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/39/timeline",
       "performed_via_github_app": null,
-      "state_reason": null,
-      "pinned_comment": null
+      "state_reason": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/38",
@@ -8284,8 +8819,7 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/38/timeline",
       "performed_via_github_app": null,
-      "state_reason": null,
-      "pinned_comment": null
+      "state_reason": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/37",
@@ -8395,8 +8929,7 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/37/timeline",
       "performed_via_github_app": null,
-      "state_reason": null,
-      "pinned_comment": null
+      "state_reason": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/36",
@@ -8506,8 +9039,7 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/36/timeline",
       "performed_via_github_app": null,
-      "state_reason": null,
-      "pinned_comment": null
+      "state_reason": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/35",
@@ -8617,8 +9149,7 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/35/timeline",
       "performed_via_github_app": null,
-      "state_reason": null,
-      "pinned_comment": null
+      "state_reason": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/34",
@@ -8728,8 +9259,7 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/34/timeline",
       "performed_via_github_app": null,
-      "state_reason": null,
-      "pinned_comment": null
+      "state_reason": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/33",
@@ -8839,8 +9369,7 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/33/timeline",
       "performed_via_github_app": null,
-      "state_reason": null,
-      "pinned_comment": null
+      "state_reason": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/32",
@@ -8950,8 +9479,7 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/32/timeline",
       "performed_via_github_app": null,
-      "state_reason": null,
-      "pinned_comment": null
+      "state_reason": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/29",
@@ -9052,8 +9580,7 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/29/timeline",
       "performed_via_github_app": null,
-      "state_reason": null,
-      "pinned_comment": null
+      "state_reason": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/28",
@@ -9154,8 +9681,7 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/28/timeline",
       "performed_via_github_app": null,
-      "state_reason": null,
-      "pinned_comment": null
+      "state_reason": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/20",
@@ -9274,8 +9800,7 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/20/timeline",
       "performed_via_github_app": null,
-      "state_reason": null,
-      "pinned_comment": null
+      "state_reason": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/19",
@@ -9394,8 +9919,7 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/19/timeline",
       "performed_via_github_app": null,
-      "state_reason": null,
-      "pinned_comment": null
+      "state_reason": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/10",
@@ -9496,8 +10020,7 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/10/timeline",
       "performed_via_github_app": null,
-      "state_reason": null,
-      "pinned_comment": null
+      "state_reason": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/5",
@@ -9589,8 +10112,7 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/5/timeline",
       "performed_via_github_app": null,
-      "state_reason": null,
-      "pinned_comment": null
+      "state_reason": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/3",
@@ -9682,66 +10204,10 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/3/timeline",
       "performed_via_github_app": null,
-      "state_reason": null,
-      "pinned_comment": null
+      "state_reason": null
     }
   ],
   "tasks": [
-    {
-      "id": "task-1772337481170",
-      "issueNumber": 97,
-      "title": "【P1中等Bug】分析空指针风险\n\n**Issue**: #97/#92（重复）\n**问题**: 多处使用非空断言 `!` 但未进行空值检查\n**位置**: `src/services/account",
-      "description": "【P1中等Bug】分析空指针风险\n\n**Issue**: #97/#92（重复）\n**问题**: 多处使用非空断言 `!` 但未进行空值检查\n**位置**: `src/services/account.service.ts`\n**问题代码**:\n- 第 94、108、122、132、147-148 行\n\n**任务**:\n1. 分析所有使用 `!` 的位置\n2. 评估运行时风险\n3. 提供安全的修复方案\n\n**优先级**: 🟡 P1 - 可能导致运行时错误",
-      "assignedTo": "qa-engineer",
-      "status": "pending",
-      "createdAt": "2026-03-01T03:58:01.170Z",
-      "updatedAt": "2026-03-01T03:58:01.170Z",
-      "iterations": 0
-    },
-    {
-      "id": "task-1772337481172",
-      "issueNumber": 96,
-      "title": "【P1中等Bug】修复FreezeService定时器未初始化\n\n**Issue**: #96/#91（重复）\n**问题**: autoUnfreezeTimer 需要手动调用 initialize(",
-      "description": "【P1中等Bug】修复FreezeService定时器未初始化\n\n**Issue**: #96/#91（重复）\n**问题**: autoUnfreezeTimer 需要手动调用 initialize()，但从未被调用\n**位置**: `src/services/freeze.service.ts`\n\n**修复方案**:\n1. 在构造函数中自动初始化\n2. 或在应用入口文件中调用\n\n**影响**: 过期的冻结资金无法自动解冻\n\n**优先级**: 🟡 P1 - 影响功能完整性",
-      "assignedTo": "backend-developer",
-      "status": "pending",
-      "createdAt": "2026-03-01T03:58:01.172Z",
-      "updatedAt": "2026-03-01T03:58:01.172Z",
-      "iterations": 0
-    },
-    {
-      "id": "task-1772337481175",
-      "issueNumber": 95,
-      "title": "【P0严重Bug】修复并发竞态条件问题\n\n**Issue**: #95/#90（重复）\n**问题**: 账户余额操作没有事务或锁机制，高并发下可能导致资金损失\n**位置**: `src/models/",
-      "description": "【P0严重Bug】修复并发竞态条件问题\n\n**Issue**: #95/#90（重复）\n**问题**: 账户余额操作没有事务或锁机制，高并发下可能导致资金损失\n**位置**: `src/models/Account.ts` - 所有余额操作方法\n**修复方案**:\n1. 为 addBalance/deductBalance/freezeBalance/unfreezeBalance/transfer 添加锁机制\n2. 使用原子操作或 CAS (Compare-And-Swap)\n3. 确保读取-修改-写入的原子性\n\n**优先级**: 🔴 P0 - 严重安全问题，可能导致资金损失",
-      "assignedTo": "backend-developer",
-      "status": "pending",
-      "createdAt": "2026-03-01T03:58:01.175Z",
-      "updatedAt": "2026-03-01T03:58:01.175Z",
-      "iterations": 0
-    },
-    {
-      "id": "task-1772337481180",
-      "issueNumber": 94,
-      "title": "【P0严重Bug】分析AccountController方法调用错误\n\n**Issue**: #94/#89（重复）\n**问题**: AccountController调用了AccountServic",
-      "description": "【P0严重Bug】分析AccountController方法调用错误\n\n**Issue**: #94/#89（重复）\n**问题**: AccountController调用了AccountService中不存在的方法\n**位置**: `src/controllers/account.controller.ts`\n**不存在的方法**:\n- getBalance (应为 getTokenBalance)\n- deposit, withdraw (不存在)\n- freezeAccount, unfreezeAccount (不存在)\n- getTransactions (应为 getTransactionHistory)\n\n**任务**:\n1. 先分析所有方法调用错误\n2. 确认正确的方法签名\n3. 提供修复方案给开发者\n\n**优先级**: 🔴 P0 - 系统完全不可用",
-      "assignedTo": "qa-engineer",
-      "status": "pending",
-      "createdAt": "2026-03-01T03:58:01.180Z",
-      "updatedAt": "2026-03-01T03:58:01.180Z",
-      "iterations": 0
-    },
-    {
-      "id": "task-1772337481183",
-      "issueNumber": 93,
-      "title": "【P0严重Bug】修复可用余额计算错误\n\n**Issue**: #93/#88（重复）\n**问题**: availableBalance 直接返回 balance，未减去 frozenBalance\n",
-      "description": "【P0严重Bug】修复可用余额计算错误\n\n**Issue**: #93/#88（重复）\n**问题**: availableBalance 直接返回 balance，未减去 frozenBalance\n**位置**: \n- `src/services/account.service.ts` 第 51、73 行\n- `src/services/TokenService.ts` 第 23 行\n\n**修复方案**:\n```typescript\n// 错误: availableBalance: account.balance\n// 正确: availableBalance: account.balance - account.frozenBalance\n```\n\n**影响**: 用户可能使用已被冻结的代币交易，导致资金安全问题\n\n**优先级**: 🔴 P0 - 影响核心业务逻辑",
-      "assignedTo": "backend-developer",
-      "status": "pending",
-      "createdAt": "2026-03-01T03:58:01.183Z",
-      "updatedAt": "2026-03-01T03:58:01.183Z",
-      "iterations": 0
-    },
     {
       "id": "task-1772337481185",
       "issueNumber": 97,
@@ -9750,8 +10216,9 @@
       "assignedTo": "qa-engineer",
       "status": "pending",
       "createdAt": "2026-03-01T03:58:01.185Z",
-      "updatedAt": "2026-03-01T03:58:01.185Z",
-      "iterations": 0
+      "updatedAt": "2026-03-01T07:40:15.833Z",
+      "iterations": 2,
+      "result": "⚠️ 任务被中断: Error: 工具调用次数超过限制 (31 次)"
     },
     {
       "id": "task-1772337481187",
@@ -9816,8 +10283,9 @@
       "assignedTo": "test-engineer",
       "status": "pending",
       "createdAt": "2026-03-01T06:41:22.741Z",
-      "updatedAt": "2026-03-01T06:41:22.741Z",
-      "iterations": 0
+      "updatedAt": "2026-03-01T07:28:35.298Z",
+      "iterations": 2,
+      "result": "⚠️ 任务被中断: Error: 工具调用次数超过限制 (43 次)"
     },
     {
       "id": "task-1772347282751",
@@ -9850,6 +10318,83 @@
       "status": "pending",
       "createdAt": "2026-03-01T06:41:22.774Z",
       "updatedAt": "2026-03-01T06:41:22.774Z",
+      "iterations": 0
+    },
+    {
+      "id": "task-1772349748672",
+      "issueNumber": 129,
+      "title": "【P0严重Bug】修复任务控制器参数验证缺失和服务接口不匹配\n\n## 问题描述\ntask.controller.ts 的 createTask 方法存在严重参数验证问题：\n1. endTime 可能是",
+      "description": "【P0严重Bug】修复任务控制器参数验证缺失和服务接口不匹配\n\n## 问题描述\ntask.controller.ts 的 createTask 方法存在严重参数验证问题：\n1. endTime 可能是 undefined，但服务层要求必填的 Date 类型\n2. type 参数多余（服务层不接受）\n3. maxCompletions 默认值为 0，违反服务层验证（必须 > 0）\n4. 缺少 startTime < endTime 的验证\n\n## 修复要求\n1. **修改控制器层**（推荐方案）：\n   - 移除 type 参数\n   - 为 endTime 提供默认值（开始时间+7天）\n   - 为 maxCompletions 提供合理默认值（100）\n   - 添加完整参数验证（奖励、时间、完成次数）\n   \n2. **或修改服务层**：\n   - 使参数可选并设置默认值\n   - 保持向后兼容\n\n## 文件位置\n- src/controllers/task.controller.ts\n- src/services/task.service.ts\n\n## 验收标准\n- ✅ 不提供 endTime 时能成功创建任务（使用默认值）\n- ✅ 不提供 maxCompletions 时能成功创建任务（使用默认值）\n- ✅ startTime >= endTime 时返回错误\n- ✅ maxCompletions <= 0 时返回错误\n- ✅ reward <= 0 时返回错误\n\n**优先级**: 🔴 P0 - 立即修复",
+      "assignedTo": "backend-developer",
+      "status": "pending",
+      "createdAt": "2026-03-01T07:22:28.672Z",
+      "updatedAt": "2026-03-01T07:22:28.672Z",
+      "iterations": 0
+    },
+    {
+      "id": "task-1772349748686",
+      "issueNumber": 128,
+      "title": "【P0严重Bug】修复空投控制器-服务层接口不匹配（7处错误）\n\n## 问题描述\nairdrop.controller.ts 调用服务层时存在7处严重接口不匹配，会导致所有空投API崩溃：\n\n1. *",
+      "description": "【P0严重Bug】修复空投控制器-服务层接口不匹配（7处错误）\n\n## 问题描述\nairdrop.controller.ts 调用服务层时存在7处严重接口不匹配，会导致所有空投API崩溃：\n\n1. **createAirdrop**: 传递6个独立参数，但服务期望对象参数\n2. **getAirdrop**: 方法不存在（实际是 getAirdropDetail）\n3. **getAllAirdrops**: 方法完全缺失\n4. **getActiveAirdrops**: 方法完全缺失\n5. **activateAirdrop**: 方法不存在（实际是 startAirdrop）\n6. **canUserClaim**: 方法完全缺失\n7. **getUserClaims**: 方法不存在（实际是 getUserClaimHistory）\n\n## 修复要求\n**推荐方案A - 修改控制器**（工作量小，影响面小）：\n1. createAirdrop: 改为传递对象参数\n2. getAirdrop: 调用 getAirdropDetail\n3. getAllAirdrops: 调用 airdropModel.getAllAirdrops()\n4. getActiveAirdrops: 调用 airdropModel.getActiveAirdrops()\n5. activateAirdrop: 调用 startAirdrop\n6. canUserClaim: 实现检查逻辑（或调用模型层）\n7. getUserClaims: 调用 getUserClaimHistory\n\n## 文件位置\n- src/controllers/airdrop.controller.ts\n- src/services/airdrop.service.ts（可能需要添加方法）\n\n## 验收标准\n- ✅ POST /api/airdrop/create 能成功创建空投\n- ✅ GET /api/airdrop/:airdropId 能查询空投详情\n- ✅ GET /api/airdrop/list 能获取所有空投\n- ✅ GET /api/airdrop/active 能获取活跃空投\n- ✅ POST /api/airdrop/activate/:airdropId 能激活空投\n- ✅ GET /api/airdrop/can-claim/:airdropId/:userId 能检查领取资格\n- ✅ GET /api/airdrop/claims/:userId 能查询用户领取历史\n\n**优先级**: 🔴 P0 - 立即修复（阻塞所有空投功能）",
+      "assignedTo": "backend-developer",
+      "status": "pending",
+      "createdAt": "2026-03-01T07:22:28.686Z",
+      "updatedAt": "2026-03-01T07:22:28.686Z",
+      "iterations": 0
+    },
+    {
+      "id": "task-1772349748693",
+      "issueNumber": 129,
+      "title": "【P0严重Bug】修复任务控制器参数验证缺失和服务接口不匹配\n\n## 问题描述\ntask.controller.ts 的 createTask 方法存在严重参数验证问题：\n1. endTime 可能是",
+      "description": "【P0严重Bug】修复任务控制器参数验证缺失和服务接口不匹配\n\n## 问题描述\ntask.controller.ts 的 createTask 方法存在严重参数验证问题：\n1. endTime 可能是 undefined，但服务层要求必填的 Date 类型\n2. type 参数多余（服务层不接受）\n3. maxCompletions 默认值为 0，违反服务层验证（必须 > 0）\n4. 缺少 startTime < endTime 的验证\n\n## 修复要求\n1. **修改控制器层**（推荐方案）：\n   - 移除 type 参数\n   - 为 endTime 提供默认值（开始时间+7天）\n   - 为 maxCompletions 提供合理默认值（100）\n   - 添加完整参数验证（奖励、时间、完成次数）\n   \n2. **或修改服务层**：\n   - 使参数可选并设置默认值\n   - 保持向后兼容\n\n## 文件位置\n- src/controllers/task.controller.ts\n- src/services/task.service.ts\n\n## 验收标准\n- ✅ 不提供 endTime 时能成功创建任务（使用默认值）\n- ✅ 不提供 maxCompletions 时能成功创建任务（使用默认值）\n- ✅ startTime >= endTime 时返回错误\n- ✅ maxCompletions <= 0 时返回错误\n- ✅ reward <= 0 时返回错误\n\n**优先级**: 🔴 P0 - 立即修复",
+      "assignedTo": "backend-developer",
+      "status": "pending",
+      "createdAt": "2026-03-01T07:22:28.693Z",
+      "updatedAt": "2026-03-01T07:22:28.693Z",
+      "iterations": 0
+    },
+    {
+      "id": "task-1772349748700",
+      "issueNumber": 128,
+      "title": "【P0严重Bug】修复空投控制器-服务层接口不匹配（7处错误）\n\n## 问题描述\nairdrop.controller.ts 调用服务层时存在7处严重接口不匹配，会导致所有空投API崩溃：\n\n1. *",
+      "description": "【P0严重Bug】修复空投控制器-服务层接口不匹配（7处错误）\n\n## 问题描述\nairdrop.controller.ts 调用服务层时存在7处严重接口不匹配，会导致所有空投API崩溃：\n\n1. **createAirdrop**: 传递6个独立参数，但服务期望对象参数\n2. **getAirdrop**: 方法不存在（实际是 getAirdropDetail）\n3. **getAllAirdrops**: 方法完全缺失\n4. **getActiveAirdrops**: 方法完全缺失\n5. **activateAirdrop**: 方法不存在（实际是 startAirdrop）\n6. **canUserClaim**: 方法完全缺失\n7. **getUserClaims**: 方法不存在（实际是 getUserClaimHistory）\n\n## 修复要求\n**推荐方案A - 修改控制器**（工作量小，影响面小）：\n1. createAirdrop: 改为传递对象参数\n2. getAirdrop: 调用 getAirdropDetail\n3. getAllAirdrops: 调用 airdropModel.getAllAirdrops()\n4. getActiveAirdrops: 调用 airdropModel.getActiveAirdrops()\n5. activateAirdrop: 调用 startAirdrop\n6. canUserClaim: 实现检查逻辑（或调用模型层）\n7. getUserClaims: 调用 getUserClaimHistory\n\n## 文件位置\n- src/controllers/airdrop.controller.ts\n- src/services/airdrop.service.ts（可能需要添加方法）\n\n## 验收标准\n- ✅ POST /api/airdrop/create 能成功创建空投\n- ✅ GET /api/airdrop/:airdropId 能查询空投详情\n- ✅ GET /api/airdrop/list 能获取所有空投\n- ✅ GET /api/airdrop/active 能获取活跃空投\n- ✅ POST /api/airdrop/activate/:airdropId 能激活空投\n- ✅ GET /api/airdrop/can-claim/:airdropId/:userId 能检查领取资格\n- ✅ GET /api/airdrop/claims/:userId 能查询用户领取历史\n\n**优先级**: 🔴 P0 - 立即修复（阻塞所有空投功能）",
+      "assignedTo": "backend-developer",
+      "status": "pending",
+      "createdAt": "2026-03-01T07:22:28.700Z",
+      "updatedAt": "2026-03-01T07:22:28.700Z",
+      "iterations": 0
+    },
+    {
+      "id": "task-1772349963956",
+      "issueNumber": 131,
+      "title": "## 🔴 P0 严重 Bug 修复 - 空投控制器服务层接口不匹配\n\n**Issue**: #131\n**优先级**: P0 - 立即修复\n**类型**: Bug 修复\n\n### 📍 问题描述\n空",
+      "description": "## 🔴 P0 严重 Bug 修复 - 空投控制器服务层接口不匹配\n\n**Issue**: #131\n**优先级**: P0 - 立即修复\n**类型**: Bug 修复\n\n### 📍 问题描述\n空投控制器 (`airdrop.controller.ts`) 调用服务层时存在严重接口不匹配，会导致运行时崩溃：\n\n1. **`createAirdrop` 签名不匹配** - 控制器传 6 个参数，服务期望对象\n2. **`getAirdrop` 方法不存在** - 应调用 `getAirdropDetail`\n3. **`getAllAirdrops` 方法缺失** - 服务层完全没有\n4. **`getActiveAirdrops` 方法缺失** - 服务层完全没有\n5. **`activateAirdrop` 方法不存在** - 应调用 `startAirdrop`\n6. **`canUserClaim` 方法缺失** - 服务层完全没有\n7. **`getUserClaims` 方法不存在** - 应调用 `getUserClaimHistory`\n\n### 🔧 修复要求\n\n**文件**: \n- `src/controllers/airdrop.controller.ts`\n- `src/services/airdrop.service.ts`\n\n**方案**（二选一）：\n1. **修改控制器**（推荐）：\n   - `createAirdrop` 改为传递对象参数\n   - 修正所有方法名（`getAirdropDetail`, `getUserClaimHistory`, `startAirdrop`）\n   - 添加缺失的服务层方法调用\n\n2. **修改服务层**：\n   - 修改 `createAirdrop` 接受 6 个独立参数\n   - 添加缺失的方法：`getAllAirdrops`, `getActiveAirdrops`, `canUserClaim`\n   - 添加方法别名：`getAirdrop`, `activateAirdrop`, `getUserClaims`\n\n### ✅ 验收标准\n- [ ] POST /api/airdrop/create 能正常创建空投\n- [ ] GET /api/airdrop/:airdropId 能正常查询\n- [ ] GET /api/airdrop/list 能正常获取列表\n- [ ] GET /api/airdrop/active 能正常获取活跃空投\n- [ ] POST /api/airdrop/activate/:airdropId 能正常激活\n- [ ] POST /api/airdrop/claim 能正常领取\n- [ ] GET /api/airdrop/can-claim/:airdropId/:userId 能正常检查\n- [ ] GET /api/airdrop/claims/:userId 能正常获取领取历史\n\n### 📅 截止时间\n**今天完成**（P0 优先级）",
+      "assignedTo": "backend-developer",
+      "status": "pending",
+      "createdAt": "2026-03-01T07:26:03.956Z",
+      "updatedAt": "2026-03-01T07:26:03.956Z",
+      "iterations": 0
+    },
+    {
+      "id": "task-1772349963962",
+      "issueNumber": 132,
+      "title": "## 🔴 P0 严重 Bug 修复 - 任务控制器参数验证缺失\n\n**Issue**: #132\n**优先级**: P0 - 立即修复\n**类型**: Bug 修复\n\n### 📍 问题描述\n任务控",
+      "description": "## 🔴 P0 严重 Bug 修复 - 任务控制器参数验证缺失\n\n**Issue**: #132\n**优先级**: P0 - 立即修复\n**类型**: Bug 修复\n\n### 📍 问题描述\n任务控制器 (`task.controller.ts`) 和服务层 (`task.service.ts`) 存在接口不匹配问题：\n\n1. **`endTime` 可能传递 undefined** - 服务层期望必填\n2. **`type` 参数多余** - 服务层不接受\n3. **`maxCompletions` 默认值为 0** - 但服务层要求 > 0\n4. **缺少参数验证** - 时间、奖励等\n\n### 🔧 修复要求\n\n**文件**: \n- `src/controllers/task.controller.ts`\n- `src/services/task.service.ts`\n\n**方案**（二选一）：\n1. **修改控制器**（推荐）：\n   - 添加完整参数验证\n   - 为可选参数提供合理默认值（endTime 默认 +7天，maxCompletions 默认 100）\n   - 移除不支持的 `type` 参数\n   - 在控制器层验证 startTime < endTime\n\n2. **修改服务层**：\n   - 将参数改为可选\n   - 在服务层设置默认值\n   - 添加验证逻辑\n\n### ✅ 验收标准\n- [ ] 创建任务时不提供 `endTime` 能正常工作（使用默认值）\n- [ ] 创建任务时不提供 `maxCompletions` 能正常工作（使用默认值）\n- [ ] `startTime >= endTime` 时返回明确错误\n- [ ] `maxCompletions <= 0` 时返回明确错误\n- [ ] `reward <= 0` 时返回明确错误\n- [ ] 所有参数正常时能成功创建任务\n\n### 📅 截止时间\n**今天完成**（P0 优先级）",
+      "assignedTo": "backend-developer",
+      "status": "pending",
+      "createdAt": "2026-03-01T07:26:03.962Z",
+      "updatedAt": "2026-03-01T07:26:03.962Z",
+      "iterations": 0
+    },
+    {
+      "id": "task-1772349963967",
+      "issueNumber": 131,
+      "title": "## 🔴 P0 严重 Bug 修复 - 空投控制器服务层接口不匹配\n\n**Issue**: #131\n**优先级**: P0 - 立即修复\n**类型**: Bug 修复\n\n### 📍 问题描述\n空",
+      "description": "## 🔴 P0 严重 Bug 修复 - 空投控制器服务层接口不匹配\n\n**Issue**: #131\n**优先级**: P0 - 立即修复\n**类型**: Bug 修复\n\n### 📍 问题描述\n空投控制器 (`airdrop.controller.ts`) 调用服务层时存在严重接口不匹配，会导致运行时崩溃：\n\n1. **`createAirdrop` 签名不匹配** - 控制器传 6 个参数，服务期望对象\n2. **`getAirdrop` 方法不存在** - 应调用 `getAirdropDetail`\n3. **`getAllAirdrops` 方法缺失** - 服务层完全没有\n4. **`getActiveAirdrops` 方法缺失** - 服务层完全没有\n5. **`activateAirdrop` 方法不存在** - 应调用 `startAirdrop`\n6. **`canUserClaim` 方法缺失** - 服务层完全没有\n7. **`getUserClaims` 方法不存在** - 应调用 `getUserClaimHistory`\n\n### 🔧 修复要求\n\n**文件**: \n- `src/controllers/airdrop.controller.ts`\n- `src/services/airdrop.service.ts`\n\n**方案**（二选一）：\n1. **修改控制器**（推荐）：\n   - `createAirdrop` 改为传递对象参数\n   - 修正所有方法名（`getAirdropDetail`, `getUserClaimHistory`, `startAirdrop`）\n   - 添加缺失的服务层方法调用\n\n2. **修改服务层**：\n   - 修改 `createAirdrop` 接受 6 个独立参数\n   - 添加缺失的方法：`getAllAirdrops`, `getActiveAirdrops`, `canUserClaim`\n   - 添加方法别名：`getAirdrop`, `activateAirdrop`, `getUserClaims`\n\n### ✅ 验收标准\n- [ ] POST /api/airdrop/create 能正常创建空投\n- [ ] GET /api/airdrop/:airdropId 能正常查询\n- [ ] GET /api/airdrop/list 能正常获取列表\n- [ ] GET /api/airdrop/active 能正常获取活跃空投\n- [ ] POST /api/airdrop/activate/:airdropId 能正常激活\n- [ ] POST /api/airdrop/claim 能正常领取\n- [ ] GET /api/airdrop/can-claim/:airdropId/:userId 能正常检查\n- [ ] GET /api/airdrop/claims/:userId 能正常获取领取历史\n\n### 📅 截止时间\n**今天完成**（P0 优先级）",
+      "assignedTo": "backend-developer",
+      "status": "pending",
+      "createdAt": "2026-03-01T07:26:03.967Z",
+      "updatedAt": "2026-03-01T07:26:03.967Z",
       "iterations": 0
     }
   ],
@@ -11281,6 +11826,78 @@
       "updatedAt": "2026-03-01T07:12:00.449Z",
       "iterations": 4,
       "result": "达到最大迭代次数，自动完成"
+    },
+    {
+      "id": "task-1772337481170",
+      "issueNumber": 97,
+      "title": "【P1中等Bug】分析空指针风险\n\n**Issue**: #97/#92（重复）\n**问题**: 多处使用非空断言 `!` 但未进行空值检查\n**位置**: `src/services/account",
+      "description": "【P1中等Bug】分析空指针风险\n\n**Issue**: #97/#92（重复）\n**问题**: 多处使用非空断言 `!` 但未进行空值检查\n**位置**: `src/services/account.service.ts`\n**问题代码**:\n- 第 94、108、122、132、147-148 行\n\n**任务**:\n1. 分析所有使用 `!` 的位置\n2. 评估运行时风险\n3. 提供安全的修复方案\n\n**优先级**: 🟡 P1 - 可能导致运行时错误",
+      "assignedTo": "qa-engineer",
+      "status": "completed",
+      "createdAt": "2026-03-01T03:58:01.170Z",
+      "updatedAt": "2026-03-01T07:17:56.627Z",
+      "iterations": 3,
+      "result": "## ✅ 任务完成：空指针风险分析和修复\n\n### 📋 执行摘要\n成功完成了 `account.service.ts` 中所有空指针风险的分析和修复工作。\n\n---\n\n### 🔍 问题分析\n\n**发现的问题**：6 处使用非空断言 `!` 但未进行空值检查\n\n#### 问题位置和风险等级：\n\n1. **createAccount (第 94 行)** - 🟡 中等风险\n   - `account.id!` - 假设 ID 一定存在\n   - 风险：账户创建失败时可能访问 null\n\n2. **addTokens (第 108 行)** - 🔴 高风险\n   - `accountModel.getAccountByUserId(userId)!.balance`\n   - 风险：账户不存在时直接崩溃\n\n3. **deductTokens (第 122 行)** - 🔴 高风险\n   - `accountModel.getAccountByUserId(userId)!.balance`\n   - 风险：账户不存在时直接崩溃\n\n4. **freezeTokens (第 132 行)** - 🔴 高风险\n   - `const account = accountModel.getAccountByUserId(userId)!`\n   - 风险：账户不存在时直接崩溃\n\n5. **unfreezeTokens (第 147 行)** - 🔴 高风险\n   - `const account = accountModel.getAccountByUserId(userId)!`\n   - 风险：账户不存在时直接崩溃\n\n6. **transfer (第 165-166 行)** - 🔴 高风险\n   - 双方账户都使用 `!`\n   - 风险：任一账户不存在时直接崩溃\n\n---\n\n### ✅ 修复方案\n\n对所有 6 处问题进行了统一修复：\n- ✅ 移除非空断言 `!`\n- ✅ 添加显式的空值检查\n- ✅ 抛出明确的错误信息\n- ✅ 提供友好的错误提示\n\n**修复示例**：\n```typescript\n// 修复前\nconst account = accountModel.getAccountByUserId(userId)!;\nreturn { balance: account.balance };\n\n// 修复后\nconst account = accountModel.getAccountByUserId(userId);\nif (!account) {\n  throw new Error('账户不存在');\n}\nreturn { balance: account.balance };\n```\n\n---\n\n### 📊 影响评估\n\n#### 运行时风险\n- **原风险**: 如果账户不存在或操作失败，会导致 `TypeError: Cannot read property 'xxx' of null/undefined`\n- **修复后**: 抛出明确的错误，便于调试和处理\n\n#### 影响范围\n- 所有关键的账户操作（创建、充值、提现、冻结、解冻、转账）\n- 涉及 6 个核心方法\n\n#### 优先级\n- 🟡 **P1 - 中等**：可能导致运行时崩溃，需要尽快修复\n\n---\n\n### 🎯 交付成果\n\n1. **代码修复**\n   - 文件：`src/services/account.service.ts`\n   - 修复：6 处空指针风险\n   - 改进：添加完善的错误处理\n\n2. **Git 提交**\n   - 分支：`bugfix/null-pointer-risks-account-service`\n   - 提交：已提交代码到本地仓库\n   - 推送：已推送到 GitHub\n\n3. **Pull Request**\n   - PR #127：[P1] 修复空指针风险 - 移除非空断言并添加安全检查\n   - 链接：https://github.com/dyyz1993/coin-exchange-protocol/pull/127\n   - 状态：等待开发总监审查\n\n---\n\n### 📝 测试建议\n\n#### 单元测试\n```typescript\ndescribe('AccountService - 空值处理', () => {\n  it('应该在账户不存在时抛出错误', async () => {\n    await expect(accountService.addTokens('non-existent', 100, ...))\n      .rejects.toThrow('账户不存在');\n  });\n  \n  it('应该在转账时检查双方账户', async () => {\n    await expect(accountService.transfer('non-existent', 'user2', 100, 'test'))\n      .rejects.toThrow('账户不存在');\n  });\n});\n```\n\n---\n\n### ✨ 改进效果\n\n#### 安全性\n- ✅ 防止运行时崩溃\n- ✅ 提供明确的错误信息\n- ✅ 符合 TypeScript 最佳实践\n\n#### 可维护性\n- ✅ 代码更清晰易读\n- ✅ 错误处理更规范\n- ✅ 便于调试和追踪\n\n#### 健壮性\n- ✅ 处理边界情况\n- ✅ 优雅降级\n- ✅ 防御性编程\n\n---\n\n### 📌 关联信息\n- **Issue**: #97\n- **PR**: #127\n- **分支**: bugfix/null-pointer-risks-account-service\n- **优先级**: P1 - 中等\n\n任务已完成，等待开发总监审查 PR。"
+    },
+    {
+      "id": "task-1772349963948",
+      "issueNumber": 132,
+      "title": "## 🔴 P0 严重 Bug 修复 - 任务控制器参数验证缺失\n\n**Issue**: #132\n**优先级**: P0 - 立即修复\n**类型**: Bug 修复\n\n### 📍 问题描述\n任务控",
+      "description": "## 🔴 P0 严重 Bug 修复 - 任务控制器参数验证缺失\n\n**Issue**: #132\n**优先级**: P0 - 立即修复\n**类型**: Bug 修复\n\n### 📍 问题描述\n任务控制器 (`task.controller.ts`) 和服务层 (`task.service.ts`) 存在接口不匹配问题：\n\n1. **`endTime` 可能传递 undefined** - 服务层期望必填\n2. **`type` 参数多余** - 服务层不接受\n3. **`maxCompletions` 默认值为 0** - 但服务层要求 > 0\n4. **缺少参数验证** - 时间、奖励等\n\n### 🔧 修复要求\n\n**文件**: \n- `src/controllers/task.controller.ts`\n- `src/services/task.service.ts`\n\n**方案**（二选一）：\n1. **修改控制器**（推荐）：\n   - 添加完整参数验证\n   - 为可选参数提供合理默认值（endTime 默认 +7天，maxCompletions 默认 100）\n   - 移除不支持的 `type` 参数\n   - 在控制器层验证 startTime < endTime\n\n2. **修改服务层**：\n   - 将参数改为可选\n   - 在服务层设置默认值\n   - 添加验证逻辑\n\n### ✅ 验收标准\n- [ ] 创建任务时不提供 `endTime` 能正常工作（使用默认值）\n- [ ] 创建任务时不提供 `maxCompletions` 能正常工作（使用默认值）\n- [ ] `startTime >= endTime` 时返回明确错误\n- [ ] `maxCompletions <= 0` 时返回明确错误\n- [ ] `reward <= 0` 时返回明确错误\n- [ ] 所有参数正常时能成功创建任务\n\n### 📅 截止时间\n**今天完成**（P0 优先级）",
+      "assignedTo": "backend-developer",
+      "status": "completed",
+      "createdAt": "2026-03-01T07:26:03.948Z",
+      "updatedAt": "2026-03-01T07:26:21.984Z",
+      "iterations": 0,
+      "result": "## 📊 GitHub Issues 处理完成\n\n### ✅ 已完成任务分配\n\n#### 1. 处理重复 Issue\n- **关闭 Issue #130**（重复）\n- **保留 Issue #133**（代码改进 - substr 替换）\n\n#### 2. P0 严重 Bug 分配（已分配给 backend-developer）\n\n**🔴 Issue #132 - 任务控制器参数验证缺失**\n- 任务 ID: task-1772349963948\n- 优先级: P0\n- 影响: 任务创建功能不可用\n- 要求: 今天完成\n\n**🔴 Issue #131 - 空投控制器服务层接口不匹配**\n- 任务 ID: task-1772349963956\n- 优先级: P0\n- 影响: 所有空投 API 会运行时崩溃\n- 要求: 今天完成\n\n#### 3. 待分配任务\n\n**🟡 Issue #133 - 替换废弃的 substr 方法**\n- 优先级: P1\n- 状态: 等待 backend-developer 完成 P0 Bug 后分配\n- 原因: 成员任务数限制（每人最多 2 个）\n\n### 📈 团队工作负载\n\n| 成员 | 当前任务数 | 状态 |\n|------|-----------|------|\n| backend-developer | 2/2 | ⚠️ 已满载（处理 P0 Bug） |\n\n### 🎯 下一步行动\n\n1. ✅ 等待 backend-developer 完成 2 个 P0 Bug\n2. 📋 完成后分配 Issue #133（代码改进）\n3. 🧪 安排测试工程师验证修复结果"
+    },
+    {
+      "id": "task-1772337481172",
+      "issueNumber": 96,
+      "title": "【P1中等Bug】修复FreezeService定时器未初始化\n\n**Issue**: #96/#91（重复）\n**问题**: autoUnfreezeTimer 需要手动调用 initialize(",
+      "description": "【P1中等Bug】修复FreezeService定时器未初始化\n\n**Issue**: #96/#91（重复）\n**问题**: autoUnfreezeTimer 需要手动调用 initialize()，但从未被调用\n**位置**: `src/services/freeze.service.ts`\n\n**修复方案**:\n1. 在构造函数中自动初始化\n2. 或在应用入口文件中调用\n\n**影响**: 过期的冻结资金无法自动解冻\n\n**优先级**: 🟡 P1 - 影响功能完整性",
+      "assignedTo": "backend-developer",
+      "status": "completed",
+      "createdAt": "2026-03-01T03:58:01.172Z",
+      "updatedAt": "2026-03-01T07:33:26.364Z",
+      "iterations": 3,
+      "result": "✅ FreezeService 定时器自动初始化修复完成\n\n## 修复内容\n**问题：** FreezeService 的 autoUnfreezeTimer 需要手动调用 initialize()，但从未被调用，导致过期冻结资金无法自动解冻\n\n**修复方案：** 在 FreezeService 构造函数中自动调用 initialize()\n\n## 代码修改\n- 文件：src/services/freeze.service.ts\n- 新增：constructor() 方法，自动调用 this.initialize()\n- 效果：单例创建时定时器自动启动，过期冻结资金自动解冻\n\n## 提交信息\n- 分支：bugfix/freeze-service-timer-init\n- 提交：fix(freeze): 自动初始化定时器\n- PR：#134 - https://github.com/dyyz1993/coin-exchange-protocol/pull/134\n- 关联 Issue：#96, #91\n\n## 验收标准\n✅ 文件修改完成\n✅ TypeScript 语法正确\n✅ 代码已提交并推送\n✅ PR 已创建\n✅ 修复 Issue #96 和 #91\n\n**耗时：** 约 3 分钟"
+    },
+    {
+      "id": "task-1772337481175",
+      "issueNumber": 95,
+      "title": "【P0严重Bug】修复并发竞态条件问题\n\n**Issue**: #95/#90（重复）\n**问题**: 账户余额操作没有事务或锁机制，高并发下可能导致资金损失\n**位置**: `src/models/",
+      "description": "【P0严重Bug】修复并发竞态条件问题\n\n**Issue**: #95/#90（重复）\n**问题**: 账户余额操作没有事务或锁机制，高并发下可能导致资金损失\n**位置**: `src/models/Account.ts` - 所有余额操作方法\n**修复方案**:\n1. 为 addBalance/deductBalance/freezeBalance/unfreezeBalance/transfer 添加锁机制\n2. 使用原子操作或 CAS (Compare-And-Swap)\n3. 确保读取-修改-写入的原子性\n\n**优先级**: 🔴 P0 - 严重安全问题，可能导致资金损失",
+      "assignedTo": "backend-developer",
+      "status": "completed",
+      "createdAt": "2026-03-01T03:58:01.175Z",
+      "updatedAt": "2026-03-01T07:35:40.650Z",
+      "iterations": 3,
+      "result": "✅ P0严重Bug已修复并合并！\n\n## 修复内容\n**位置：** src/models/Account.ts\n\n**实现的并发控制机制：**\n1. ✅ **版本号乐观锁** - 每个账户添加 version 字段\n2. ✅ **内存锁机制** - accountLocks Map + acquireLock/releaseLock\n3. ✅ **CAS 操作** - validateAndUpdateBalance 方法\n4. ✅ **锁封装** - withLock 通用方法\n\n**保护的余额操作：**\n- addBalance - 使用 withLock + validateAndUpdateBalance\n- deductBalance - 使用 withLock + validateAndUpdateBalance\n- freezeBalance - 使用 withLock + validateAndUpdateBalance\n- unfreezeBalance - 使用 withLock + validateAndUpdateBalance\n- transfer - 使用有序锁（先锁 from，再锁 to）\n\n## Git 提交\n- commit f778114 - PR #124 合并\n- commit 15bddbc - 修复并发竞态条件问题\n- commit 66febf9 - AccountModel 并发修复\n\n## 验收结果\n✅ 所有余额操作添加锁机制\n✅ 使用 CAS 确保原子性\n✅ 读取-修改-写入原子性保证\n✅ 代码已合并到主分支\n✅ Issue #95, #90 已解决"
+    },
+    {
+      "id": "task-1772337481180",
+      "issueNumber": 94,
+      "title": "【P0严重Bug】分析AccountController方法调用错误\n\n**Issue**: #94/#89（重复）\n**问题**: AccountController调用了AccountServic",
+      "description": "【P0严重Bug】分析AccountController方法调用错误\n\n**Issue**: #94/#89（重复）\n**问题**: AccountController调用了AccountService中不存在的方法\n**位置**: `src/controllers/account.controller.ts`\n**不存在的方法**:\n- getBalance (应为 getTokenBalance)\n- deposit, withdraw (不存在)\n- freezeAccount, unfreezeAccount (不存在)\n- getTransactions (应为 getTransactionHistory)\n\n**任务**:\n1. 先分析所有方法调用错误\n2. 确认正确的方法签名\n3. 提供修复方案给开发者\n\n**优先级**: 🔴 P0 - 系统完全不可用",
+      "assignedTo": "qa-engineer",
+      "status": "completed",
+      "createdAt": "2026-03-01T03:58:01.180Z",
+      "updatedAt": "2026-03-01T07:36:53.543Z",
+      "iterations": 3,
+      "result": "## 📊 AccountController 方法调用分析报告\n\n### ✅ 分析结果：方法调用正确，Issue #94 描述不准确\n\n经过详细代码审查，我发现 **AccountController 和 AccountService 的方法调用是正确的**，不存在 Issue #94 中描述的\"调用不存在方法\"的问题。\n\n---\n\n### 🔍 详细分析\n\n#### 1. **getBalance 方法** ✅\n- **Controller 调用** (Line 58): `accountService.getBalance(userId)`\n- **Service 实现** (Line 281-290): \n  ```typescript\n  async getBalance(userId: string): Promise<{\n    balance: number;\n    frozenBalance: number;\n    availableBalance: number;\n  } | null> {\n    return this.getTokenBalance(userId);\n  }\n  ```\n- **结论**: 方法存在，是 `getTokenBalance` 的别名，调用正确\n\n#### 2. **deposit 方法** ✅\n- **Controller 调用** (Line 91): `accountService.deposit(userId, amount, reason)`\n- **Service 实现** (Line 292-305):\n  ```typescript\n  async deposit(userId: string, amount: number, reason?: string)\n  ```\n- **结论**: 方法存在，是 `addTokens` 的别名，调用正确\n\n#### 3. **withdraw 方法** ✅\n- **Controller 调用** (Line 117): `accountService.withdraw(userId, amount, reason)`\n- **Service 实现** (Line 307-320):\n  ```typescript\n  async withdraw(userId: string, amount: number, reason?: string)\n  ```\n- **结论**: 方法存在，是 `deductTokens` 的别名，调用正确\n\n#### 4. **freezeAccount 方法** ✅\n- **Controller 调用** (Line 161): `accountService.freezeAccount(userId, reason, duration)`\n- **Service 实现** (Line 322-349):\n  ```typescript\n  async freezeAccount(userId: string, reason: string, duration?: number)\n  ```\n- **结论**: 方法存在，冻结全部可用余额，调用正确\n\n#### 5. **unfreezeAccount 方法** ✅\n- **Controller 调用** (Line 183): `accountService.unfreezeAccount(userId, reason)`\n- **Service 实现** (Line 351-373):\n  ```typescript\n  async unfreezeAccount(userId: string, reason: string)\n  ```\n- **结论**: 方法存在，解冻全部冻结余额，调用正确\n\n#### 6. **getTransactions 方法** ✅\n- **Controller 调用** (Line 237): `accountService.getTransactions(userId)`\n- **Service 实现** (Line 375-379):\n  ```typescript\n  async getTransactions(userId: string): Promise<Transaction[]> {\n    return this.getTransactionHistory(userId);\n  }\n  ```\n- **结论**: 方法存在，是 `getTransactionHistory` 的别名，调用正确\n\n---\n\n### 🔴 发现的真实问题：可用余额计算错误\n\n虽然方法调用正确，但我发现了 **Issue #88 和 #93** 中提到的真实 Bug：\n\n**位置**: `src/services/account.service.ts` Line 55\n```typescript\navailableBalance: account.balance  // ❌ 错误！\n```\n\n**正确应该是**:\n```typescript\navailableBalance: account.balance - account.frozenBalance\n```\n\n**影响**:\n- 用户可能使用已被冻结的余额\n- 余额检查逻辑失效\n- 可能导致透支或双重支付\n\n---\n\n### 📋 结论\n\n1. **Issue #94 描述不准确**：AccountController 调用的所有方法在 AccountService 中都存在\n2. **真实问题**：`availableBalance` 计算错误（已在 Issue #88/#93 中报告）\n3. **建议**：关闭 Issue #94，避免重复和混淆\n\n### ✅ 任务完成\n\n- 已完成对所有方法调用的分析\n- 确认了正确的方法签名\n- 发现了真实的 Bug（availableBalance 计算错误）\n- 建议关闭不准确的 Issue #94"
+    },
+    {
+      "id": "task-1772337481183",
+      "issueNumber": 93,
+      "title": "【P0严重Bug】修复可用余额计算错误\n\n**Issue**: #93/#88（重复）\n**问题**: availableBalance 直接返回 balance，未减去 frozenBalance\n",
+      "description": "【P0严重Bug】修复可用余额计算错误\n\n**Issue**: #93/#88（重复）\n**问题**: availableBalance 直接返回 balance，未减去 frozenBalance\n**位置**: \n- `src/services/account.service.ts` 第 51、73 行\n- `src/services/TokenService.ts` 第 23 行\n\n**修复方案**:\n```typescript\n// 错误: availableBalance: account.balance\n// 正确: availableBalance: account.balance - account.frozenBalance\n```\n\n**影响**: 用户可能使用已被冻结的代币交易，导致资金安全问题\n\n**优先级**: 🔴 P0 - 影响核心业务逻辑",
+      "assignedTo": "backend-developer",
+      "status": "completed",
+      "createdAt": "2026-03-01T03:58:01.183Z",
+      "updatedAt": "2026-03-01T07:38:40.025Z",
+      "iterations": 3,
+      "result": "✅ P0严重Bug（可用余额计算错误）已经修复并创建PR！\n\n## 修复内容\n\n**问题：** availableBalance 直接返回 balance，未减去 frozenBalance\n\n**修复位置：**\n1. ✅ src/services/TokenService.ts 第23行\n2. ✅ src/services/account.service.ts getTokenBalance方法\n3. ✅ src/services/account.service.ts getAccountInfo方法\n\n**修复方案：**\n```typescript\n// 错误: availableBalance: account.balance\n// 正确: availableBalance: account.balance - account.frozenBalance\n```\n\n## 完成状态\n\n- ✅ 修复提交：commit 7b14410\n- ✅ PR 已创建：#126 - [P0] 修复可用余额计算错误 - Issue #93\n- ✅ 状态：OPEN，等待审查合并\n- ✅ 分支：bugfix/available-balance-calculation\n\n## 影响范围\n\n**修复前风险：**\n- 用户可能使用已被冻结的代币进行交易\n- 导致资金安全问题\n- 核心业务逻辑错误\n\n**修复后：**\n- 可用余额 = 总余额 - 冻结余额\n- 确保用户只能使用未冻结的资金\n- 资金安全得到保障"
     }
   ],
   "errors": [
@@ -11305,38 +11922,38 @@
       "error": "Error: Agent is already processing a prompt. Use steer() or followUp() to queue messages, or wait for completion."
     }
   ],
-  "currentIteration": 318,
-  "lastDirectorActivity": "2026-03-01T07:09:28.759Z",
+  "currentIteration": 331,
+  "lastDirectorActivity": "2026-03-01T07:45:34.566Z",
   "monitorStats": {
-    "checkCount": 3,
-    "loopCount": 16,
+    "checkCount": 9,
+    "loopCount": 42,
     "scriptAHitRate": 0,
     "scriptBHitRate": 0
   },
   "toolStats": {
     "product-director": {
       "tools": {},
-      "lastUpdate": "2026-03-01T07:09:28.750Z"
+      "lastUpdate": "2026-03-01T07:44:34.538Z"
     },
     "qa-engineer": {
       "tools": {},
-      "lastUpdate": "2026-03-01T07:09:28.750Z"
+      "lastUpdate": "2026-03-01T07:44:34.538Z"
     },
     "dev-director": {
       "tools": {},
-      "lastUpdate": "2026-03-01T07:09:28.750Z"
+      "lastUpdate": "2026-03-01T07:44:34.538Z"
     },
     "backend-developer": {
       "tools": {},
-      "lastUpdate": "2026-03-01T07:09:28.750Z"
+      "lastUpdate": "2026-03-01T07:44:34.538Z"
     },
     "test-engineer": {
       "tools": {},
-      "lastUpdate": "2026-03-01T07:09:28.750Z"
+      "lastUpdate": "2026-03-01T07:44:34.538Z"
     },
     "requirement-analyst": {
       "tools": {},
-      "lastUpdate": "2026-03-01T07:09:28.750Z"
+      "lastUpdate": "2026-03-01T07:44:34.538Z"
     }
   },
   "loopRecords": [
@@ -11435,6 +12052,162 @@
       "loopType": "no_progress",
       "details": "10分钟内无进展",
       "timestamp": "2026-03-01T07:09:28.750Z"
+    },
+    {
+      "agentId": "product-director",
+      "loopType": "no_progress",
+      "details": "10分钟内无进展",
+      "timestamp": "2026-03-01T07:14:28.739Z"
+    },
+    {
+      "agentId": "qa-engineer",
+      "loopType": "no_progress",
+      "details": "10分钟内无进展",
+      "timestamp": "2026-03-01T07:14:28.739Z"
+    },
+    {
+      "agentId": "dev-director",
+      "loopType": "no_progress",
+      "details": "10分钟内无进展",
+      "timestamp": "2026-03-01T07:14:28.739Z"
+    },
+    {
+      "agentId": "test-engineer",
+      "loopType": "no_progress",
+      "details": "10分钟内无进展",
+      "timestamp": "2026-03-01T07:14:28.739Z"
+    },
+    {
+      "agentId": "requirement-analyst",
+      "loopType": "no_progress",
+      "details": "10分钟内无进展",
+      "timestamp": "2026-03-01T07:14:28.739Z"
+    },
+    {
+      "agentId": "product-director",
+      "loopType": "no_progress",
+      "details": "10分钟内无进展",
+      "timestamp": "2026-03-01T07:19:28.741Z"
+    },
+    {
+      "agentId": "dev-director",
+      "loopType": "no_progress",
+      "details": "10分钟内无进展",
+      "timestamp": "2026-03-01T07:19:28.741Z"
+    },
+    {
+      "agentId": "test-engineer",
+      "loopType": "no_progress",
+      "details": "10分钟内无进展",
+      "timestamp": "2026-03-01T07:19:28.741Z"
+    },
+    {
+      "agentId": "requirement-analyst",
+      "loopType": "no_progress",
+      "details": "10分钟内无进展",
+      "timestamp": "2026-03-01T07:19:28.741Z"
+    },
+    {
+      "agentId": "product-director",
+      "loopType": "no_progress",
+      "details": "10分钟内无进展",
+      "timestamp": "2026-03-01T07:34:34.534Z"
+    },
+    {
+      "agentId": "qa-engineer",
+      "loopType": "no_progress",
+      "details": "10分钟内无进展",
+      "timestamp": "2026-03-01T07:34:34.534Z"
+    },
+    {
+      "agentId": "dev-director",
+      "loopType": "no_progress",
+      "details": "10分钟内无进展",
+      "timestamp": "2026-03-01T07:34:34.534Z"
+    },
+    {
+      "agentId": "test-engineer",
+      "loopType": "no_progress",
+      "details": "10分钟内无进展",
+      "timestamp": "2026-03-01T07:34:34.534Z"
+    },
+    {
+      "agentId": "requirement-analyst",
+      "loopType": "no_progress",
+      "details": "10分钟内无进展",
+      "timestamp": "2026-03-01T07:34:34.534Z"
+    },
+    {
+      "agentId": "product-director",
+      "loopType": "no_progress",
+      "details": "10分钟内无进展",
+      "timestamp": "2026-03-01T07:39:34.536Z"
+    },
+    {
+      "agentId": "qa-engineer",
+      "loopType": "no_progress",
+      "details": "10分钟内无进展",
+      "timestamp": "2026-03-01T07:39:34.536Z"
+    },
+    {
+      "agentId": "dev-director",
+      "loopType": "no_progress",
+      "details": "10分钟内无进展",
+      "timestamp": "2026-03-01T07:39:34.536Z"
+    },
+    {
+      "agentId": "backend-developer",
+      "loopType": "no_progress",
+      "details": "10分钟内无进展",
+      "timestamp": "2026-03-01T07:39:34.536Z"
+    },
+    {
+      "agentId": "test-engineer",
+      "loopType": "no_progress",
+      "details": "10分钟内无进展",
+      "timestamp": "2026-03-01T07:39:34.536Z"
+    },
+    {
+      "agentId": "requirement-analyst",
+      "loopType": "no_progress",
+      "details": "10分钟内无进展",
+      "timestamp": "2026-03-01T07:39:34.536Z"
+    },
+    {
+      "agentId": "product-director",
+      "loopType": "no_progress",
+      "details": "10分钟内无进展",
+      "timestamp": "2026-03-01T07:44:34.538Z"
+    },
+    {
+      "agentId": "qa-engineer",
+      "loopType": "no_progress",
+      "details": "10分钟内无进展",
+      "timestamp": "2026-03-01T07:44:34.538Z"
+    },
+    {
+      "agentId": "dev-director",
+      "loopType": "no_progress",
+      "details": "10分钟内无进展",
+      "timestamp": "2026-03-01T07:44:34.538Z"
+    },
+    {
+      "agentId": "backend-developer",
+      "loopType": "no_progress",
+      "details": "10分钟内无进展",
+      "timestamp": "2026-03-01T07:44:34.538Z"
+    },
+    {
+      "agentId": "test-engineer",
+      "loopType": "no_progress",
+      "details": "10分钟内无进展",
+      "timestamp": "2026-03-01T07:44:34.538Z"
+    },
+    {
+      "agentId": "requirement-analyst",
+      "loopType": "no_progress",
+      "details": "10分钟内无进展",
+      "timestamp": "2026-03-01T07:44:34.538Z"
     }
   ]
 }
