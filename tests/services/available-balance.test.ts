@@ -16,9 +16,10 @@ describe('可用余额计算测试', () => {
   beforeEach(() => {
     accountService = new AccountService();
     tokenService = new TokenService();
-    // 重置测试数据
+    // 重置测试数据 - 清除所有 Map
     accountModel['accounts'].clear();
     accountModel['transactions'].clear();
+    accountModel['userAccounts'].clear();
   });
 
   describe('AccountService - getAccountInfo', () => {
