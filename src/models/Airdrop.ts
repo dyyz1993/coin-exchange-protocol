@@ -94,9 +94,9 @@ export class AirdropModel {
   }
 
   /**
-   * 记录空投领取（P0 并发安全修复）
+   * 记录空投领取（P0 并发安全修复 + 余额超发漏洞修复）
    */
-  createClaim(airdropId: string, userId: string, amount: number): AirdropClaim {
+  createClaim(airdropId: string, userId: string, _amount: number): AirdropClaim {
     // 🔥 P0 修复：获取空投级别的锁，防止并发问题
     while (this.airdropLocks.get(airdropId)) {
       // 简单的自旋锁等待（生产环境建议使用 async-mutex）
@@ -130,21 +130,17 @@ export class AirdropModel {
         throw new Error('Airdrop is not within the valid time range');
       }
 
-      // 🔥 P0 修复：统一使用基于 claims 的总额检查（与 Service 层一致）
+      // 🔥 P0 超发漏洞修复：强制使用 perUserAmount，忽略传入的 amount
+      const claimAmount = airdrop.perUserAmount;
+
+      // 🔥 P0 修复：检查剩余余额（基于 claims 的总额检查）
       const claims = this.getAirdropClaims(airdropId);
       const totalClaimed = claims.reduce((sum, claim) => sum + claim.amount, 0);
       const remainingAmount = airdrop.totalAmount - totalClaimed;
 
-      if (remainingAmount < amount) {
+      if (remainingAmount < claimAmount) {
         throw new Error(
-          `Insufficient airdrop balance. Total: ${airdrop.totalAmount}, Claimed: ${totalClaimed}, Remaining: ${remainingAmount}, Requested: ${amount}`
-        );
-      }
-
-      // 检查是否超过每人限额
-      if (amount > airdrop.perUserAmount) {
-        throw new Error(
-          `Amount exceeds per-user limit. Limit: ${airdrop.perUserAmount}, Requested: ${amount}`
+          `Insufficient airdrop balance. Total: ${airdrop.totalAmount}, Claimed: ${totalClaimed}, Remaining: ${remainingAmount}, Requested: ${claimAmount}`
         );
       }
 
@@ -154,7 +150,7 @@ export class AirdropModel {
         id: claimId,
         airdropId,
         userId,
-        amount,
+        amount: claimAmount, // 使用 perUserAmount
         claimedAt: new Date(),
       };
 
@@ -167,7 +163,7 @@ export class AirdropModel {
       this.userClaims.get(userId)!.add(airdropId);
 
       // 更新已领取金额和领取人数
-      airdrop.claimedAmount = totalClaimed + amount; // 🔥 P0修复：使用准确值
+      airdrop.claimedAmount = totalClaimed + claimAmount; // 🔥 P0修复：使用准确值
       airdrop.currentClaims = claims.length + 1;
       airdrop.updatedAt = new Date();
 
@@ -209,6 +205,28 @@ export class AirdropModel {
       }
     }
     return claims.sort((a, b) => b.claimedAt.getTime() - a.claimedAt.getTime());
+  }
+
+  /**
+   * 获取空投剩余余额
+   */
+  getRemainingAmount(airdropId: string): number {
+    const airdrop = this.getAirdrop(airdropId);
+    if (!airdrop) {
+      throw new Error('Airdrop not found');
+    }
+
+    const claims = this.getAirdropClaims(airdropId);
+    const totalClaimed = claims.reduce((sum, claim) => sum + claim.amount, 0);
+    return airdrop.totalAmount - totalClaimed;
+  }
+
+  /**
+   * 检查空投是否已耗尽
+   */
+  isAirdropExhausted(airdropId: string): boolean {
+    const remainingAmount = this.getRemainingAmount(airdropId);
+    return remainingAmount <= 0;
   }
 }
 
