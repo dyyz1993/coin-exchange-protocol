@@ -18,6 +18,7 @@ export interface Airdrop {
   name: string;
   description: string;
   totalAmount: number; // 总金额
+  claimedAmount: number; // 已领取金额
   perUserAmount: number; // 每人可领取金额
   startTime: Date; // 开始时间
   endTime: Date; // 结束时间
