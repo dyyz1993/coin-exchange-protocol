@@ -139,15 +139,4 @@ export interface ErrorResponse {
   code?: string;
 }
 
-/**
- * API 响应联合类型
- */
-export type ApiResponse<T = any> =
-  | SuccessResponse
-  | ErrorResponse
-  | {
-      success: boolean;
-      data?: T;
-      error?: string;
-      message?: string;
-    };
+// 注意：ApiResponse 已在 common.ts 中定义，这里不再重复定义

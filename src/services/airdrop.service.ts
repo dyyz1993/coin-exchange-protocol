@@ -168,7 +168,7 @@ export class AirdropService {
    */
   async cancelAirdrop(
     airdropId: string,
-    reason: string
+    _reason: string
   ): Promise<{
     success: boolean;
     status: AirdropStatus;

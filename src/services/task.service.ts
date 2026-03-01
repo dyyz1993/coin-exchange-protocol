@@ -4,7 +4,7 @@
 
 import { taskModel } from '../models/Task';
 import { accountService } from './account.service';
-import { TaskStatus, TaskCompletionStatus, TransactionType } from '../types';
+import { TaskStatus, TransactionType } from '../types';
 
 export class TaskService {
   /**
@@ -44,7 +44,7 @@ export class TaskService {
       taskId: task.id,
       title: task.title,
       reward: task.reward,
-      status: task.status
+      status: task.status,
     };
   }
 
@@ -68,7 +68,7 @@ export class TaskService {
 
     return {
       success: true,
-      status: updatedTask.status
+      status: updatedTask.status,
     };
   }
 
@@ -92,7 +92,7 @@ export class TaskService {
 
     return {
       success: true,
-      status: updatedTask.status
+      status: updatedTask.status,
     };
   }
 
@@ -116,14 +116,17 @@ export class TaskService {
 
     return {
       success: true,
-      status: updatedTask.status
+      status: updatedTask.status,
     };
   }
 
   /**
    * 用户完成任务
    */
-  async completeTask(taskId: string, userId: string): Promise<{
+  async completeTask(
+    taskId: string,
+    userId: string
+  ): Promise<{
     success: boolean;
     reward: number;
     completionId: string;
@@ -175,7 +178,7 @@ export class TaskService {
       success: true,
       reward: task.reward,
       completionId: completion.id,
-      newBalance: result.newBalance
+      newBalance: result.newBalance,
     };
   }
 
@@ -197,10 +200,11 @@ export class TaskService {
     return {
       task,
       completionCount: completions.length,
-      canComplete: task.status === TaskStatus.ACTIVE && 
-                   new Date() >= task.startTime && 
-                   new Date() <= task.endTime &&
-                   task.currentCompletions < task.maxCompletions
+      canComplete:
+        task.status === TaskStatus.ACTIVE &&
+        new Date() >= task.startTime &&
+        new Date() <= task.endTime &&
+        task.currentCompletions < task.maxCompletions,
     };
   }
 
@@ -223,18 +227,20 @@ export class TaskService {
    */
   getAvailableTasks(userId: string): any[] {
     const activeTasks = taskModel.getActiveTasks();
-    
-    return activeTasks.filter(task => {
-      return !taskModel.hasUserCompleted(userId, task.id);
-    }).map(task => ({
-      id: task.id,
-      title: task.title,
-      description: task.description,
-      reward: task.reward,
-      endTime: task.endTime,
-      remainingTime: task.endTime.getTime() - Date.now(),
-      remainingSlots: task.maxCompletions - task.currentCompletions
-    }));
+
+    return activeTasks
+      .filter((task) => {
+        return !taskModel.hasUserCompleted(userId, task.id);
+      })
+      .map((task) => ({
+        id: task.id,
+        title: task.title,
+        description: task.description,
+        reward: task.reward,
+        endTime: task.endTime,
+        remainingTime: task.endTime.getTime() - Date.now(),
+        remainingSlots: task.maxCompletions - task.currentCompletions,
+      }));
   }
 
   /**
@@ -242,8 +248,8 @@ export class TaskService {
    */
   getUserCompletions(userId: string): any[] {
     const completions = taskModel.getUserCompletions(userId);
-    
-    return completions.map(completion => {
+
+    return completions.map((completion) => {
       const task = taskModel.getTask(completion.taskId);
       return {
         completionId: completion.id,
@@ -251,7 +257,7 @@ export class TaskService {
         taskTitle: task?.title || '未知任务',
         reward: completion.reward,
         status: completion.status,
-        completedAt: completion.completedAt
+        completedAt: completion.completedAt,
       };
     });
   }
@@ -259,7 +265,10 @@ export class TaskService {
   /**
    * 检查用户是否可完成任务
    */
-  canUserComplete(taskId: string, userId: string): {
+  canUserComplete(
+    taskId: string,
+    userId: string
+  ): {
     canComplete: boolean;
     reason?: string;
   } {
@@ -312,7 +321,7 @@ export class TaskService {
       if (task) {
         const completions = taskModel.getTaskCompletions(taskId);
         totalRewardsDistributed = completions.reduce((sum, c) => sum + c.reward, 0);
-        
+
         if (task.status === TaskStatus.ACTIVE) activeTasks = 1;
         if (task.status === TaskStatus.COMPLETED) completedTasks = 1;
       }
@@ -331,7 +340,7 @@ export class TaskService {
       totalTasks: taskId ? 1 : allTasks.length,
       activeTasks,
       completedTasks,
-      totalRewardsDistributed
+      totalRewardsDistributed,
     };
   }
 }

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { toast } from '../utils/toast';
+import { confirm } from '../utils/confirm';
 import { validateAmount, validateAccountId, isNotEmpty } from '../utils/validation';
 
 // 类型定义
@@ -172,7 +173,12 @@ export const FreezeManager: React.FC = () => {
 
   // 审核通过
   const handleApprove = async (requestId: string) => {
-    const confirmed = window.confirm('确定要通过此冻结申请吗？');
+    const confirmed = await confirm.show('确定要通过此冻结申请吗？', {
+      title: '审核确认',
+      type: 'warning',
+      confirmText: '通过',
+      cancelText: '取消',
+    });
     if (!confirmed) return;
 
     setLoading(true);
@@ -190,7 +196,12 @@ export const FreezeManager: React.FC = () => {
 
   // 审核拒绝
   const handleReject = async (requestId: string) => {
-    const confirmed = window.confirm('确定要拒绝此冻结申请吗？');
+    const confirmed = await confirm.show('确定要拒绝此冻结申请吗？', {
+      title: '审核确认',
+      type: 'danger',
+      confirmText: '拒绝',
+      cancelText: '取消',
+    });
     if (!confirmed) return;
 
     setLoading(true);
@@ -207,7 +218,12 @@ export const FreezeManager: React.FC = () => {
 
   // 解冻账户
   const handleUnfreeze = async (recordId: string) => {
-    const confirmed = window.confirm('确定要解冻此账户吗？');
+    const confirmed = await confirm.show('确定要解冻此账户吗？', {
+      title: '解冻确认',
+      type: 'info',
+      confirmText: '解冻',
+      cancelText: '取消',
+    });
     if (!confirmed) return;
 
     setLoading(true);
