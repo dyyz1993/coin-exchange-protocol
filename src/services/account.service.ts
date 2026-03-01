@@ -434,7 +434,7 @@ export class AccountService {
   async freezeAccount(
     userId: string,
     reason: string,
-    duration?: number
+    _duration?: number
   ): Promise<{
     success: boolean;
     frozenAmount: number;
