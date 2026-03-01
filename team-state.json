@@ -57,36 +57,6 @@
   "initialized": false,
   "events": [
     {
-      "time": "2026-02-28T22:06:51.553Z",
-      "agent": "frontend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-02-28T22:06:51.574Z",
-      "agent": "frontend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-02-28T22:06:51.595Z",
-      "agent": "frontend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-02-28T22:06:51.617Z",
-      "agent": "frontend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-02-28T22:06:51.639Z",
-      "agent": "frontend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
       "time": "2026-02-28T22:06:51.657Z",
       "agent": "frontend-developer",
       "type": "tool",
@@ -3055,6 +3025,36 @@
       "agent": "requirement-analyst",
       "type": "tool",
       "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T01:57:04.046Z",
+      "agent": "requirement-analyst",
+      "type": "tool",
+      "content": "调用工具: git_create_branch"
+    },
+    {
+      "time": "2026-03-01T01:57:07.120Z",
+      "agent": "requirement-analyst",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T01:58:41.622Z",
+      "agent": "requirement-analyst",
+      "type": "tool",
+      "content": "调用工具: write"
+    },
+    {
+      "time": "2026-03-01T01:58:45.358Z",
+      "agent": "requirement-analyst",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T01:58:56.904Z",
+      "agent": "requirement-analyst",
+      "type": "tool",
+      "content": "调用工具: git_commit"
     }
   ],
   "agentHistories": {
