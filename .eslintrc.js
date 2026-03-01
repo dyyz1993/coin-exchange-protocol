@@ -48,7 +48,7 @@ module.exports = {
     'dist',
     'node_modules',
     'coverage',
-    '*.js',
+    '*.config.js',
     '!.eslintrc.js',
   ],
 };
