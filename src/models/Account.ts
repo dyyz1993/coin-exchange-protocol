@@ -3,57 +3,41 @@
  * 
  * 修复并发竞态条件问题：
  * 1. 添加版本号实现乐观锁（Optimistic Locking）
- * 2. 使用内存锁确保同一账户操作串行化
+ * 2. 使用 async-mutex 确保同一账户操作串行化
  * 3. 转账操作使用有序锁避免死锁
  */
 
 import { Account, Transaction, TransactionStatus, TransactionType } from '../types';
+import { Mutex, MutexInterface } from 'async-mutex';
 
 export class AccountModel {
   private accounts: Map<string, Account> = new Map();
   private transactions: Map<string, Transaction> = new Map();
   private userAccounts: Map<string, string> = new Map(); // userId -> accountId
   
-  // 并发控制：内存锁
-  private accountLocks: Map<string, boolean> = new Map(); // userId -> isLocked
-  private readonly MAX_LOCK_RETRIES = 100;
-  private readonly LOCK_RETRY_DELAY = 10; // ms
+  // 并发控制：使用 async-mutex 替代 busy wait
+  private accountMutexes: Map<string, Mutex> = new Map(); // userId -> Mutex
 
   /**
-   * 获取账户锁（同步等待）
+   * 获取或创建账户的 Mutex
    */
-  private acquireLock(userId: string): void {
-    let retries = 0;
-    while (this.accountLocks.get(userId)) {
-      if (retries++ > this.MAX_LOCK_RETRIES) {
-        throw new Error(`Failed to acquire lock for user ${userId}: timeout`);
-      }
-      // 同步等待（使用 Atomics 或 setTimeout 在实际生产环境中）
-      // 这里简化处理，在生产环境应使用 async/await + setTimeout
-      const start = Date.now();
-      while (Date.now() - start < this.LOCK_RETRY_DELAY) {
-        // busy wait
-      }
+  private getMutex(userId: string): Mutex {
+    if (!this.accountMutexes.has(userId)) {
+      this.accountMutexes.set(userId, new Mutex());
     }
-    this.accountLocks.set(userId, true);
+    return this.accountMutexes.get(userId)!;
   }
 
   /**
-   * 释放账户锁
+   * 使用锁执行异步操作
    */
-  private releaseLock(userId: string): void {
-    this.accountLocks.delete(userId);
-  }
-
-  /**
-   * 使用锁执行操作
-   */
-  private withLock<T>(userId: string, operation: () => T): T {
-    this.acquireLock(userId);
+  private async withLock<T>(userId: string, operation: () => T | Promise<T>): Promise<T> {
+    const mutex = this.getMutex(userId);
+    const release = await mutex.acquire();
     try {
-      return operation();
+      return await operation();
     } finally {
-      this.releaseLock(userId);
+      release();
     }
   }
 
@@ -79,7 +63,7 @@ export class AccountModel {
   /**
    * 创建账户
    */
-  createAccount(userId: string, initialBalance: number = 0): Account {
+  async createAccount(userId: string, initialBalance: number = 0): Promise<Account> {
     return this.withLock(userId, () => {
       // 检查是否已存在
       if (this.userAccounts.has(userId)) {
@@ -127,10 +111,10 @@ export class AccountModel {
   /**
    * 获取或创建账户
    */
-  getOrCreateAccount(userId: string): Account {
+  async getOrCreateAccount(userId: string): Promise<Account> {
     let account = this.getAccountByUserId(userId);
     if (!account) {
-      account = this.createAccount(userId);
+      account = await this.createAccount(userId);
     }
     return account;
   }
@@ -138,9 +122,9 @@ export class AccountModel {
   /**
    * 增加余额（带锁和版本控制）
    */
-  addBalance(userId: string, amount: number, description: string, type: TransactionType): Transaction {
-    return this.withLock(userId, () => {
-      const account = this.getOrCreateAccount(userId);
+  async addBalance(userId: string, amount: number, description: string, type: TransactionType): Promise<Transaction> {
+    return this.withLock(userId, async () => {
+      const account = await this.getOrCreateAccount(userId);
       const currentVersion = account.version || 0;
 
       this.validateAndUpdateBalance(account, currentVersion, () => {
@@ -167,8 +151,8 @@ export class AccountModel {
   /**
    * 扣减余额（带锁和版本控制）
    */
-  deductBalance(userId: string, amount: number, description: string, type: TransactionType): Transaction {
-    return this.withLock(userId, () => {
+  async deductBalance(userId: string, amount: number, description: string, type: TransactionType): Promise<Transaction> {
+    return this.withLock(userId, async () => {
       const account = this.getAccountByUserId(userId);
       if (!account) {
         throw new Error('Account not found');
@@ -202,8 +186,8 @@ export class AccountModel {
   /**
    * 冻结余额（带锁和版本控制）
    */
-  freezeBalance(userId: string, amount: number): Transaction {
-    return this.withLock(userId, () => {
+  async freezeBalance(userId: string, amount: number): Promise<Transaction> {
+    return this.withLock(userId, async () => {
       const account = this.getAccountByUserId(userId);
       if (!account) {
         throw new Error('Account not found');
@@ -237,8 +221,8 @@ export class AccountModel {
   /**
    * 解冻余额（带锁和版本控制）
    */
-  unfreezeBalance(userId: string, amount: number): Transaction {
-    return this.withLock(userId, () => {
+  async unfreezeBalance(userId: string, amount: number): Promise<Transaction> {
+    return this.withLock(userId, async () => {
       const account = this.getAccountByUserId(userId);
       if (!account) {
         throw new Error('Account not found');
@@ -272,12 +256,12 @@ export class AccountModel {
   /**
    * 转账（带双重锁和版本控制）
    */
-  transfer(fromUserId: string, toUserId: string, amount: number, description: string): Transaction {
+  async transfer(fromUserId: string, toUserId: string, amount: number, description: string): Promise<Transaction> {
     // 按用户ID排序加锁，避免死锁
     const [firstUserId, secondUserId] = [fromUserId, toUserId].sort();
     
-    return this.withLock(firstUserId, () => {
-      return this.withLock(secondUserId, () => {
+    return this.withLock(firstUserId, async () => {
+      return this.withLock(secondUserId, async () => {
         const fromAccount = this.getAccountByUserId(fromUserId);
         if (!fromAccount) {
           throw new Error('Source account not found');
@@ -294,7 +278,7 @@ export class AccountModel {
           fromAccount.totalSpent = (fromAccount.totalSpent || 0) + amount;
         });
 
-        const toAccount = this.getOrCreateAccount(toUserId);
+        const toAccount = await this.getOrCreateAccount(toUserId);
         const toVersion = toAccount.version || 0;
 
         // 原子操作：更新目标账户

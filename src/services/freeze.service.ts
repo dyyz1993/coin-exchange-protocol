@@ -55,12 +55,12 @@ export class FreezeService {
   /**
    * 创建初始冻结（交易确认阶段，5分钟）
    */
-  createInitialFreeze(params: {
+  async createInitialFreeze(params: {
     userId: string;
     amount: number;
     transactionId: string;
     remark?: string;
-  }): FreezeRecord {
+  }): Promise<FreezeRecord> {
     const account = accountModel.getAccountByUserId(params.userId);
     if (!account) {
       throw new Error('用户账户不存在');
@@ -82,7 +82,7 @@ export class FreezeService {
     });
 
     // 执行账户冻结
-    accountModel.freezeBalance(params.userId, params.amount);
+    await accountModel.freezeBalance(params.userId, params.amount);
 
     return freeze;
   }
@@ -90,12 +90,12 @@ export class FreezeService {
   /**
    * 创建争议冻结（客服介入阶段，30分钟）
    */
-  createDisputeFreeze(params: {
+  async createDisputeFreeze(params: {
     userId: string;
     amount: number;
     transactionId: string;
     remark?: string;
-  }): FreezeRecord {
+  }): Promise<FreezeRecord> {
     const account = accountModel.getAccountByUserId(params.userId);
     if (!account) {
       throw new Error('用户账户不存在');
@@ -111,7 +111,7 @@ export class FreezeService {
     });
 
     // 执行账户冻结
-    accountModel.freezeBalance(params.userId, params.amount);
+    await accountModel.freezeBalance(params.userId, params.amount);
 
     return freeze;
   }
@@ -119,7 +119,7 @@ export class FreezeService {
   /**
    * 解冻
    */
-  unfreeze(freezeId: string, reason?: string): FreezeRecord {
+  async unfreeze(freezeId: string, reason?: string): Promise<FreezeRecord> {
     const freeze = freezeModel.getFreeze(freezeId);
     if (!freeze) {
       throw new Error('冻结记录不存在');
@@ -133,7 +133,7 @@ export class FreezeService {
     const result = freezeModel.unfreeze(freezeId, reason);
 
     // 执行账户解冻
-    accountModel.unfreezeBalance(freeze.userId, freeze.amount);
+    await accountModel.unfreezeBalance(freeze.userId, freeze.amount);
 
     return result;
   }
@@ -141,14 +141,14 @@ export class FreezeService {
   /**
    * 手动解冻（指定原因）
    */
-  manualUnfreeze(freezeId: string, reason: string): FreezeRecord {
-    return this.unfreeze(freezeId, reason);
+  async manualUnfreeze(freezeId: string, reason: string): Promise<FreezeRecord> {
+    return await this.unfreeze(freezeId, reason);
   }
 
   /**
    * 自动解冻过期的冻结记录
    */
-  autoUnfreezeExpired(): Array<{ freeze: FreezeRecord; success: boolean; error?: string }> {
+  async autoUnfreezeExpired(): Promise<Array<{ freeze: FreezeRecord; success: boolean; error?: string }>> {
     const results: Array<{ freeze: FreezeRecord; success: boolean; error?: string }> = [];
     const expiredFreezes = freezeModel.getExpiredFreezes();
 
@@ -156,7 +156,7 @@ export class FreezeService {
 
     for (const freeze of expiredFreezes) {
       try {
-        const result = this.unfreeze(freeze.id, '自动解冻：过期');
+        const result = await this.unfreeze(freeze.id, '自动解冻：过期');
         results.push({ freeze: result, success: true });
         console.log(`✅ 自动解冻成功: ${freeze.id}, 金额: ${freeze.amount}`);
       } catch (error) {
@@ -286,12 +286,12 @@ export class FreezeService {
   /**
    * 批量解冻用户的指定冻结记录
    */
-  unfreezeMultiple(freezeIds: string[], reason?: string): Array<{ freezeId: string; success: boolean; error?: string }> {
+  async unfreezeMultiple(freezeIds: string[], reason?: string): Promise<Array<{ freezeId: string; success: boolean; error?: string }>> {
     const results: Array<{ freezeId: string; success: boolean; error?: string }> = [];
 
     for (const freezeId of freezeIds) {
       try {
-        this.unfreeze(freezeId, reason);
+        await this.unfreeze(freezeId, reason);
         results.push({ freezeId, success: true });
       } catch (error) {
         results.push({ 

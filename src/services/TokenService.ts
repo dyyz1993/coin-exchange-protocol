@@ -32,36 +32,36 @@ export class TokenService {
   /**
    * 增加余额（内部方法）
    */
-  addBalance(userId: string, amount: number, description: string, type: TransactionType): Transaction {
-    return accountModel.addBalance(userId, amount, description, type);
+  async addBalance(userId: string, amount: number, description: string, type: TransactionType): Promise<Transaction> {
+    return await accountModel.addBalance(userId, amount, description, type);
   }
 
   /**
    * 扣减余额
    */
-  deductBalance(userId: string, amount: number, description: string): Transaction {
-    return accountModel.deductBalance(userId, amount, description, TransactionType.TRANSFER);
+  async deductBalance(userId: string, amount: number, description: string): Promise<Transaction> {
+    return await accountModel.deductBalance(userId, amount, description, TransactionType.TRANSFER);
   }
 
   /**
    * 转账
    */
-  transfer(fromUserId: string, toUserId: string, amount: number, description: string): Transaction {
-    return accountModel.transfer(fromUserId, toUserId, amount, description);
+  async transfer(fromUserId: string, toUserId: string, amount: number, description: string): Promise<Transaction> {
+    return await accountModel.transfer(fromUserId, toUserId, amount, description);
   }
 
   /**
    * 冻结余额
    */
-  freezeBalance(userId: string, amount: number): Transaction {
-    return accountModel.freezeBalance(userId, amount);
+  async freezeBalance(userId: string, amount: number): Promise<Transaction> {
+    return await accountModel.freezeBalance(userId, amount);
   }
 
   /**
    * 解冻余额
    */
-  unfreezeBalance(userId: string, amount: number): Transaction {
-    return accountModel.unfreezeBalance(userId, amount);
+  async unfreezeBalance(userId: string, amount: number): Promise<Transaction> {
+    return await accountModel.unfreezeBalance(userId, amount);
   }
 
   /**
