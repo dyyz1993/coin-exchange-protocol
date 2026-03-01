@@ -9,28 +9,41 @@ export class AccountService {
   /**
    * 创建新用户账户
    */
-  async createAccount(userId: string, initialBalanceOrData?: number | {
-    email?: string;
-    phone?: string;
-    nickname?: string;
-  }): Promise<{
+  async createAccount(
+    userId: string,
+    initialData?:
+      | number
+      | {
+          email?: string;
+          phone?: string;
+          nickname?: string;
+          initialBalance?: number;
+        }
+  ): Promise<{
     accountId: string;
     createdAt: Date;
     initialBalance?: number;
   }> {
     // 兼容两种参数形式：直接传 initialBalance 数字，或传 initialData 对象
     let initialBalance = 0;
-    if (typeof initialBalanceOrData === 'number') {
-      initialBalance = initialBalanceOrData;
+    if (typeof initialData === 'number') {
+      initialBalance = initialData;
+    } else if (initialData && typeof initialData === 'object') {
+      initialBalance = initialData.initialBalance || 0;
     }
-    
-    // 创建用户账户，传入初始余额
+
+    // 创建用户账户
     const account = await accountModel.createAccount(userId, initialBalance);
+
+    // 如果有初始余额，记录交易
+    if (initialBalance > 0) {
+      await this.addTokens(userId, initialBalance, TransactionType.REWARD, '初始余额');
+    }
 
     return {
       accountId: account.id!,
       createdAt: account.createdAt,
-      initialBalance: account.balance
+      initialBalance: account.balance,
     };
   }
 
@@ -54,7 +67,7 @@ export class AccountService {
       frozenBalance: account.frozenBalance,
       availableBalance: account.balance,
       totalEarned: account.totalEarned,
-      totalSpent: account.totalSpent
+      totalSpent: account.totalSpent,
     };
   }
 
@@ -74,7 +87,7 @@ export class AccountService {
     return {
       balance: account.balance,
       frozenBalance: account.frozenBalance,
-      availableBalance: account.balance // 可用余额 = 总余额 - 冻结余额
+      availableBalance: account.balance, // 可用余额 = 总余额 - 冻结余额
     };
   }
 
@@ -97,7 +110,7 @@ export class AccountService {
     return {
       success: true,
       newBalance: accountModel.getAccountByUserId(userId)!.balance,
-      transactionId: transaction.id
+      transactionId: transaction.id,
     };
   }
 
@@ -120,7 +133,7 @@ export class AccountService {
     return {
       success: true,
       newBalance: accountModel.getAccountByUserId(userId)!.balance,
-      transactionId: transaction.id
+      transactionId: transaction.id,
     };
   }
 
@@ -143,7 +156,7 @@ export class AccountService {
     return {
       success: true,
       frozenAmount: amount,
-      availableBalance: account.balance
+      availableBalance: account.balance,
     };
   }
 
@@ -165,7 +178,7 @@ export class AccountService {
     return {
       success: true,
       unfrozenAmount: amount,
-      availableBalance: account.balance
+      availableBalance: account.balance,
     };
   }
 
@@ -199,7 +212,7 @@ export class AccountService {
       success: true,
       fromNewBalance: fromAccount.balance,
       toNewBalance: toAccount.balance,
-      transactionId: transaction.id
+      transactionId: transaction.id,
     };
   }
 
@@ -215,16 +228,16 @@ export class AccountService {
     }
   ): Transaction[] {
     let transactions = accountModel.getUserTransactions(userId);
-    
+
     // 过滤类型
     if (options?.type) {
-      transactions = transactions.filter(tx => tx.type === options.type);
+      transactions = transactions.filter((tx) => tx.type === options.type);
     }
-    
+
     // 分页
     const offset = options?.offset || 0;
     const limit = options?.limit || 20;
-    
+
     return transactions.slice(offset, offset + limit);
   }
 
@@ -271,7 +284,7 @@ export class AccountService {
       totalTransactions: transactions.length,
       totalEarned,
       totalSpent,
-      accountAge
+      accountAge,
     };
   }
 
@@ -346,12 +359,7 @@ export class AccountService {
     newBalance: number;
     transactionId: string;
   }> {
-    return this.addTokens(
-      userId,
-      amount,
-      TransactionType.REWARD,
-      reason || '充值'
-    );
+    return this.addTokens(userId, amount, TransactionType.REWARD, reason || '充值');
   }
 
   /**
@@ -367,12 +375,7 @@ export class AccountService {
     newBalance: number;
     transactionId: string;
   }> {
-    return this.deductTokens(
-      userId,
-      amount,
-      TransactionType.PENALTY,
-      reason || '提现'
-    );
+    return this.deductTokens(userId, amount, TransactionType.PENALTY, reason || '提现');
   }
 
   /**
@@ -399,7 +402,7 @@ export class AccountService {
       return {
         success: true,
         frozenAmount: 0,
-        availableBalance: account.balance
+        availableBalance: account.balance,
       };
     }
 
@@ -429,7 +432,7 @@ export class AccountService {
       return {
         success: true,
         unfrozenAmount: 0,
-        availableBalance: account.balance
+        availableBalance: account.balance,
       };
     }
 
@@ -458,7 +461,10 @@ export class AccountService {
    * 更新账户状态
    * 注意：AccountModel 没有状态字段，这里只是占位
    */
-  async updateAccountStatus(userId: string, status: string): Promise<{
+  async updateAccountStatus(
+    userId: string,
+    status: string
+  ): Promise<{
     success: boolean;
     status: string;
   }> {
@@ -470,7 +476,7 @@ export class AccountService {
     // AccountModel 目前不支持状态管理
     return {
       success: true,
-      status: status
+      status: status,
     };
   }
 }
