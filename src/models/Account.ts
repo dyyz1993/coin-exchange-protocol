@@ -195,6 +195,13 @@ export class AccountModel {
 
   /**
    * 冻结余额（带锁和版本控制）
+   *
+   * 修复说明（Issue #200）：
+   * - balance 字段存储总余额（包括可用余额 + 冻结余额）
+   * - frozenBalance 字段存储冻结金额
+   * - availableBalance = balance - frozenBalance
+   * - 冻结时只增加 frozenBalance，不扣减 balance
+   * - 解冻时只减少 frozenBalance，不增加 balance
    */
   async freezeBalance(userId: string, amount: number): Promise<Transaction> {
     return this.withLock(userId, async () => {
@@ -207,10 +214,12 @@ export class AccountModel {
 
       // 原子操作：检查 + 冻结
       this.validateAndUpdateBalance(account, currentVersion, () => {
-        if (account.balance < amount) {
-          throw new Error('Insufficient balance');
+        // ✅ 修复：检查可用余额（balance - frozenBalance）
+        const availableBalance = account.balance - account.frozenBalance;
+        if (availableBalance < amount) {
+          throw new Error('Insufficient available balance');
         }
-        account.balance -= amount;
+        // ✅ 修复：只增加 frozenBalance，不扣减 balance
         account.frozenBalance += amount;
       });
 
@@ -230,6 +239,10 @@ export class AccountModel {
 
   /**
    * 解冻余额（带锁和版本控制）
+   *
+   * 修复说明（Issue #200）：
+   * - 解冻时只减少 frozenBalance，不增加 balance
+   * - balance 始终保持总余额不变
    */
   async unfreezeBalance(userId: string, amount: number): Promise<Transaction> {
     return this.withLock(userId, async () => {
@@ -245,8 +258,8 @@ export class AccountModel {
         if (account.frozenBalance < amount) {
           throw new Error('Insufficient frozen balance');
         }
+        // ✅ 修复：只减少 frozenBalance，不增加 balance
         account.frozenBalance -= amount;
-        account.balance += amount;
       });
 
       const transaction = this.createTransaction({
