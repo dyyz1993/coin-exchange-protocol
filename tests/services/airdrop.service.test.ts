@@ -557,6 +557,150 @@ describe('AirdropService', () => {
     });
   });
 
+  describe('🔴 P0 并发安全测试 - Issue #237', () => {
+    test('应该在并发场景下防止超额领取', async () => {
+      // 创建一个小额空投（总金额：500，每人：100，最多只能5人领取）
+      const now = new Date();
+      const startTime = new Date(now.getTime() - 1000 * 60);
+      const endTime = new Date(now.getTime() + 1000 * 60 * 60);
+
+      const airdrop = await airdropService.createAirdrop({
+        name: '并发测试空投',
+        description: '测试并发安全性',
+        totalAmount: 500, // 🔥 关键：总金额只够5人领取
+        perUserAmount: 100,
+        startTime,
+        endTime,
+      });
+
+      await airdropService.startAirdrop(airdrop.airdropId);
+
+      // 创建 20 个用户（远超可领取人数）
+      const userIds = [];
+      for (let i = 0; i < 20; i++) {
+        const userId = `concurrent-user-${i}`;
+        await accountService.createAccount(userId);
+        userIds.push(userId);
+      }
+
+      // 🔥 并发领取：20个用户同时尝试领取
+      const results = await Promise.allSettled(
+        userIds.map((userId) => airdropService.claimAirdrop(airdrop.airdropId, userId))
+      );
+
+      // 统计成功和失败的数量
+      const successCount = results.filter((r) => r.status === 'fulfilled').length;
+      const failedCount = results.filter((r) => r.status === 'rejected').length;
+
+      console.log(`并发测试结果：成功 ${successCount}，失败 ${failedCount}`);
+
+      // 🔥 验收标准1：最多只能成功5次
+      expect(successCount).toBeLessThanOrEqual(5);
+
+      // 🔥 验收标准2：至少有15次失败（因为总额不足）
+      expect(failedCount).toBeGreaterThanOrEqual(15);
+
+      // 🔥 验收标准3：验证实际领取总额不超过总金额
+      const detail = airdropService.getAirdropDetail(airdrop.airdropId);
+      expect(detail.totalClaimed).toBeLessThanOrEqual(500);
+      expect(detail.claimCount).toBeLessThanOrEqual(5);
+
+      // 🔥 验收标准4：成功领取的用户余额正确
+      let successUsers = 0;
+      for (const result of results) {
+        if (result.status === 'fulfilled') {
+          const claim = (result as PromiseFulfilledResult<any>).value;
+          expect(claim.amount).toBe(100);
+          expect(claim.newBalance).toBe(100);
+          successUsers++;
+        }
+      }
+      expect(successUsers).toBe(successCount);
+    });
+
+    test('应该在并发场景下防止重复领取', async () => {
+      const airdrop = await createActiveAirdrop();
+      const userId = 'duplicate-test-user';
+      await accountService.createAccount(userId);
+
+      // 🔥 同一用户并发尝试领取10次
+      const results = await Promise.allSettled(
+        Array(10)
+          .fill(null)
+          .map(() => airdropService.claimAirdrop(airdrop.airdropId, userId))
+      );
+
+      // 统计成功和失败的数量
+      const successCount = results.filter((r) => r.status === 'fulfilled').length;
+      const failedCount = results.filter((r) => r.status === 'rejected').length;
+
+      console.log(`重复领取测试结果：成功 ${successCount}，失败 ${failedCount}`);
+
+      // 🔥 验收标准1：只能成功1次
+      expect(successCount).toBe(1);
+
+      // 🔥 验收标准2：必须有9次失败
+      expect(failedCount).toBe(9);
+
+      // 🔥 验收标准3：用户余额正确
+      const accountInfo = accountService.getAccountInfo(userId);
+      expect(accountInfo).not.toBeNull();
+      expect(accountInfo!.balance).toBe(100);
+    });
+
+    test('应该在接近耗尽时正确处理并发请求', async () => {
+      // 创建总额 300，每人 100 的空投（可领取3次）
+      const now = new Date();
+      const startTime = new Date(now.getTime() - 1000 * 60);
+      const endTime = new Date(now.getTime() + 1000 * 60 * 60);
+
+      const airdrop = await airdropService.createAirdrop({
+        name: '接近耗尽测试',
+        description: '测试接近耗尽时的并发处理',
+        totalAmount: 300,
+        perUserAmount: 100,
+        startTime,
+        endTime,
+      });
+
+      await airdropService.startAirdrop(airdrop.airdropId);
+
+      // 先让2个用户领取（剩余100）
+      const user1 = 'user-1';
+      const user2 = 'user-2';
+      await accountService.createAccount(user1);
+      await accountService.createAccount(user2);
+      await airdropService.claimAirdrop(airdrop.airdropId, user1);
+      await airdropService.claimAirdrop(airdrop.airdropId, user2);
+
+      // 🔥 此时剩余100，再让10个用户并发领取（只应成功1个）
+      const userIds = [];
+      for (let i = 3; i <= 12; i++) {
+        const userId = `user-${i}`;
+        await accountService.createAccount(userId);
+        userIds.push(userId);
+      }
+
+      const results = await Promise.allSettled(
+        userIds.map((userId) => airdropService.claimAirdrop(airdrop.airdropId, userId))
+      );
+
+      const successCount = results.filter((r) => r.status === 'fulfilled').length;
+      const failedCount = results.filter((r) => r.status === 'rejected').length;
+
+      console.log(`接近耗尽测试结果：成功 ${successCount}，失败 ${failedCount}`);
+
+      // 🔥 验收标准1：只能再成功1次（总共3次）
+      expect(successCount).toBe(1);
+      expect(failedCount).toBe(9);
+
+      // 🔥 验收标准2：总领取金额 = 300
+      const detail = airdropService.getAirdropDetail(airdrop.airdropId);
+      expect(detail.totalClaimed).toBe(300);
+      expect(detail.claimCount).toBe(3);
+    });
+  });
+
   // 辅助函数
   async function createTestAirdrop(name: string = '测试空投'): Promise<any> {
     const now = new Date();
