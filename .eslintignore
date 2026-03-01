@@ -1,0 +1,12 @@
+node_modules
+dist
+coverage
+*.json
+*.md
+*.html
+*.css
+public
+docs
+histories
+monitor-data.json
+team-state.json
