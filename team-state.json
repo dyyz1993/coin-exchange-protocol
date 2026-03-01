@@ -87,12 +87,6 @@
   "initialized": false,
   "events": [
     {
-      "time": "2026-03-01T05:41:04.595Z",
-      "agent": "product-director",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
       "time": "2026-03-01T05:41:10.231Z",
       "agent": "product-director",
       "type": "tool",
@@ -3082,6 +3076,12 @@
     },
     {
       "time": "2026-03-01T06:57:19.318Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T06:57:23.828Z",
       "agent": "test-engineer",
       "type": "tool",
       "content": "调用工具: bash"
