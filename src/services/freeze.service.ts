@@ -4,13 +4,13 @@
 
 import { freezeModel } from '../models/Freeze';
 import { accountModel } from '../models/Account';
-import { 
-  FreezeRecord, 
-  FreezeType, 
-  FreezeStatus, 
+import {
+  FreezeRecord,
+  FreezeType,
+  FreezeStatus,
   FREEZE_CONFIG,
   FreezeStatusResponse,
-  FreezeListQuery
+  FreezeListQuery,
 } from '../types';
 import { TransactionType } from '../types';
 
@@ -38,7 +38,9 @@ export class FreezeService {
       this.autoUnfreezeExpired();
     }, FREEZE_CONFIG.AUTO_UNFREEZE_INTERVAL);
 
-    console.log(`✅ 自动解冻定时任务已启动，检查间隔: ${FREEZE_CONFIG.AUTO_UNFREEZE_INTERVAL / 1000}秒`);
+    console.log(
+      `✅ 自动解冻定时任务已启动，检查间隔: ${FREEZE_CONFIG.AUTO_UNFREEZE_INTERVAL / 1000}秒`
+    );
   }
 
   /**
@@ -78,7 +80,7 @@ export class FreezeService {
       amount: params.amount,
       type: FreezeType.INITIAL,
       transactionId: params.transactionId,
-      remark: params.remark || '交易初始冻结'
+      remark: params.remark || '交易初始冻结',
     });
 
     // 执行账户冻结
@@ -107,7 +109,7 @@ export class FreezeService {
       amount: params.amount,
       type: FreezeType.DISPUTE,
       transactionId: params.transactionId,
-      remark: params.remark || '争议冻结'
+      remark: params.remark || '争议冻结',
     });
 
     // 执行账户冻结
@@ -148,7 +150,9 @@ export class FreezeService {
   /**
    * 自动解冻过期的冻结记录
    */
-  async autoUnfreezeExpired(): Promise<Array<{ freeze: FreezeRecord; success: boolean; error?: string }>> {
+  async autoUnfreezeExpired(): Promise<
+    Array<{ freeze: FreezeRecord; success: boolean; error?: string }>
+  > {
     const results: Array<{ freeze: FreezeRecord; success: boolean; error?: string }> = [];
     const expiredFreezes = freezeModel.getExpiredFreezes();
 
@@ -160,10 +164,10 @@ export class FreezeService {
         results.push({ freeze: result, success: true });
         console.log(`✅ 自动解冻成功: ${freeze.id}, 金额: ${freeze.amount}`);
       } catch (error) {
-        results.push({ 
-          freeze, 
-          success: false, 
-          error: error instanceof Error ? error.message : '未知错误' 
+        results.push({
+          freeze,
+          success: false,
+          error: error instanceof Error ? error.message : '未知错误',
         });
         console.error(`❌ 自动解冻失败: ${freeze.id}`, error);
       }
@@ -182,9 +186,10 @@ export class FreezeService {
     }
 
     const now = new Date();
-    const remainingTime = freeze.status === FreezeStatus.FROZEN && freeze.expiresAt > now
-      ? freeze.expiresAt.getTime() - now.getTime()
-      : 0;
+    const remainingTime =
+      freeze.status === FreezeStatus.FROZEN && freeze.expiresAt > now
+        ? freeze.expiresAt.getTime() - now.getTime()
+        : 0;
 
     return {
       freezeId: freeze.id,
@@ -194,7 +199,7 @@ export class FreezeService {
       status: freeze.status,
       frozenAt: freeze.frozenAt,
       expiresAt: freeze.expiresAt,
-      remainingTime
+      remainingTime,
     };
   }
 
@@ -203,11 +208,11 @@ export class FreezeService {
    */
   getUserFreezes(userId: string, status?: FreezeStatus): FreezeRecord[] {
     const freezes = freezeModel.getUserFreezes(userId);
-    
+
     if (status) {
-      return freezes.filter(freeze => freeze.status === status);
+      return freezes.filter((freeze) => freeze.status === status);
     }
-    
+
     return freezes;
   }
 
@@ -227,6 +232,9 @@ export class FreezeService {
 
   /**
    * 获取用户可用余额（考虑冻结金额）
+   *
+   * 注意：account.balance 已经是扣除冻结后的可用余额
+   * 因为 accountModel.freezeBalance() 会将金额从 balance 转移到 frozenBalance
    */
   getAvailableBalance(userId: string): number {
     const account = accountModel.getAccountByUserId(userId);
@@ -234,8 +242,8 @@ export class FreezeService {
       return 0;
     }
 
-    const frozenAmount = freezeModel.getUserFrozenAmount(userId);
-    return account.balance - frozenAmount;
+    // account.balance 已经是可用余额（冻结时已扣除）
+    return account.balance;
   }
 
   /**
@@ -275,18 +283,21 @@ export class FreezeService {
 
     // 直接修改模型的 expiresAt（注意：这需要模型支持，或者使用特殊方法）
     const newExpiresAt = new Date(freeze.expiresAt.getTime() + durationMinutes * 60 * 1000);
-    
+
     // 由于模型没有公开设置 expiresAt 的方法，我们需要通过重新创建或修改模型来实现
     // 这里我们创建一个新的冻结记录来替换旧的
     // 更好的方式是扩展模型功能
-    
+
     throw new Error('需要扩展模型以支持延长冻结时间');
   }
 
   /**
    * 批量解冻用户的指定冻结记录
    */
-  async unfreezeMultiple(freezeIds: string[], reason?: string): Promise<Array<{ freezeId: string; success: boolean; error?: string }>> {
+  async unfreezeMultiple(
+    freezeIds: string[],
+    reason?: string
+  ): Promise<Array<{ freezeId: string; success: boolean; error?: string }>> {
     const results: Array<{ freezeId: string; success: boolean; error?: string }> = [];
 
     for (const freezeId of freezeIds) {
@@ -294,10 +305,10 @@ export class FreezeService {
         await this.unfreeze(freezeId, reason);
         results.push({ freezeId, success: true });
       } catch (error) {
-        results.push({ 
-          freezeId, 
-          success: false, 
-          error: error instanceof Error ? error.message : '未知错误' 
+        results.push({
+          freezeId,
+          success: false,
+          error: error instanceof Error ? error.message : '未知错误',
         });
       }
     }
