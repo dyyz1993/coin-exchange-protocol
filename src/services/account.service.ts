@@ -15,12 +15,9 @@ export class AccountNotFoundError extends Error {
   }
 }
 
-/**
- * 自定义错误类 - 余额不足
- */
 export class InsufficientBalanceError extends Error {
   constructor(userId: string, required: number, available: number) {
-    super(`余额不足: 用户 ${userId} 需要 ${required}，但可用余额仅 ${available}`);
+    super(`余额不足: 用户ID ${userId}, 需要 ${required}, 可用 ${available}`);
     this.name = 'InsufficientBalanceError';
   }
 }
@@ -52,8 +49,12 @@ export class AccountService {
     // 创建用户账户，传入初始余额
     const account = await accountModel.createAccount(userId, initialBalance);
 
+    if (!account || !account.id) {
+      throw new Error('创建账户失败：无法获取账户ID');
+    }
+
     return {
-      accountId: account.id!,
+      accountId: account.id,
       createdAt: account.createdAt,
       initialBalance: account.balance,
     };
@@ -77,7 +78,7 @@ export class AccountService {
     return {
       balance: account.balance,
       frozenBalance: account.frozenBalance,
-      availableBalance: account.balance,
+      availableBalance: account.balance - account.frozenBalance,
       totalEarned: account.totalEarned,
       totalSpent: account.totalSpent,
     };
@@ -99,7 +100,7 @@ export class AccountService {
     return {
       balance: account.balance,
       frozenBalance: account.frozenBalance,
-      availableBalance: account.balance, // 可用余额 = 总余额 - 冻结余额
+      availableBalance: account.balance - account.frozenBalance,
     };
   }
 
@@ -119,7 +120,6 @@ export class AccountService {
   }> {
     const transaction = await accountModel.addBalance(userId, amount, description, type);
 
-    // 添加空值检查
     const account = accountModel.getAccountByUserId(userId);
     if (!account) {
       throw new AccountNotFoundError(userId);
@@ -148,7 +148,6 @@ export class AccountService {
   }> {
     const transaction = await accountModel.deductBalance(userId, amount, description, type);
 
-    // 添加空值检查
     const account = accountModel.getAccountByUserId(userId);
     if (!account) {
       throw new AccountNotFoundError(userId);
@@ -175,9 +174,8 @@ export class AccountService {
     availableBalance: number;
   }> {
     const transaction = await accountModel.freezeBalance(userId, amount);
-
-    // 添加空值检查
     const account = accountModel.getAccountByUserId(userId);
+
     if (!account) {
       throw new AccountNotFoundError(userId);
     }
@@ -202,9 +200,8 @@ export class AccountService {
     availableBalance: number;
   }> {
     const transaction = await accountModel.unfreezeBalance(userId, amount);
-
-    // 添加空值检查
     const account = accountModel.getAccountByUserId(userId);
+
     if (!account) {
       throw new AccountNotFoundError(userId);
     }
@@ -212,7 +209,7 @@ export class AccountService {
     return {
       success: true,
       unfrozenAmount: amount,
-      availableBalance: account.balance,
+      availableBalance: account.balance - account.frozenBalance,
     };
   }
 
@@ -447,7 +444,7 @@ export class AccountService {
       return {
         success: true,
         frozenAmount: 0,
-        availableBalance: account.balance,
+        availableBalance: account.balance - account.frozenBalance,
       };
     }
 
@@ -477,7 +474,7 @@ export class AccountService {
       return {
         success: true,
         unfrozenAmount: 0,
-        availableBalance: account.balance,
+        availableBalance: account.balance - account.frozenBalance,
       };
     }
 
