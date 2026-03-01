@@ -20,14 +20,15 @@ export class FreezeModel {
   }): FreezeRecord {
     const now = new Date();
     const freezeId = `frz_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
-    
+
     // 根据冻结类型设置过期时间
-    const duration = params.type === FreezeType.INITIAL 
-      ? FREEZE_CONFIG.INITIAL_DURATION 
-      : FREEZE_CONFIG.DISPUTE_DURATION;
-    
+    const duration =
+      params.type === FreezeType.INITIAL
+        ? FREEZE_CONFIG.INITIAL_DURATION
+        : FREEZE_CONFIG.DISPUTE_DURATION;
+
     const expiresAt = new Date(now.getTime() + duration);
-    
+
     const freeze: FreezeRecord = {
       id: freezeId,
       userId: params.userId,
@@ -39,7 +40,7 @@ export class FreezeModel {
       expiresAt: expiresAt,
       remark: params.remark,
       createdAt: now,
-      updatedAt: now
+      updatedAt: now,
     };
 
     this.freezes.set(freezeId, freeze);
@@ -94,7 +95,7 @@ export class FreezeModel {
    * 获取用户的活跃冻结记录
    */
   getActiveFreezes(userId: string): FreezeRecord[] {
-    return this.getUserFreezes(userId).filter(freeze => {
+    return this.getUserFreezes(userId).filter((freeze) => {
       return freeze.status === FreezeStatus.FROZEN && freeze.expiresAt > new Date();
     });
   }
@@ -105,7 +106,7 @@ export class FreezeModel {
   getAllActiveFreezes(): FreezeRecord[] {
     const now = new Date();
     const activeFreezes: FreezeRecord[] = [];
-    
+
     for (const freeze of this.freezes.values()) {
       if (freeze.status === FreezeStatus.FROZEN && freeze.expiresAt > now) {
         activeFreezes.push(freeze);
@@ -129,7 +130,7 @@ export class FreezeModel {
     }
 
     const now = new Date();
-    
+
     // 判断是否超时自动解冻
     if (now > freeze.expiresAt) {
       freeze.status = FreezeStatus.EXPIRED;
@@ -151,7 +152,7 @@ export class FreezeModel {
   getExpiredFreezes(): FreezeRecord[] {
     const now = new Date();
     const expiredFreezes: FreezeRecord[] = [];
-    
+
     for (const freeze of this.freezes.values()) {
       if (freeze.status === FreezeStatus.FROZEN && freeze.expiresAt <= now) {
         expiredFreezes.push(freeze);
@@ -203,6 +204,46 @@ export class FreezeModel {
   }
 
   /**
+   * 延长冻结时间
+   */
+  extendFreeze(freezeId: string, additionalMinutes: number): FreezeRecord {
+    const freeze = this.freezes.get(freezeId);
+    if (!freeze) {
+      throw new Error('冻结记录不存在');
+    }
+
+    if (freeze.status !== FreezeStatus.FROZEN) {
+      throw new Error('只能延长活跃状态的冻结');
+    }
+
+    // 延长过期时间
+    freeze.expiresAt = new Date(freeze.expiresAt.getTime() + additionalMinutes * 60 * 1000);
+    freeze.updatedAt = new Date();
+
+    return freeze;
+  }
+
+  /**
+   * 延长冻结时间
+   */
+  extendFreeze(freezeId: string, additionalMinutes: number): FreezeRecord {
+    const freeze = this.freezes.get(freezeId);
+    if (!freeze) {
+      throw new Error('冻结记录不存在');
+    }
+
+    if (freeze.status !== FreezeStatus.FROZEN) {
+      throw new Error('只能延长活跃状态的冻结');
+    }
+
+    // 延长过期时间
+    freeze.expiresAt = new Date(freeze.expiresAt.getTime() + additionalMinutes * 60 * 1000);
+    freeze.updatedAt = new Date();
+
+    return freeze;
+  }
+
+  /**
    * 获取冻结统计
    */
   getFreezeStats(): {
@@ -226,7 +267,10 @@ export class FreezeModel {
         } else {
           expiredFreezes++;
         }
-      } else if (freeze.status === FreezeStatus.UNFROZEN || freeze.status === FreezeStatus.EXPIRED) {
+      } else if (
+        freeze.status === FreezeStatus.UNFROZEN ||
+        freeze.status === FreezeStatus.EXPIRED
+      ) {
         unfrozenFreezes++;
       }
     }
@@ -236,7 +280,7 @@ export class FreezeModel {
       activeFreezes,
       expiredFreezes,
       unfrozenFreezes,
-      totalFrozenAmount
+      totalFrozenAmount,
     };
   }
 }
