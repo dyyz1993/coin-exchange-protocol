@@ -88,808 +88,11 @@
     133,
     132,
     131,
-    130
+    130,
+    136
   ],
   "initialized": false,
   "events": [
-    {
-      "time": "2026-03-01T06:51:07.508Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:51:07.519Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:51:07.522Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:51:07.528Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:51:07.532Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:51:07.543Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:51:07.546Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:51:20.081Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:51:20.092Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:51:20.095Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:51:20.102Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:51:20.106Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:51:20.111Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:51:20.115Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:51:20.120Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:51:20.124Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:51:20.131Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:51:20.135Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:51:20.139Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:51:20.142Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:51:20.146Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:52:31.128Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: git_create_branch"
-    },
-    {
-      "time": "2026-03-01T06:52:31.204Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:52:31.213Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:52:31.237Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: git_create_branch"
-    },
-    {
-      "time": "2026-03-01T06:52:31.297Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:52:31.306Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:52:44.282Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:52:44.383Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:52:44.444Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:52:44.504Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:52:53.396Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:52:55.496Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: git_create_branch"
-    },
-    {
-      "time": "2026-03-01T06:52:55.551Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:52:56.937Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: git_create_branch"
-    },
-    {
-      "time": "2026-03-01T06:52:56.974Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:52:58.395Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: git_create_branch"
-    },
-    {
-      "time": "2026-03-01T06:52:58.432Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:52:59.725Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: git_create_branch"
-    },
-    {
-      "time": "2026-03-01T06:53:03.833Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:53:03.865Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:53:04.904Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:53:04.932Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:53:05.622Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:53:05.660Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:53:08.673Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:53:08.718Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:54:28.710Z",
-      "agent": "system",
-      "type": "message",
-      "content": "系统启动"
-    },
-    {
-      "time": "2026-03-01T06:55:10.421Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: git_create_branch"
-    },
-    {
-      "time": "2026-03-01T06:55:10.473Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:55:10.493Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:55:10.497Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:55:10.502Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: git_create_branch"
-    },
-    {
-      "time": "2026-03-01T06:55:10.546Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:55:10.551Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:55:10.554Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:55:16.583Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:55:16.596Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:55:16.622Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:55:16.633Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:55:21.573Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:55:21.578Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:55:21.584Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:55:21.595Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:55:44.709Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:55:46.227Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: git_create_branch"
-    },
-    {
-      "time": "2026-03-01T06:55:46.268Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:55:47.439Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: git_create_branch"
-    },
-    {
-      "time": "2026-03-01T06:55:47.469Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:55:48.548Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: git_create_branch"
-    },
-    {
-      "time": "2026-03-01T06:55:48.578Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:55:49.701Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: git_create_branch"
-    },
-    {
-      "time": "2026-03-01T06:55:54.757Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:55:54.791Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:55:54.813Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:55:54.833Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:56:14.451Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: edit"
-    },
-    {
-      "time": "2026-03-01T06:56:14.472Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: edit"
-    },
-    {
-      "time": "2026-03-01T06:56:24.010Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:56:33.259Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:56:41.242Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:56:50.882Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:56:55.485Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:56:59.868Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:57:03.928Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:57:10.710Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:57:19.318Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:57:23.828Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:58:53.831Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: git_create_branch"
-    },
-    {
-      "time": "2026-03-01T06:58:57.515Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:59:02.839Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:59:06.842Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: git_create_branch"
-    },
-    {
-      "time": "2026-03-01T06:59:10.843Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:59:13.173Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:59:17.425Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:59:20.857Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:59:25.030Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:59:27.399Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:59:30.969Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T06:59:33.779Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T06:59:40.833Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T07:03:53.849Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T07:04:02.951Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T07:04:23.407Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T07:04:27.611Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T07:04:31.759Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T07:04:43.867Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: edit"
-    },
-    {
-      "time": "2026-03-01T07:04:46.943Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T07:05:24.223Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: git_commit"
-    },
-    {
-      "time": "2026-03-01T07:05:26.887Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T07:05:29.479Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T07:05:31.948Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: git_push_branch"
-    },
-    {
-      "time": "2026-03-01T07:05:48.494Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: create_pr"
-    },
-    {
-      "time": "2026-03-01T07:05:54.621Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T07:06:07.603Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: create_pr"
-    },
-    {
-      "time": "2026-03-01T07:06:18.009Z",
-      "agent": "test-engineer",
-      "type": "tool",
-      "content": "调用工具: report_progress"
-    },
-    {
-      "time": "2026-03-01T07:06:41.906Z",
-      "agent": "product-director",
-      "type": "tool",
-      "content": "调用工具: report_progress"
-    },
-    {
-      "time": "2026-03-01T07:06:41.970Z",
-      "agent": "product-director",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T07:06:44.276Z",
-      "agent": "product-director",
-      "type": "tool",
-      "content": "调用工具: report_progress"
-    },
-    {
-      "time": "2026-03-01T07:06:44.279Z",
-      "agent": "product-director",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T07:06:50.591Z",
-      "agent": "product-director",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T07:06:50.594Z",
-      "agent": "product-director",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T07:06:50.600Z",
-      "agent": "product-director",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T07:06:50.603Z",
-      "agent": "product-director",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T07:06:50.606Z",
-      "agent": "product-director",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T07:06:50.618Z",
-      "agent": "product-director",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T07:06:54.263Z",
-      "agent": "product-director",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T07:06:54.313Z",
-      "agent": "product-director",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T07:06:54.336Z",
-      "agent": "product-director",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T07:06:54.355Z",
-      "agent": "product-director",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T07:06:58.814Z",
-      "agent": "product-director",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T07:06:58.818Z",
-      "agent": "product-director",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T07:06:58.829Z",
-      "agent": "product-director",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
     {
       "time": "2026-03-01T07:06:58.835Z",
       "agent": "product-director",
@@ -3091,6 +2294,804 @@
       "agent": "product-director",
       "type": "tool",
       "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:46:21.604Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T07:46:21.616Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:46:21.650Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T07:46:21.655Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:47:46.684Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:47:46.717Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: write"
+    },
+    {
+      "time": "2026-03-01T07:47:46.723Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:47:46.744Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: write"
+    },
+    {
+      "time": "2026-03-01T07:48:23.131Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: git_commit"
+    },
+    {
+      "time": "2026-03-01T07:48:23.411Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: git_push_branch"
+    },
+    {
+      "time": "2026-03-01T07:48:26.107Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: create_pr"
+    },
+    {
+      "time": "2026-03-01T07:48:27.003Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: git_commit"
+    },
+    {
+      "time": "2026-03-01T07:48:27.186Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: git_push_branch"
+    },
+    {
+      "time": "2026-03-01T07:48:29.327Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: create_pr"
+    },
+    {
+      "time": "2026-03-01T07:49:32.369Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:49:32.480Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: create_pr"
+    },
+    {
+      "time": "2026-03-01T07:49:33.798Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: report_progress"
+    },
+    {
+      "time": "2026-03-01T07:49:33.826Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:49:33.980Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: create_pr"
+    },
+    {
+      "time": "2026-03-01T07:49:34.644Z",
+      "agent": "qa-engineer",
+      "type": "tool",
+      "content": "调用工具: report_progress"
+    },
+    {
+      "time": "2026-03-01T07:50:14.041Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:50:14.083Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T07:50:14.091Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:50:14.117Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T07:50:25.612Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: git_create_branch"
+    },
+    {
+      "time": "2026-03-01T07:50:33.257Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:50:35.883Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: git_create_branch"
+    },
+    {
+      "time": "2026-03-01T07:50:35.945Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:50:37.313Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: git_create_branch"
+    },
+    {
+      "time": "2026-03-01T07:50:43.059Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:50:43.107Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:50:43.164Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: git_create_branch"
+    },
+    {
+      "time": "2026-03-01T07:50:43.216Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:50:43.262Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:50:43.311Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: git_create_branch"
+    },
+    {
+      "time": "2026-03-01T07:50:47.675Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:50:47.743Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:50:47.777Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:50:47.814Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:50:47.835Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:50:47.878Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:50:47.912Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:50:47.958Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:50:55.094Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:50:55.169Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T07:50:55.178Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:50:55.220Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T07:50:55.230Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:50:55.267Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T07:50:55.271Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:51:09.671Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:51:09.711Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T07:51:09.717Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:51:09.741Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T07:51:20.505Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T07:51:24.662Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:51:34.901Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: edit"
+    },
+    {
+      "time": "2026-03-01T07:51:37.323Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:51:39.770Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:51:42.436Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:51:50.159Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:51:50.220Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:51:50.241Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:51:50.264Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:51:50.302Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:51:50.324Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:52:05.304Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:52:05.408Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:52:05.444Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:52:05.479Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:52:15.566Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:52:39.160Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: create_pr"
+    },
+    {
+      "time": "2026-03-01T07:52:52.889Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: report_progress"
+    },
+    {
+      "time": "2026-03-01T07:53:20.603Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:53:20.662Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:53:20.700Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:53:20.726Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:53:20.785Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T07:53:20.828Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T08:14:18.106Z",
+      "agent": "system",
+      "type": "message",
+      "content": "系统启动"
+    },
+    {
+      "time": "2026-03-01T08:14:41.865Z",
+      "agent": "dev-director",
+      "type": "tool",
+      "content": "调用工具: check_messages"
+    },
+    {
+      "time": "2026-03-01T08:15:32.546Z",
+      "agent": "dev-director",
+      "type": "tool",
+      "content": "调用工具: assign_task"
+    },
+    {
+      "time": "2026-03-01T08:15:32.562Z",
+      "agent": "dev-director",
+      "type": "tool",
+      "content": "调用工具: assign_task"
+    },
+    {
+      "time": "2026-03-01T08:15:32.566Z",
+      "agent": "dev-director",
+      "type": "tool",
+      "content": "调用工具: assign_task"
+    },
+    {
+      "time": "2026-03-01T08:15:32.570Z",
+      "agent": "dev-director",
+      "type": "tool",
+      "content": "调用工具: assign_task"
+    },
+    {
+      "time": "2026-03-01T08:15:32.574Z",
+      "agent": "dev-director",
+      "type": "tool",
+      "content": "调用工具: assign_task"
+    },
+    {
+      "time": "2026-03-01T08:15:32.577Z",
+      "agent": "dev-director",
+      "type": "tool",
+      "content": "调用工具: assign_task"
+    },
+    {
+      "time": "2026-03-01T08:16:31.803Z",
+      "agent": "dev-director",
+      "type": "tool",
+      "content": "调用工具: write"
+    },
+    {
+      "time": "2026-03-01T08:17:09.155Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T08:17:09.194Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T08:17:09.204Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T08:17:09.212Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T08:17:09.235Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T08:17:09.242Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T08:17:17.308Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T08:17:18.754Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: git_create_branch"
+    },
+    {
+      "time": "2026-03-01T08:17:18.819Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T08:17:20.034Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: git_create_branch"
+    },
+    {
+      "time": "2026-03-01T08:17:24.164Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T08:17:29.404Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T08:17:29.415Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T08:17:29.419Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T08:17:29.423Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T08:19:17.278Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: git_create_branch"
+    },
+    {
+      "time": "2026-03-01T08:19:17.348Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T08:19:17.357Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: git_create_branch"
+    },
+    {
+      "time": "2026-03-01T08:19:17.398Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T08:19:25.588Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T08:19:26.769Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T08:19:26.775Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T08:19:28.062Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T08:19:36.785Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T08:19:36.807Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T08:19:36.818Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T08:19:36.827Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T08:19:36.837Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T08:19:36.847Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T08:19:36.856Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T08:19:36.866Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T08:19:43.470Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T08:19:43.475Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T08:19:43.478Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T08:19:43.483Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T08:19:43.489Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T08:19:43.492Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T08:19:43.497Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T08:19:43.501Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T08:19:43.504Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T08:19:43.509Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T08:19:43.513Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T08:19:43.516Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T08:19:43.521Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T08:19:43.525Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: read"
     }
   ],
   "agentHistories": {
@@ -4013,8 +4014,101 @@
       }
     ]
   },
-  "lastCheck": "2026-03-01T07:46:09.378Z",
+  "lastCheck": "2026-03-01T08:20:16.102Z",
   "issues": [
+    {
+      "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/136",
+      "repository_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol",
+      "labels_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/136/labels{/name}",
+      "comments_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/136/comments",
+      "events_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/136/events",
+      "html_url": "https://github.com/dyyz1993/coin-exchange-protocol/issues/136",
+      "id": 4006603133,
+      "node_id": "I_kwDORa8Ecs7uz-l9",
+      "number": 136,
+      "title": "【文档】创建 E2E 测试截图和 README 教程",
+      "user": {
+        "login": "dyyz1993",
+        "id": 17736821,
+        "node_id": "MDQ6VXNlcjE3NzM2ODIx",
+        "avatar_url": "https://avatars.githubusercontent.com/u/17736821?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/dyyz1993",
+        "html_url": "https://github.com/dyyz1993",
+        "followers_url": "https://api.github.com/users/dyyz1993/followers",
+        "following_url": "https://api.github.com/users/dyyz1993/following{/other_user}",
+        "gists_url": "https://api.github.com/users/dyyz1993/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/dyyz1993/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/dyyz1993/subscriptions",
+        "organizations_url": "https://api.github.com/users/dyyz1993/orgs",
+        "repos_url": "https://api.github.com/users/dyyz1993/repos",
+        "events_url": "https://api.github.com/users/dyyz1993/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/dyyz1993/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "labels": [
+        {
+          "id": 10311284269,
+          "node_id": "LA_kwDORa8Ecs8AAAACZpm2LQ",
+          "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/labels/documentation",
+          "name": "documentation",
+          "color": "0075ca",
+          "default": true,
+          "description": "Improvements or additions to documentation"
+        },
+        {
+          "id": 10311284281,
+          "node_id": "LA_kwDORa8Ecs8AAAACZpm2OQ",
+          "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/labels/enhancement",
+          "name": "enhancement",
+          "color": "a2eeef",
+          "default": true,
+          "description": "New feature or request"
+        }
+      ],
+      "state": "open",
+      "locked": false,
+      "assignees": [],
+      "milestone": null,
+      "comments": 1,
+      "created_at": "2026-03-01T07:53:37Z",
+      "updated_at": "2026-03-01T07:53:48Z",
+      "closed_at": null,
+      "assignee": null,
+      "author_association": "OWNER",
+      "active_lock_reason": null,
+      "sub_issues_summary": {
+        "total": 0,
+        "completed": 0,
+        "percent_completed": 0
+      },
+      "issue_dependencies_summary": {
+        "blocked_by": 0,
+        "total_blocked_by": 0,
+        "blocking": 0,
+        "total_blocking": 0
+      },
+      "body": "## 任务描述\n\n创建一个完整的 E2E 测试流程，截图前端页面，并在 README.md 中创建教程文档。\n\n## 背景\n\n我们需要一个可视化的教程来展示金币交易协议的功能和使用方法。\n\n## 任务分解\n\n### 1. E2E 测试截图（测试工程师）\n- 使用 Playwright 或 Puppeteer 进行 E2E 测试\n- 截取前端页面的关键界面\n- 保存截图到 `docs/screenshots/` 目录\n\n### 2. 前端页面准备（前端开发者）\n- 确保前端页面正常运行\n- 准备演示数据\n- 优化 UI 展示效果\n\n### 3. README 教程编写（产品总监）\n- 创建功能介绍\n- 添加截图展示\n- 编写使用说明\n- 添加 API 文档链接\n\n## 截图需求\n\n需要截取以下页面：\n1. 账户管理界面\n2. 冻结管理界面\n3. 交易记录界面\n4. API 文档页面\n\n## README 结构\n\n```markdown\n# 金币交易协议\n\n## 功能介绍\n- 账户管理\n- 冻结管理\n- 交易记录\n\n## 截图展示\n![账户管理](docs/screenshots/account.png)\n![冻结管理](docs/screenshots/freeze.png)\n\n## 快速开始\n...\n\n## API 文档\n...\n```\n\n## 协作方式\n\n1. **产品总监** 负责整体规划和文档编写\n2. **前端开发者** 负责页面准备\n3. **测试工程师** 负责截图自动化\n4. **开发总监** 负责 PR 合并\n\n## 交付物\n\n- [ ] E2E 测试脚本\n- [ ] 截图文件（4-6 张）\n- [ ] 更新的 README.md\n- [ ] 教程文档",
+      "closed_by": null,
+      "reactions": {
+        "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/136/reactions",
+        "total_count": 0,
+        "+1": 0,
+        "-1": 0,
+        "laugh": 0,
+        "hooray": 0,
+        "confused": 0,
+        "heart": 0,
+        "rocket": 0,
+        "eyes": 0
+      },
+      "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/136/timeline",
+      "performed_via_github_app": null,
+      "state_reason": null,
+      "pinned_comment": null
+    },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/133",
       "repository_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol",
@@ -4123,7 +4217,8 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/133/timeline",
       "performed_via_github_app": null,
-      "state_reason": null
+      "state_reason": null,
+      "pinned_comment": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/132",
@@ -4242,7 +4337,8 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/132/timeline",
       "performed_via_github_app": null,
-      "state_reason": null
+      "state_reason": null,
+      "pinned_comment": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/131",
@@ -4352,7 +4448,8 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/131/timeline",
       "performed_via_github_app": null,
-      "state_reason": null
+      "state_reason": null,
+      "pinned_comment": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/129",
@@ -4471,7 +4568,8 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/129/timeline",
       "performed_via_github_app": null,
-      "state_reason": null
+      "state_reason": null,
+      "pinned_comment": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/128",
@@ -4581,7 +4679,8 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/128/timeline",
       "performed_via_github_app": null,
-      "state_reason": null
+      "state_reason": null,
+      "pinned_comment": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/121",
@@ -4691,7 +4790,8 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/121/timeline",
       "performed_via_github_app": null,
-      "state_reason": null
+      "state_reason": null,
+      "pinned_comment": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/120",
@@ -4801,7 +4901,8 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/120/timeline",
       "performed_via_github_app": null,
-      "state_reason": null
+      "state_reason": null,
+      "pinned_comment": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/112",
@@ -4911,7 +5012,8 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/112/timeline",
       "performed_via_github_app": null,
-      "state_reason": null
+      "state_reason": null,
+      "pinned_comment": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/108",
@@ -5021,7 +5123,8 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/108/timeline",
       "performed_via_github_app": null,
-      "state_reason": null
+      "state_reason": null,
+      "pinned_comment": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/107",
@@ -5122,7 +5225,8 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/107/timeline",
       "performed_via_github_app": null,
-      "state_reason": null
+      "state_reason": null,
+      "pinned_comment": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/106",
@@ -5232,7 +5336,8 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/106/timeline",
       "performed_via_github_app": null,
-      "state_reason": null
+      "state_reason": null,
+      "pinned_comment": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/105",
@@ -5342,7 +5447,8 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/105/timeline",
       "performed_via_github_app": null,
-      "state_reason": null
+      "state_reason": null,
+      "pinned_comment": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/104",
@@ -5452,7 +5558,8 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/104/timeline",
       "performed_via_github_app": null,
-      "state_reason": null
+      "state_reason": null,
+      "pinned_comment": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/103",
@@ -5553,7 +5660,8 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/103/timeline",
       "performed_via_github_app": null,
-      "state_reason": null
+      "state_reason": null,
+      "pinned_comment": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/102",
@@ -5663,7 +5771,8 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/102/timeline",
       "performed_via_github_app": null,
-      "state_reason": null
+      "state_reason": null,
+      "pinned_comment": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/97",
@@ -5764,7 +5873,8 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/97/timeline",
       "performed_via_github_app": null,
-      "state_reason": null
+      "state_reason": null,
+      "pinned_comment": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/96",
@@ -5865,7 +5975,8 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/96/timeline",
       "performed_via_github_app": null,
-      "state_reason": null
+      "state_reason": null,
+      "pinned_comment": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/95",
@@ -5975,7 +6086,8 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/95/timeline",
       "performed_via_github_app": null,
-      "state_reason": null
+      "state_reason": null,
+      "pinned_comment": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/94",
@@ -6076,7 +6188,8 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/94/timeline",
       "performed_via_github_app": null,
-      "state_reason": null
+      "state_reason": null,
+      "pinned_comment": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/93",
@@ -6177,7 +6290,8 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/93/timeline",
       "performed_via_github_app": null,
-      "state_reason": null
+      "state_reason": null,
+      "pinned_comment": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/85",
@@ -6269,7 +6383,8 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/85/timeline",
       "performed_via_github_app": null,
-      "state_reason": null
+      "state_reason": null,
+      "pinned_comment": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/83",
@@ -6370,7 +6485,8 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/83/timeline",
       "performed_via_github_app": null,
-      "state_reason": null
+      "state_reason": null,
+      "pinned_comment": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/77",
@@ -6471,7 +6587,8 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/77/timeline",
       "performed_via_github_app": null,
-      "state_reason": null
+      "state_reason": null,
+      "pinned_comment": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/76",
@@ -6572,7 +6689,8 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/76/timeline",
       "performed_via_github_app": null,
-      "state_reason": null
+      "state_reason": null,
+      "pinned_comment": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/75",
@@ -6673,7 +6791,8 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/75/timeline",
       "performed_via_github_app": null,
-      "state_reason": null
+      "state_reason": null,
+      "pinned_comment": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/74",
@@ -6774,7 +6893,8 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/74/timeline",
       "performed_via_github_app": null,
-      "state_reason": null
+      "state_reason": null,
+      "pinned_comment": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/73",
@@ -6875,7 +6995,8 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/73/timeline",
       "performed_via_github_app": null,
-      "state_reason": null
+      "state_reason": null,
+      "pinned_comment": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/72",
@@ -6976,7 +7097,8 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/72/timeline",
       "performed_via_github_app": null,
-      "state_reason": null
+      "state_reason": null,
+      "pinned_comment": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/71",
@@ -7077,7 +7199,8 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/71/timeline",
       "performed_via_github_app": null,
-      "state_reason": null
+      "state_reason": null,
+      "pinned_comment": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/70",
@@ -7178,7 +7301,8 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/70/timeline",
       "performed_via_github_app": null,
-      "state_reason": null
+      "state_reason": null,
+      "pinned_comment": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/69",
@@ -7288,7 +7412,8 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/69/timeline",
       "performed_via_github_app": null,
-      "state_reason": null
+      "state_reason": null,
+      "pinned_comment": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/68",
@@ -7398,7 +7523,8 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/68/timeline",
       "performed_via_github_app": null,
-      "state_reason": null
+      "state_reason": null,
+      "pinned_comment": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/67",
@@ -7508,7 +7634,8 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/67/timeline",
       "performed_via_github_app": null,
-      "state_reason": null
+      "state_reason": null,
+      "pinned_comment": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/66",
@@ -7618,7 +7745,8 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/66/timeline",
       "performed_via_github_app": null,
-      "state_reason": null
+      "state_reason": null,
+      "pinned_comment": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/65",
@@ -7728,7 +7856,8 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/65/timeline",
       "performed_via_github_app": null,
-      "state_reason": null
+      "state_reason": null,
+      "pinned_comment": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/64",
@@ -7838,7 +7967,8 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/64/timeline",
       "performed_via_github_app": null,
-      "state_reason": null
+      "state_reason": null,
+      "pinned_comment": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/63",
@@ -7948,7 +8078,8 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/63/timeline",
       "performed_via_github_app": null,
-      "state_reason": null
+      "state_reason": null,
+      "pinned_comment": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/62",
@@ -8058,7 +8189,8 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/62/timeline",
       "performed_via_github_app": null,
-      "state_reason": null
+      "state_reason": null,
+      "pinned_comment": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/61",
@@ -8168,7 +8300,8 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/61/timeline",
       "performed_via_github_app": null,
-      "state_reason": null
+      "state_reason": null,
+      "pinned_comment": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/60",
@@ -8278,7 +8411,8 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/60/timeline",
       "performed_via_github_app": null,
-      "state_reason": null
+      "state_reason": null,
+      "pinned_comment": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/50",
@@ -8388,7 +8522,8 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/50/timeline",
       "performed_via_github_app": null,
-      "state_reason": null
+      "state_reason": null,
+      "pinned_comment": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/49",
@@ -8498,7 +8633,8 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/49/timeline",
       "performed_via_github_app": null,
-      "state_reason": null
+      "state_reason": null,
+      "pinned_comment": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/45",
@@ -8599,7 +8735,8 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/45/timeline",
       "performed_via_github_app": null,
-      "state_reason": null
+      "state_reason": null,
+      "pinned_comment": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/39",
@@ -8709,7 +8846,8 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/39/timeline",
       "performed_via_github_app": null,
-      "state_reason": null
+      "state_reason": null,
+      "pinned_comment": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/38",
@@ -8819,7 +8957,8 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/38/timeline",
       "performed_via_github_app": null,
-      "state_reason": null
+      "state_reason": null,
+      "pinned_comment": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/37",
@@ -8929,7 +9068,8 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/37/timeline",
       "performed_via_github_app": null,
-      "state_reason": null
+      "state_reason": null,
+      "pinned_comment": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/36",
@@ -9039,7 +9179,8 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/36/timeline",
       "performed_via_github_app": null,
-      "state_reason": null
+      "state_reason": null,
+      "pinned_comment": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/35",
@@ -9149,7 +9290,8 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/35/timeline",
       "performed_via_github_app": null,
-      "state_reason": null
+      "state_reason": null,
+      "pinned_comment": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/34",
@@ -9259,7 +9401,8 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/34/timeline",
       "performed_via_github_app": null,
-      "state_reason": null
+      "state_reason": null,
+      "pinned_comment": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/33",
@@ -9369,7 +9512,8 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/33/timeline",
       "performed_via_github_app": null,
-      "state_reason": null
+      "state_reason": null,
+      "pinned_comment": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/32",
@@ -9479,7 +9623,8 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/32/timeline",
       "performed_via_github_app": null,
-      "state_reason": null
+      "state_reason": null,
+      "pinned_comment": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/29",
@@ -9580,7 +9725,8 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/29/timeline",
       "performed_via_github_app": null,
-      "state_reason": null
+      "state_reason": null,
+      "pinned_comment": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/28",
@@ -9681,7 +9827,8 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/28/timeline",
       "performed_via_github_app": null,
-      "state_reason": null
+      "state_reason": null,
+      "pinned_comment": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/20",
@@ -9800,7 +9947,8 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/20/timeline",
       "performed_via_github_app": null,
-      "state_reason": null
+      "state_reason": null,
+      "pinned_comment": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/19",
@@ -9919,7 +10067,8 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/19/timeline",
       "performed_via_github_app": null,
-      "state_reason": null
+      "state_reason": null,
+      "pinned_comment": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/10",
@@ -10020,7 +10169,8 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/10/timeline",
       "performed_via_github_app": null,
-      "state_reason": null
+      "state_reason": null,
+      "pinned_comment": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/5",
@@ -10112,7 +10262,8 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/5/timeline",
       "performed_via_github_app": null,
-      "state_reason": null
+      "state_reason": null,
+      "pinned_comment": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/3",
@@ -10204,43 +10355,21 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/3/timeline",
       "performed_via_github_app": null,
-      "state_reason": null
+      "state_reason": null,
+      "pinned_comment": null
     }
   ],
   "tasks": [
-    {
-      "id": "task-1772337481185",
-      "issueNumber": 97,
-      "title": "【P1中等Bug】分析空指针风险\n\n**Issue**: #97/#92（重复）\n**问题**: 多处使用非空断言 `!` 但未进行空值检查\n**位置**: `src/services/account",
-      "description": "【P1中等Bug】分析空指针风险\n\n**Issue**: #97/#92（重复）\n**问题**: 多处使用非空断言 `!` 但未进行空值检查\n**位置**: `src/services/account.service.ts`\n**问题代码**:\n- 第 94、108、122、132、147-148 行\n\n**任务**:\n1. 分析所有使用 `!` 的位置\n2. 评估运行时风险\n3. 提供安全的修复方案\n\n**优先级**: 🟡 P1 - 可能导致运行时错误",
-      "assignedTo": "qa-engineer",
-      "status": "pending",
-      "createdAt": "2026-03-01T03:58:01.185Z",
-      "updatedAt": "2026-03-01T07:40:15.833Z",
-      "iterations": 2,
-      "result": "⚠️ 任务被中断: Error: 工具调用次数超过限制 (31 次)"
-    },
-    {
-      "id": "task-1772337481187",
-      "issueNumber": 96,
-      "title": "【P1中等Bug】修复FreezeService定时器未初始化\n\n**Issue**: #96/#91（重复）\n**问题**: autoUnfreezeTimer 需要手动调用 initialize(",
-      "description": "【P1中等Bug】修复FreezeService定时器未初始化\n\n**Issue**: #96/#91（重复）\n**问题**: autoUnfreezeTimer 需要手动调用 initialize()，但从未被调用\n**位置**: `src/services/freeze.service.ts`\n\n**修复方案**:\n1. 在构造函数中自动初始化\n2. 或在应用入口文件中调用\n\n**影响**: 过期的冻结资金无法自动解冻\n\n**优先级**: 🟡 P1 - 影响功能完整性",
-      "assignedTo": "backend-developer",
-      "status": "pending",
-      "createdAt": "2026-03-01T03:58:01.187Z",
-      "updatedAt": "2026-03-01T03:58:01.187Z",
-      "iterations": 0
-    },
     {
       "id": "task-1772339456504",
       "issueNumber": 112,
       "title": "【P0 - 最高优先级】实现数据持久化方案，解决服务重启后数据丢失问题\n\n**任务目标**：\n1. 实现基于 JSON 文件的数据持久化（短期方案）\n2. 定期自动保存数据（每分钟）\n3. 服务启动时",
       "description": "【P0 - 最高优先级】实现数据持久化方案，解决服务重启后数据丢失问题\n\n**任务目标**：\n1. 实现基于 JSON 文件的数据持久化（短期方案）\n2. 定期自动保存数据（每分钟）\n3. 服务启动时自动加载数据\n4. 提供手动备份接口\n\n**验收标准**：\n- 服务重启后数据不丢失\n- 支持数据备份和恢复\n- 数据迁移脚本可用\n\n**相关文件**：\n- src/services/storage.service.ts（新建）\n- src/models/*.ts（需要调整）\n\n**优先级**：P0 - 产品上线的阻塞性问题",
       "assignedTo": "backend-developer",
-      "status": "pending",
+      "status": "in_progress",
       "createdAt": "2026-03-01T04:30:56.504Z",
-      "updatedAt": "2026-03-01T04:30:56.504Z",
-      "iterations": 0
+      "updatedAt": "2026-03-01T08:16:54.758Z",
+      "iterations": 3
     },
     {
       "id": "task-1772339456507",
@@ -10274,18 +10403,6 @@
       "createdAt": "2026-03-01T04:30:56.514Z",
       "updatedAt": "2026-03-01T04:30:56.514Z",
       "iterations": 0
-    },
-    {
-      "id": "task-1772347282741",
-      "issueNumber": 121,
-      "title": "修复测试代码中的状态枚举值大小写不一致问题\n\n**任务描述**：\n测试代码使用硬编码字符串字面量（'PENDING'），而实际枚举值是小写的 'pending'，导致测试失败。\n\n**需要做的事**：",
-      "description": "修复测试代码中的状态枚举值大小写不一致问题\n\n**任务描述**：\n测试代码使用硬编码字符串字面量（'PENDING'），而实际枚举值是小写的 'pending'，导致测试失败。\n\n**需要做的事**：\n1. 修改 tests/integration/e2e.test.ts 中所有硬编码的状态字符串\n2. 替换为枚举常量（AirdropStatus.PENDING, TaskStatus.DRAFT 等）\n3. 确保所有状态比较使用枚举常量而非魔法字符串\n4. 运行测试验证修复效果\n\n**位置**：\n- tests/integration/e2e.test.ts:233\n- tests/integration/e2e.test.ts:320\n\n**预期结果**：\n- 所有测试通过\n- 没有硬编码的状态字符串",
-      "assignedTo": "test-engineer",
-      "status": "pending",
-      "createdAt": "2026-03-01T06:41:22.741Z",
-      "updatedAt": "2026-03-01T07:28:35.298Z",
-      "iterations": 2,
-      "result": "⚠️ 任务被中断: Error: 工具调用次数超过限制 (43 次)"
     },
     {
       "id": "task-1772347282751",
@@ -10395,6 +10512,72 @@
       "status": "pending",
       "createdAt": "2026-03-01T07:26:03.967Z",
       "updatedAt": "2026-03-01T07:26:03.967Z",
+      "iterations": 0
+    },
+    {
+      "id": "task-1772352932536",
+      "issueNumber": 136,
+      "title": "【文档】创建 README 教程和文档体系\n\n**任务内容**：\n1. 创建完整的 README.md 教程文档\n2. 编写功能介绍（账户管理、冻结管理、交易记录）\n3. 添加快速开始指南\n4. 编写",
+      "description": "【文档】创建 README 教程和文档体系\n\n**任务内容**：\n1. 创建完整的 README.md 教程文档\n2. 编写功能介绍（账户管理、冻结管理、交易记录）\n3. 添加快速开始指南\n4. 编写 API 文档链接\n5. 整合测试工程师提供的截图\n\n**协作要求**：\n- 等待 test-engineer 提供截图后，整合到文档中\n- 与 frontend-developer 协调演示数据的展示\n\n**交付物**：\n- 更新的 README.md\n- 教程文档（如有需要，放在 docs/ 目录）\n\n**关联 Issue**: #136",
+      "assignedTo": "requirement-analyst",
+      "status": "pending",
+      "createdAt": "2026-03-01T08:15:32.536Z",
+      "updatedAt": "2026-03-01T08:15:32.536Z",
+      "iterations": 0
+    },
+    {
+      "id": "task-1772352932543",
+      "issueNumber": 136,
+      "title": "【测试】E2E 测试截图自动化\n\n**任务内容**：\n1. 使用 Playwright 编写 E2E 测试脚本\n2. 截取以下关键页面：\n   - 账户管理界面\n   - 冻结管理界面\n   - 交易",
+      "description": "【测试】E2E 测试截图自动化\n\n**任务内容**：\n1. 使用 Playwright 编写 E2E 测试脚本\n2. 截取以下关键页面：\n   - 账户管理界面\n   - 冻结管理界面\n   - 交易记录界面\n   - API 文档页面\n3. 保存截图到 `docs/screenshots/` 目录\n4. 命名规范：account.png, freeze.png, transactions.png, api-docs.png\n\n**协作要求**：\n- 与 frontend-developer 确认前端页面已准备好\n- 截图完成后通知 requirement-analyst\n\n**交付物**：\n- E2E 测试脚本（tests/e2e/screenshot.test.ts）\n- 4-6 张截图文件\n\n**关联 Issue**: #136",
+      "assignedTo": "test-engineer",
+      "status": "pending",
+      "createdAt": "2026-03-01T08:15:32.543Z",
+      "updatedAt": "2026-03-01T08:15:32.543Z",
+      "iterations": 0
+    },
+    {
+      "id": "task-1772352932549",
+      "issueNumber": 136,
+      "title": "【前端】准备演示页面和测试数据\n\n**任务内容**：\n1. 确保前端页面正常运行\n2. 准备演示数据：\n   - 示例账户数据\n   - 冻结记录数据\n   - 交易记录数据\n3. 优化 UI 展示效",
+      "description": "【前端】准备演示页面和测试数据\n\n**任务内容**：\n1. 确保前端页面正常运行\n2. 准备演示数据：\n   - 示例账户数据\n   - 冻结记录数据\n   - 交易记录数据\n3. 优化 UI 展示效果，确保截图美观\n4. 确保页面在不同分辨率下显示正常\n\n**协作要求**：\n- 配合 test-engineer 进行截图\n- 确保演示数据真实可信\n\n**交付物**：\n- 前端页面优化\n- 演示数据准备完成\n\n**关联 Issue**: #136",
+      "assignedTo": "frontend-developer",
+      "status": "pending",
+      "createdAt": "2026-03-01T08:15:32.549Z",
+      "updatedAt": "2026-03-01T08:15:32.549Z",
+      "iterations": 0
+    },
+    {
+      "id": "task-1772352932552",
+      "issueNumber": 136,
+      "title": "【文档】创建 README 教程和文档体系\n\n**任务内容**：\n1. 创建完整的 README.md 教程文档\n2. 编写功能介绍（账户管理、冻结管理、交易记录）\n3. 添加快速开始指南\n4. 编写",
+      "description": "【文档】创建 README 教程和文档体系\n\n**任务内容**：\n1. 创建完整的 README.md 教程文档\n2. 编写功能介绍（账户管理、冻结管理、交易记录）\n3. 添加快速开始指南\n4. 编写 API 文档链接\n5. 整合测试工程师提供的截图\n\n**协作要求**：\n- 等待 test-engineer 提供截图后，整合到文档中\n- 与 frontend-developer 协调演示数据的展示\n\n**交付物**：\n- 更新的 README.md\n- 教程文档（如有需要，放在 docs/ 目录）\n\n**关联 Issue**: #136",
+      "assignedTo": "requirement-analyst",
+      "status": "pending",
+      "createdAt": "2026-03-01T08:15:32.552Z",
+      "updatedAt": "2026-03-01T08:15:32.552Z",
+      "iterations": 0
+    },
+    {
+      "id": "task-1772352932555",
+      "issueNumber": 136,
+      "title": "【测试】E2E 测试截图自动化\n\n**任务内容**：\n1. 使用 Playwright 编写 E2E 测试脚本\n2. 截取以下关键页面：\n   - 账户管理界面\n   - 冻结管理界面\n   - 交易",
+      "description": "【测试】E2E 测试截图自动化\n\n**任务内容**：\n1. 使用 Playwright 编写 E2E 测试脚本\n2. 截取以下关键页面：\n   - 账户管理界面\n   - 冻结管理界面\n   - 交易记录界面\n   - API 文档页面\n3. 保存截图到 `docs/screenshots/` 目录\n4. 命名规范：account.png, freeze.png, transactions.png, api-docs.png\n\n**协作要求**：\n- 与 frontend-developer 确认前端页面已准备好\n- 截图完成后通知 requirement-analyst\n\n**交付物**：\n- E2E 测试脚本（tests/e2e/screenshot.test.ts）\n- 4-6 张截图文件\n\n**关联 Issue**: #136",
+      "assignedTo": "test-engineer",
+      "status": "pending",
+      "createdAt": "2026-03-01T08:15:32.555Z",
+      "updatedAt": "2026-03-01T08:15:32.555Z",
+      "iterations": 0
+    },
+    {
+      "id": "task-1772352932559",
+      "issueNumber": 136,
+      "title": "【前端】准备演示页面和测试数据\n\n**任务内容**：\n1. 确保前端页面正常运行\n2. 准备演示数据：\n   - 示例账户数据\n   - 冻结记录数据\n   - 交易记录数据\n3. 优化 UI 展示效",
+      "description": "【前端】准备演示页面和测试数据\n\n**任务内容**：\n1. 确保前端页面正常运行\n2. 准备演示数据：\n   - 示例账户数据\n   - 冻结记录数据\n   - 交易记录数据\n3. 优化 UI 展示效果，确保截图美观\n4. 确保页面在不同分辨率下显示正常\n\n**协作要求**：\n- 配合 test-engineer 进行截图\n- 确保演示数据真实可信\n\n**交付物**：\n- 前端页面优化\n- 演示数据准备完成\n\n**关联 Issue**: #136",
+      "assignedTo": "frontend-developer",
+      "status": "pending",
+      "createdAt": "2026-03-01T08:15:32.559Z",
+      "updatedAt": "2026-03-01T08:15:32.559Z",
       "iterations": 0
     }
   ],
@@ -11898,6 +12081,42 @@
       "updatedAt": "2026-03-01T07:38:40.025Z",
       "iterations": 3,
       "result": "✅ P0严重Bug（可用余额计算错误）已经修复并创建PR！\n\n## 修复内容\n\n**问题：** availableBalance 直接返回 balance，未减去 frozenBalance\n\n**修复位置：**\n1. ✅ src/services/TokenService.ts 第23行\n2. ✅ src/services/account.service.ts getTokenBalance方法\n3. ✅ src/services/account.service.ts getAccountInfo方法\n\n**修复方案：**\n```typescript\n// 错误: availableBalance: account.balance\n// 正确: availableBalance: account.balance - account.frozenBalance\n```\n\n## 完成状态\n\n- ✅ 修复提交：commit 7b14410\n- ✅ PR 已创建：#126 - [P0] 修复可用余额计算错误 - Issue #93\n- ✅ 状态：OPEN，等待审查合并\n- ✅ 分支：bugfix/available-balance-calculation\n\n## 影响范围\n\n**修复前风险：**\n- 用户可能使用已被冻结的代币进行交易\n- 导致资金安全问题\n- 核心业务逻辑错误\n\n**修复后：**\n- 可用余额 = 总余额 - 冻结余额\n- 确保用户只能使用未冻结的资金\n- 资金安全得到保障"
+    },
+    {
+      "id": "task-1772337481185",
+      "issueNumber": 97,
+      "title": "【P1中等Bug】分析空指针风险\n\n**Issue**: #97/#92（重复）\n**问题**: 多处使用非空断言 `!` 但未进行空值检查\n**位置**: `src/services/account",
+      "description": "【P1中等Bug】分析空指针风险\n\n**Issue**: #97/#92（重复）\n**问题**: 多处使用非空断言 `!` 但未进行空值检查\n**位置**: `src/services/account.service.ts`\n**问题代码**:\n- 第 94、108、122、132、147-148 行\n\n**任务**:\n1. 分析所有使用 `!` 的位置\n2. 评估运行时风险\n3. 提供安全的修复方案\n\n**优先级**: 🟡 P1 - 可能导致运行时错误",
+      "assignedTo": "qa-engineer",
+      "status": "completed",
+      "createdAt": "2026-03-01T03:58:01.185Z",
+      "updatedAt": "2026-03-01T07:46:17.227Z",
+      "iterations": 3,
+      "result": "## ✅ 任务完成：空指针风险分析与修复\n\n### 📊 完成情况\n\n**Issue**: #97 - 空指针风险：多处使用非空断言但未检查\n\n---\n\n### 🔍 分析结果\n\n发现并修复了 **6 处高危空指针风险**：\n\n| 位置 | 方法 | 原始风险代码 | 严重性 |\n|------|------|-------------|--------|\n| 第33行 | `createAccount` | `account.id!` | 🔴 高 |\n| 第94行 | `addTokens` | `getAccountByUserId(userId)!.balance` | 🔴 高 |\n| 第108行 | `deductTokens` | `getAccountByUserId(userId)!.balance` | 🔴 高 |\n| 第122行 | `freezeTokens` | `getAccountByUserId(userId)!` | 🔴 高 |\n| 第132行 | `unfreezeTokens` | `getAccountByUserId(userId)!` | 🔴 高 |\n| 第147-148行 | `transfer` | `getAccountByUserId(...)!` (两处) | 🔴 高 |\n\n---\n\n### 🛠️ 修复方案\n\n所有修复都采用了标准的安全检查模式：\n\n**修复前（危险）**:\n```typescript\nconst account = accountModel.getAccountByUserId(userId)!;\n```\n\n**修复后（安全）**:\n```typescript\nconst account = accountModel.getAccountByUserId(userId);\nif (!account) {\n  throw new Error(`账户不存在: ${userId}`);\n}\n```\n\n---\n\n### ✅ 修复效果\n\n| 指标 | 修复前 | 修复后 | 改进 |\n|------|--------|--------|------|\n| 非空断言 `!` | 6 处 | 0 处 | ✅ 100% 消除 |\n| 空值检查 | 0 处 | 6 处 | ✅ 完整覆盖 |\n| 错误信息 | ❌ 不明确 | ✅ 包含 userId | ✅ 易于调试 |\n| 类型安全 | ⚠️ 绕过检查 | ✅ 完全安全 | ✅ 符合最佳实践 |\n\n---\n\n### 📝 交付成果\n\n1. ✅ **代码修复**: `src/services/account.service.ts` \n   - 修复了所有 6 处空指针风险\n   - 添加了明确的错误信息\n   - 符合 TypeScript 最佳实践\n\n2. ✅ **详细文档**: `docs/bug-fixes/null-pointer-risk-analysis.md`\n   - 完整的风险分析\n   - 修复前后对比\n   - 测试建议\n   - 代码质量改进报告\n\n3. ✅ **代码提交**: \n   - 分支: `feature/fix-null-pointer-risk`\n   - 已推送到远程仓库\n   - 提交信息包含完整的修复说明\n\n4. ⚠️ **PR 创建**: \n   - 遇到 GitHub API 错误\n   - 代码已推送，可手动创建 PR\n\n---\n\n### 🎯 影响范围\n\n**直接修复的方法**:\n- ✅ `createAccount` - 账户创建\n- ✅ `addTokens` - 代币增加\n- ✅ `deductTokens` - 代币扣除\n- ✅ `freezeTokens` - 代币冻结\n- ✅ `unfreezeTokens` - 代币解冻\n- ✅ `transfer` - 转账功能\n\n**受益的别名方法**:\n- `deposit`, `withdraw`, `freezeAccount`, `unfreezeAccount`\n\n---\n\n### 🧪 后续建议\n\n1. **单元测试**: 为所有修复的方法添加测试用例\n2. **代码审查**: 在其他服务类中进行类似检查\n3. **代码规范**: 建立规范禁止使用非空断言 `!`\n\n---\n\n### 📌 PR 信息\n\n- **分支**: `feature/fix-null-pointer-risk`\n- **目标**: `main` 或 `master`\n- **Closes**: #97\n- **Related**: #92 (重复)\n\n代码已准备就绪，等待审查合并。"
+    },
+    {
+      "id": "task-1772337481187",
+      "issueNumber": 96,
+      "title": "【P1中等Bug】修复FreezeService定时器未初始化\n\n**Issue**: #96/#91（重复）\n**问题**: autoUnfreezeTimer 需要手动调用 initialize(",
+      "description": "【P1中等Bug】修复FreezeService定时器未初始化\n\n**Issue**: #96/#91（重复）\n**问题**: autoUnfreezeTimer 需要手动调用 initialize()，但从未被调用\n**位置**: `src/services/freeze.service.ts`\n\n**修复方案**:\n1. 在构造函数中自动初始化\n2. 或在应用入口文件中调用\n\n**影响**: 过期的冻结资金无法自动解冻\n\n**优先级**: 🟡 P1 - 影响功能完整性",
+      "assignedTo": "backend-developer",
+      "status": "completed",
+      "createdAt": "2026-03-01T03:58:01.187Z",
+      "updatedAt": "2026-03-01T07:51:34.813Z",
+      "iterations": 3,
+      "result": "✅ P1 Bug 修复完成：FreezeService 定时器自动初始化\n\n## 修复内容\n- **文件：** src/services/freeze.service.ts\n- **问题：** autoUnfreezeTimer 需要手动调用 initialize()，但从未被调用\n- **方案：** 在构造函数中自动调用 initialize()\n\n## 代码变更\n```typescript\nconstructor() {\n  this.initialize();\n}\n```\n\n## 验证结果\n- ✅ TypeScript 编译通过\n- ✅ 定时器在服务实例化时自动启动\n- ✅ 过期冻结资金可以自动解冻\n\n## 提交信息\n- 分支：bugfix/freeze-timer-init\n- PR：已创建\n- Issue：#96, #91\n\n任务完成，等待开发总监审查合并！"
+    },
+    {
+      "id": "task-1772347282741",
+      "issueNumber": 121,
+      "title": "修复测试代码中的状态枚举值大小写不一致问题\n\n**任务描述**：\n测试代码使用硬编码字符串字面量（'PENDING'），而实际枚举值是小写的 'pending'，导致测试失败。\n\n**需要做的事**：",
+      "description": "修复测试代码中的状态枚举值大小写不一致问题\n\n**任务描述**：\n测试代码使用硬编码字符串字面量（'PENDING'），而实际枚举值是小写的 'pending'，导致测试失败。\n\n**需要做的事**：\n1. 修改 tests/integration/e2e.test.ts 中所有硬编码的状态字符串\n2. 替换为枚举常量（AirdropStatus.PENDING, TaskStatus.DRAFT 等）\n3. 确保所有状态比较使用枚举常量而非魔法字符串\n4. 运行测试验证修复效果\n\n**位置**：\n- tests/integration/e2e.test.ts:233\n- tests/integration/e2e.test.ts:320\n\n**预期结果**：\n- 所有测试通过\n- 没有硬编码的状态字符串",
+      "assignedTo": "test-engineer",
+      "status": "completed",
+      "createdAt": "2026-03-01T06:41:22.741Z",
+      "updatedAt": "2026-03-01T08:19:45.595Z",
+      "iterations": 4,
+      "result": "达到最大迭代次数，自动完成"
     }
   ],
   "errors": [
@@ -11922,60 +12141,42 @@
       "error": "Error: Agent is already processing a prompt. Use steer() or followUp() to queue messages, or wait for completion."
     }
   ],
-  "currentIteration": 331,
-  "lastDirectorActivity": "2026-03-01T07:45:34.566Z",
+  "currentIteration": 338,
+  "lastDirectorActivity": "2026-03-01T07:50:34.656Z",
   "monitorStats": {
-    "checkCount": 9,
-    "loopCount": 42,
+    "checkCount": 11,
+    "loopCount": 53,
     "scriptAHitRate": 0,
     "scriptBHitRate": 0
   },
   "toolStats": {
     "product-director": {
       "tools": {},
-      "lastUpdate": "2026-03-01T07:44:34.538Z"
+      "lastUpdate": "2026-03-01T08:19:18.123Z"
     },
     "qa-engineer": {
       "tools": {},
-      "lastUpdate": "2026-03-01T07:44:34.538Z"
+      "lastUpdate": "2026-03-01T08:19:18.123Z"
     },
     "dev-director": {
       "tools": {},
-      "lastUpdate": "2026-03-01T07:44:34.538Z"
+      "lastUpdate": "2026-03-01T08:19:18.123Z"
     },
     "backend-developer": {
       "tools": {},
-      "lastUpdate": "2026-03-01T07:44:34.538Z"
+      "lastUpdate": "2026-03-01T08:19:18.123Z"
     },
     "test-engineer": {
       "tools": {},
-      "lastUpdate": "2026-03-01T07:44:34.538Z"
+      "lastUpdate": "2026-03-01T08:19:18.123Z"
     },
     "requirement-analyst": {
       "tools": {},
-      "lastUpdate": "2026-03-01T07:44:34.538Z"
+      "lastUpdate": "2026-03-01T08:19:18.123Z"
     }
   },
   "loopRecords": [
     {
-      "agentId": "product-director",
-      "loopType": "no_progress",
-      "details": "10分钟内无进展",
-      "timestamp": "2026-03-01T06:59:28.726Z"
-    },
-    {
-      "agentId": "qa-engineer",
-      "loopType": "no_progress",
-      "details": "10分钟内无进展",
-      "timestamp": "2026-03-01T06:59:28.726Z"
-    },
-    {
-      "agentId": "dev-director",
-      "loopType": "no_progress",
-      "details": "10分钟内无进展",
-      "timestamp": "2026-03-01T06:59:28.726Z"
-    },
-    {
       "agentId": "test-engineer",
       "loopType": "no_progress",
       "details": "10分钟内无进展",
@@ -12208,6 +12409,72 @@
       "loopType": "no_progress",
       "details": "10分钟内无进展",
       "timestamp": "2026-03-01T07:44:34.538Z"
+    },
+    {
+      "agentId": "product-director",
+      "loopType": "no_progress",
+      "details": "10分钟内无进展",
+      "timestamp": "2026-03-01T07:49:34.619Z"
+    },
+    {
+      "agentId": "qa-engineer",
+      "loopType": "no_progress",
+      "details": "10分钟内无进展",
+      "timestamp": "2026-03-01T07:49:34.619Z"
+    },
+    {
+      "agentId": "dev-director",
+      "loopType": "no_progress",
+      "details": "10分钟内无进展",
+      "timestamp": "2026-03-01T07:49:34.619Z"
+    },
+    {
+      "agentId": "backend-developer",
+      "loopType": "no_progress",
+      "details": "10分钟内无进展",
+      "timestamp": "2026-03-01T07:49:34.619Z"
+    },
+    {
+      "agentId": "test-engineer",
+      "loopType": "no_progress",
+      "details": "10分钟内无进展",
+      "timestamp": "2026-03-01T07:49:34.619Z"
+    },
+    {
+      "agentId": "requirement-analyst",
+      "loopType": "no_progress",
+      "details": "10分钟内无进展",
+      "timestamp": "2026-03-01T07:49:34.619Z"
+    },
+    {
+      "agentId": "product-director",
+      "loopType": "no_progress",
+      "details": "10分钟内无进展",
+      "timestamp": "2026-03-01T08:19:18.123Z"
+    },
+    {
+      "agentId": "qa-engineer",
+      "loopType": "no_progress",
+      "details": "10分钟内无进展",
+      "timestamp": "2026-03-01T08:19:18.123Z"
+    },
+    {
+      "agentId": "dev-director",
+      "loopType": "no_progress",
+      "details": "10分钟内无进展",
+      "timestamp": "2026-03-01T08:19:18.123Z"
+    },
+    {
+      "agentId": "test-engineer",
+      "loopType": "no_progress",
+      "details": "10分钟内无进展",
+      "timestamp": "2026-03-01T08:19:18.123Z"
+    },
+    {
+      "agentId": "requirement-analyst",
+      "loopType": "no_progress",
+      "details": "10分钟内无进展",
+      "timestamp": "2026-03-01T08:19:18.123Z"
     }
   ]
 }

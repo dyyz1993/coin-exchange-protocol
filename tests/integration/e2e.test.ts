@@ -9,6 +9,8 @@ import { AirdropService } from '../../src/services/airdrop.service';
 import { TaskService } from '../../src/services/task.service';
 import { FreezeService } from '../../src/services/freeze.service';
 import { TransactionType } from '../../src/types/token';
+import { AirdropStatus } from '../../src/types/airdrop';
+import { TaskStatus } from '../../src/types/task';
 
 describe('端到端业务流程测试', () => {
   let accountService: AccountService;
@@ -230,12 +232,12 @@ describe('端到端业务流程测试', () => {
       });
 
       expect(airdrop.airdropId).toBeDefined();
-      expect(airdrop.status).toBe('PENDING');
+      expect(airdrop.status).toBe(AirdropStatus.PENDING);
 
       // 2. 激活空投
       await airdropService.startAirdrop(airdrop.airdropId);
       const activeAirdrop = airdropService.getAirdrop(airdrop.airdropId);
-      expect(activeAirdrop?.status).toBe('ACTIVE');
+      expect(activeAirdrop?.status).toBe(AirdropStatus.ACTIVE);
 
       // 3. 创建多个用户并领取
       const users = [];
@@ -317,12 +319,12 @@ describe('端到端业务流程测试', () => {
       });
 
       expect(task.taskId).toBeDefined();
-      expect(task.status).toBe('PENDING');
+      expect(task.status).toBe(TaskStatus.PENDING);
 
       // 2. 激活任务
       await taskService.activateTask(task.taskId);
       const activeTask = taskService.getTask(task.taskId);
-      expect(activeTask?.status).toBe('ACTIVE');
+      expect(activeTask?.status).toBe(TaskStatus.ACTIVE);
 
       // 3. 多个用户完成任务
       for (let i = 0; i < maxCompletions; i++) {
