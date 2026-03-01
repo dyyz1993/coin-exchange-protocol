@@ -63,18 +63,6 @@
   "initialized": false,
   "events": [
     {
-      "time": "2026-03-01T03:05:01.138Z",
-      "agent": "qa-engineer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T03:05:01.196Z",
-      "agent": "qa-engineer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
       "time": "2026-03-01T03:05:01.240Z",
       "agent": "qa-engineer",
       "type": "tool",
@@ -3058,6 +3046,18 @@
     },
     {
       "time": "2026-03-01T03:49:38.419Z",
+      "agent": "requirement-analyst",
+      "type": "tool",
+      "content": "调用工具: git_commit"
+    },
+    {
+      "time": "2026-03-01T03:49:38.590Z",
+      "agent": "requirement-analyst",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T03:49:38.647Z",
       "agent": "requirement-analyst",
       "type": "tool",
       "content": "调用工具: git_commit"
