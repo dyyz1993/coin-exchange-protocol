@@ -56,10 +56,9 @@ export class AccountService {
       throw new Error('创建账户失败：无法获取账户ID');
     }
 
-    // 如果有初始余额，记录交易
-    if (initialBalance > 0) {
-      await this.addTokens(userId, initialBalance, TransactionType.REWARD, '初始余额');
-    }
+    // ❌ 已移除重复的 addTokens 调用
+    // accountModel.createAccount 已经设置了初始余额，不需要再次增加
+    // 修复 Issue #236: 账户创建时初始余额重复计算导致双倍余额的 Bug
 
     return {
       accountId: account.id,
