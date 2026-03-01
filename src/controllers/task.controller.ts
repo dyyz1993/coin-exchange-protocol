@@ -12,20 +12,48 @@ export class TaskController {
    */
   async createTask(params: any): Promise<ApiResponse> {
     try {
-      const { title, description, reward, type, maxCompletions, startTime, endTime } = params;
+      const { title, description, reward, maxCompletions, startTime, endTime } = params;
 
+      // 验证必填参数
       if (!title || !reward) {
-        return { success: false, error: '缺少必要参数' };
+        return { success: false, error: '缺少必要参数：title 和 reward' };
+      }
+
+      // 转换参数类型
+      const rewardNum = Number(reward);
+      const maxCompletionsNum = maxCompletions ? Number(maxCompletions) : 100; // 默认100次
+      const startDate = startTime ? new Date(startTime) : new Date();
+      
+      // 为 endTime 提供默认值：startTime + 7天
+      let endDate: Date;
+      if (endTime) {
+        endDate = new Date(endTime);
+      } else {
+        endDate = new Date(startDate.getTime() + 7 * 24 * 60 * 60 * 1000); // 默认7天后
+      }
+
+      // 验证 reward > 0
+      if (rewardNum <= 0) {
+        return { success: false, error: '奖励金额必须大于0' };
+      }
+
+      // 验证 maxCompletions > 0
+      if (maxCompletionsNum <= 0) {
+        return { success: false, error: '最大完成次数必须大于0' };
+      }
+
+      // 验证 startTime < endTime
+      if (startDate >= endDate) {
+        return { success: false, error: '开始时间必须早于结束时间' };
       }
 
       return taskService.createTask({
         title,
         description: description || '',
-        reward: Number(reward),
-        type: type || 'daily',
-        maxCompletions: maxCompletions || 0,
-        startTime: startTime ? new Date(startTime) : new Date(),
-        endTime: endTime ? new Date(endTime) : undefined
+        reward: rewardNum,
+        maxCompletions: maxCompletionsNum,
+        startTime: startDate,
+        endTime: endDate
       });
     } catch (error) {
       return { 
