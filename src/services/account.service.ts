@@ -20,8 +20,13 @@ export class AccountService {
     // 创建用户账户（AccountModel.createAccount 只接受 userId）
     const account = accountModel.createAccount(userId);
 
+    // 安全检查：确保账户 ID 存在
+    if (!account.id) {
+      throw new Error('创建账户失败：无法生成账户 ID');
+    }
+
     return {
-      accountId: account.id!,
+      accountId: account.id,
       createdAt: account.createdAt
     };
   }
@@ -86,9 +91,15 @@ export class AccountService {
   }> {
     const transaction = accountModel.addBalance(userId, amount, description, type);
 
+    // 安全检查：确保账户存在
+    const account = accountModel.getAccountByUserId(userId);
+    if (!account) {
+      throw new Error('账户不存在');
+    }
+
     return {
       success: true,
-      newBalance: accountModel.getAccountByUserId(userId)!.balance,
+      newBalance: account.balance,
       transactionId: transaction.id
     };
   }
@@ -109,9 +120,15 @@ export class AccountService {
   }> {
     const transaction = accountModel.deductBalance(userId, amount, description, type);
 
+    // 安全检查：确保账户存在
+    const account = accountModel.getAccountByUserId(userId);
+    if (!account) {
+      throw new Error('账户不存在');
+    }
+
     return {
       success: true,
-      newBalance: accountModel.getAccountByUserId(userId)!.balance,
+      newBalance: account.balance,
       transactionId: transaction.id
     };
   }
@@ -130,7 +147,12 @@ export class AccountService {
     availableBalance: number;
   }> {
     const transaction = accountModel.freezeBalance(userId, amount);
-    const account = accountModel.getAccountByUserId(userId)!;
+    
+    // 安全检查：确保账户存在
+    const account = accountModel.getAccountByUserId(userId);
+    if (!account) {
+      throw new Error('账户不存在');
+    }
 
     return {
       success: true,
@@ -152,7 +174,12 @@ export class AccountService {
     availableBalance: number;
   }> {
     const transaction = accountModel.unfreezeBalance(userId, amount);
-    const account = accountModel.getAccountByUserId(userId)!;
+    
+    // 安全检查：确保账户存在
+    const account = accountModel.getAccountByUserId(userId);
+    if (!account) {
+      throw new Error('账户不存在');
+    }
 
     return {
       success: true,
@@ -184,8 +211,13 @@ export class AccountService {
     // 使用 AccountModel 的 transfer 方法
     const transaction = accountModel.transfer(fromUserId, toUserId, amount, description);
 
-    const fromAccount = accountModel.getAccountByUserId(fromUserId)!;
-    const toAccount = accountModel.getAccountByUserId(toUserId)!;
+    // 安全检查：确保账户存在
+    const fromAccount = accountModel.getAccountByUserId(fromUserId);
+    const toAccount = accountModel.getAccountByUserId(toUserId);
+    
+    if (!fromAccount || !toAccount) {
+      throw new Error('账户不存在');
+    }
 
     return {
       success: true,
