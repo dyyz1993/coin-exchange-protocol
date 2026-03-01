@@ -26,28 +26,8 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "async-mutex": "^0.5.0"
-  },
-  "dependencies": {
-    "async-mutex": "^0.5.0"
-  },
-  "dependencies": {
-    "async-mutex": "^0.5.0"
-  },
-  "dependencies": {
-    "async-mutex": "^0.5.0"
-  },
-  "dependencies": {
-    "async-mutex": "^0.5.0"
-  },
-  "dependencies": {
-    "async-mutex": "^0.5.0"
-  },
-  "dependencies": {
-    "async-mutex": "^0.5.0"
-  },
-  "dependencies": {
-    "async-mutex": "^0.5.0"
+    "async-mutex": "^0.5.0",
+    "zod": "^4.3.6"
   },
   "devDependencies": {
     "@types/jest": "^29.5.12",
@@ -71,8 +51,5 @@
   },
   "engines": {
     "node": ">=18.0.0"
-  },
-  "dependencies": {
-    "async-mutex": "^0.5.0"
   }
 }
