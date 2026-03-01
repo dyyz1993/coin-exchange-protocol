@@ -41,7 +41,7 @@ export class AirdropService {
       name: airdrop.name,
       totalAmount: airdrop.totalAmount,
       perUserAmount: airdrop.perUserAmount,
-      status: airdrop.status
+      status: airdrop.status,
     };
   }
 
@@ -65,14 +65,17 @@ export class AirdropService {
 
     return {
       success: true,
-      status: updatedAirdrop.status
+      status: updatedAirdrop.status,
     };
   }
 
   /**
    * 用户领取空投
    */
-  async claimAirdrop(airdropId: string, userId: string): Promise<{
+  async claimAirdrop(
+    airdropId: string,
+    userId: string
+  ): Promise<{
     success: boolean;
     amount: number;
     claimId: string;
@@ -102,6 +105,16 @@ export class AirdropService {
       throw new Error('空投活动已结束');
     }
 
+    // 🔥 修复 Issue #201：直接使用 Model 维护的 claimedAmount，避免重复计算
+    // Model.createClaim() 内部会进行更严格的检查
+    const remainingAmount = airdrop.totalAmount - airdrop.claimedAmount;
+
+    if (remainingAmount < airdrop.perUserAmount) {
+      throw new Error(
+        `空投金额已耗尽。剩余: ${remainingAmount}, 每人可领取: ${airdrop.perUserAmount}`
+      );
+    }
+
     // 创建领取记录
     const claim = airdropModel.createClaim(airdropId, userId, airdrop.perUserAmount);
 
@@ -118,7 +131,7 @@ export class AirdropService {
       success: true,
       amount: airdrop.perUserAmount,
       claimId: claim.id,
-      newBalance: result.newBalance
+      newBalance: result.newBalance,
     };
   }
 
@@ -145,14 +158,17 @@ export class AirdropService {
       success: true,
       status: updatedAirdrop.status,
       totalClaimed,
-      totalAmount: airdrop.totalAmount
+      totalAmount: airdrop.totalAmount,
     };
   }
 
   /**
    * 取消空投活动
    */
-  async cancelAirdrop(airdropId: string, reason: string): Promise<{
+  async cancelAirdrop(
+    airdropId: string,
+    reason: string
+  ): Promise<{
     success: boolean;
     status: AirdropStatus;
   }> {
@@ -169,7 +185,7 @@ export class AirdropService {
 
     return {
       success: true,
-      status: updatedAirdrop.status
+      status: updatedAirdrop.status,
     };
   }
 
@@ -194,9 +210,10 @@ export class AirdropService {
       airdrop,
       claimCount: claims.length,
       totalClaimed,
-      canClaim: airdrop.status === AirdropStatus.ACTIVE && 
-                new Date() >= airdrop.startTime && 
-                new Date() <= airdrop.endTime
+      canClaim:
+        airdrop.status === AirdropStatus.ACTIVE &&
+        new Date() >= airdrop.startTime &&
+        new Date() <= airdrop.endTime,
     };
   }
 
@@ -205,17 +222,19 @@ export class AirdropService {
    */
   getClaimableAirdrops(userId: string): any[] {
     const activeAirdrops = airdropModel.getActiveAirdrops();
-    
-    return activeAirdrops.filter(airdrop => {
-      return !airdropModel.hasUserClaimed(userId, airdrop.id);
-    }).map(airdrop => ({
-      id: airdrop.id,
-      name: airdrop.name,
-      description: airdrop.description,
-      perUserAmount: airdrop.perUserAmount,
-      endTime: airdrop.endTime,
-      remainingTime: airdrop.endTime.getTime() - Date.now()
-    }));
+
+    return activeAirdrops
+      .filter((airdrop) => {
+        return !airdropModel.hasUserClaimed(userId, airdrop.id);
+      })
+      .map((airdrop) => ({
+        id: airdrop.id,
+        name: airdrop.name,
+        description: airdrop.description,
+        perUserAmount: airdrop.perUserAmount,
+        endTime: airdrop.endTime,
+        remainingTime: airdrop.endTime.getTime() - Date.now(),
+      }));
   }
 
   /**
@@ -223,15 +242,15 @@ export class AirdropService {
    */
   getUserClaimHistory(userId: string): any[] {
     const claims = airdropModel.getUserClaims(userId);
-    
-    return claims.map(claim => {
+
+    return claims.map((claim) => {
       const airdrop = airdropModel.getAirdrop(claim.airdropId);
       return {
         claimId: claim.id,
         airdropId: claim.airdropId,
         airdropName: airdrop?.name || '未知空投',
         amount: claim.amount,
-        claimedAt: claim.claimedAt
+        claimedAt: claim.claimedAt,
       };
     });
   }
@@ -256,7 +275,7 @@ export class AirdropService {
       if (airdrop) {
         const claims = airdropModel.getAirdropClaims(airdropId);
         totalDistributed = claims.reduce((sum, claim) => sum + claim.amount, 0);
-        
+
         if (airdrop.status === AirdropStatus.ACTIVE) activeAirdrops = 1;
         if (airdrop.status === AirdropStatus.COMPLETED) completedAirdrops = 1;
       }
@@ -275,7 +294,7 @@ export class AirdropService {
       totalAirdrops: airdropId ? 1 : allAirdrops.length,
       activeAirdrops,
       completedAirdrops,
-      totalDistributed
+      totalDistributed,
     };
   }
 }
