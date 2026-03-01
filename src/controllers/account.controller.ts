@@ -146,11 +146,11 @@ export class AccountController {
   /**
    * 冻结账户
    * POST /api/account/freeze
-   * Body: { userId: string, reason: string }
+   * Body: { userId: string, reason: string, duration?: number }
    */
   async freezeAccount(params: any): Promise<ApiResponse> {
     try {
-      const { userId, reason } = params;
+      const { userId, reason, duration } = params;
       
       // 输入验证
       if (!userId || typeof userId !== 'string') {
@@ -162,7 +162,7 @@ export class AccountController {
       }
       
       // 调用服务层
-      return accountService.freezeAccount(userId, reason);
+      return accountService.freezeAccount(userId, reason, duration);
     } catch (error) {
       return { 
         success: false, 
@@ -216,6 +216,72 @@ export class AccountController {
       return { 
         success: false, 
         error: error instanceof Error ? error.message : '查询交易记录失败' 
+      };
+    }
+  }
+
+  /**
+   * 获取冻结账户列表
+   * GET /api/account/frozen
+   */
+  async getFrozenAccounts(params: any): Promise<ApiResponse> {
+    try {
+      // 调用服务层获取冻结账户列表
+      return accountService.getFrozenAccounts();
+    } catch (error) {
+      return { 
+        success: false, 
+        error: error instanceof Error ? error.message : '获取冻结账户列表失败' 
+      };
+    }
+  }
+
+  /**
+   * 获取账户信息
+   * GET /api/account/info/:userId
+   */
+  async getAccountInfo(params: any): Promise<ApiResponse> {
+    try {
+      const { userId } = params;
+      
+      if (!userId) {
+        return { success: false, error: '缺少用户ID' };
+      }
+
+      // 调用服务层获取账户信息
+      return accountService.getAccountInfo(userId);
+    } catch (error) {
+      return { 
+        success: false, 
+        error: error instanceof Error ? error.message : '获取账户信息失败' 
+      };
+    }
+  }
+
+  /**
+   * 更新账户状态
+   * PUT /api/account/status
+   * Body: { userId: string, status: string }
+   */
+  async updateAccountStatus(params: any): Promise<ApiResponse> {
+    try {
+      const { userId, status } = params;
+      
+      // 输入验证
+      if (!userId || typeof userId !== 'string') {
+        return { success: false, error: '无效的用户ID' };
+      }
+      
+      if (!status || typeof status !== 'string') {
+        return { success: false, error: '无效的账户状态' };
+      }
+      
+      // 调用服务层
+      return accountService.updateAccountStatus(userId, status);
+    } catch (error) {
+      return { 
+        success: false, 
+        error: error instanceof Error ? error.message : '更新账户状态失败' 
       };
     }
   }
