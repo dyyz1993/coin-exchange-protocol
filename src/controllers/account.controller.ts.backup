@@ -56,7 +56,7 @@ export class AccountController {
   }
 
   /**
-   * 充值/存款
+   * 充值
    * POST /api/account/deposit
    * Body: { userId: string, amount: number, reason?: string }
    */
@@ -84,7 +84,7 @@ export class AccountController {
   }
 
   /**
-   * 提现/取款
+   * 提现
    * POST /api/account/withdraw
    * Body: { userId: string, amount: number, reason?: string }
    */
@@ -174,7 +174,7 @@ export class AccountController {
   /**
    * 解冻账户
    * POST /api/account/unfreeze
-   * Body: { userId: string, reason?: string }
+   * Body: { userId: string, reason: string }
    */
   async unfreezeAccount(params: any): Promise<ApiResponse> {
     try {
@@ -183,6 +183,10 @@ export class AccountController {
       // 输入验证
       if (!userId || typeof userId !== 'string') {
         return { success: false, error: '无效的用户ID' };
+      }
+      
+      if (!reason || typeof reason !== 'string') {
+        return { success: false, error: '解冻原因不能为空' };
       }
       
       // 调用服务层
