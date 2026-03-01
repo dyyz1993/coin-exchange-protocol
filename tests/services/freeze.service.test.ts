@@ -695,7 +695,7 @@ describe('FreezeService', () => {
       await accountService.addTokens(userId, 10000, TransactionType.REWARD, '初始奖励');
 
       for (let i = 0; i < 10; i++) {
-        const freeze = freezeService.createInitialFreeze({
+        const freeze = await freezeService.createInitialFreeze({
           userId,
           amount: 100,
           transactionId: `tx-fast-${i}`,
