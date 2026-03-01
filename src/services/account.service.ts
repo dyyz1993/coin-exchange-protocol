@@ -434,7 +434,7 @@ export class AccountService {
   async freezeAccount(
     userId: string,
     reason: string,
-    duration?: number
+    _duration?: number // 预留参数，未来可能用于指定冻结时长
   ): Promise<{
     success: boolean;
     frozenAmount: number;
