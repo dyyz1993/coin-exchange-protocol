@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>金币交易协议 - 演示页面</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      padding: 20px;
+    }
+    
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    
+    .header {
+      text-align: center;
+      color: white;
+      margin-bottom: 40px;
+    }
+    
+    .header h1 {
+      font-size: 3rem;
+      font-weight: bold;
+      margin-bottom: 10px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+    }
+    
+    .header p {
+      font-size: 1.2rem;
+      opacity: 0.9;
+    }
+    
+    .card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      padding: 24px;
+      margin-bottom: 30px;
+    }
+    
+    .section-title {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: #1a202c;
+      margin-bottom: 16px;
+      border-bottom: 3px solid #667eea;
+      padding-bottom: 8px;
+    }
+    
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    
+    .stat-card {
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      padding: 20px;
+      border-radius: 8px;
+      text-align: center;
+      transition: transform 0.2s;
+    }
+    
+    .stat-card:hover {
+      transform: translateY(-5px);
+    }
+    
+    .stat-label {
+      font-size: 0.9rem;
+      color: #666;
+      margin-bottom: 8px;
+    }
+    
+    .stat-value {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #1a202c;
+    }
+    
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 16px;
+    }
+    
+    th {
+      background: #f7fafc;
+      padding: 12px;
+      text-align: left;
+      font-weight: 600;
+      color: #4a5568;
+      border-bottom: 2px solid #e2e8f0;
+      text-transform: uppercase;
+      font-size: 0.75rem;
+      letter-spacing: 0.05em;
+    }
+    
+    td {
+      padding: 16px 12px;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    
+    tr:hover {
+      background: #f7fafc;
+    }
+    
+    .badge {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+    
+    .badge-success {
+      background: #c6f6d5;
+      color: #22543d;
+    }
+    
+    .badge-warning {
+      background: #fefcbf;
+      color: #744210;
+    }
+    
+    .badge-danger {
+      background: #fed7d7;
+      color: #742a2a;
+    }
+    
+    .badge-info {
+      background: #bee3f8;
+      color: #2a4365;
+    }
+    
+    .btn {
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s;
+      font-size: 0.875rem;
+    }
+    
+    .btn-primary {
+      background: #667eea;
+      color: white;
+    }
+    
+    .btn-primary:hover {
+      background: #5a67d8;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+    }
+    
+    .btn-success {
+      background: #48bb78;
+      color: white;
+    }
+    
+    .btn-success:hover {
+      background: #38a169;
+    }
+    
+    .btn-danger {
+      background: #f56565;
+      color: white;
+    }
+    
+    .btn-danger:hover {
+      background: #e53e3e;
+    }
+    
+    .btn-secondary {
+      background: #e2e8f0;
+      color: #4a5568;
+    }
+    
+    .btn-secondary:hover {
+      background: #cbd5e0;
+    }
+    
+    .address {
+      font-family: 'Courier New', monospace;
+      font-size: 0.875rem;
+      background: #edf2f7;
+      padding: 4px 8px;
+      border-radius: 4px;
+    }
+    
+    .amount {
+      font-weight: 700;
+      font-size: 1rem;
+    }
+    
+    .amount-positive {
+      color: #38a169;
+    }
+    
+    .amount-negative {
+      color: #e53e3e;
+    }
+    
+    .actions {
+      display: flex;
+      gap: 8px;
+    }
+    
+    .icon {
+      display: inline-block;
+      margin-right: 8px;
+    }
+    
+    @media (max-width: 768px) {
+      .header h1 {
+        font-size: 2rem;
+      }
+      
+      .stats-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      
+      table {
+        font-size: 0.875rem;
+      }
+      
+      th, td {
+        padding: 8px 6px;
+      }
+      
+      .actions {
+        flex-direction: column;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <div class="header">
+      <h1>🪙 金币交易协议</h1>
+      <p>Coin Exchange Protocol - 安全、高效、透明的数字资产交易平台</p>
+    </div>
+    
+    <!-- Account Management Section -->
+    <div class="card">
+      <h2 class="section-title">💼 账户管理</h2>
+      
+      <!-- Stats -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-label">总账户数</div>
+          <div class="stat-value">5</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">正常账户</div>
+          <div class="stat-value" style="color: #38a169;">3</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">冻结账户</div>
+          <div class="stat-value" style="color: #e53e3e;">2</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">总资产</div>
+          <div class="stat-value">12,450.50</div>
+        </div>
+      </div>
+      
+      <!-- Action Buttons -->
+      <div style="display: flex; gap: 12px; margin-bottom: 24px;">
+        <button class="btn btn-success"><span class="icon">💰</span>充值</button>
+        <button class="btn btn-primary" style="background: #ed8936;"><span class="icon">💸</span>提现</button>
+        <button class="btn btn-primary"><span class="icon">🔄</span>转账</button>
+      </div>
+      
+      <!-- Accounts Table -->
+      <div style="overflow-x: auto;">
+        <table>
+          <thead>
+            <tr>
+              <th>账户地址</th>
+              <th>可用余额</th>
+              <th>冻结金额</th>
+              <th>状态</th>
+              <th>创建时间</th>
+              <th>操作</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="address">0x742d...A8F3</span></td>
+              <td><span class="amount amount-positive">5,234.50 金币</span></td>
+              <td><span class="amount amount-negative">0.00 金币</span></td>
+              <td><span class="badge badge-success">正常</span></td>
+              <td>2024-01-15</td>
+              <td class="actions">
+                <button class="btn btn-secondary">查看</button>
+                <button class="btn btn-danger">冻结</button>
+              </td>
+            </tr>
+            <tr>
+              <td><span class="address">0x8f3e...B4D2</span></td>
+              <td><span class="amount amount-positive">3,150.00 金币</span></td>
+              <td><span class="amount amount-negative">500.00 金币</span></td>
+              <td><span class="badge badge-success">正常</span></td>
+              <td>2024-02-10</td>
+              <td class="actions">
+                <button class="btn btn-secondary">查看</button>
+                <button class="btn btn-danger">冻结</button>
+              </td>
+            </tr>
+            <tr>
+              <td><span class="address">0x2a9c...C7E1</span></td>
+              <td><span class="amount amount-positive">2,890.00 金币</span></td>
+              <td><span class="amount amount-negative">1,000.00 金币</span></td>
+              <td><span class="badge badge-success">正常</span></td>
+              <td>2024-02-25</td>
+              <td class="actions">
+                <button class="btn btn-secondary">查看</button>
+                <button class="btn btn-danger">冻结</button>
+              </td>
+            </tr>
+            <tr>
+              <td><span class="address">0x5d7f...D2A9</span></td>
+              <td><span class="amount amount-positive">676.00 金币</span></td>
+              <td><span class="amount amount-negative">500.00 金币</span></td>
+              <td><span class="badge badge-danger">已冻结</span></td>
+              <td>2024-01-28</td>
+              <td class="actions">
+                <button class="btn btn-secondary">查看</button>
+                <button class="btn btn-success">解冻</button>
+              </td>
+            </tr>
+            <tr>
+              <td><span class="address">0x9e1b...E5F8</span></td>
+              <td><span class="amount amount-positive">500.00 金币</span></td>
+              <td><span class="amount amount-negative">500.00 金币</span></td>
+              <td><span class="badge badge-danger">已冻结</span></td>
+              <td>2024-02-18</td>
+              <td class="actions">
+                <button class="btn btn-secondary">查看</button>
+                <button class="btn btn-success">解冻</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    
+    <!-- Freeze Management Section -->
+    <div class="card">
+      <h2 class="section-title">🔒 冻结管理</h2>
+      
+      <!-- Stats -->
+      <div class="stats-grid">
+        <div class="stat-card" style="background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);">
+          <div class="stat-label">待审核申请</div>
+          <div class="stat-value" style="color: #744210;">2</div>
+        </div>
+        <div class="stat-card" style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);">
+          <div class="stat-label">已通过申请</div>
+          <div class="stat-value" style="color: #22543d;">3</div>
+        </div>
+        <div class="stat-card" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+          <div class="stat-label">冻结中账户</div>
+          <div class="stat-value" style="color: white;">2</div>
+        </div>
+        <div class="stat-card" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+          <div class="stat-label">总冻结金额</div>
+          <div class="stat-value" style="color: white;">3,000.00</div>
+        </div>
+      </div>
+      
+      <!-- Action Buttons -->
+      <div style="display: flex; gap: 12px; margin-bottom: 24px;">
+        <button class="btn btn-primary"><span class="icon">📝</span>新建冻结申请</button>
+      </div>
+      
+      <!-- Tabs -->
+      <div style="display: flex; gap: 8px; margin-bottom: 20px; border-bottom: 2px solid #e2e8f0;">
+        <button class="btn btn-primary" style="border-radius: 0; border-bottom: 3px solid #667eea;">冻结申请 (5)</button>
+        <button class="btn btn-secondary" style="border-radius: 0;">冻结记录 (4)</button>
+      </div>
+      
+      <!-- Freeze Requests Table -->
+      <div style="overflow-x: auto;">
+        <table>
+          <thead>
+            <tr>
+              <th>申请ID</th>
+              <th>账户地址</th>
+              <th>冻结金额</th>
+              <th>冻结原因</th>
+              <th>状态</th>
+              <th>申请时间</th>
+              <th>操作</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="address">REQ-001</span></td>
+              <td><span class="address">0x742d...A8F3</span></td>
+              <td><span class="amount amount-negative">800.00 金币</span></td>
+              <td>涉嫌违规交易，需要进一步调查</td>
+              <td><span class="badge badge-warning">待审核</span></td>
+              <td>2024-03-01 10:30</td>
+              <td class="actions">
+                <button class="btn btn-success">通过</button>
+                <button class="btn btn-danger">拒绝</button>
+              </td>
+            </tr>
+            <tr>
+              <td><span class="address">REQ-002</span></td>
+              <td><span class="address">0x5d7f...D2A9</span></td>
+              <td><span class="amount amount-negative">500.00 金币</span></td>
+              <td>异常大额转账行为</td>
+              <td><span class="badge badge-warning">待审核</span></td>
+              <td>2024-03-01 14:20</td>
+              <td class="actions">
+                <button class="btn btn-success">通过</button>
+                <button class="btn btn-danger">拒绝</button>
+              </td>
+            </tr>
+            <tr>
+              <td><span class="address">REQ-003</span></td>
+              <td><span class="address">0x9e1b...E5F8</span></td>
+              <td><span class="amount amount-negative">500.00 金币</span></td>
+              <td>账户安全风险</td>
+              <td><span class="badge badge-success">已通过</span></td>
+              <td>2024-02-28 09:15</td>
+              <td>
+                <span style="color: #a0aec0; font-size: 0.875rem;">已处理</span>
+              </td>
+            </tr>
+            <tr>
+              <td><span class="address">REQ-004</span></td>
+              <td><span class="address">0x2a9c...C7E1</span></td>
+              <td><span class="amount amount-negative">1,200.00 金币</span></td>
+              <td>疑似洗钱行为</td>
+              <td><span class="badge badge-danger">已拒绝</span></td>
+              <td>2024-02-27 16:45</td>
+              <td>
+                <span style="color: #a0aec0; font-size: 0.875rem;">已处理</span>
+              </td>
+            </tr>
+            <tr>
+              <td><span class="address">REQ-005</span></td>
+              <td><span class="address">0x8f3e...B4D2</span></td>
+              <td><span class="amount amount-negative">500.00 金币</span></td>
+              <td>账户异常登录</td>
+              <td><span class="badge badge-success">已通过</span></td>
+              <td>2024-02-26 11:00</td>
+              <td>
+                <span style="color: #a0aec0; font-size: 0.875rem;">已处理</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    
+    <!-- Transaction History Section -->
+    <div class="card">
+      <h2 class="section-title">📊 交易记录</h2>
+      
+      <!-- Stats -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-label">今日交易</div>
+          <div class="stat-value">23</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">交易总额</div>
+          <div class="stat-value">15,680.00</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">成功交易</div>
+          <div class="stat-value" style="color: #38a169;">21</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">待处理</div>
+          <div class="stat-value" style="color: #d69e2e;">2</div>
+        </div>
+      </div>
+      
+      <!-- Transaction Table -->
+      <div style="overflow-x: auto;">
+        <table>
+          <thead>
+            <tr>
+              <th>交易ID</th>
+              <th>类型</th>
+              <th>发起方</th>
+              <th>接收方</th>
+              <th>金额</th>
+              <th>状态</th>
+              <th>时间</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="address">TX-1001</span></td>
+              <td><span class="badge badge-info">转账</span></td>
+              <td><span class="address">0x742d...A8F3</span></td>
+              <td><span class="address">0x8f3e...B4D2</span></td>
+              <td><span class="amount amount-negative">-500.00</span></td>
+              <td><span class="badge badge-success">已完成</span></td>
+              <td>2024-03-01 15:30</td>
+            </tr>
+            <tr>
+              <td><span class="address">TX-1002</span></td>
+              <td><span class="badge badge-success">充值</span></td>
+              <td><span class="address">External</span></td>
+              <td><span class="address">0x2a9c...C7E1</span></td>
+              <td><span class="amount amount-positive">+1,000.00</span></td>
+              <td><span class="badge badge-warning">处理中</span></td>
+              <td>2024-03-01 14:20</td>
+            </tr>
+            <tr>
+              <td><span class="address">TX-1003</span></td>
+              <td><span class="badge badge-danger">提现</span></td>
+              <td><span class="address">0x5d7f...D2A9</span></td>
+              <td><span class="address">External</span></td>
+              <td><span class="amount amount-negative">-300.00</span></td>
+              <td><span class="badge badge-success">已完成</span></td>
+              <td>2024-03-01 12:15</td>
+            </tr>
+            <tr>
+              <td><span class="address">TX-1004</span></td>
+              <td><span class="badge badge-info">转账</span></td>
+              <td><span class="address">0x9e1b...E5F8</span></td>
+              <td><span class="address">0x742d...A8F3</span></td>
+              <td><span class="amount amount-negative">-250.00</span></td>
+              <td><span class="badge badge-success">已完成</span></td>
+              <td>2024-03-01 10:45</td>
+            </tr>
+            <tr>
+              <td><span class="address">TX-1005</span></td>
+              <td><span class="badge badge-success">充值</span></td>
+              <td><span class="address">External</span></td>
+              <td><span class="address">0x8f3e...B4D2</span></td>
+              <td><span class="amount amount-positive">+2,000.00</span></td>
+              <td><span class="badge badge-success">已完成</span></td>
+              <td>2024-03-01 09:30</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    
+    <!-- Footer -->
+    <div style="text-align: center; color: white; margin-top: 40px; opacity: 0.8;">
+      <p>© 2024 金币交易协议. All rights reserved.</p>
+      <p style="font-size: 0.875rem; margin-top: 8px;">安全 · 高效 · 透明</p>
+    </div>
+  </div>
+</body>
+</html>

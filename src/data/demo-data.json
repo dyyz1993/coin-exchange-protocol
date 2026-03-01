@@ -1,0 +1,291 @@
+{
+  "accounts": [
+    {
+      "id": "acc-001",
+      "address": "0x742d35Cc6634C0532925a3b844Bc9e7594aA8F3",
+      "shortAddress": "0x742d...A8F3",
+      "balance": 5234.50,
+      "frozenAmount": 0,
+      "status": "active",
+      "createdAt": "2024-01-15T08:00:00Z",
+      "owner": "张三",
+      "email": "zhangsan@example.com",
+      "kycStatus": "verified"
+    },
+    {
+      "id": "acc-002",
+      "address": "0x8f3eB29A7C4D85c7624BcD2A9F1E4C7B5D3E2A1",
+      "shortAddress": "0x8f3e...B4D2",
+      "balance": 3150.00,
+      "frozenAmount": 500,
+      "status": "active",
+      "createdAt": "2024-02-10T10:30:00Z",
+      "owner": "李四",
+      "email": "lisi@example.com",
+      "kycStatus": "verified"
+    },
+    {
+      "id": "acc-003",
+      "address": "0x2a9cE18C7B4D5F3A2E1C8B9D7F6E5A4C3B2A1E9",
+      "shortAddress": "0x2a9c...C7E1",
+      "balance": 2890.00,
+      "frozenAmount": 1000,
+      "status": "active",
+      "createdAt": "2024-02-25T14:20:00Z",
+      "owner": "王五",
+      "email": "wangwu@example.com",
+      "kycStatus": "pending"
+    },
+    {
+      "id": "acc-004",
+      "address": "0x5d7fA3B9C2E1D4F8A7B6C5E3D2F1A9B8C7D6E5",
+      "shortAddress": "0x5d7f...D2A9",
+      "balance": 676.00,
+      "frozenAmount": 500,
+      "status": "frozen",
+      "createdAt": "2024-01-28T09:15:00Z",
+      "owner": "赵六",
+      "email": "zhaoliu@example.com",
+      "kycStatus": "verified",
+      "frozenReason": "异常大额转账行为"
+    },
+    {
+      "id": "acc-005",
+      "address": "0x9e1bD5F8A2C3B7E9D1F4A6C8B5E3D2F1A9C8B7",
+      "shortAddress": "0x9e1b...E5F8",
+      "balance": 500.00,
+      "frozenAmount": 500,
+      "status": "frozen",
+      "createdAt": "2024-02-18T16:45:00Z",
+      "owner": "孙七",
+      "email": "sunqi@example.com",
+      "kycStatus": "verified",
+      "frozenReason": "账户安全风险"
+    }
+  ],
+  "freezeRequests": [
+    {
+      "id": "req-001",
+      "accountId": "acc-001",
+      "accountAddress": "0x742d...A8F3",
+      "amount": 800,
+      "reason": "涉嫌违规交易，需要进一步调查",
+      "requester": "admin-001",
+      "requesterName": "管理员张三",
+      "status": "pending",
+      "createdAt": "2024-03-01T10:30:00Z",
+      "priority": "high"
+    },
+    {
+      "id": "req-002",
+      "accountId": "acc-004",
+      "accountAddress": "0x5d7f...D2A9",
+      "amount": 500,
+      "reason": "异常大额转账行为",
+      "requester": "admin-002",
+      "requesterName": "管理员李四",
+      "status": "pending",
+      "createdAt": "2024-03-01T14:20:00Z",
+      "priority": "medium"
+    },
+    {
+      "id": "req-003",
+      "accountId": "acc-005",
+      "accountAddress": "0x9e1b...E5F8",
+      "amount": 500,
+      "reason": "账户安全风险",
+      "requester": "admin-001",
+      "requesterName": "管理员张三",
+      "status": "approved",
+      "createdAt": "2024-02-28T09:15:00Z",
+      "reviewedAt": "2024-02-28T10:30:00Z",
+      "reviewer": "admin-003",
+      "reviewerName": "审核员王五",
+      "priority": "high"
+    },
+    {
+      "id": "req-004",
+      "accountId": "acc-003",
+      "accountAddress": "0x2a9c...C7E1",
+      "amount": 1200,
+      "reason": "疑似洗钱行为",
+      "requester": "admin-002",
+      "requesterName": "管理员李四",
+      "status": "rejected",
+      "createdAt": "2024-02-27T16:45:00Z",
+      "reviewedAt": "2024-02-27T18:00:00Z",
+      "reviewer": "admin-003",
+      "reviewerName": "审核员王五",
+      "rejectReason": "证据不足",
+      "priority": "low"
+    },
+    {
+      "id": "req-005",
+      "accountId": "acc-002",
+      "accountAddress": "0x8f3e...B4D2",
+      "amount": 500,
+      "reason": "账户异常登录",
+      "requester": "admin-001",
+      "requesterName": "管理员张三",
+      "status": "approved",
+      "createdAt": "2024-02-26T11:00:00Z",
+      "reviewedAt": "2024-02-26T12:15:00Z",
+      "reviewer": "admin-003",
+      "reviewerName": "审核员王五",
+      "priority": "medium"
+    }
+  ],
+  "freezeRecords": [
+    {
+      "id": "fz-001",
+      "accountId": "acc-005",
+      "accountAddress": "0x9e1b...E5F8",
+      "frozenAmount": 500,
+      "frozenBy": "admin-003",
+      "frozenByName": "审核员王五",
+      "reason": "账户安全风险",
+      "status": "active",
+      "frozenAt": "2024-02-28T10:30:00Z"
+    },
+    {
+      "id": "fz-002",
+      "accountId": "acc-002",
+      "accountAddress": "0x8f3e...B4D2",
+      "frozenAmount": 500,
+      "frozenBy": "admin-003",
+      "frozenByName": "审核员王五",
+      "reason": "账户异常登录",
+      "status": "active",
+      "frozenAt": "2024-02-26T12:15:00Z"
+    },
+    {
+      "id": "fz-003",
+      "accountId": "acc-003",
+      "accountAddress": "0x2a9c...C7E1",
+      "frozenAmount": 1000,
+      "frozenBy": "admin-001",
+      "frozenByName": "管理员张三",
+      "reason": "大额异常交易",
+      "status": "active",
+      "frozenAt": "2024-02-20T15:00:00Z"
+    },
+    {
+      "id": "fz-004",
+      "accountId": "acc-001",
+      "accountAddress": "0x742d...A8F3",
+      "frozenAmount": 300,
+      "frozenBy": "admin-002",
+      "frozenByName": "管理员李四",
+      "reason": "临时安全检查",
+      "status": "unfrozen",
+      "frozenAt": "2024-02-15T09:00:00Z",
+      "unfrozenAt": "2024-02-16T14:30:00Z",
+      "unfrozenBy": "admin-003",
+      "unfrozenByName": "审核员王五"
+    }
+  ],
+  "transactions": [
+    {
+      "id": "tx-1001",
+      "type": "transfer",
+      "from": "0x742d...A8F3",
+      "to": "0x8f3e...B4D2",
+      "amount": 500,
+      "status": "completed",
+      "timestamp": "2024-03-01T15:30:00Z",
+      "fee": 0.5,
+      "note": "货款支付"
+    },
+    {
+      "id": "tx-1002",
+      "type": "deposit",
+      "from": "external",
+      "to": "0x2a9c...C7E1",
+      "amount": 1000,
+      "status": "pending",
+      "timestamp": "2024-03-01T14:20:00Z",
+      "fee": 0,
+      "note": "银行转账充值"
+    },
+    {
+      "id": "tx-1003",
+      "type": "withdraw",
+      "from": "0x5d7f...D2A9",
+      "to": "external",
+      "amount": 300,
+      "status": "completed",
+      "timestamp": "2024-03-01T12:15:00Z",
+      "fee": 1.0,
+      "note": "提现到银行卡"
+    },
+    {
+      "id": "tx-1004",
+      "type": "transfer",
+      "from": "0x9e1b...E5F8",
+      "to": "0x742d...A8F3",
+      "amount": 250,
+      "status": "completed",
+      "timestamp": "2024-03-01T10:45:00Z",
+      "fee": 0.25,
+      "note": "服务费"
+    },
+    {
+      "id": "tx-1005",
+      "type": "deposit",
+      "from": "external",
+      "to": "0x8f3e...B4D2",
+      "amount": 2000,
+      "status": "completed",
+      "timestamp": "2024-03-01T09:30:00Z",
+      "fee": 0,
+      "note": "工资发放"
+    },
+    {
+      "id": "tx-1006",
+      "type": "transfer",
+      "from": "0x2a9c...C7E1",
+      "to": "0x5d7f...D2A9",
+      "amount": 150,
+      "status": "completed",
+      "timestamp": "2024-02-28T16:20:00Z",
+      "fee": 0.15,
+      "note": "借款"
+    },
+    {
+      "id": "tx-1007",
+      "type": "withdraw",
+      "from": "0x742d...A8F3",
+      "to": "external",
+      "amount": 800,
+      "status": "completed",
+      "timestamp": "2024-02-28T11:00:00Z",
+      "fee": 1.0,
+      "note": "提现"
+    },
+    {
+      "id": "tx-1008",
+      "type": "deposit",
+      "from": "external",
+      "to": "0x9e1b...E5F8",
+      "amount": 500,
+      "status": "completed",
+      "timestamp": "2024-02-27T13:45:00Z",
+      "fee": 0,
+      "note": "充值"
+    }
+  ],
+  "statistics": {
+    "totalAccounts": 5,
+    "activeAccounts": 3,
+    "frozenAccounts": 2,
+    "totalBalance": 12450.50,
+    "totalFrozenAmount": 3000,
+    "pendingFreezeRequests": 2,
+    "approvedFreezeRequests": 3,
+    "rejectedFreezeRequests": 1,
+    "todayTransactions": 23,
+    "totalTransactionAmount": 15680,
+    "successfulTransactions": 21,
+    "pendingTransactions": 2
+  }
+}
