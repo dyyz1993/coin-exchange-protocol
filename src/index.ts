@@ -5,6 +5,7 @@
  */
 
 import { matchRoute, routes } from './routes';
+import { rateLimitMiddleware, addRateLimitHeaders, RateLimitResult } from './middleware/rate-limit.middleware';
 
 const PORT = process.env.PORT || 3000;
 
@@ -25,16 +26,24 @@ const server = Bun.serve({
         headers: {
           'Access-Control-Allow-Origin': '*',
           'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
-          'Access-Control-Allow-Headers': 'Content-Type, Authorization'
+          'Access-Control-Allow-Headers': 'Content-Type, Authorization, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, X-RateLimit-Type'
         }
       });
     }
 
+    // API 限流检查
+    const rateLimitCheck = rateLimitMiddleware(req);
+    if (!rateLimitCheck.allowed && rateLimitCheck.response) {
+      return rateLimitCheck.response;
+    }
+    const rateLimitResult = rateLimitCheck.result!;
+
     // 健康检查
     if (path === '/health') {
-      return new Response(JSON.stringify({ status: 'ok', timestamp: new Date().toISOString() }), {
+      const response = new Response(JSON.stringify({ status: 'ok', timestamp: new Date().toISOString() }), {
         headers: { 'Content-Type': 'application/json' }
       });
+      return addRateLimitHeaders(response, rateLimitResult);
     }
 
     // API 文档
@@ -44,16 +53,17 @@ const server = Bun.serve({
         path: r.path,
         description: r.description
       }));
-      return new Response(JSON.stringify({ routes: apiDocs }, null, 2), {
+      const response = new Response(JSON.stringify({ routes: apiDocs }, null, 2), {
         headers: { 'Content-Type': 'application/json' }
       });
+      return addRateLimitHeaders(response, rateLimitResult);
     }
 
     // 路由匹配
     const matched = matchRoute(method, path);
 
     if (!matched) {
-      return new Response(JSON.stringify({
+      const response = new Response(JSON.stringify({
         success: false,
         error: 'Not Found',
         path,
@@ -65,6 +75,9 @@ const server = Bun.serve({
           'Access-Control-Allow-Origin': '*'
         }
       });
+
+      // 添加限流响应头
+      return addRateLimitHeaders(response, rateLimitResult);
     }
 
     try {
@@ -91,16 +104,19 @@ const server = Bun.serve({
       // 执行处理器
       const result = await matched.route.handler(params);
 
-      return new Response(JSON.stringify(result, null, 2), {
+      const response = new Response(JSON.stringify(result, null, 2), {
         status: result.success ? 200 : 400,
         headers: { 
           'Content-Type': 'application/json',
           'Access-Control-Allow-Origin': '*'
         }
       });
+
+      // 添加限流响应头
+      return addRateLimitHeaders(response, rateLimitResult);
     } catch (error) {
       console.error('Handler error:', error);
-      return new Response(JSON.stringify({
+      const response = new Response(JSON.stringify({
         success: false,
         error: error instanceof Error ? error.message : 'Internal server error'
       }), {
@@ -110,6 +126,9 @@ const server = Bun.serve({
           'Access-Control-Allow-Origin': '*'
         }
       });
+
+      // 添加限流响应头
+      return addRateLimitHeaders(response, rateLimitResult);
     }
   }
 });
