@@ -105,7 +105,7 @@ export class AirdropService {
       throw new Error('空投活动已结束');
     }
 
-    // 检查总金额是否足够
+    // 检查总金额是否足够（防御性检查，Model 层已有检查）
     const claims = airdropModel.getAirdropClaims(airdropId);
     const totalClaimed = claims.reduce((sum, claim) => sum + claim.amount, 0);
     const remainingAmount = airdrop.totalAmount - totalClaimed;
@@ -114,8 +114,8 @@ export class AirdropService {
       throw new Error('空投金额已耗尽');
     }
 
-    // 创建领取记录
-    const claim = airdropModel.createClaim(airdropId, userId, airdrop.perUserAmount);
+    // 🔥 修复 Issue #237：调用异步的 createClaim 方法（添加并发控制）
+    const claim = await airdropModel.createClaim(airdropId, userId, airdrop.perUserAmount);
 
     // 增加用户代币
     const result = await accountService.addTokens(

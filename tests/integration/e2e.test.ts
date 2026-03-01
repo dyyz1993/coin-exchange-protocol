@@ -36,7 +36,7 @@ describe('端到端业务流程测试', () => {
       // 1. 创建两个用户账户
       const alice = 'alice-user-001';
       const bob = 'bob-user-001';
-      
+
       await accountService.createAccount(alice, { nickname: 'Alice' });
       await accountService.createAccount(bob, { nickname: 'Bob' });
 
@@ -54,7 +54,7 @@ describe('端到端业务流程测试', () => {
         totalAmount: 10000,
         perUserAmount: 500,
         startTime: new Date(now.getTime() - 1000),
-        endTime: new Date(now.getTime() + 1000 * 60 * 60 * 24)
+        endTime: new Date(now.getTime() + 1000 * 60 * 60 * 24),
       });
 
       await airdropService.startAirdrop(airdrop.airdropId);
@@ -74,7 +74,7 @@ describe('端到端业务流程测试', () => {
         reward: 200,
         maxCompletions: 100,
         startTime: new Date(now.getTime() - 1000),
-        endTime: new Date(now.getTime() + 1000 * 60 * 60 * 24)
+        endTime: new Date(now.getTime() + 1000 * 60 * 60 * 24),
       });
 
       await taskService.activateTask(task.taskId);
@@ -89,12 +89,7 @@ describe('端到端业务流程测试', () => {
 
       // 5. Alice 转账给 Bob
       const transferAmount = 300;
-      const transferResult = await accountService.transfer(
-        alice,
-        bob,
-        transferAmount,
-        '初次转账'
-      );
+      const transferResult = await accountService.transfer(alice, bob, transferAmount, '初次转账');
 
       expect(transferResult.success).toBe(true);
       expect(transferResult.fromNewBalance).toBe(400);
@@ -103,7 +98,7 @@ describe('端到端业务流程测试', () => {
       // 最终余额验证
       const aliceFinal = accountService.getTokenBalance(alice);
       const bobFinal = accountService.getTokenBalance(bob);
-      
+
       expect(aliceFinal?.balance).toBe(400);
       expect(bobFinal?.balance).toBe(300);
     });
@@ -141,7 +136,7 @@ describe('端到端业务流程测试', () => {
         userId: user,
         amount: freezeAmount,
         transactionId: 'tx-freeze-001',
-        remark: '交易保证金'
+        remark: '交易保证金',
       });
 
       expect(freeze.status).toBe(FreezeStatus.FROZEN);
@@ -188,14 +183,14 @@ describe('端到端业务流程测试', () => {
         userId: user,
         amount: 200,
         transactionId: 'tx-001',
-        remark: '冻结1'
+        remark: '冻结1',
       });
 
       const freeze2 = freezeService.createInitialFreeze({
         userId: user,
         amount: 300,
         transactionId: 'tx-002',
-        remark: '冻结2'
+        remark: '冻结2',
       });
 
       // 验证可用余额（1000 - 200 - 300 = 500）
@@ -230,7 +225,7 @@ describe('端到端业务流程测试', () => {
         totalAmount,
         perUserAmount,
         startTime: new Date(now.getTime() - 1000),
-        endTime: new Date(now.getTime() + 1000 * 60 * 60)
+        endTime: new Date(now.getTime() + 1000 * 60 * 60),
       });
 
       expect(airdrop.airdropId).toBeDefined();
@@ -284,7 +279,7 @@ describe('端到端业务流程测试', () => {
         totalAmount: 1000,
         perUserAmount: 100,
         startTime: new Date(now.getTime() - 1000),
-        endTime: new Date(now.getTime() + 1000 * 60 * 60)
+        endTime: new Date(now.getTime() + 1000 * 60 * 60),
       });
 
       await airdropService.startAirdrop(airdrop.airdropId);
@@ -317,7 +312,7 @@ describe('端到端业务流程测试', () => {
         reward,
         maxCompletions,
         startTime: new Date(now.getTime() - 1000),
-        endTime: new Date(now.getTime() + 1000 * 60 * 60 * 24)
+        endTime: new Date(now.getTime() + 1000 * 60 * 60 * 24),
       });
 
       expect(task.taskId).toBeDefined();
@@ -369,7 +364,7 @@ describe('端到端业务流程测试', () => {
         reward: 100,
         maxCompletions: 10,
         startTime: new Date(now.getTime() - 1000),
-        endTime: new Date(now.getTime() + 1000 * 60 * 60)
+        endTime: new Date(now.getTime() + 1000 * 60 * 60),
       });
 
       await taskService.activateTask(task.taskId);
@@ -393,7 +388,7 @@ describe('端到端业务流程测试', () => {
     test('用户A获取空投 -> 完成任务 -> 部分冻结 -> 转账给B -> B完成任务', async () => {
       const alice = 'complex-alice';
       const bob = 'complex-bob';
-      
+
       // 1. 创建账户
       await accountService.createAccount(alice);
       await accountService.createAccount(bob);
@@ -406,7 +401,7 @@ describe('端到端业务流程测试', () => {
         totalAmount: 1000,
         perUserAmount: 500,
         startTime: new Date(now.getTime() - 1000),
-        endTime: new Date(now.getTime() + 1000 * 60 * 60)
+        endTime: new Date(now.getTime() + 1000 * 60 * 60),
       });
       await airdropService.startAirdrop(airdrop.airdropId);
       await airdropService.claimAirdrop(airdrop.airdropId, alice);
@@ -421,7 +416,7 @@ describe('端到端业务流程测试', () => {
         reward: 200,
         maxCompletions: 10,
         startTime: new Date(now.getTime() - 1000),
-        endTime: new Date(now.getTime() + 1000 * 60 * 60)
+        endTime: new Date(now.getTime() + 1000 * 60 * 60),
       });
       await taskService.activateTask(task1.taskId);
       await taskService.completeTask(task1.taskId, alice);
@@ -433,7 +428,7 @@ describe('端到端业务流程测试', () => {
       const freeze = freezeService.createInitialFreeze({
         userId: alice,
         amount: 200,
-        transactionId: 'complex-tx-001'
+        transactionId: 'complex-tx-001',
       });
 
       const aliceAvailable = freezeService.getAvailableBalance(alice);
@@ -454,7 +449,7 @@ describe('端到端业务流程测试', () => {
         reward: 150,
         maxCompletions: 10,
         startTime: new Date(now.getTime() - 1000),
-        endTime: new Date(now.getTime() + 1000 * 60 * 60)
+        endTime: new Date(now.getTime() + 1000 * 60 * 60),
       });
       await taskService.activateTask(task2.taskId);
       await taskService.completeTask(task2.taskId, bob);
@@ -475,7 +470,7 @@ describe('端到端业务流程测试', () => {
     test('余额不足时的转账', async () => {
       const from = 'poor-user';
       const to = 'rich-user';
-      
+
       await accountService.createAccount(from);
       await accountService.createAccount(to);
       await accountService.addTokens(from, 50, TransactionType.REWARD, '少量余额');
@@ -494,7 +489,7 @@ describe('端到端业务流程测试', () => {
         freezeService.createInitialFreeze({
           userId: user,
           amount: 200,
-          transactionId: 'over-freeze-tx'
+          transactionId: 'over-freeze-tx',
         });
       }).toThrow();
     });
@@ -509,9 +504,83 @@ describe('端到端业务流程测试', () => {
       }).toThrow();
     });
 
+    test('并发领取空投 - 验证总额耗尽检查（Issue #237）', async () => {
+      // 🔥 测试目标：验证并发领取时空投总额不会超发
+      const now = new Date();
+      const totalAmount = 100; // 总金额：100
+      const perUserAmount = 50; // 每人：50
+      // 理论上只能支持 2 个用户领取
+
+      const airdrop = await airdropService.createAirdrop({
+        name: '并发测试空投',
+        description: '测试并发领取安全性',
+        totalAmount,
+        perUserAmount,
+        startTime: new Date(now.getTime() - 1000),
+        endTime: new Date(now.getTime() + 1000 * 60 * 60),
+      });
+
+      await airdropService.startAirdrop(airdrop.airdropId);
+
+      // 创建 10 个并发用户
+      const concurrentUsers = [];
+      for (let i = 0; i < 10; i++) {
+        const userId = `concurrent-user-${i}`;
+        await accountService.createAccount(userId);
+        concurrentUsers.push(userId);
+      }
+
+      // 并发领取（10个用户同时领取，但只有2个能成功）
+      const claimPromises = concurrentUsers.map((userId) =>
+        airdropService
+          .claimAirdrop(airdrop.airdropId, userId)
+          .then((result) => ({ userId, success: true, result }))
+          .catch((error) => ({ userId, success: false, error: error.message }))
+      );
+
+      const results = await Promise.all(claimPromises);
+
+      // 统计成功和失败的数量
+      const successCount = results.filter((r) => r.success).length;
+      const failedCount = results.filter((r) => !r.success).length;
+
+      console.log(`并发领取结果：成功 ${successCount} 个，失败 ${failedCount} 个`);
+
+      // 🔥 关键验证：只有2个用户能成功领取（100 / 50 = 2）
+      expect(successCount).toBe(2);
+      expect(failedCount).toBe(8);
+
+      // 验证失败的原因是金额不足
+      const failedResults = results.filter((r) => !r.success) as Array<{
+        userId: string;
+        success: false;
+        error: string;
+      }>;
+      failedResults.forEach((result) => {
+        expect(result.error).toContain('Insufficient airdrop balance');
+      });
+
+      // 验证空投总额没有被超发
+      const finalStats = airdropService.getAirdropStats(airdrop.airdropId);
+      expect(finalStats.totalDistributed).toBe(totalAmount);
+      expect(finalStats.totalDistributed).toBeLessThanOrEqual(totalAmount);
+
+      // 验证成功用户的余额正确
+      const successResults = results.filter((r) => r.success);
+      let totalDistributed = 0;
+      for (const result of successResults) {
+        const balance = accountService.getTokenBalance(result.userId);
+        expect(balance?.balance).toBe(perUserAmount);
+        totalDistributed += perUserAmount;
+      }
+
+      // 最终验证：发放总额等于预期
+      expect(totalDistributed).toBe(totalAmount);
+    });
+
     test('空投活动时间窗口验证', async () => {
       const now = new Date();
-      
+
       // 创建已过期的空投
       const expiredAirdrop = await airdropService.createAirdrop({
         name: '已过期空投',
@@ -519,7 +588,7 @@ describe('端到端业务流程测试', () => {
         totalAmount: 1000,
         perUserAmount: 100,
         startTime: new Date(now.getTime() - 1000 * 60 * 60),
-        endTime: new Date(now.getTime() - 1000 * 60)
+        endTime: new Date(now.getTime() - 1000 * 60),
       });
 
       // 尝试激活应该失败或自动标记为已过期
