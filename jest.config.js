@@ -92,7 +92,7 @@ module.exports = {
     '/dist/',
   ],
   
-  // 监听时的插件
+  // 监听时的插件（需要安装 jest-watch-typeahead）
   // watchPlugins: [
   //   'jest-watch-typeahead/filename',
   //   'jest-watch-typeahead/testname',

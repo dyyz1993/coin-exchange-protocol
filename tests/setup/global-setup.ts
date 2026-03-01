@@ -22,6 +22,3 @@ export default async function globalSetup() {
 
   console.log('✅ 全局测试设置完成');
 }
-
-// 导出默认函数
-export {};

@@ -85,7 +85,7 @@ describe('FreezeService', () => {
       await accountService.addTokens(userId, 1000, TransactionType.REWARD, '初始奖励');
 
       // 第一次冻结
-      freezeService.createInitialFreeze({
+      await freezeService.createInitialFreeze({
         userId,
         amount: 600,
         transactionId: 'tx-004',
@@ -181,10 +181,10 @@ describe('FreezeService', () => {
       expect(result.unfreezeReason).toBe('手动解冻');
     });
 
-    test('应该拒绝解冻不存在的冻结记录', () => {
-      expect(() => {
-        freezeService.unfreeze('non-existent', '测试');
-      }).toThrow('冻结记录不存在');
+    test('应该拒绝解冻不存在的冻结记录', async () => {
+      await expect(async () => {
+        await freezeService.unfreeze('non-existent', '测试');
+      }).rejects.toThrow('冻结记录不存在');
     });
 
     test('应该拒绝重复解冻', async () => {
@@ -200,9 +200,9 @@ describe('FreezeService', () => {
 
       await freezeService.unfreeze(freeze.id, '第一次解冻');
 
-      expect(() => {
-        freezeService.unfreeze(freeze.id, '第二次解冻');
-      }).toThrow('冻结已失效或已解冻');
+      await expect(async () => {
+        await freezeService.unfreeze(freeze.id, '第二次解冻');
+      }).rejects.toThrow('冻结已失效或已解冻');
     });
 
     test('解冻后应该恢复可用余额', async () => {
@@ -261,7 +261,7 @@ describe('FreezeService', () => {
       // 手动设置过期时间为过去
       (freezeModel as any).freezes.get(freeze.id).expiresAt = new Date(Date.now() - 1000);
 
-      const results = freezeService.autoUnfreezeExpired();
+      const results = await freezeService.autoUnfreezeExpired();
 
       expect(results.length).toBeGreaterThan(0);
       expect(results[0].success).toBe(true);
@@ -273,13 +273,13 @@ describe('FreezeService', () => {
       await accountService.createAccount(userId);
       await accountService.addTokens(userId, 1000, TransactionType.REWARD, '初始奖励');
 
-      freezeService.createInitialFreeze({
+      await freezeService.createInitialFreeze({
         userId,
         amount: 500,
         transactionId: 'tx-015',
       });
 
-      const results = freezeService.autoUnfreezeExpired();
+      const results = await freezeService.autoUnfreezeExpired();
 
       expect(results.length).toBe(0);
     });
@@ -289,13 +289,13 @@ describe('FreezeService', () => {
       await accountService.createAccount(userId);
       await accountService.addTokens(userId, 2000, TransactionType.REWARD, '初始奖励');
 
-      const freeze1 = freezeService.createInitialFreeze({
+      const freeze1 = await freezeService.createInitialFreeze({
         userId,
         amount: 500,
         transactionId: 'tx-016',
       });
 
-      const freeze2 = freezeService.createInitialFreeze({
+      const freeze2 = await freezeService.createInitialFreeze({
         userId,
         amount: 500,
         transactionId: 'tx-017',
@@ -305,7 +305,7 @@ describe('FreezeService', () => {
       (freezeModel as any).freezes.get(freeze1.id).expiresAt = new Date(Date.now() - 1000);
       (freezeModel as any).freezes.get(freeze2.id).expiresAt = new Date(Date.now() - 1000);
 
-      const results = freezeService.autoUnfreezeExpired();
+      const results = await freezeService.autoUnfreezeExpired();
 
       expect(results.length).toBe(2);
       expect(results.every((r) => r.success)).toBe(true);
@@ -318,7 +318,7 @@ describe('FreezeService', () => {
       await accountService.createAccount(userId);
       await accountService.addTokens(userId, 1000, TransactionType.REWARD, '初始奖励');
 
-      const freeze = freezeService.createInitialFreeze({
+      const freeze = await freezeService.createInitialFreeze({
         userId,
         amount: 500,
         transactionId: 'tx-018',
@@ -340,7 +340,7 @@ describe('FreezeService', () => {
       await accountService.createAccount(userId);
       await accountService.addTokens(userId, 1000, TransactionType.REWARD, '初始奖励');
 
-      const freeze = freezeService.createInitialFreeze({
+      const freeze = await freezeService.createInitialFreeze({
         userId,
         amount: 500,
         transactionId: 'tx-019',
@@ -387,7 +387,7 @@ describe('FreezeService', () => {
       await accountService.createAccount(userId);
       await accountService.addTokens(userId, 2000, TransactionType.REWARD, '初始奖励');
 
-      const freeze1 = freezeService.createInitialFreeze({
+      const freeze1 = await freezeService.createInitialFreeze({
         userId,
         amount: 500,
         transactionId: 'tx-022',
@@ -415,7 +415,7 @@ describe('FreezeService', () => {
       await accountService.createAccount(userId);
       await accountService.addTokens(userId, 2000, TransactionType.REWARD, '初始奖励');
 
-      const freeze1 = freezeService.createInitialFreeze({
+      const freeze1 = await freezeService.createInitialFreeze({
         userId,
         amount: 500,
         transactionId: 'tx-024',
@@ -442,7 +442,7 @@ describe('FreezeService', () => {
       await accountService.createAccount(userId);
       await accountService.addTokens(userId, 1000, TransactionType.REWARD, '初始奖励');
 
-      const freeze = freezeService.createInitialFreeze({
+      const freeze = await freezeService.createInitialFreeze({
         userId,
         amount: 500,
         transactionId: 'tx-026',
@@ -573,25 +573,25 @@ describe('FreezeService', () => {
       await accountService.createAccount(userId);
       await accountService.addTokens(userId, 3000, TransactionType.REWARD, '初始奖励');
 
-      const freeze1 = freezeService.createInitialFreeze({
+      const freeze1 = await freezeService.createInitialFreeze({
         userId,
         amount: 500,
         transactionId: 'tx-033',
       });
 
-      const freeze2 = freezeService.createInitialFreeze({
+      const freeze2 = await freezeService.createInitialFreeze({
         userId,
         amount: 500,
         transactionId: 'tx-034',
       });
 
-      const freeze3 = freezeService.createInitialFreeze({
+      const freeze3 = await freezeService.createInitialFreeze({
         userId,
         amount: 500,
         transactionId: 'tx-035',
       });
 
-      const results = freezeService.unfreezeMultiple(
+      const results = await freezeService.unfreezeMultiple(
         [freeze1.id, freeze2.id, freeze3.id],
         '批量解冻'
       );
@@ -605,13 +605,16 @@ describe('FreezeService', () => {
       await accountService.createAccount(userId);
       await accountService.addTokens(userId, 1000, TransactionType.REWARD, '初始奖励');
 
-      const freeze1 = freezeService.createInitialFreeze({
+      const freeze1 = await freezeService.createInitialFreeze({
         userId,
         amount: 500,
         transactionId: 'tx-036',
       });
 
-      const results = freezeService.unfreezeMultiple([freeze1.id, 'non-existent'], '批量解冻');
+      const results = await freezeService.unfreezeMultiple(
+        [freeze1.id, 'non-existent'],
+        '批量解冻'
+      );
 
       expect(results.length).toBe(2);
       expect(results[0].success).toBe(true);
