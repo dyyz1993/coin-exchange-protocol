@@ -6,7 +6,10 @@
   "scripts": {
     "dev": "bun run --watch src/index.ts",
     "start": "bun run src/index.ts",
-    "test": "bun test"
+    "test": "bun test",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
+    "test:screenshots": "playwright test tests/e2e/screenshot.test.ts"
   },
   "keywords": ["token", "airdrop", "reward", "blockchain"],
   "author": "金币交易协议团队",
@@ -15,6 +18,7 @@
     "bun": "latest"
   },
   "devDependencies": {
-    "@types/bun": "latest"
+    "@types/bun": "latest",
+    "@playwright/test": "^1.40.0"
   }
 }
