@@ -11,13 +11,13 @@ export class TokenService {
    */
   getBalance(userId: string): BalanceResponse {
     const account = accountModel.getAccountByUserId(userId);
-    
+
     if (!account) {
       return {
         userId,
         balance: 0,
         frozenBalance: 0,
-        availableBalance: 0
+        availableBalance: 0,
       };
     }
 
@@ -25,14 +25,19 @@ export class TokenService {
       userId: account.userId,
       balance: account.balance,
       frozenBalance: account.frozenBalance,
-      availableBalance: account.balance
+      availableBalance: account.balance - account.frozenBalance,
     };
   }
 
   /**
    * 增加余额（内部方法）
    */
-  async addBalance(userId: string, amount: number, description: string, type: TransactionType): Promise<Transaction> {
+  async addBalance(
+    userId: string,
+    amount: number,
+    description: string,
+    type: TransactionType
+  ): Promise<Transaction> {
     return await accountModel.addBalance(userId, amount, description, type);
   }
 
@@ -46,7 +51,12 @@ export class TokenService {
   /**
    * 转账
    */
-  async transfer(fromUserId: string, toUserId: string, amount: number, description: string): Promise<Transaction> {
+  async transfer(
+    fromUserId: string,
+    toUserId: string,
+    amount: number,
+    description: string
+  ): Promise<Transaction> {
     return await accountModel.transfer(fromUserId, toUserId, amount, description);
   }
 
