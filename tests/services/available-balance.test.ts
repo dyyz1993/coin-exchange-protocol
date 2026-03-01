@@ -3,7 +3,7 @@
  * Issue #162: 修复 availableBalance 计算错误
  */
 
-import { describe, it, expect, beforeEach } from 'vitest';
+import { describe, it, expect, beforeEach } from '@jest/globals';
 import { AccountService } from '../../src/services/account.service';
 import { TokenService } from '../../src/services/TokenService';
 import { accountModel } from '../../src/models/Account';
@@ -18,7 +18,7 @@ describe('可用余额计算测试', () => {
     tokenService = new TokenService();
     // 重置测试数据
     accountModel['accounts'].clear();
-    accountModel['transactions'] = [];
+    accountModel['transactions'].clear();
   });
 
   describe('AccountService - getAccountInfo', () => {
