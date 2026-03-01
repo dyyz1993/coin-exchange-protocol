@@ -9,20 +9,28 @@ export class AccountService {
   /**
    * 创建新用户账户
    */
-  async createAccount(userId: string, initialData?: {
+  async createAccount(userId: string, initialBalanceOrData?: number | {
     email?: string;
     phone?: string;
     nickname?: string;
   }): Promise<{
     accountId: string;
     createdAt: Date;
+    initialBalance?: number;
   }> {
-    // 创建用户账户（AccountModel.createAccount 只接受 userId）
-    const account = accountModel.createAccount(userId);
+    // 兼容两种参数形式：直接传 initialBalance 数字，或传 initialData 对象
+    let initialBalance = 0;
+    if (typeof initialBalanceOrData === 'number') {
+      initialBalance = initialBalanceOrData;
+    }
+    
+    // 创建用户账户，传入初始余额
+    const account = accountModel.createAccount(userId, initialBalance);
 
     return {
       accountId: account.id!,
-      createdAt: account.createdAt
+      createdAt: account.createdAt,
+      initialBalance: account.balance
     };
   }
 
