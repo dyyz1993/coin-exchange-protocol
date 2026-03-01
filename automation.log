@@ -8689,3 +8689,145 @@ export enum Airdro...
 tests/integration/e2e.test.ts:
 ✅ 自动解冻定时任务已启动，检查间隔: 6...
   🔧 [test-engineer] 调用工具 #8: git_commit({"message":"fix: 移除 airdrop.ts 中未使用的 Transaction 导入\n\n- 修复 e2e.test.ts 导入错误\n- 删除 src/types/airdrop...)
+  ✅ [backend-developer] 工具完成: bash -> Saved working directory and index state WIP on bugfix/fix-e2e-transaction-import...
+  🔧 [backend-developer] 调用工具 #6: git_create_branch({"branchName":"bugfix/available-balance-calculation"}...)
+  ✅ [backend-developer] 工具完成: git_create_branch -> ❌ 创建分支失败: Error: Command failed: git checkout master
+error: Your local changes t...
+  🔧 [backend-developer] 调用工具 #7: bash({"command":"git checkout -b bugfix/available-balance-calculation"}...)
+  ✅ [backend-developer] 工具完成: bash -> Switched to a new branch 'bugfix/available-balance-calculation'
+M	automation.log...
+  🔧 [backend-developer] 调用工具 #8: read({"path":"src/services/account.service.ts"}...)
+  ✅ [backend-developer] 工具完成: read -> /**
+ * 账户服务 - 管理用户账户和代币余额
+ */
+
+import { accountModel } from '../models/Account';...
+  🔧 [backend-developer] 调用工具 #9: read({"path":"src/services/TokenService.ts"}...)
+  ✅ [backend-developer] 工具完成: read -> /**
+ * 代币服务 - 核心业务逻辑
+ */
+
+import { accountModel } from '../models/Account';
+impo...
+  🔧 [backend-developer] 调用工具 #10: read({"path":"src/services/account.service.ts"}...)
+  ✅ [backend-developer] 工具完成: read -> /**
+ * 账户服务 - 管理用户账户和代币余额
+ */
+
+import { accountModel } from '../models/Account';...
+  🔧 [backend-developer] 调用工具 #11: read({"path":"src/services/TokenService.ts"}...)
+  ✅ [backend-developer] 工具完成: read -> /**
+ * 代币服务 - 核心业务逻辑
+ */
+
+import { accountModel } from '../models/Account';
+impo...
+  🔧 [backend-developer] 调用工具 #12: edit({"path":"src/services/account.service.ts","oldText":"  getAccountInfo(userId: string): {\n    balanc...)
+  ✅ [backend-developer] 工具完成: edit -> Successfully replaced text in src/services/account.service.ts....
+  🔧 [backend-developer] 调用工具 #13: edit({"path":"src/services/account.service.ts","oldText":"  getTokenBalance(userId: string): {\n    balan...)
+  ✅ [backend-developer] 工具完成: edit -> Successfully replaced text in src/services/account.service.ts....
+  🔧 [backend-developer] 调用工具 #14: edit({"path":"src/services/TokenService.ts","oldText":"  getBalance(userId: string): BalanceResponse {\n ...)
+  ✅ [backend-developer] 工具完成: edit -> Successfully replaced text in src/services/TokenService.ts....
+  🔧 [backend-developer] 调用工具 #15: edit({"path":"src/services/account.service.ts","oldText":"  getAccountInfo(userId: string): {\n    balanc...)
+  ✅ [backend-developer] 工具完成: edit -> Could not find the exact text in src/services/account.service.ts. The old text m...
+  🔧 [backend-developer] 调用工具 #16: edit({"path":"src/services/account.service.ts","oldText":"  getTokenBalance(userId: string): {\n    balan...)
+  ✅ [backend-developer] 工具完成: edit -> Could not find the exact text in src/services/account.service.ts. The old text m...
+  🔧 [backend-developer] 调用工具 #17: edit({"path":"src/services/TokenService.ts","oldText":"  getBalance(userId: string): BalanceResponse {\n ...)
+  ✅ [backend-developer] 工具完成: edit -> Could not find the exact text in src/services/TokenService.ts. The old text must...
+  🔧 [backend-developer] 调用工具 #18: bash({"command":"grep -n \"availableBalance:\" src/services/account.service.ts src/services/TokenService....)
+  ✅ [backend-developer] 工具完成: bash -> src/services/account.service.ts:35:    availableBalance: number;
+src/services/ac...
+  🔧 [backend-developer] 调用工具 #19: read({"path":"src/services/account.service.ts","offset":120,"limit":50}...)
+  ✅ [backend-developer] 工具完成: read ->    * 冻结用户代币
+   */
+  async freezeTokens(
+    userId: string,
+    amount: number,
+...
+  🔧 [backend-developer] 调用工具 #20: read({"path":"src/services/account.service.ts","limit":60,"offset":370}...)
+  ✅ [backend-developer] 工具完成: read ->   /**
+   * 冻结账户 - freezeTokens 的别名
+   * 为 AccountController 提供的便捷方法
+   */
+  asyn...
+  🔧 [backend-developer] 调用工具 #21: edit({"path":"src/services/account.service.ts","oldText":"    return {\n      success: true,\n      froze...)
+  ✅ [backend-developer] 工具完成: edit -> Successfully replaced text in src/services/account.service.ts....
+  🔧 [backend-developer] 调用工具 #22: edit({"path":"src/services/account.service.ts","oldText":"    // 冻结全部可用余额\n    const amount = account.bal...)
+  ✅ [backend-developer] 工具完成: edit -> Successfully replaced text in src/services/account.service.ts....
+  🔧 [backend-developer] 调用工具 #23: edit({"path":"src/services/account.service.ts","oldText":"    return {\n      success: true,\n      froze...)
+  ✅ [backend-developer] 工具完成: edit -> Could not find the exact text in src/services/account.service.ts. The old text m...
+  🔧 [backend-developer] 调用工具 #24: edit({"path":"src/services/account.service.ts","oldText":"    // 冻结全部可用余额\n    const amount = account.bal...)
+  ✅ [backend-developer] 工具完成: edit -> Could not find the exact text in src/services/account.service.ts. The old text m...
+  🔧 [backend-developer] 调用工具 #25: bash({"command":"grep -n \"availableBalance:\" src/services/account.service.ts src/services/TokenService....)
+  ✅ [backend-developer] 工具完成: bash -> src/services/account.service.ts:47:      availableBalance: account.balance - acc...
+  🔧 [backend-developer] 调用工具 #26: bash({"command":"npm run build 2>&1 | head -50"}...)
+  ✅ [backend-developer] 工具完成: bash -> npm warn Unknown user config "always-auth" (//sinopia.szzbmy.com/:always-auth). ...
+  🔧 [backend-developer] 调用工具 #27: bash({"command":"npm run 2>&1 | grep -E \"^\\s+(compile|check|tsc|type)\" || echo \"No build scripts foun...)
+  ✅ [backend-developer] 工具完成: bash -> No build scripts found
+...
+  🔧 [backend-developer] 调用工具 #28: bash({"command":"npx tsc --noEmit src/services/account.service.ts src/services/TokenService.ts 2>&1 | hea...)
+  ✅ [backend-developer] 工具完成: bash -> npm warn Unknown user config "always-auth" (//sinopia.szzbmy.com/:always-auth). ...
+  🔧 [backend-developer] 调用工具 #29: bash({"command":"grep -r \"BalanceResponse\" src/types/ 2>/dev/null || echo \"Not found in types/\""}...)
+  ✅ [backend-developer] 工具完成: bash -> src/types/token.ts:export interface BalanceResponse {
+...
+  🔧 [backend-developer] 调用工具 #30: bash({"command":"head -10 src/services/TokenService.ts"}...)
+  ✅ [backend-developer] 工具完成: bash -> /**
+ * 代币服务 - 核心业务逻辑
+ */
+
+import { accountModel } from '../models/Account';
+impo...
+  ⚠️ [backend-developer] 工具调用次数超过限制 (31/30)，强制结束
+  ✅ [backend-developer] 工具完成: read -> /**
+ * 代币系统类型定义 - 统一导出
+ */
+
+// 通用类型
+export * from './common';
+
+// 空投类型
+export * ...
+  🛑 [backend-developer] 已标记强制结束，不再处理后续事件
+  🛑 [backend-developer] 执行被中断: Error: 工具调用次数超过限制 (31 次)
+  🔄 [backend-developer] 任务已重置为待处理状态
+  💬 [backend-developer] 响应长度: 604 字符
+🔓 释放 Agent 锁
+  📝 [backend-developer] 响应: 收到任务，让我来实现这个功能。这是 P0 严重 Bug，可用余额计算错误会导致用户使用冻结资金交易。立即修复！
+
+## 技术方案
+修复 AccountService 和 TokenService 中的...
+
+============================================================
+📊 金币交易协议开发团队 - 状态报告
+============================================================
+迭代次数: 317
+待处理任务: 16
+已完成任务: 118
+============================================================
+
+🔄 迭代 #318 - 2026/3/1 15:11:58
+📋 获取到 53 个开放的 Issues
+✅ 没有新的 Issues 需要处理
+📋 待处理: 16, 进行中: 0
+👥 忙碌的成员: 无
+🚀 可分配任务: 16 个
+⚠️ 任务 task-1772337481168 已达到最大迭代次数，自动标记完成
+
+============================================================
+📊 金币交易协议开发团队 - 状态报告
+============================================================
+迭代次数: 318
+待处理任务: 15
+已完成任务: 119
+============================================================
+
+⏳ 等待 27.676 秒后进行下一次迭代...
+  ⚠️ [backend-developer] 工具调用次数超过限制 (32/30)，强制结束
+  ✅ [backend-developer] 工具完成: bash -> -rw-r--r--@  1 xuyingzhou  staff  1002 Mar  1 13:50 token.ts
+...
+  🛑 [backend-developer] 已标记强制结束，不再处理后续事件
+  ⚠️ [backend-developer] 工具调用次数超过限制 (33/30)，强制结束
+  ✅ [backend-developer] 工具完成: bash -> diff --git a/src/services/TokenService.ts b/src/services/TokenService.ts
+index 7...
+  🛑 [backend-developer] 已标记强制结束，不再处理后续事件
+  ⚠️ [backend-developer] 工具调用次数超过限制 (34/30)，强制结束

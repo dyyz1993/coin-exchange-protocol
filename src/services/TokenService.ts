@@ -25,7 +25,7 @@ export class TokenService {
       userId: account.userId,
       balance: account.balance,
       frozenBalance: account.frozenBalance,
-      availableBalance: account.balance
+      availableBalance: account.balance - account.frozenBalance
     };
   }
 
