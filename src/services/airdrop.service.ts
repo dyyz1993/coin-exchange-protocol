@@ -114,8 +114,8 @@ export class AirdropService {
       throw new Error('空投金额已耗尽');
     }
 
-    // 创建领取记录
-    const claim = airdropModel.createClaim(airdropId, userId, airdrop.perUserAmount);
+    // 创建领取记录（带并发控制）
+    const claim = await airdropModel.createClaim(airdropId, userId, airdrop.perUserAmount);
 
     // 增加用户代币
     const result = await accountService.addTokens(
@@ -166,7 +166,7 @@ export class AirdropService {
    */
   async cancelAirdrop(
     airdropId: string,
-    reason: string
+    _reason: string
   ): Promise<{
     success: boolean;
     status: AirdropStatus;

@@ -1,13 +1,44 @@
 /**
  * 空投模型 - 管理空投活动和领取记录
+ *
+ * 并发控制修复（Issue #237）：
+ * 1. 使用 async-mutex 防止空投领取时的竞态条件
+ * 2. 同一空投的领取操作串行化，避免总额超发
  */
 
 import { Airdrop, AirdropClaim, AirdropStatus } from '../types';
+import { Mutex } from 'async-mutex';
 
 export class AirdropModel {
   private airdrops: Map<string, Airdrop> = new Map();
   private claims: Map<string, AirdropClaim> = new Map();
   private userClaims: Map<string, Set<string>> = new Map(); // userId -> Set<airdropId>
+
+  // 并发控制：使用 async-mutex 保护空投领取操作
+  private airdropMutexes: Map<string, Mutex> = new Map(); // airdropId -> Mutex
+
+  /**
+   * 获取或创建空投的 Mutex
+   */
+  private getMutex(airdropId: string): Mutex {
+    if (!this.airdropMutexes.has(airdropId)) {
+      this.airdropMutexes.set(airdropId, new Mutex());
+    }
+    return this.airdropMutexes.get(airdropId)!;
+  }
+
+  /**
+   * 使用锁执行异步操作
+   */
+  async withLock<T>(airdropId: string, operation: () => T | Promise<T>): Promise<T> {
+    const mutex = this.getMutex(airdropId);
+    const release = await mutex.acquire();
+    try {
+      return await operation();
+    } finally {
+      release();
+    }
+  }
 
   /**
    * 创建空投活动
@@ -93,69 +124,76 @@ export class AirdropModel {
   }
 
   /**
-   * 记录空投领取
+   * 记录空投领取（带并发控制）
+   *
+   * 修复说明（Issue #237）：
+   * - 使用 Mutex 锁保护领取操作，避免并发导致的总额超发
+   * - 原子操作：检查剩余金额 + 更新已领取金额
    */
-  createClaim(airdropId: string, userId: string, amount: number): AirdropClaim {
-    const airdrop = this.getAirdrop(airdropId);
-    if (!airdrop) {
-      throw new Error('Airdrop not found');
-    }
+  async createClaim(airdropId: string, userId: string, amount: number): Promise<AirdropClaim> {
+    // 使用锁保护整个领取操作
+    return this.withLock(airdropId, () => {
+      const airdrop = this.getAirdrop(airdropId);
+      if (!airdrop) {
+        throw new Error('Airdrop not found');
+      }
 
-    // 检查是否已领取
-    if (this.hasUserClaimed(userId, airdropId)) {
-      throw new Error('User has already claimed this airdrop');
-    }
+      // 检查是否已领取
+      if (this.hasUserClaimed(userId, airdropId)) {
+        throw new Error('User has already claimed this airdrop');
+      }
 
-    // 检查空投状态
-    if (airdrop.status !== AirdropStatus.ACTIVE) {
-      throw new Error('Airdrop is not active');
-    }
+      // 检查空投状态
+      if (airdrop.status !== AirdropStatus.ACTIVE) {
+        throw new Error('Airdrop is not active');
+      }
 
-    // 检查时间
-    const now = new Date();
-    if (now < airdrop.startTime || now > airdrop.endTime) {
-      throw new Error('Airdrop is not within the valid time range');
-    }
+      // 检查时间
+      const now = new Date();
+      if (now < airdrop.startTime || now > airdrop.endTime) {
+        throw new Error('Airdrop is not within the valid time range');
+      }
 
-    // 🔥 关键修复：检查剩余金额是否足够
-    const remainingAmount = airdrop.totalAmount - airdrop.claimedAmount;
-    if (remainingAmount < amount) {
-      throw new Error(
-        `Insufficient airdrop balance. Remaining: ${remainingAmount}, Requested: ${amount}`
-      );
-    }
+      // 🔥 关键修复：检查剩余金额是否足够（原子操作）
+      const remainingAmount = airdrop.totalAmount - airdrop.claimedAmount;
+      if (remainingAmount < amount) {
+        throw new Error(
+          `Insufficient airdrop balance. Remaining: ${remainingAmount}, Requested: ${amount}`
+        );
+      }
 
-    // 🔥 关键修复：检查是否超过每人限额
-    if (amount > airdrop.perUserAmount) {
-      throw new Error(
-        `Amount exceeds per-user limit. Limit: ${airdrop.perUserAmount}, Requested: ${amount}`
-      );
-    }
+      // 🔥 关键修复：检查是否超过每人限额
+      if (amount > airdrop.perUserAmount) {
+        throw new Error(
+          `Amount exceeds per-user limit. Limit: ${airdrop.perUserAmount}, Requested: ${amount}`
+        );
+      }
 
-    const claimId = `claim_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+      const claimId = `claim_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
 
-    const claim: AirdropClaim = {
-      id: claimId,
-      airdropId,
-      userId,
-      amount,
-      claimedAt: new Date(),
-    };
+      const claim: AirdropClaim = {
+        id: claimId,
+        airdropId,
+        userId,
+        amount,
+        claimedAt: new Date(),
+      };
 
-    this.claims.set(claimId, claim);
+      this.claims.set(claimId, claim);
 
-    // 记录用户领取
-    if (!this.userClaims.has(userId)) {
-      this.userClaims.set(userId, new Set());
-    }
-    this.userClaims.get(userId)!.add(airdropId);
+      // 记录用户领取
+      if (!this.userClaims.has(userId)) {
+        this.userClaims.set(userId, new Set());
+      }
+      this.userClaims.get(userId)!.add(airdropId);
 
-    // 🔥 关键修复：更新已领取金额和领取人数
-    airdrop.claimedAmount += amount;
-    airdrop.currentClaims += 1;
-    airdrop.updatedAt = new Date();
+      // 🔥 关键修复：更新已领取金额和领取人数（在锁内原子操作）
+      airdrop.claimedAmount += amount;
+      airdrop.currentClaims += 1;
+      airdrop.updatedAt = new Date();
 
-    return claim;
+      return claim;
+    });
   }
 
   /**
