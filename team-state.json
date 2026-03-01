@@ -87,396 +87,6 @@
   "initialized": false,
   "events": [
     {
-      "time": "2026-03-01T05:36:51.155Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T05:36:51.166Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T05:36:51.182Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T05:36:51.190Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T05:36:51.200Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T05:36:51.206Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T05:36:51.218Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T05:36:51.226Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T05:36:51.234Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T05:36:51.241Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T05:36:51.251Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T05:36:51.261Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T05:36:51.273Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T05:36:56.733Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T05:36:56.746Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T05:36:56.753Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T05:36:56.760Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T05:36:56.772Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T05:36:56.776Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T05:36:56.779Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T05:36:56.782Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T05:36:56.791Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T05:36:56.793Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T05:36:56.798Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T05:36:56.801Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T05:36:56.805Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T05:36:56.812Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T05:36:56.818Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T05:36:56.830Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: read"
-    },
-    {
-      "time": "2026-03-01T05:37:56.393Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: write"
-    },
-    {
-      "time": "2026-03-01T05:37:56.409Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T05:37:56.432Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T05:38:06.610Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: write"
-    },
-    {
-      "time": "2026-03-01T05:38:06.617Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T05:38:06.640Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T05:38:51.550Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: git_commit"
-    },
-    {
-      "time": "2026-03-01T05:38:51.783Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: git_push_branch"
-    },
-    {
-      "time": "2026-03-01T05:38:54.707Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: create_pr"
-    },
-    {
-      "time": "2026-03-01T05:38:55.899Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: report_progress"
-    },
-    {
-      "time": "2026-03-01T05:38:55.913Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: git_commit"
-    },
-    {
-      "time": "2026-03-01T05:38:56.180Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: git_push_branch"
-    },
-    {
-      "time": "2026-03-01T05:38:59.509Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: create_pr"
-    },
-    {
-      "time": "2026-03-01T05:38:59.995Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: report_progress"
-    },
-    {
-      "time": "2026-03-01T05:39:29.367Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T05:39:30.699Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: create_pr"
-    },
-    {
-      "time": "2026-03-01T05:39:31.344Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T05:39:32.631Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: create_pr"
-    },
-    {
-      "time": "2026-03-01T05:39:33.143Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T05:39:34.056Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: create_pr"
-    },
-    {
-      "time": "2026-03-01T05:39:34.522Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T05:39:35.825Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: create_pr"
-    },
-    {
-      "time": "2026-03-01T05:40:03.468Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: create_pr"
-    },
-    {
-      "time": "2026-03-01T05:40:04.399Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: create_pr"
-    },
-    {
-      "time": "2026-03-01T05:40:04.919Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: create_pr"
-    },
-    {
-      "time": "2026-03-01T05:40:05.453Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: create_pr"
-    },
-    {
-      "time": "2026-03-01T05:40:11.031Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T05:40:12.686Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T05:40:13.810Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T05:40:14.736Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T05:40:16.502Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T05:40:17.550Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T05:40:18.537Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T05:40:19.608Z",
-      "agent": "backend-developer",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
-      "time": "2026-03-01T05:41:04.455Z",
-      "agent": "product-director",
-      "type": "tool",
-      "content": "调用工具: report_progress"
-    },
-    {
-      "time": "2026-03-01T05:41:04.463Z",
-      "agent": "product-director",
-      "type": "tool",
-      "content": "调用工具: bash"
-    },
-    {
       "time": "2026-03-01T05:41:04.592Z",
       "agent": "product-director",
       "type": "tool",
@@ -3085,6 +2695,396 @@
       "agent": "backend-developer",
       "type": "tool",
       "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T06:52:31.128Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: git_create_branch"
+    },
+    {
+      "time": "2026-03-01T06:52:31.204Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T06:52:31.213Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T06:52:31.237Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: git_create_branch"
+    },
+    {
+      "time": "2026-03-01T06:52:31.297Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T06:52:31.306Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T06:52:44.282Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T06:52:44.383Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T06:52:44.444Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T06:52:44.504Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T06:52:53.396Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T06:52:55.496Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: git_create_branch"
+    },
+    {
+      "time": "2026-03-01T06:52:55.551Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T06:52:56.937Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: git_create_branch"
+    },
+    {
+      "time": "2026-03-01T06:52:56.974Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T06:52:58.395Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: git_create_branch"
+    },
+    {
+      "time": "2026-03-01T06:52:58.432Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T06:52:59.725Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: git_create_branch"
+    },
+    {
+      "time": "2026-03-01T06:53:03.833Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T06:53:03.865Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T06:53:04.904Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T06:53:04.932Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T06:53:05.622Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T06:53:05.660Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T06:53:08.673Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T06:53:08.718Z",
+      "agent": "backend-developer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T06:54:28.710Z",
+      "agent": "system",
+      "type": "message",
+      "content": "系统启动"
+    },
+    {
+      "time": "2026-03-01T06:55:10.421Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: git_create_branch"
+    },
+    {
+      "time": "2026-03-01T06:55:10.473Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T06:55:10.493Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T06:55:10.497Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T06:55:10.502Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: git_create_branch"
+    },
+    {
+      "time": "2026-03-01T06:55:10.546Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T06:55:10.551Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T06:55:10.554Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T06:55:16.583Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T06:55:16.596Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T06:55:16.622Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T06:55:16.633Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T06:55:21.573Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T06:55:21.578Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T06:55:21.584Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T06:55:21.595Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T06:55:44.709Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T06:55:46.227Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: git_create_branch"
+    },
+    {
+      "time": "2026-03-01T06:55:46.268Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T06:55:47.439Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: git_create_branch"
+    },
+    {
+      "time": "2026-03-01T06:55:47.469Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T06:55:48.548Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: git_create_branch"
+    },
+    {
+      "time": "2026-03-01T06:55:48.578Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T06:55:49.701Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: git_create_branch"
+    },
+    {
+      "time": "2026-03-01T06:55:54.757Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T06:55:54.791Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T06:55:54.813Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T06:55:54.833Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T06:56:14.451Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: edit"
+    },
+    {
+      "time": "2026-03-01T06:56:14.472Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: edit"
+    },
+    {
+      "time": "2026-03-01T06:56:24.010Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T06:56:33.259Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T06:56:41.242Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T06:56:50.882Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T06:56:55.485Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T06:56:59.868Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: bash"
+    },
+    {
+      "time": "2026-03-01T06:57:03.928Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: read"
+    },
+    {
+      "time": "2026-03-01T06:57:10.710Z",
+      "agent": "test-engineer",
+      "type": "tool",
+      "content": "调用工具: read"
     }
   ],
   "agentHistories": {
@@ -4007,7 +4007,7 @@
       }
     ]
   },
-  "lastCheck": "2026-03-01T06:51:22.770Z",
+  "lastCheck": "2026-03-01T06:56:15.963Z",
   "issues": [
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/121",
@@ -4117,8 +4117,7 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/121/timeline",
       "performed_via_github_app": null,
-      "state_reason": null,
-      "pinned_comment": null
+      "state_reason": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/120",
@@ -4228,8 +4227,7 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/120/timeline",
       "performed_via_github_app": null,
-      "state_reason": null,
-      "pinned_comment": null
+      "state_reason": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/112",
@@ -4339,8 +4337,7 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/112/timeline",
       "performed_via_github_app": null,
-      "state_reason": null,
-      "pinned_comment": null
+      "state_reason": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/108",
@@ -4450,8 +4447,7 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/108/timeline",
       "performed_via_github_app": null,
-      "state_reason": null,
-      "pinned_comment": null
+      "state_reason": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/107",
@@ -4552,8 +4548,7 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/107/timeline",
       "performed_via_github_app": null,
-      "state_reason": null,
-      "pinned_comment": null
+      "state_reason": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/106",
@@ -4663,8 +4658,7 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/106/timeline",
       "performed_via_github_app": null,
-      "state_reason": null,
-      "pinned_comment": null
+      "state_reason": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/105",
@@ -4774,8 +4768,7 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/105/timeline",
       "performed_via_github_app": null,
-      "state_reason": null,
-      "pinned_comment": null
+      "state_reason": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/104",
@@ -4885,8 +4878,7 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/104/timeline",
       "performed_via_github_app": null,
-      "state_reason": null,
-      "pinned_comment": null
+      "state_reason": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/103",
@@ -4987,8 +4979,7 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/103/timeline",
       "performed_via_github_app": null,
-      "state_reason": null,
-      "pinned_comment": null
+      "state_reason": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/102",
@@ -5098,8 +5089,7 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/102/timeline",
       "performed_via_github_app": null,
-      "state_reason": null,
-      "pinned_comment": null
+      "state_reason": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/97",
@@ -5200,8 +5190,7 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/97/timeline",
       "performed_via_github_app": null,
-      "state_reason": null,
-      "pinned_comment": null
+      "state_reason": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/96",
@@ -5302,8 +5291,7 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/96/timeline",
       "performed_via_github_app": null,
-      "state_reason": null,
-      "pinned_comment": null
+      "state_reason": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/95",
@@ -5413,8 +5401,7 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/95/timeline",
       "performed_via_github_app": null,
-      "state_reason": null,
-      "pinned_comment": null
+      "state_reason": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/94",
@@ -5515,8 +5502,7 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/94/timeline",
       "performed_via_github_app": null,
-      "state_reason": null,
-      "pinned_comment": null
+      "state_reason": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/93",
@@ -5617,8 +5603,7 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/93/timeline",
       "performed_via_github_app": null,
-      "state_reason": null,
-      "pinned_comment": null
+      "state_reason": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/85",
@@ -5710,8 +5695,7 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/85/timeline",
       "performed_via_github_app": null,
-      "state_reason": null,
-      "pinned_comment": null
+      "state_reason": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/83",
@@ -5812,8 +5796,7 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/83/timeline",
       "performed_via_github_app": null,
-      "state_reason": null,
-      "pinned_comment": null
+      "state_reason": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/77",
@@ -5914,8 +5897,7 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/77/timeline",
       "performed_via_github_app": null,
-      "state_reason": null,
-      "pinned_comment": null
+      "state_reason": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/76",
@@ -6016,8 +5998,7 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/76/timeline",
       "performed_via_github_app": null,
-      "state_reason": null,
-      "pinned_comment": null
+      "state_reason": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/75",
@@ -6118,8 +6099,7 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/75/timeline",
       "performed_via_github_app": null,
-      "state_reason": null,
-      "pinned_comment": null
+      "state_reason": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/74",
@@ -6220,8 +6200,7 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/74/timeline",
       "performed_via_github_app": null,
-      "state_reason": null,
-      "pinned_comment": null
+      "state_reason": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/73",
@@ -6322,8 +6301,7 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/73/timeline",
       "performed_via_github_app": null,
-      "state_reason": null,
-      "pinned_comment": null
+      "state_reason": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/72",
@@ -6424,8 +6402,7 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/72/timeline",
       "performed_via_github_app": null,
-      "state_reason": null,
-      "pinned_comment": null
+      "state_reason": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/71",
@@ -6526,8 +6503,7 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/71/timeline",
       "performed_via_github_app": null,
-      "state_reason": null,
-      "pinned_comment": null
+      "state_reason": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/70",
@@ -6628,8 +6604,7 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/70/timeline",
       "performed_via_github_app": null,
-      "state_reason": null,
-      "pinned_comment": null
+      "state_reason": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/69",
@@ -6739,8 +6714,7 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/69/timeline",
       "performed_via_github_app": null,
-      "state_reason": null,
-      "pinned_comment": null
+      "state_reason": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/68",
@@ -6850,8 +6824,7 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/68/timeline",
       "performed_via_github_app": null,
-      "state_reason": null,
-      "pinned_comment": null
+      "state_reason": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/67",
@@ -6961,8 +6934,7 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/67/timeline",
       "performed_via_github_app": null,
-      "state_reason": null,
-      "pinned_comment": null
+      "state_reason": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/66",
@@ -7072,8 +7044,7 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/66/timeline",
       "performed_via_github_app": null,
-      "state_reason": null,
-      "pinned_comment": null
+      "state_reason": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/65",
@@ -7183,8 +7154,7 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/65/timeline",
       "performed_via_github_app": null,
-      "state_reason": null,
-      "pinned_comment": null
+      "state_reason": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/64",
@@ -7294,8 +7264,7 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/64/timeline",
       "performed_via_github_app": null,
-      "state_reason": null,
-      "pinned_comment": null
+      "state_reason": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/63",
@@ -7405,8 +7374,7 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/63/timeline",
       "performed_via_github_app": null,
-      "state_reason": null,
-      "pinned_comment": null
+      "state_reason": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/62",
@@ -7516,8 +7484,7 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/62/timeline",
       "performed_via_github_app": null,
-      "state_reason": null,
-      "pinned_comment": null
+      "state_reason": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/61",
@@ -7627,8 +7594,7 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/61/timeline",
       "performed_via_github_app": null,
-      "state_reason": null,
-      "pinned_comment": null
+      "state_reason": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/60",
@@ -7738,8 +7704,7 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/60/timeline",
       "performed_via_github_app": null,
-      "state_reason": null,
-      "pinned_comment": null
+      "state_reason": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/50",
@@ -7849,8 +7814,7 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/50/timeline",
       "performed_via_github_app": null,
-      "state_reason": null,
-      "pinned_comment": null
+      "state_reason": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/49",
@@ -7960,8 +7924,7 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/49/timeline",
       "performed_via_github_app": null,
-      "state_reason": null,
-      "pinned_comment": null
+      "state_reason": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/45",
@@ -8062,8 +8025,7 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/45/timeline",
       "performed_via_github_app": null,
-      "state_reason": null,
-      "pinned_comment": null
+      "state_reason": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/39",
@@ -8173,8 +8135,7 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/39/timeline",
       "performed_via_github_app": null,
-      "state_reason": null,
-      "pinned_comment": null
+      "state_reason": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/38",
@@ -8284,8 +8245,7 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/38/timeline",
       "performed_via_github_app": null,
-      "state_reason": null,
-      "pinned_comment": null
+      "state_reason": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/37",
@@ -8395,8 +8355,7 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/37/timeline",
       "performed_via_github_app": null,
-      "state_reason": null,
-      "pinned_comment": null
+      "state_reason": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/36",
@@ -8506,8 +8465,7 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/36/timeline",
       "performed_via_github_app": null,
-      "state_reason": null,
-      "pinned_comment": null
+      "state_reason": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/35",
@@ -8617,8 +8575,7 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/35/timeline",
       "performed_via_github_app": null,
-      "state_reason": null,
-      "pinned_comment": null
+      "state_reason": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/34",
@@ -8728,8 +8685,7 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/34/timeline",
       "performed_via_github_app": null,
-      "state_reason": null,
-      "pinned_comment": null
+      "state_reason": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/33",
@@ -8839,8 +8795,7 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/33/timeline",
       "performed_via_github_app": null,
-      "state_reason": null,
-      "pinned_comment": null
+      "state_reason": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/32",
@@ -8950,8 +8905,7 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/32/timeline",
       "performed_via_github_app": null,
-      "state_reason": null,
-      "pinned_comment": null
+      "state_reason": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/29",
@@ -9052,8 +9006,7 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/29/timeline",
       "performed_via_github_app": null,
-      "state_reason": null,
-      "pinned_comment": null
+      "state_reason": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/28",
@@ -9154,8 +9107,7 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/28/timeline",
       "performed_via_github_app": null,
-      "state_reason": null,
-      "pinned_comment": null
+      "state_reason": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/20",
@@ -9274,8 +9226,7 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/20/timeline",
       "performed_via_github_app": null,
-      "state_reason": null,
-      "pinned_comment": null
+      "state_reason": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/19",
@@ -9394,8 +9345,7 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/19/timeline",
       "performed_via_github_app": null,
-      "state_reason": null,
-      "pinned_comment": null
+      "state_reason": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/10",
@@ -9496,8 +9446,7 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/10/timeline",
       "performed_via_github_app": null,
-      "state_reason": null,
-      "pinned_comment": null
+      "state_reason": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/5",
@@ -9589,8 +9538,7 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/5/timeline",
       "performed_via_github_app": null,
-      "state_reason": null,
-      "pinned_comment": null
+      "state_reason": null
     },
     {
       "url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/3",
@@ -9682,32 +9630,21 @@
       },
       "timeline_url": "https://api.github.com/repos/dyyz1993/coin-exchange-protocol/issues/3/timeline",
       "performed_via_github_app": null,
-      "state_reason": null,
-      "pinned_comment": null
+      "state_reason": null
     }
   ],
   "tasks": [
-    {
-      "id": "task-1772311242582",
-      "issueNumber": 50,
-      "title": "【P1 高优先级】修复 e2e.test.ts 类型导入错误（Issue #50）\n\n**问题描述**：\n```\nSyntaxError: export 'Transaction' not found",
-      "description": "【P1 高优先级】修复 e2e.test.ts 类型导入错误（Issue #50）\n\n**问题描述**：\n```\nSyntaxError: export 'Transaction' not found in './common'\n```\n\n**诊断步骤**：\n1. 检查 `tests/integration/e2e.test.ts` 的导入语句\n2. 验证 `src/types/common.ts` 是否正确导出 Transaction 类型\n3. 确认导入路径是否正确\n\n**修复方案**：\n1. 如果是路径问题：修正导入路径\n2. 如果是导出问题：在 common.ts 中添加 Transaction 导出\n3. 如果是类型定义问题：创建或修正 Transaction 类型定义\n\n**验证**：\n- 运行 `npm test tests/integration/e2e.test.ts`\n- 确认测试可以正常启动\n\n**优先级**：P1 - 高（阻塞测试执行）",
-      "assignedTo": "test-engineer",
-      "status": "in_progress",
-      "createdAt": "2026-02-28T20:40:42.582Z",
-      "updatedAt": "2026-03-01T06:46:49.918Z",
-      "iterations": 3
-    },
     {
       "id": "task-1772333163790",
       "issueNumber": 83,
       "title": "【P1】修复测试套件失败问题 - 162/192测试失败\n\n**问题描述**：\n- 测试失败率：84.4%（162/192失败）\n- 测试通过率：15.6%（30/192通过）\n- 服务层覆盖率极低（",
       "description": "【P1】修复测试套件失败问题 - 162/192测试失败\n\n**问题描述**：\n- 测试失败率：84.4%（162/192失败）\n- 测试通过率：15.6%（30/192通过）\n- 服务层覆盖率极低（3-12%）\n\n**根本原因**（根据Issue #84）：\n1. 测试期望的方法名与实际控制器不匹配\n   - AccountController: getTransactionHistory → getTransactions\n   - AccountController: freezeBalance → freezeAccount\n   - AccountController: unfreezeBalance → unfreezeAccount\n   - AirdropController: 缺失 getAirdrop/getActiveAirdrops/activateAirdrop\n\n**修复方案**（推荐方案1）：\n1. 修改测试文件以匹配实际控制器方法名\n2. 更新路由映射测试的期望值\n3. 运行测试验证修复效果\n\n**相关文件**：\n- tests/integration/route-mapping.test.ts\n- src/controllers/AccountController.ts\n- src/controllers/AirdropController.ts\n\n**验收标准**：\n- 测试通过率提升至100%\n- 无语法错误\n- 覆盖率提升至50%以上",
       "assignedTo": "test-engineer",
-      "status": "pending",
+      "status": "in_progress",
       "createdAt": "2026-03-01T02:46:03.791Z",
-      "updatedAt": "2026-03-01T02:46:03.791Z",
-      "iterations": 0
+      "updatedAt": "2026-03-01T06:56:15.969Z",
+      "iterations": 3,
+      "result": "⚠️ 任务被中断: Error: 工具调用次数超过限制 (34 次)"
     },
     {
       "id": "task-1772333183729",
@@ -9726,10 +9663,10 @@
       "title": "【P0严重Bug】分析AccountController方法调用错误\n\n**Issue**: #94/#89（重复）\n**问题**: AccountController调用了AccountServic",
       "description": "【P0严重Bug】分析AccountController方法调用错误\n\n**Issue**: #94/#89（重复）\n**问题**: AccountController调用了AccountService中不存在的方法\n**位置**: `src/controllers/account.controller.ts`\n**不存在的方法**:\n- getBalance (应为 getTokenBalance)\n- deposit, withdraw (不存在)\n- freezeAccount, unfreezeAccount (不存在)\n- getTransactions (应为 getTransactionHistory)\n\n**任务**:\n1. 先分析所有方法调用错误\n2. 确认正确的方法签名\n3. 提供修复方案给开发者\n\n**优先级**: 🔴 P0 - 系统完全不可用",
       "assignedTo": "qa-engineer",
-      "status": "pending",
+      "status": "in_progress",
       "createdAt": "2026-03-01T03:58:01.163Z",
-      "updatedAt": "2026-03-01T03:58:01.163Z",
-      "iterations": 0
+      "updatedAt": "2026-03-01T06:51:52.499Z",
+      "iterations": 1
     },
     {
       "id": "task-1772337481168",
@@ -9737,10 +9674,10 @@
       "title": "【P0严重Bug】修复可用余额计算错误\n\n**Issue**: #93/#88（重复）\n**问题**: availableBalance 直接返回 balance，未减去 frozenBalance\n",
       "description": "【P0严重Bug】修复可用余额计算错误\n\n**Issue**: #93/#88（重复）\n**问题**: availableBalance 直接返回 balance，未减去 frozenBalance\n**位置**: \n- `src/services/account.service.ts` 第 51、73 行\n- `src/services/TokenService.ts` 第 23 行\n\n**修复方案**:\n```typescript\n// 错误: availableBalance: account.balance\n// 正确: availableBalance: account.balance - account.frozenBalance\n```\n\n**影响**: 用户可能使用已被冻结的代币交易，导致资金安全问题\n\n**优先级**: 🔴 P0 - 影响核心业务逻辑",
       "assignedTo": "backend-developer",
-      "status": "pending",
+      "status": "in_progress",
       "createdAt": "2026-03-01T03:58:01.168Z",
-      "updatedAt": "2026-03-01T03:58:01.168Z",
-      "iterations": 0
+      "updatedAt": "2026-03-01T06:52:23.078Z",
+      "iterations": 1
     },
     {
       "id": "task-1772337481170",
@@ -11276,6 +11213,18 @@
       "updatedAt": "2026-03-01T06:51:22.777Z",
       "iterations": 4,
       "result": "达到最大迭代次数，自动完成"
+    },
+    {
+      "id": "task-1772311242582",
+      "issueNumber": 50,
+      "title": "【P1 高优先级】修复 e2e.test.ts 类型导入错误（Issue #50）\n\n**问题描述**：\n```\nSyntaxError: export 'Transaction' not found",
+      "description": "【P1 高优先级】修复 e2e.test.ts 类型导入错误（Issue #50）\n\n**问题描述**：\n```\nSyntaxError: export 'Transaction' not found in './common'\n```\n\n**诊断步骤**：\n1. 检查 `tests/integration/e2e.test.ts` 的导入语句\n2. 验证 `src/types/common.ts` 是否正确导出 Transaction 类型\n3. 确认导入路径是否正确\n\n**修复方案**：\n1. 如果是路径问题：修正导入路径\n2. 如果是导出问题：在 common.ts 中添加 Transaction 导出\n3. 如果是类型定义问题：创建或修正 Transaction 类型定义\n\n**验证**：\n- 运行 `npm test tests/integration/e2e.test.ts`\n- 确认测试可以正常启动\n\n**优先级**：P1 - 高（阻塞测试执行）",
+      "assignedTo": "test-engineer",
+      "status": "completed",
+      "createdAt": "2026-02-28T20:40:42.582Z",
+      "updatedAt": "2026-03-01T06:54:30.264Z",
+      "iterations": 4,
+      "result": "达到最大迭代次数，自动完成"
     }
   ],
   "errors": [
@@ -11300,6 +11249,6 @@
       "error": "Error: Agent is already processing a prompt. Use steer() or followUp() to queue messages, or wait for completion."
     }
   ],
-  "currentIteration": 306,
-  "lastDirectorActivity": "2026-03-01T06:46:37.303Z"
+  "currentIteration": 311,
+  "lastDirectorActivity": "2026-03-01T06:52:41.506Z"
 }

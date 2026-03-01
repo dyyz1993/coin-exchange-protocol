@@ -133,9 +133,9 @@ describe('路由-控制器映射测试', () => {
       expect(route).toBeDefined();
       expect(route?.description).toContain('详情');
       
-      // 注意：getAirdrop 方法在控制器中不存在，需要实现或修改路由
-      // 暂时跳过此测试
-      // expect(airdropController.getAirdrop).toBeDefined();
+      // 验证控制器方法存在
+      expect(airdropController.getAirdrop).toBeDefined();
+      expect(typeof airdropController.getAirdrop).toBe('function');
     });
 
     test('GET /api/airdrop/list - 获取所有空投', () => {
@@ -152,9 +152,9 @@ describe('路由-控制器映射测试', () => {
       expect(route).toBeDefined();
       expect(route?.description).toContain('活跃');
       
-      // 注意：getActiveAirdrops 方法在控制器中不存在，需要实现或修改路由
-      // 暂时跳过此测试
-      // expect(airdropController.getActiveAirdrops).toBeDefined();
+      // 验证控制器方法存在
+      expect(airdropController.getActiveAirdrops).toBeDefined();
+      expect(typeof airdropController.getActiveAirdrops).toBe('function');
     });
 
     test('POST /api/airdrop/activate/:airdropId - 激活空投', () => {
@@ -162,9 +162,9 @@ describe('路由-控制器映射测试', () => {
       expect(route).toBeDefined();
       expect(route?.description).toContain('激活');
       
-      // 注意：activateAirdrop 方法在控制器中不存在，需要实现或修改路由
-      // 暂时跳过此测试
-      // expect(airdropController.activateAirdrop).toBeDefined();
+      // 验证控制器方法存在
+      expect(airdropController.activateAirdrop).toBeDefined();
+      expect(typeof airdropController.activateAirdrop).toBe('function');
     });
 
     test('POST /api/airdrop/claim - 领取空投', () => {
