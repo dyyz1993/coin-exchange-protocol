@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { toast } from '../utils/toast';
 import { confirm } from '../utils/confirm';
 import { validateAmount, validateAccountId, isNotEmpty } from '../utils/validation';
+import { errorLogger, ErrorType, parseError, getUserFriendlyMessage } from '../utils/errorLogger';
 
 // 类型定义
 interface FreezeRequest {
@@ -94,8 +95,22 @@ export const FreezeManager: React.FC = () => {
       ];
       setFreezeRequests(mockRequests);
     } catch (error) {
-      console.error('加载冻结申请失败:', error);
-      toast.error('加载冻结申请失败：' + (error as Error).message);
+      const { code, message } = parseError(error);
+      errorLogger.log(ErrorType.NETWORK, '加载冻结申请失败', { error, code });
+
+      // 显示用户友好的错误消息，并提供重试选项
+      toast.error(
+        <div>
+          <p>{message}</p>
+          <button
+            onClick={() => loadFreezeRequests()}
+            className="mt-2 px-3 py-1 bg-blue-500 text-white rounded text-sm hover:bg-blue-600"
+          >
+            重试
+          </button>
+        </div>,
+        { duration: 10000 }
+      );
     } finally {
       setLoading(false);
     }

@@ -3,456 +3,357 @@
  * 测试任务完成并发竞态条件和边界情况
  */
 
-import { Task } from '../../src/models/Task';
-import { TaskStatus } from '../../src/types/task.types';
-import { setupTestDB, teardownTestDB, clearTestDB } from '../setup/testSetup';
-import mongoose from 'mongoose';
+import { TaskModel } from '../../src/models/Task';
+import { TaskStatus, TaskCompletionStatus } from '../../src/types/task';
 
 describe('Task 并发测试', () => {
-  beforeAll(async () => {
-    await setupTestDB();
-  });
+  let taskModel: TaskModel;
 
-  afterAll(async () => {
-    await teardownTestDB();
-  });
-
-  beforeEach(async () => {
-    await clearTestDB();
+  beforeEach(() => {
+    taskModel = new TaskModel();
   });
 
   describe('任务完成并发竞态条件', () => {
     it('应该防止并发完成超过最大次数限制', async () => {
-      // 创建需要完成 3 次的任务
-      const task = await Task.create({
+      // 创建最大完成次数为 3 的任务
+      const now = new Date();
+      const startTime = new Date(now.getTime() - 1000);
+      const endTime = new Date(now.getTime() + 10000);
+
+      const task = taskModel.createTask({
         title: '并发测试任务',
         description: '测试并发完成',
-        status: TaskStatus.PENDING,
-        requiredCount: 3,
-        completedCount: 0,
         reward: 100,
-        creator: new mongoose.Types.ObjectId(),
+        maxCompletions: 3,
+        startTime,
+        endTime,
       });
 
-      // 模拟 5 个并发完成请求（超过 requiredCount）
-      const completionPromises = Array(5)
-        .fill(null)
-        .map((_, index) =>
-          Task.findByIdAndUpdate(task._id, { $inc: { completedCount: 1 } }, { new: true })
-        );
+      // 激活任务
+      taskModel.updateTaskStatus(task.id, TaskStatus.ACTIVE);
+
+      // 模拟 5 个并发完成请求（超过 maxCompletions）
+      const userIds = ['user1', 'user2', 'user3', 'user4', 'user5'];
+      const completionPromises = userIds.map((userId) =>
+        Promise.resolve().then(() => {
+          try {
+            return taskModel.createCompletion(task.id, userId);
+          } catch (error) {
+            return null; // 返回 null 表示失败
+          }
+        })
+      );
 
       const results = await Promise.all(completionPromises);
 
-      // 验证完成次数不超过 requiredCount
-      const updatedTask = await Task.findById(task._id);
-      expect(updatedTask!.completedCount).toBeLessThanOrEqual(task.requiredCount);
+      // 验证只有 3 个成功完成
+      const successCount = results.filter((r) => r !== null).length;
+      expect(successCount).toBe(3);
+
+      // 验证完成次数不超过 maxCompletions
+      const updatedTask = taskModel.getTask(task.id);
+      expect(updatedTask!.currentCompletions).toBeLessThanOrEqual(task.maxCompletions);
     });
 
-    it('使用 findOneAndUpdate 原子操作防止竞态', async () => {
-      const task = await Task.create({
-        title: '原子操作测试',
-        description: '测试原子操作',
-        status: TaskStatus.PENDING,
-        requiredCount: 2,
-        completedCount: 0,
+    it('应该防止同一用户重复完成任务', async () => {
+      const now = new Date();
+      const startTime = new Date(now.getTime() - 1000);
+      const endTime = new Date(now.getTime() + 10000);
+
+      const task = taskModel.createTask({
+        title: '重复测试任务',
+        description: '测试重复完成',
         reward: 50,
-        creator: new mongoose.Types.ObjectId(),
+        maxCompletions: 10,
+        startTime,
+        endTime,
       });
 
-      // 使用原子操作完成
+      taskModel.updateTaskStatus(task.id, TaskStatus.ACTIVE);
+
+      // 同一用户尝试完成 3 次
       const completionPromises = Array(3)
         .fill(null)
         .map(() =>
-          Task.findOneAndUpdate(
-            {
-              _id: task._id,
-              completedCount: { $lt: task.requiredCount },
-            },
-            { $inc: { completedCount: 1 } },
-            { new: true }
-          )
+          Promise.resolve().then(() => {
+            try {
+              return taskModel.createCompletion(task.id, 'user1');
+            } catch (error) {
+              return null;
+            }
+          })
         );
 
       const results = await Promise.all(completionPromises);
-      const successCount = results.filter((r) => r !== null).length;
 
-      // 验证只有 requiredCount 次操作成功
-      expect(successCount).toBe(task.requiredCount);
+      // 验证只有 1 个成功
+      const successCount = results.filter((r) => r !== null).length;
+      expect(successCount).toBe(1);
+
+      // 验证只记录了 1 次完成
+      const updatedTask = taskModel.getTask(task.id);
+      expect(updatedTask!.currentCompletions).toBe(1);
+    });
+
+    it('应该在任务未激活时拒绝完成', async () => {
+      const now = new Date();
+      const startTime = new Date(now.getTime() - 1000);
+      const endTime = new Date(now.getTime() + 10000);
+
+      const task = taskModel.createTask({
+        title: '未激活任务',
+        description: '测试未激活',
+        reward: 100,
+        maxCompletions: 5,
+        startTime,
+        endTime,
+      });
+
+      // 任务状态为 DRAFT，不激活
+      const completionPromises = ['user1', 'user2', 'user3'].map((userId) =>
+        Promise.resolve().then(() => {
+          try {
+            return taskModel.createCompletion(task.id, userId);
+          } catch (error) {
+            return null;
+          }
+        })
+      );
+
+      const results = await Promise.all(completionPromises);
+
+      // 所有请求都应该失败
+      const successCount = results.filter((r) => r !== null).length;
+      expect(successCount).toBe(0);
+
+      // 验证完成次数为 0
+      const updatedTask = taskModel.getTask(task.id);
+      expect(updatedTask!.currentCompletions).toBe(0);
     });
   });
 
   describe('边界情况测试', () => {
-    it('当 completedCount 等于 requiredCount 时应拒绝完成', async () => {
-      const task = await Task.create({
-        title: '已完成任务',
+    it('应该正确处理 maxCompletions 为 0 的任务', async () => {
+      const now = new Date();
+      const startTime = new Date(now.getTime() - 1000);
+      const endTime = new Date(now.getTime() + 10000);
+
+      const task = taskModel.createTask({
+        title: '零完成次数任务',
         description: '测试边界',
-        status: TaskStatus.COMPLETED,
-        requiredCount: 3,
-        completedCount: 3,
         reward: 100,
-        creator: new mongoose.Types.ObjectId(),
+        maxCompletions: 0,
+        startTime,
+        endTime,
       });
 
-      // 尝试再次完成
-      const result = await Task.findOneAndUpdate(
-        {
-          _id: task._id,
-          completedCount: { $lt: task.requiredCount },
-        },
-        { $inc: { completedCount: 1 } },
-        { new: true }
+      taskModel.updateTaskStatus(task.id, TaskStatus.ACTIVE);
+
+      // 尝试完成任务
+      expect(() => {
+        taskModel.createCompletion(task.id, 'user1');
+      }).toThrow('Task has reached maximum completions');
+    });
+
+    it('应该正确处理刚好达到 maxCompletions 的情况', async () => {
+      const now = new Date();
+      const startTime = new Date(now.getTime() - 1000);
+      const endTime = new Date(now.getTime() + 10000);
+
+      const task = taskModel.createTask({
+        title: '边界测试任务',
+        description: '测试刚好达到限制',
+        reward: 100,
+        maxCompletions: 2,
+        startTime,
+        endTime,
+      });
+
+      taskModel.updateTaskStatus(task.id, TaskStatus.ACTIVE);
+
+      // 完成 2 次
+      taskModel.createCompletion(task.id, 'user1');
+      taskModel.createCompletion(task.id, 'user2');
+
+      // 第 3 次应该失败
+      expect(() => {
+        taskModel.createCompletion(task.id, 'user3');
+      }).toThrow('Task has reached maximum completions');
+
+      const updatedTask = taskModel.getTask(task.id);
+      expect(updatedTask!.currentCompletions).toBe(2);
+    });
+
+    it('应该正确处理时间范围外的任务', async () => {
+      const now = new Date();
+
+      // 已结束的任务
+      const pastTask = taskModel.createTask({
+        title: '已结束任务',
+        description: '测试时间边界',
+        reward: 100,
+        maxCompletions: 5,
+        startTime: new Date(now.getTime() - 10000),
+        endTime: new Date(now.getTime() - 1000),
+      });
+
+      taskModel.updateTaskStatus(pastTask.id, TaskStatus.ACTIVE);
+
+      expect(() => {
+        taskModel.createCompletion(pastTask.id, 'user1');
+      }).toThrow('Task is not within the valid time range');
+
+      // 未开始的任务
+      const futureTask = taskModel.createTask({
+        title: '未开始任务',
+        description: '测试时间边界',
+        reward: 100,
+        maxCompletions: 5,
+        startTime: new Date(now.getTime() + 1000),
+        endTime: new Date(now.getTime() + 10000),
+      });
+
+      taskModel.updateTaskStatus(futureTask.id, TaskStatus.ACTIVE);
+
+      expect(() => {
+        taskModel.createCompletion(futureTask.id, 'user1');
+      }).toThrow('Task is not within the valid time range');
+    });
+  });
+
+  describe('高并发场景测试', () => {
+    it('应该在高并发下保持数据一致性', async () => {
+      const now = new Date();
+      const startTime = new Date(now.getTime() - 1000);
+      const endTime = new Date(now.getTime() + 10000);
+
+      const task = taskModel.createTask({
+        title: '高并发测试任务',
+        description: '测试高并发',
+        reward: 10,
+        maxCompletions: 50,
+        startTime,
+        endTime,
+      });
+
+      taskModel.updateTaskStatus(task.id, TaskStatus.ACTIVE);
+
+      // 模拟 100 个并发请求
+      const userIds = Array(100)
+        .fill(null)
+        .map((_, i) => `user${i}`);
+
+      const completionPromises = userIds.map((userId) =>
+        Promise.resolve().then(() => {
+          try {
+            return taskModel.createCompletion(task.id, userId);
+          } catch (error) {
+            return null;
+          }
+        })
       );
 
-      expect(result).toBeNull();
-    });
-
-    it('应该正确处理 requiredCount 为 1 的情况', async () => {
-      const task = await Task.create({
-        title: '单次任务',
-        description: '测试单次完成',
-        status: TaskStatus.PENDING,
-        requiredCount: 1,
-        completedCount: 0,
-        reward: 100,
-        creator: new mongoose.Types.ObjectId(),
-      });
-
-      // 并发尝试完成
-      const completionPromises = Array(5)
-        .fill(null)
-        .map(() =>
-          Task.findOneAndUpdate(
-            {
-              _id: task._id,
-              completedCount: { $lt: task.requiredCount },
-            },
-            {
-              $inc: { completedCount: 1 },
-              $set: { status: TaskStatus.COMPLETED },
-            },
-            { new: true }
-          )
-        );
-
       const results = await Promise.all(completionPromises);
+
+      // 验证只有 50 个成功
       const successCount = results.filter((r) => r !== null).length;
+      expect(successCount).toBe(50);
 
-      // 只有 1 次成功
-      expect(successCount).toBe(1);
-
-      const updatedTask = await Task.findById(task._id);
-      expect(updatedTask!.completedCount).toBe(1);
-      expect(updatedTask!.status).toBe(TaskStatus.COMPLETED);
+      // 验证完成次数不超过 maxCompletions
+      const updatedTask = taskModel.getTask(task.id);
+      expect(updatedTask!.currentCompletions).toBe(50);
     });
 
-    it('应该正确处理高 requiredCount 的情况', async () => {
-      const requiredCount = 100;
-      const task = await Task.create({
-        title: '高次数任务',
-        description: '测试高次数',
-        status: TaskStatus.PENDING,
-        requiredCount,
-        completedCount: 0,
+    it('应该在高并发下正确记录所有完成', async () => {
+      const now = new Date();
+      const startTime = new Date(now.getTime() - 1000);
+      const endTime = new Date(now.getTime() + 10000);
+
+      const task = taskModel.createTask({
+        title: '完成记录测试',
+        description: '测试完成记录',
         reward: 10,
-        creator: new mongoose.Types.ObjectId(),
+        maxCompletions: 10,
+        startTime,
+        endTime,
       });
 
-      // 并发尝试完成 150 次
-      const completionPromises = Array(150)
+      taskModel.updateTaskStatus(task.id, TaskStatus.ACTIVE);
+
+      // 10 个用户并发完成
+      const userIds = Array(10)
         .fill(null)
-        .map(() =>
-          Task.findOneAndUpdate(
-            {
-              _id: task._id,
-              completedCount: { $lt: requiredCount },
-            },
-            { $inc: { completedCount: 1 } },
-            { new: true }
-          )
-        );
+        .map((_, i) => `user${i}`);
+
+      const completionPromises = userIds.map((userId) =>
+        Promise.resolve().then(() => {
+          try {
+            return taskModel.createCompletion(task.id, userId);
+          } catch (error) {
+            return null;
+          }
+        })
+      );
 
       const results = await Promise.all(completionPromises);
-      const successCount = results.filter((r) => r !== null).length;
+      const successfulCompletions = results.filter((r): r is NonNullable<typeof r> => r !== null);
 
-      expect(successCount).toBe(requiredCount);
+      // 验证所有成功完成的记录都存在
+      expect(successfulCompletions.length).toBe(10);
+
+      // 验证每个完成记录都正确关联了用户
+      const userIdSet = new Set(successfulCompletions.map((c) => c.userId));
+      expect(userIdSet.size).toBe(10);
+
+      // 验证所有完成记录的状态都是 APPROVED
+      successfulCompletions.forEach((completion) => {
+        expect(completion.status).toBe(TaskCompletionStatus.APPROVED);
+      });
     });
   });
 
   describe('性能测试', () => {
-    it('高并发场景下应保持性能和正确性', async () => {
-      const task = await Task.create({
+    it('应该在合理时间内处理高并发请求', async () => {
+      const now = new Date();
+      const startTime = new Date(now.getTime() - 1000);
+      const endTime = new Date(now.getTime() + 10000);
+
+      const task = taskModel.createTask({
         title: '性能测试任务',
-        description: '测试高并发性能',
-        status: TaskStatus.PENDING,
-        requiredCount: 50,
-        completedCount: 0,
-        reward: 20,
-        creator: new mongoose.Types.ObjectId(),
+        description: '测试性能',
+        reward: 1,
+        maxCompletions: 1000,
+        startTime,
+        endTime,
       });
 
-      const startTime = Date.now();
+      taskModel.updateTaskStatus(task.id, TaskStatus.ACTIVE);
 
-      // 100 个并发请求
-      const completionPromises = Array(100)
+      const userIds = Array(1000)
         .fill(null)
-        .map(() =>
-          Task.findOneAndUpdate(
-            {
-              _id: task._id,
-              completedCount: { $lt: task.requiredCount },
-            },
-            { $inc: { completedCount: 1 } },
-            { new: true }
-          )
-        );
+        .map((_, i) => `user${i}`);
 
-      await Promise.all(completionPromises);
+      const start = Date.now();
 
-      const endTime = Date.now();
-      const duration = endTime - startTime;
-
-      const updatedTask = await Task.findById(task._id);
-      expect(updatedTask!.completedCount).toBe(task.requiredCount);
-
-      // 性能断言：100 个并发请求应在 5 秒内完成
-      expect(duration).toBeLessThan(5000);
-
-      console.log(`高并发测试完成: ${100} 个请求在 ${duration}ms 内完成`);
-    });
-
-    it('多任务并发处理性能', async () => {
-      // 创建 10 个任务
-      const tasks = await Promise.all(
-        Array(10)
-          .fill(null)
-          .map((_, index) =>
-            Task.create({
-              title: `并发任务 ${index}`,
-              description: '测试多任务并发',
-              status: TaskStatus.PENDING,
-              requiredCount: 5,
-              completedCount: 0,
-              reward: 10,
-              creator: new mongoose.Types.ObjectId(),
-            })
-          )
-      );
-
-      const startTime = Date.now();
-
-      // 每个任务并发完成 10 次（共 100 个并发请求）
-      const completionPromises = tasks.flatMap((task) =>
-        Array(10)
-          .fill(null)
-          .map(() =>
-            Task.findOneAndUpdate(
-              {
-                _id: task._id,
-                completedCount: { $lt: task.requiredCount },
-              },
-              { $inc: { completedCount: 1 } },
-              { new: true }
-            )
-          )
+      const completionPromises = userIds.map((userId) =>
+        Promise.resolve().then(() => {
+          try {
+            return taskModel.createCompletion(task.id, userId);
+          } catch (error) {
+            return null;
+          }
+        })
       );
 
       await Promise.all(completionPromises);
 
-      const endTime = Date.now();
-      const duration = endTime - startTime;
+      const duration = Date.now() - start;
 
-      // 验证每个任务的完成次数
-      for (const task of tasks) {
-        const updatedTask = await Task.findById(task._id);
-        expect(updatedTask!.completedCount).toBe(task.requiredCount);
-      }
+      // 应该在 1 秒内完成
+      expect(duration).toBeLessThan(1000);
 
-      // 性能断言
-      expect(duration).toBeLessThan(10000);
-
-      console.log(`多任务并发测试完成: 10 个任务 × 10 次请求在 ${duration}ms 内完成`);
-    });
-  });
-
-  describe('错误处理和恢复', () => {
-    it('并发操作失败不应影响已成功的操作', async () => {
-      const task = await Task.create({
-        title: '错误恢复测试',
-        description: '测试错误处理',
-        status: TaskStatus.PENDING,
-        requiredCount: 3,
-        completedCount: 0,
-        reward: 50,
-        creator: new mongoose.Types.ObjectId(),
-      });
-
-      // 混合有效和无效操作
-      const operations = [
-        // 有效操作
-        Task.findOneAndUpdate(
-          { _id: task._id, completedCount: { $lt: 3 } },
-          { $inc: { completedCount: 1 } },
-          { new: true }
-        ),
-        // 有效操作
-        Task.findOneAndUpdate(
-          { _id: task._id, completedCount: { $lt: 3 } },
-          { $inc: { completedCount: 1 } },
-          { new: true }
-        ),
-        // 无效的 ObjectId（会失败）
-        Task.findOneAndUpdate(
-          { _id: 'invalid-id', completedCount: { $lt: 3 } },
-          { $inc: { completedCount: 1 } },
-          { new: true }
-        ).catch(() => null),
-      ];
-
-      const results = await Promise.all(operations);
-
-      // 验证有效操作成功
-      const successCount = results.filter((r) => r !== null).length;
-      expect(successCount).toBeGreaterThanOrEqual(2);
-    });
-
-    it('数据库连接断开时应正确处理', async () => {
-      const task = await Task.create({
-        title: '连接断开测试',
-        description: '测试连接错误',
-        status: TaskStatus.PENDING,
-        requiredCount: 2,
-        completedCount: 0,
-        reward: 50,
-        creator: new mongoose.Types.ObjectId(),
-      });
-
-      // 模拟网络延迟的并发请求
-      const completionPromises = Array(3)
-        .fill(null)
-        .map(
-          () =>
-            new Promise((resolve) => {
-              setTimeout(async () => {
-                try {
-                  const result = await Task.findOneAndUpdate(
-                    {
-                      _id: task._id,
-                      completedCount: { $lt: task.requiredCount },
-                    },
-                    { $inc: { completedCount: 1 } },
-                    { new: true }
-                  );
-                  resolve(result);
-                } catch (error) {
-                  resolve(null);
-                }
-              }, Math.random() * 100);
-            })
-        );
-
-      const results = await Promise.all(completionPromises);
-      const successCount = results.filter((r) => r !== null).length;
-
-      // 即使有延迟，也不应超过 requiredCount
-      expect(successCount).toBeLessThanOrEqual(task.requiredCount);
-    });
-  });
-
-  describe('状态转换并发测试', () => {
-    it('任务状态应正确转换（PENDING -> IN_PROGRESS -> COMPLETED）', async () => {
-      const task = await Task.create({
-        title: '状态转换测试',
-        description: '测试状态转换',
-        status: TaskStatus.PENDING,
-        requiredCount: 2,
-        completedCount: 0,
-        reward: 50,
-        creator: new mongoose.Types.ObjectId(),
-      });
-
-      // 第一个完成操作：PENDING -> IN_PROGRESS
-      const firstCompletion = await Task.findOneAndUpdate(
-        {
-          _id: task._id,
-          completedCount: { $lt: task.requiredCount },
-          status: TaskStatus.PENDING,
-        },
-        {
-          $inc: { completedCount: 1 },
-          $set: { status: TaskStatus.IN_PROGRESS },
-        },
-        { new: true }
-      );
-
-      expect(firstCompletion).not.toBeNull();
-      expect(firstCompletion!.status).toBe(TaskStatus.IN_PROGRESS);
-      expect(firstCompletion!.completedCount).toBe(1);
-
-      // 第二个完成操作：IN_PROGRESS -> COMPLETED
-      const secondCompletion = await Task.findOneAndUpdate(
-        {
-          _id: task._id,
-          completedCount: { $lt: task.requiredCount },
-        },
-        {
-          $inc: { completedCount: 1 },
-          $set: { status: TaskStatus.COMPLETED },
-        },
-        { new: true }
-      );
-
-      expect(secondCompletion).not.toBeNull();
-      expect(secondCompletion!.status).toBe(TaskStatus.COMPLETED);
-      expect(secondCompletion!.completedCount).toBe(2);
-    });
-
-    it('并发状态转换应保持一致性', async () => {
-      const task = await Task.create({
-        title: '并发状态转换',
-        description: '测试并发状态一致性',
-        status: TaskStatus.PENDING,
-        requiredCount: 3,
-        completedCount: 0,
-        reward: 50,
-        creator: new mongoose.Types.ObjectId(),
-      });
-
-      // 并发完成，最后一次应设置为 COMPLETED
-      const completionPromises = Array(3)
-        .fill(null)
-        .map((_, index) =>
-          Task.findOneAndUpdate(
-            {
-              _id: task._id,
-              completedCount: { $lt: task.requiredCount },
-            },
-            [
-              {
-                $set: {
-                  completedCount: { $add: ['$completedCount', 1] },
-                  status: {
-                    $cond: {
-                      if: {
-                        $gte: [{ $add: ['$completedCount', 1] }, '$requiredCount'],
-                      },
-                      then: TaskStatus.COMPLETED,
-                      else: TaskStatus.IN_PROGRESS,
-                    },
-                  },
-                },
-              },
-            ],
-            { new: true }
-          )
-        );
-
-      const results = await Promise.all(completionPromises);
-      const successResults = results.filter((r) => r !== null);
-
-      // 验证最终状态
-      const finalTask = await Task.findById(task._id);
-      expect(finalTask!.completedCount).toBe(task.requiredCount);
-      expect(finalTask!.status).toBe(TaskStatus.COMPLETED);
+      const updatedTask = taskModel.getTask(task.id);
+      expect(updatedTask!.currentCompletions).toBe(1000);
     });
   });
 });
