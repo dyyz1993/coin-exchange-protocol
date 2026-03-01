@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest';
+// Jest 全局变量，无需导入
 
 describe('API Integration Tests', () => {
   it('should create account', async () => {
