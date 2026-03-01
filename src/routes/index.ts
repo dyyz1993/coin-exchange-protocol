@@ -5,6 +5,7 @@
 import { accountController } from '../controllers/account.controller';
 import { airdropController } from '../controllers/airdrop.controller';
 import { taskController } from '../controllers/task.controller';
+import { freezeController } from '../controllers/freeze.controller';
 
 export interface Route {
   method: 'GET' | 'POST' | 'PUT' | 'DELETE';
@@ -24,7 +25,7 @@ export const routes: Route[] = [
   {
     method: 'GET',
     path: '/api/account/transactions/:userId',
-    handler: (params) => accountController.getTransactionHistory(params),
+    handler: (params) => accountController.getTransactions(params),
     description: '获取交易历史'
   },
   {
@@ -36,14 +37,14 @@ export const routes: Route[] = [
   {
     method: 'POST',
     path: '/api/account/freeze',
-    handler: (params) => accountController.freezeBalance(params),
-    description: '冻结余额'
+    handler: (params) => accountController.freezeAccount(params),
+    description: '冻结账户'
   },
   {
     method: 'POST',
     path: '/api/account/unfreeze',
-    handler: (params) => accountController.unfreezeBalance(params),
-    description: '解冻余额'
+    handler: (params) => accountController.unfreezeAccount(params),
+    description: '解冻账户'
   },
 
   // ==================== 空投相关 ====================
@@ -156,6 +157,44 @@ export const routes: Route[] = [
     path: '/api/task/cancel/:taskId',
     handler: (params) => taskController.cancelTask(params),
     description: '取消任务'
+  },
+
+  // ==================== 冻结相关 ====================
+  {
+    method: 'POST',
+    path: '/api/freeze/apply',
+    handler: (params) => freezeController.applyFreeze(params),
+    description: '申请冻结'
+  },
+  {
+    method: 'POST',
+    path: '/api/freeze/approve',
+    handler: (params) => freezeController.approveFreeze(params),
+    description: '审核通过冻结'
+  },
+  {
+    method: 'POST',
+    path: '/api/freeze/reject',
+    handler: (params) => freezeController.rejectFreeze(params),
+    description: '审核拒绝冻结'
+  },
+  {
+    method: 'POST',
+    path: '/api/freeze/unfreeze',
+    handler: (params) => freezeController.unfreeze(params),
+    description: '解冻'
+  },
+  {
+    method: 'GET',
+    path: '/api/freeze/list',
+    handler: (params) => freezeController.getFreezeList(params),
+    description: '获取冻结记录列表'
+  },
+  {
+    method: 'GET',
+    path: '/api/freeze/:id',
+    handler: (params) => freezeController.getFreezeById(params),
+    description: '获取冻结记录详情'
   }
 ];
 
