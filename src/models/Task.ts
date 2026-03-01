@@ -2,7 +2,14 @@
  * 任务模型 - 管理任务和任务完成记录
  */
 
-import { Task, TaskCompletion, TaskStatus, TaskCompletionStatus } from '../types';
+import {
+  Task,
+  TaskCompletion,
+  TaskStatus,
+  TaskCompletionStatus,
+  CreateTaskParams,
+  TaskType,
+} from '../types';
 
 export class TaskModel {
   private tasks: Map<string, Task> = new Map();
@@ -12,31 +19,26 @@ export class TaskModel {
   /**
    * 创建任务
    */
-  createTask(params: {
-    title: string;
-    description: string;
-    reward: number;
-    maxCompletions: number;
-    startTime: Date;
-    endTime: Date;
-  }): Task {
+  createTask(params: CreateTaskParams): Task {
     const taskId = `task_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
-    
+
     const task: Task = {
       id: taskId,
       title: params.title,
       description: params.description,
       reward: params.reward,
+      type: params.type,
       maxCompletions: params.maxCompletions,
       currentCompletions: 0,
       status: TaskStatus.DRAFT,
       startTime: params.startTime,
       endTime: params.endTime,
-      createdAt: new Date()
+      createdAt: new Date(),
+      updatedAt: new Date(),
     };
 
     this.tasks.set(taskId, task);
-    
+
     return task;
   }
 
@@ -59,11 +61,13 @@ export class TaskModel {
    */
   getActiveTasks(): Task[] {
     const now = new Date();
-    return Array.from(this.tasks.values()).filter(task => {
-      return task.status === TaskStatus.ACTIVE &&
-             task.startTime <= now &&
-             task.endTime >= now &&
-             task.currentCompletions < task.maxCompletions;
+    return Array.from(this.tasks.values()).filter((task) => {
+      return (
+        task.status === TaskStatus.ACTIVE &&
+        task.startTime <= now &&
+        task.endTime >= now &&
+        task.currentCompletions < task.maxCompletions
+      );
     });
   }
 
@@ -120,14 +124,14 @@ export class TaskModel {
     }
 
     const completionId = `completion_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
-    
+
     const completion: TaskCompletion = {
       id: completionId,
       taskId,
       userId,
       reward: task.reward,
       status: TaskCompletionStatus.APPROVED, // 自动审批
-      completedAt: new Date()
+      completedAt: new Date(),
     };
 
     this.completions.set(completionId, completion);

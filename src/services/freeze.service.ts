@@ -233,10 +233,11 @@ export class FreezeService {
   /**
    * 获取用户可用余额（考虑冻结金额）
    *
-   * 修复说明：
-   * - account.balance 在 freezeBalance() 时已经扣除了冻结金额
-   * - 因此直接返回 account.balance 即可，无需再次减去冻结金额
-   * - 之前重复减去冻结金额导致可用余额计算错误
+   * 修复说明（Issue #290）：
+   * - account.balance 存储总余额（包括可用余额 + 冻结余额）
+   * - account.frozenBalance 存储冻结金额
+   * - 可用余额 = 总余额 - 冻结余额
+   * - 之前直接返回 balance 导致可用余额虚高，存在资金安全风险
    */
   getAvailableBalance(userId: string): number {
     const account = accountModel.getAccountByUserId(userId);
@@ -244,9 +245,9 @@ export class FreezeService {
       return 0;
     }
 
-    // ✅ 修复：直接返回 account.balance（已扣除冻结金额）
-    // 避免重复扣除冻结金额
-    return account.balance;
+    // ✅ 修复：可用余额 = 总余额 - 冻结余额
+    // 避免资金超发
+    return account.balance - account.frozenBalance;
   }
 
   /**
