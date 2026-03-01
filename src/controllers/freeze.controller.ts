@@ -11,10 +11,9 @@ export class FreezeController {
    * POST /api/freeze/apply
    * Body: { userId: string, amount: number, reason: string }
    */
-  async applyFreeze(req: Request): Promise<ApiResponse> {
+  async applyFreeze(params: any): Promise<ApiResponse> {
     try {
-      const body = await req.json();
-      const { userId, amount, reason } = body;
+      const { userId, amount, reason } = params;
       
       // 输入验证
       if (!userId || typeof userId !== 'string') {
@@ -44,10 +43,9 @@ export class FreezeController {
    * POST /api/freeze/approve
    * Body: { freezeId: string, approver: string, comment?: string }
    */
-  async approveFreeze(req: Request): Promise<ApiResponse> {
+  async approveFreeze(params: any): Promise<ApiResponse> {
     try {
-      const body = await req.json();
-      const { freezeId, approver, comment } = body;
+      const { freezeId, approver, comment } = params;
       
       // 输入验证
       if (!freezeId || typeof freezeId !== 'string') {
@@ -73,10 +71,9 @@ export class FreezeController {
    * POST /api/freeze/reject
    * Body: { freezeId: string, approver: string, reason: string }
    */
-  async rejectFreeze(req: Request): Promise<ApiResponse> {
+  async rejectFreeze(params: any): Promise<ApiResponse> {
     try {
-      const body = await req.json();
-      const { freezeId, approver, reason } = body;
+      const { freezeId, approver, reason } = params;
       
       // 输入验证
       if (!freezeId || typeof freezeId !== 'string') {
@@ -106,10 +103,9 @@ export class FreezeController {
    * POST /api/freeze/unfreeze
    * Body: { freezeId: string, operator: string, reason: string }
    */
-  async unfreeze(req: Request): Promise<ApiResponse> {
+  async unfreeze(params: any): Promise<ApiResponse> {
     try {
-      const body = await req.json();
-      const { freezeId, operator, reason } = body;
+      const { freezeId, operator, reason } = params;
       
       // 输入验证
       if (!freezeId || typeof freezeId !== 'string') {
@@ -138,13 +134,9 @@ export class FreezeController {
    * 查询冻结记录列表
    * GET /api/freeze/list?userId=xxx&status=xxx&page=1&pageSize=10
    */
-  async getFreezeList(req: Request): Promise<ApiResponse> {
+  async getFreezeList(params: any): Promise<ApiResponse> {
     try {
-      const url = new URL(req.url);
-      const userId = url.searchParams.get('userId') || undefined;
-      const status = url.searchParams.get('status') || undefined;
-      const page = parseInt(url.searchParams.get('page') || '1');
-      const pageSize = parseInt(url.searchParams.get('pageSize') || '10');
+      const { userId, status, page = 1, pageSize = 10 } = params;
       
       // 输入验证
       if (page < 1 || pageSize < 1 || pageSize > 100) {
@@ -165,17 +157,16 @@ export class FreezeController {
    * 查询单个冻结记录
    * GET /api/freeze/:id
    */
-  async getFreezeById(req: Request): Promise<ApiResponse> {
+  async getFreezeById(params: any): Promise<ApiResponse> {
     try {
-      const url = new URL(req.url);
-      const freezeId = url.pathname.split('/').pop();
+      const { id } = params;
       
-      if (!freezeId) {
+      if (!id) {
         return { success: false, error: '缺少冻结ID' };
       }
       
       // 调用服务层
-      return freezeService.getFreezeById(freezeId);
+      return freezeService.getFreezeById(id);
     } catch (error) {
       return { 
         success: false, 

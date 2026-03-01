@@ -11,10 +11,9 @@ export class AccountController {
    * POST /api/account/create
    * Body: { userId: string, initialBalance?: number }
    */
-  async createAccount(req: Request): Promise<ApiResponse> {
+  async createAccount(params: any): Promise<ApiResponse> {
     try {
-      const body = await req.json();
-      const { userId, initialBalance = 0 } = body;
+      const { userId, initialBalance = 0 } = params;
       
       // 输入验证
       if (!userId || typeof userId !== 'string') {
@@ -39,10 +38,9 @@ export class AccountController {
    * 查询余额
    * GET /api/account/balance/:userId
    */
-  async getBalance(req: Request): Promise<ApiResponse> {
+  async getBalance(params: any): Promise<ApiResponse> {
     try {
-      const url = new URL(req.url);
-      const userId = url.pathname.split('/').pop();
+      const { userId } = params;
       
       if (!userId) {
         return { success: false, error: '缺少用户ID' };
@@ -62,10 +60,9 @@ export class AccountController {
    * POST /api/account/deposit
    * Body: { userId: string, amount: number, reason?: string }
    */
-  async deposit(req: Request): Promise<ApiResponse> {
+  async deposit(params: any): Promise<ApiResponse> {
     try {
-      const body = await req.json();
-      const { userId, amount, reason } = body;
+      const { userId, amount, reason } = params;
       
       // 输入验证
       if (!userId || typeof userId !== 'string') {
@@ -91,10 +88,9 @@ export class AccountController {
    * POST /api/account/withdraw
    * Body: { userId: string, amount: number, reason?: string }
    */
-  async withdraw(req: Request): Promise<ApiResponse> {
+  async withdraw(params: any): Promise<ApiResponse> {
     try {
-      const body = await req.json();
-      const { userId, amount, reason } = body;
+      const { userId, amount, reason } = params;
       
       // 输入验证
       if (!userId || typeof userId !== 'string') {
@@ -120,10 +116,9 @@ export class AccountController {
    * POST /api/account/transfer
    * Body: { fromUserId: string, toUserId: string, amount: number, reason?: string }
    */
-  async transfer(req: Request): Promise<ApiResponse> {
+  async transfer(params: any): Promise<ApiResponse> {
     try {
-      const body = await req.json();
-      const { fromUserId, toUserId, amount, reason } = body;
+      const { fromUserId, toUserId, amount, reason } = params;
       
       // 输入验证
       if (!fromUserId || !toUserId || typeof fromUserId !== 'string' || typeof toUserId !== 'string') {
@@ -153,10 +148,9 @@ export class AccountController {
    * POST /api/account/freeze
    * Body: { userId: string, reason: string }
    */
-  async freezeAccount(req: Request): Promise<ApiResponse> {
+  async freezeAccount(params: any): Promise<ApiResponse> {
     try {
-      const body = await req.json();
-      const { userId, reason } = body;
+      const { userId, reason } = params;
       
       // 输入验证
       if (!userId || typeof userId !== 'string') {
@@ -182,10 +176,9 @@ export class AccountController {
    * POST /api/account/unfreeze
    * Body: { userId: string, reason: string }
    */
-  async unfreezeAccount(req: Request): Promise<ApiResponse> {
+  async unfreezeAccount(params: any): Promise<ApiResponse> {
     try {
-      const body = await req.json();
-      const { userId, reason } = body;
+      const { userId, reason } = params;
       
       // 输入验证
       if (!userId || typeof userId !== 'string') {
@@ -210,10 +203,9 @@ export class AccountController {
    * 查询交易记录
    * GET /api/account/transactions/:userId
    */
-  async getTransactions(req: Request): Promise<ApiResponse> {
+  async getTransactions(params: any): Promise<ApiResponse> {
     try {
-      const url = new URL(req.url);
-      const userId = url.pathname.split('/').pop();
+      const { userId } = params;
       
       if (!userId) {
         return { success: false, error: '缺少用户ID' };

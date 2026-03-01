@@ -11,10 +11,9 @@ export class AirdropController {
    * POST /api/airdrop/create
    * Body: { name, description, totalAmount, perUserAmount, startTime, endTime }
    */
-  async createAirdrop(req: Request): Promise<ApiResponse> {
+  async createAirdrop(params: any): Promise<ApiResponse> {
     try {
-      const body = await req.json();
-      const { name, description, totalAmount, perUserAmount, startTime, endTime } = body;
+      const { name, description, totalAmount, perUserAmount, startTime, endTime } = params;
 
       return airdropService.createAirdrop(
         name,
@@ -33,6 +32,27 @@ export class AirdropController {
   }
 
   /**
+   * 获取空投详情
+   * GET /api/airdrop/:airdropId
+   */
+  async getAirdrop(params: any): Promise<ApiResponse> {
+    try {
+      const { airdropId } = params;
+      
+      if (!airdropId) {
+        return { success: false, error: '缺少空投ID' };
+      }
+
+      return airdropService.getAirdrop(airdropId);
+    } catch (error) {
+      return { 
+        success: false, 
+        error: error instanceof Error ? error.message : '查询空投失败' 
+      };
+    }
+  }
+
+  /**
    * 获取所有空投
    * GET /api/airdrop/list
    */
@@ -41,18 +61,32 @@ export class AirdropController {
   }
 
   /**
-   * 获取用户可领取的空投
-   * GET /api/airdrop/available/:userId
+   * 获取活跃空投
+   * GET /api/airdrop/active
    */
-  async getAvailableAirdrops(req: Request): Promise<ApiResponse> {
-    const url = new URL(req.url);
-    const userId = url.pathname.split('/').pop();
-    
-    if (!userId) {
-      return { success: false, error: '缺少用户ID' };
-    }
+  async getActiveAirdrops(): Promise<ApiResponse> {
+    return airdropService.getActiveAirdrops();
+  }
 
-    return airdropService.getAvailableAirdrops(userId);
+  /**
+   * 激活空投
+   * POST /api/airdrop/activate/:airdropId
+   */
+  async activateAirdrop(params: any): Promise<ApiResponse> {
+    try {
+      const { airdropId } = params;
+      
+      if (!airdropId) {
+        return { success: false, error: '缺少空投ID' };
+      }
+
+      return airdropService.activateAirdrop(airdropId);
+    } catch (error) {
+      return { 
+        success: false, 
+        error: error instanceof Error ? error.message : '激活空投失败' 
+      };
+    }
   }
 
   /**
@@ -60,10 +94,9 @@ export class AirdropController {
    * POST /api/airdrop/claim
    * Body: { airdropId, userId }
    */
-  async claimAirdrop(req: Request): Promise<ApiResponse> {
+  async claimAirdrop(params: any): Promise<ApiResponse> {
     try {
-      const body = await req.json();
-      const { airdropId, userId } = body;
+      const { airdropId, userId } = params;
 
       if (!airdropId || !userId) {
         return { success: false, error: '缺少必要参数' };
@@ -79,18 +112,45 @@ export class AirdropController {
   }
 
   /**
+   * 检查用户是否可领取
+   * GET /api/airdrop/can-claim/:airdropId/:userId
+   */
+  async canUserClaim(params: any): Promise<ApiResponse> {
+    try {
+      const { airdropId, userId } = params;
+      
+      if (!airdropId || !userId) {
+        return { success: false, error: '缺少必要参数' };
+      }
+
+      return airdropService.canUserClaim(airdropId, userId);
+    } catch (error) {
+      return { 
+        success: false, 
+        error: error instanceof Error ? error.message : '查询失败' 
+      };
+    }
+  }
+
+  /**
    * 获取用户空投领取记录
    * GET /api/airdrop/claims/:userId
    */
-  async getUserClaims(req: Request): Promise<ApiResponse> {
-    const url = new URL(req.url);
-    const userId = url.pathname.split('/').pop();
-    
-    if (!userId) {
-      return { success: false, error: '缺少用户ID' };
-    }
+  async getUserClaims(params: any): Promise<ApiResponse> {
+    try {
+      const { userId } = params;
+      
+      if (!userId) {
+        return { success: false, error: '缺少用户ID' };
+      }
 
-    return airdropService.getUserClaims(userId);
+      return airdropService.getUserClaims(userId);
+    } catch (error) {
+      return { 
+        success: false, 
+        error: error instanceof Error ? error.message : '查询失败' 
+      };
+    }
   }
 }
 
