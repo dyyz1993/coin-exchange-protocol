@@ -2,8 +2,6 @@
  * 空投系统类型定义
  */
 
-import { Transaction } from './common';
-
 export enum AirdropStatus {
   DRAFT = 'draft', // 草稿
   PENDING = 'pending', // 待激活
