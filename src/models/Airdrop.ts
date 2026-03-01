@@ -117,12 +117,13 @@ export class AirdropModel {
       throw new Error('Airdrop is not within the valid time range');
     }
 
-    // 🔥 关键修复：检查剩余金额是否足够
-    const remainingAmount = airdrop.totalAmount - airdrop.claimedAmount;
+    // 🔥 关键修复：基于 claims 计算已领取总额，确保与 Service 层一致
+    const claims = this.getAirdropClaims(airdropId);
+    const totalClaimed = claims.reduce((sum, c) => sum + c.amount, 0);
+    const remainingAmount = airdrop.totalAmount - totalClaimed;
+
     if (remainingAmount < amount) {
-      throw new Error(
-        `Insufficient airdrop balance. Remaining: ${remainingAmount}, Requested: ${amount}`
-      );
+      throw new Error(`空投金额已耗尽，无法继续领取。剩余: ${remainingAmount}, 需要: ${amount}`);
     }
 
     // 🔥 关键修复：检查是否超过每人限额
@@ -151,8 +152,8 @@ export class AirdropModel {
     this.userClaims.get(userId)!.add(airdropId);
 
     // 🔥 关键修复：更新已领取金额和领取人数
-    airdrop.claimedAmount += amount;
-    airdrop.currentClaims += 1;
+    airdrop.claimedAmount = totalClaimed + amount;
+    airdrop.currentClaims = claims.length + 1;
     airdrop.updatedAt = new Date();
 
     return claim;
