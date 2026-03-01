@@ -37,6 +37,19 @@ const server = Bun.serve({
       });
     }
 
+    // 演示页面
+    if (path === '/' || path === '/demo') {
+      try {
+        const file = Bun.file('public/index.html');
+        const html = await file.text();
+        return new Response(html, {
+          headers: { 'Content-Type': 'text/html; charset=utf-8' }
+        });
+      } catch (error) {
+        return new Response('Demo page not found', { status: 404 });
+      }
+    }
+
     // API 文档
     if (path === '/api' || path === '/api/docs') {
       const apiDocs = routes.map(r => ({
