@@ -483,6 +483,68 @@ describe('FreezeService', () => {
       const available = freezeService.getAvailableBalance('non-existent');
       expect(available).toBe(0);
     });
+
+    test('🔴 [Issue #290] 当冻结余额大于总余额时应返回0（边界检查）', async () => {
+      const userId = 'test-user-boundary-001';
+      await accountService.createAccount(userId);
+      await accountService.addTokens(userId, 100, TransactionType.REWARD, '初始奖励');
+
+      // 创建一个冻结
+      const freeze = await freezeService.createInitialFreeze({
+        userId,
+        amount: 100,
+        transactionId: 'tx-boundary-001',
+      });
+
+      // 模拟异常情况：frozenBalance > balance（例如数据损坏、并发问题等）
+      const account = (AccountModel as any).accounts.get(userId);
+      account.balance = 50; // 总余额被错误地减少
+      account.frozenBalance = 100; // 冻结余额保持不变
+
+      // 调用 getAvailableBalance，应该返回 0 而不是 -50
+      const available = freezeService.getAvailableBalance(userId);
+
+      // ✅ 验证：可用余额应该 >= 0，不应该返回负数
+      expect(available).toBe(0);
+      expect(available).toBeGreaterThanOrEqual(0);
+
+      // 清理
+      await freezeService.unfreeze(freeze.id, '清理');
+    });
+
+    test('🔴 [Issue #290] 应该记录异常情况的错误日志', async () => {
+      const userId = 'test-user-boundary-002';
+      await accountService.createAccount(userId);
+      await accountService.addTokens(userId, 100, TransactionType.REWARD, '初始奖励');
+
+      const freeze = await freezeService.createInitialFreeze({
+        userId,
+        amount: 100,
+        transactionId: 'tx-boundary-002',
+      });
+
+      // 模拟异常数据
+      const account = (AccountModel as any).accounts.get(userId);
+      account.balance = 30;
+      account.frozenBalance = 100;
+
+      // 监听 console.error
+      const consoleSpy = jest.spyOn(console, 'error').mockImplementation();
+
+      const available = freezeService.getAvailableBalance(userId);
+
+      // 验证应该输出错误日志
+      expect(consoleSpy).toHaveBeenCalledWith(
+        expect.stringContaining('检测到异常数据'),
+        expect.any(String)
+      );
+
+      expect(available).toBe(0);
+
+      // 清理
+      consoleSpy.mockRestore();
+      await freezeService.unfreeze(freeze.id, '清理');
+    });
   });
 
   describe('canFreeze', () => {
