@@ -62,6 +62,7 @@ export interface Dispute {
   resolution?: string; // 解决方案
   resolvedBy?: string; // 处理人ID
   resolvedAt?: Date; // 解决时间
+  version: number; // 乐观锁版本号，用于并发控制
   createdAt: Date;
   updatedAt: Date;
 }

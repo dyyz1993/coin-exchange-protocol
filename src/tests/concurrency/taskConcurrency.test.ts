@@ -23,7 +23,7 @@ describe('TaskModel Concurrency Race Condition Tests', () => {
    */
   test('🔴 BUG: Concurrent completions can exceed maxCompletions limit', async () => {
     // 创建一个只允许完成 5 次的任务
-    const task = taskModel.createTask({
+    const task = await taskModel.createTask({
       title: 'Test Task',
       description: 'Test concurrency',
       reward: 100,
@@ -33,7 +33,7 @@ describe('TaskModel Concurrency Race Condition Tests', () => {
     });
 
     // 激活任务
-    taskModel.updateTaskStatus(task.id, TaskStatus.ACTIVE);
+    await taskModel.updateTaskStatus(task.id, TaskStatus.ACTIVE, task.version);
 
     // 模拟 10 个用户同时完成任务
     const userIds = Array.from({ length: 10 }, (_, i) => `user_${i}`);
@@ -86,7 +86,7 @@ describe('TaskModel Concurrency Race Condition Tests', () => {
    * 增加竞态条件的触发概率
    */
   test('🔴 BUG: Race condition with delayed execution', async () => {
-    const task = taskModel.createTask({
+    const task = await taskModel.createTask({
       title: 'Race Condition Test',
       description: 'Test with delays',
       reward: 50,
@@ -95,7 +95,7 @@ describe('TaskModel Concurrency Race Condition Tests', () => {
       endTime: new Date(Date.now() + 10000),
     });
 
-    taskModel.updateTaskStatus(task.id, TaskStatus.ACTIVE);
+    await taskModel.updateTaskStatus(task.id, TaskStatus.ACTIVE, task.version);
 
     // 使用 setTimeout(0) 让所有请求几乎同时执行
     const concurrentRequests = 8;
@@ -138,7 +138,7 @@ describe('TaskModel Concurrency Race Condition Tests', () => {
    * 测试3: 连续快速调用 - 更容易触发竞态
    */
   test('🔴 BUG: Rapid sequential calls may still race', () => {
-    const task = taskModel.createTask({
+    const task = await taskModel.createTask({
       title: 'Rapid Fire Test',
       description: 'Test rapid calls',
       reward: 10,
@@ -147,7 +147,7 @@ describe('TaskModel Concurrency Race Condition Tests', () => {
       endTime: new Date(Date.now() + 10000),
     });
 
-    taskModel.updateTaskStatus(task.id, TaskStatus.ACTIVE);
+    await taskModel.updateTaskStatus(task.id, TaskStatus.ACTIVE, task.version);
 
     // 快速连续调用
     const results: any[] = [];
