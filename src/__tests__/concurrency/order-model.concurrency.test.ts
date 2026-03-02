@@ -175,7 +175,7 @@ describe('OrderModel Concurrency Safety Tests', () => {
   });
 
   describe('Dispute Creation Concurrency Tests', () => {
-    test('并发创建争议时，订单状态应该正确更新', () => {
+    test('并发创建争议时，订单状态应该正确更新', async () => {
       const order = orderModel.createOrder({
         buyerId: 'user1',
         sellerId: 'user2',
@@ -191,8 +191,8 @@ describe('OrderModel Concurrency Safety Tests', () => {
       orderModel.updateOrderStatus(order.id, OrderStatus.PAID);
       orderModel.updateOrderStatus(order.id, OrderStatus.CONFIRMED);
 
-      // 创建争议
-      const dispute = orderModel.createDispute({
+      // 创建争议（异步操作）
+      const dispute = await orderModel.createDispute({
         orderId: order.id,
         raisedBy: 'user1',
         reason: 'Item not received',
@@ -204,6 +204,87 @@ describe('OrderModel Concurrency Safety Tests', () => {
       expect(updatedOrder?.status).toBe(OrderStatus.DISPUTED);
       expect(updatedOrder?.disputeId).toBe(dispute.id);
       expect(updatedOrder?.version).toBeGreaterThan(1);
+    });
+
+    test('并发创建争议时，只应该成功一个（互斥锁保护）', async () => {
+      const order = orderModel.createOrder({
+        buyerId: 'user1',
+        sellerId: 'user2',
+        amount: 100,
+        price: 10,
+        currency: 'USD',
+        description: 'Test order',
+        buyerInfo: { name: 'Buyer', contact: 'buyer@test.com' },
+      });
+
+      // 先将订单状态改为 CONFIRMED
+      orderModel.updateOrderStatus(order.id, OrderStatus.PENDING_PAYMENT);
+      orderModel.updateOrderStatus(order.id, OrderStatus.PAID);
+      orderModel.updateOrderStatus(order.id, OrderStatus.CONFIRMED);
+
+      // 模拟10个并发请求创建争议
+      const concurrentCreates = Array(10)
+        .fill(null)
+        .map((_, index) => {
+          return orderModel
+            .createDispute({
+              orderId: order.id,
+              raisedBy: 'user1',
+              reason: `Dispute reason ${index}`,
+              description: 'Test dispute',
+            })
+            .then(() => ({ success: true, index }))
+            .catch(() => ({ success: false, index }));
+        });
+
+      const results = await Promise.all(concurrentCreates);
+      const successCount = results.filter((r) => r.success).length;
+      const failureCount = results.filter((r) => !r.success).length;
+
+      // 只有一个应该成功
+      expect(successCount).toBe(1);
+      expect(failureCount).toBe(9);
+
+      // 验证最终状态
+      const finalOrder = orderModel.getOrder(order.id);
+      expect(finalOrder?.status).toBe(OrderStatus.DISPUTED);
+      expect(finalOrder?.disputeId).toBeTruthy();
+    });
+
+    test('重复创建争议应该被拒绝（幂等性检查）', async () => {
+      const order = orderModel.createOrder({
+        buyerId: 'user1',
+        sellerId: 'user2',
+        amount: 100,
+        price: 10,
+        currency: 'USD',
+        description: 'Test order',
+        buyerInfo: { name: 'Buyer', contact: 'buyer@test.com' },
+      });
+
+      // 先将订单状态改为 CONFIRMED
+      orderModel.updateOrderStatus(order.id, OrderStatus.PENDING_PAYMENT);
+      orderModel.updateOrderStatus(order.id, OrderStatus.PAID);
+      orderModel.updateOrderStatus(order.id, OrderStatus.CONFIRMED);
+
+      // 第一次创建应该成功
+      const dispute1 = await orderModel.createDispute({
+        orderId: order.id,
+        raisedBy: 'user1',
+        reason: 'First dispute',
+        description: 'Test dispute',
+      });
+      expect(dispute1).toBeTruthy();
+
+      // 第二次创建应该失败
+      await expect(
+        orderModel.createDispute({
+          orderId: order.id,
+          raisedBy: 'user1',
+          reason: 'Second dispute',
+          description: 'Test dispute',
+        })
+      ).rejects.toThrow('Order already has a dispute');
     });
   });
 
