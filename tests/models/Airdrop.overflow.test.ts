@@ -27,9 +27,6 @@ describe('AirdropModel - Overflow Protection (P0)', () => {
 
       airdropModel.updateAirdropStatus(airdrop.id, AirdropStatus.ACTIVE);
 
-      // 模拟大量领取，尝试触发溢出
-      const claimCount = Math.floor(largeAmount / 100) + 1;
-
       // 创建大量领取记录以触发溢出
       for (let i = 0; i < 20; i++) {
         try {
