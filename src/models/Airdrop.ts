@@ -3,6 +3,7 @@
  */
 
 import { Airdrop, AirdropClaim, AirdropStatus } from '../types';
+import { Mutex } from 'async-mutex';
 
 /**
  * 🔥 P0 溢出保护：安全加法函数
@@ -31,7 +32,17 @@ export class AirdropModel {
   private airdrops: Map<string, Airdrop> = new Map();
   private claims: Map<string, AirdropClaim> = new Map();
   private userClaims: Map<string, Set<string>> = new Map(); // userId -> Set<airdropId>
-  private airdropLocks: Map<string, boolean> = new Map(); // 🔥 P0修复: 空投锁机制（并发安全）
+  private airdropMutexes: Map<string, Mutex> = new Map(); // 🔥 P0修复: 空投级别的并发锁（async-mutex）
+
+  /**
+   * 获取或创建空投的 Mutex
+   */
+  private getAirdropMutex(airdropId: string): Mutex {
+    if (!this.airdropMutexes.has(airdropId)) {
+      this.airdropMutexes.set(airdropId, new Mutex());
+    }
+    return this.airdropMutexes.get(airdropId)!;
+  }
 
   /**
    * 创建空投活动
@@ -112,26 +123,22 @@ export class AirdropModel {
    */
   hasUserClaimed(userId: string, airdropId: string): boolean {
     const userClaimSet = this.userClaims.get(userId);
-    if (!userClaimSet) return false;
+    if (!userClaimSet) {
+      return false;
+    }
     return userClaimSet.has(airdropId);
   }
 
   /**
    * 记录空投领取（P0 并发安全修复 + 余额超发漏洞修复）
+   * 🔥 Issue #351: 修复自旋锁死锁问题，使用 async-mutex
    */
-  createClaim(airdropId: string, userId: string, _amount: number): AirdropClaim {
-    // 🔥 P0 修复：获取空投级别的锁，防止并发问题
-    while (this.airdropLocks.get(airdropId)) {
-      // 简单的自旋锁等待（生产环境建议使用 async-mutex）
-      // 这里因为单线程环境，短暂等待即可
-      const wait = new Int32Array(new SharedArrayBuffer(4));
-      Atomics.wait(wait, 0, 0, 10);
-    }
+  async createClaim(airdropId: string, userId: string, _amount: number): Promise<AirdropClaim> {
+    // 🔥 P0 修复：使用 async-mutex 替代自旋锁，避免死锁
+    const mutex = this.getAirdropMutex(airdropId);
+    const release = await mutex.acquire();
 
     try {
-      // 加锁
-      this.airdropLocks.set(airdropId, true);
-
       const airdrop = this.getAirdrop(airdropId);
       if (!airdrop) {
         throw new Error('Airdrop not found');
@@ -195,8 +202,8 @@ export class AirdropModel {
 
       return claim;
     } finally {
-      // 解锁
-      this.airdropLocks.delete(airdropId);
+      // 🔥 P0 修复：释放 async-mutex 锁
+      release();
     }
   }
 
