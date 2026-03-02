@@ -34,6 +34,7 @@ export interface Task {
   currentCompletions: number; // 当前完成人数
   startTime: Date; // 开始时间
   endTime: Date; // 结束时间
+  version?: number; // 乐观锁版本号
   createdAt: Date;
   updatedAt: Date;
 }
