@@ -69,7 +69,7 @@ export class TaskModel {
    */
   private async getUserTaskMutex(userId: string, taskId: string): Promise<Mutex> {
     const userTaskKey = `${userId}:${taskId}`;
-    
+
     // 快速路径：如果已存在直接返回
     if (this.userTaskLocks.has(userTaskKey)) {
       return this.userTaskLocks.get(userTaskKey)!;
@@ -204,18 +204,9 @@ export class TaskModel {
     userId: string,
     expectedVersion?: number
   ): Promise<TaskCompletion> {
-    // 获取任务锁
-    if (!this.taskLocks.has(taskId)) {
-      this.taskLocks.set(taskId, new Mutex());
-    }
-    const taskLock = this.taskLocks.get(taskId)!;
-
-    // 获取用户-任务锁（防止同一用户并发完成同一任务）
-    const userTaskKey = `${userId}:${taskId}`;
-    if (!this.userTaskLocks.has(userTaskKey)) {
-      this.userTaskLocks.set(userTaskKey, new Mutex());
-    }
-    const userTaskLock = this.userTaskLocks.get(userTaskKey)!;
+    // 🔥 P0 修复：使用全局锁保护的 Mutex 获取方法（解决 TOCTOU 竞态）
+    const taskLock = await this.getTaskMutex(taskId);
+    const userTaskLock = await this.getUserTaskMutex(userId, taskId);
 
     // 先获取用户-任务锁，再获取任务锁（避免死锁）
     await userTaskLock.lock();
