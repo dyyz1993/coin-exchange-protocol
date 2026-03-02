@@ -3,15 +3,13 @@
  * 测试空投创建、领取、状态管理等核心功能
  */
 
-import { describe, test, expect, beforeEach } from 'vitest';
+import { describe, test, expect, beforeEach } from '@jest/globals';
 import { airdropService } from '../services/airdrop.service';
-import { airdropModel } from '../models/Airdrop';
 import { accountModel } from '../models/Account';
 import { AirdropStatus } from '../types';
 
 describe('空投服务测试', () => {
   const testUserId = 'test-user-airdrop';
-  const adminUserId = 'admin-user';
 
   beforeEach(() => {
     // 重置测试数据
