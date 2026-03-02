@@ -5,13 +5,11 @@
 
 import { describe, test, expect, beforeEach } from 'vitest';
 import { taskService } from '../services/task.service';
-import { taskModel } from '../models/Task';
 import { accountModel } from '../models/Account';
 import { TaskStatus } from '../types';
 
 describe('任务服务测试', () => {
   const testUserId = 'test-user-task';
-  const adminUserId = 'admin-user';
 
   beforeEach(() => {
     // 重置测试数据
