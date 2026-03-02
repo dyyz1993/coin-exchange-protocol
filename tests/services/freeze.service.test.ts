@@ -3,10 +3,8 @@
  * 验证 Issue #290 修复：getAvailableBalance 计算逻辑
  */
 
-import { describe, it, expect, beforeEach } from 'vitest';
 import { freezeService } from '../../src/services/freeze.service';
 import { accountModel } from '../../src/models/Account';
-import { freezeModel } from '../../src/models/Freeze';
 
 describe('FreezeService - getAvailableBalance', () => {
   const testUserId = 'test-user-balance';
