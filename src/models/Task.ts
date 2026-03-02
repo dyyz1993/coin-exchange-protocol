@@ -34,6 +34,7 @@ export class TaskModel {
       status: TaskStatus.DRAFT,
       startTime: params.startTime,
       endTime: params.endTime,
+      version: 1, // 初始版本号
       createdAt: new Date(),
       updatedAt: new Date(),
     };
@@ -44,44 +45,70 @@ export class TaskModel {
   }
 
   /**
-   * 获取任务
+   * 获取任务（返回深拷贝，防止外部修改影响内部数据）
    */
   getTask(taskId: string): Task | undefined {
-    return this.tasks.get(taskId);
+    const task = this.tasks.get(taskId);
+    if (!task) {
+      return undefined;
+    }
+
+    // 返回深拷贝，防止外部修改影响内部数据，确保乐观锁机制有效
+    return JSON.parse(JSON.stringify(task));
   }
 
   /**
-   * 获取所有任务
+   * 获取所有任务（返回深拷贝数组）
    */
   getAllTasks(): Task[] {
-    return Array.from(this.tasks.values());
+    // 返回深拷贝数组，防止外部修改影响内部数据
+    return Array.from(this.tasks.values()).map((task) => JSON.parse(JSON.stringify(task)));
   }
 
   /**
-   * 获取活跃任务
+   * 获取活跃任务（返回深拷贝数组）
    */
   getActiveTasks(): Task[] {
     const now = new Date();
-    return Array.from(this.tasks.values()).filter((task) => {
-      return (
-        task.status === TaskStatus.ACTIVE &&
-        task.startTime <= now &&
-        task.endTime >= now &&
-        task.currentCompletions < task.maxCompletions
-      );
-    });
+    // 返回深拷贝数组，防止外部修改影响内部数据
+    return Array.from(this.tasks.values())
+      .filter((task) => {
+        return (
+          task.status === TaskStatus.ACTIVE &&
+          task.startTime <= now &&
+          task.endTime >= now &&
+          task.currentCompletions < task.maxCompletions
+        );
+      })
+      .map((task) => JSON.parse(JSON.stringify(task)));
   }
 
   /**
-   * 更新任务状态
+   * 更新任务状态（带乐观锁）
+   * @param taskId 任务ID
+   * @param status 新状态
+   * @param expectedVersion 预期版本号（乐观锁）
+   * @returns 更新后的任务
+   * @throws 如果任务不存在或版本号不匹配
    */
-  updateTaskStatus(taskId: string, status: TaskStatus): Task {
+  updateTaskStatus(taskId: string, status: TaskStatus, expectedVersion?: number): Task {
     const task = this.tasks.get(taskId);
     if (!task) {
       throw new Error('Task not found');
     }
 
+    // 乐观锁验证
+    if (expectedVersion !== undefined && task.version !== expectedVersion) {
+      throw new Error(
+        `Concurrent modification detected. Expected version ${expectedVersion}, but current is ${task.version}`
+      );
+    }
+
+    // 更新状态和版本号
     task.status = status;
+    task.version = (task.version || 1) + 1;
+    task.updatedAt = new Date();
+
     return task;
   }
 
@@ -90,7 +117,9 @@ export class TaskModel {
    */
   hasUserCompleted(userId: string, taskId: string): boolean {
     const userTaskSet = this.userTaskCompletions.get(userId);
-    if (!userTaskSet) return false;
+    if (!userTaskSet) {
+      return false;
+    }
     return userTaskSet.has(taskId);
   }
 
@@ -98,7 +127,7 @@ export class TaskModel {
    * 创建任务完成记录
    */
   createCompletion(taskId: string, userId: string): TaskCompletion {
-    const task = this.getTask(taskId);
+    const task = this.tasks.get(taskId); // 直接获取内部引用
     if (!task) {
       throw new Error('Task not found');
     }
@@ -143,8 +172,10 @@ export class TaskModel {
     }
     this.userTaskCompletions.get(userId)!.add(taskId);
 
-    // 更新任务完成次数
+    // 更新任务完成次数和版本号（原子操作）
     task.currentCompletions++;
+    task.version = (task.version || 1) + 1;
+    task.updatedAt = new Date();
 
     return completion;
   }
