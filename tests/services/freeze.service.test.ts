@@ -483,6 +483,21 @@ describe('FreezeService', () => {
       const available = freezeService.getAvailableBalance('non-existent');
       expect(available).toBe(0);
     });
+
+    test('🔴 [Issue #299] 应该防止负数余额（边界保护）', async () => {
+      const userId = 'test-user-boundary';
+      await accountService.createAccount(userId);
+      await accountService.addTokens(userId, 100, TransactionType.REWARD, '初始奖励');
+
+      // 模拟数据不一致：frozenBalance > balance
+      const account = (AccountModel as any).accounts.get(userId);
+      account.frozenBalance = 150; // 冻结金额大于总余额
+
+      // 应该返回 0 而不是负数
+      const available = freezeService.getAvailableBalance(userId);
+      expect(available).toBe(0);
+      expect(available).toBeGreaterThanOrEqual(0); // 确保非负
+    });
   });
 
   describe('canFreeze', () => {
