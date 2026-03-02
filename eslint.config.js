@@ -45,6 +45,7 @@ module.exports = [
         afterEach: 'readonly',
         beforeAll: 'readonly',
         afterAll: 'readonly',
+        fail: 'readonly',
         // Bun globals
         Bun: 'readonly',
         Request: 'readonly',
@@ -59,6 +60,19 @@ module.exports = [
         clearInterval: 'readonly',
         setImmediate: 'readonly',
         clearImmediate: 'readonly',
+        // Browser globals
+        document: 'readonly',
+        window: 'readonly',
+        HTMLElement: 'readonly',
+        HTMLInputElement: 'readonly',
+        HTMLTextAreaElement: 'readonly',
+        HTMLSelectElement: 'readonly',
+        HTMLButtonElement: 'readonly',
+        HTMLDivElement: 'readonly',
+        Event: 'readonly',
+        EventTarget: 'readonly',
+        // Node.js globals
+        NodeJS: 'readonly',
       },
     },
     plugins: {
@@ -88,6 +102,7 @@ module.exports = [
     rules: {
       '@typescript-eslint/no-explicit-any': 'off',
       '@typescript-eslint/no-non-null-assertion': 'off',
+      'no-console': 'off', // 允许测试文件使用 console
     },
   },
 ];

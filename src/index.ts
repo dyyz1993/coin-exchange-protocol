@@ -11,7 +11,7 @@ const PORT = process.env.PORT || 3000;
 /**
  * 创建 HTTP 服务器
  */
-const server = Bun.serve({
+Bun.serve({
   port: PORT,
   async fetch(req: Request): Promise<Response> {
     const url = new URL(req.url);
