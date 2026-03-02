@@ -11,6 +11,9 @@ export * from './airdrop';
 // 任务类型
 export * from './task';
 
+// 订单类型
+export * from './order';
+
 // 冻结类型
 export * from './freeze';
 
