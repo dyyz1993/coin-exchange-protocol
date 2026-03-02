@@ -5,6 +5,7 @@
 import { airdropModel } from '../models/Airdrop';
 import { accountService } from './account.service';
 import { AirdropStatus, TransactionType } from '../types';
+import { taskLockManager } from '../utils/AsyncLock';
 
 export class AirdropService {
   /**
@@ -71,6 +72,7 @@ export class AirdropService {
 
   /**
    * 用户领取空投
+   * 🔒 使用互斥锁保护整个领取流程，防止竞态条件
    */
   async claimAirdrop(
     airdropId: string,
@@ -81,58 +83,61 @@ export class AirdropService {
     claimId: string;
     newBalance: number;
   }> {
-    const airdrop = airdropModel.getAirdrop(airdropId);
-    if (!airdrop) {
-      throw new Error('空投活动不存在');
-    }
+    // 🔒 使用空投ID作为锁的key，确保同一空投的领取操作串行执行
+    return await taskLockManager.withTaskLock(`airdrop:${airdropId}`, async () => {
+      const airdrop = airdropModel.getAirdrop(airdropId);
+      if (!airdrop) {
+        throw new Error('空投活动不存在');
+      }
 
-    // 检查是否已领取
-    if (airdropModel.hasUserClaimed(userId, airdropId)) {
-      throw new Error('您已经领取过此空投');
-    }
+      // 检查是否已领取
+      if (airdropModel.hasUserClaimed(userId, airdropId)) {
+        throw new Error('您已经领取过此空投');
+      }
 
-    // 检查空投状态和时间
-    const now = new Date();
-    if (airdrop.status !== AirdropStatus.ACTIVE) {
-      throw new Error('空投活动未激活');
-    }
+      // 检查空投状态和时间
+      const now = new Date();
+      if (airdrop.status !== AirdropStatus.ACTIVE) {
+        throw new Error('空投活动未激活');
+      }
 
-    if (now < airdrop.startTime) {
-      throw new Error('空投活动尚未开始');
-    }
+      if (now < airdrop.startTime) {
+        throw new Error('空投活动尚未开始');
+      }
 
-    if (now > airdrop.endTime) {
-      throw new Error('空投活动已结束');
-    }
+      if (now > airdrop.endTime) {
+        throw new Error('空投活动已结束');
+      }
 
-    // 🔥 修复 Issue #201：直接使用 Model 维护的 claimedAmount，避免重复计算
-    // Model.createClaim() 内部会进行更严格的检查
-    const remainingAmount = airdrop.totalAmount - airdrop.claimedAmount;
+      // 🔥 修复 Issue #300：在锁内检查剩余金额，防止竞态条件
+      // 使用 Model 维护的 claimedAmount，避免重复计算
+      const remainingAmount = airdrop.totalAmount - airdrop.claimedAmount;
 
-    if (remainingAmount < airdrop.perUserAmount) {
-      throw new Error(
-        `空投金额已耗尽。剩余: ${remainingAmount}, 每人可领取: ${airdrop.perUserAmount}`
+      if (remainingAmount < airdrop.perUserAmount) {
+        throw new Error(
+          `空投金额已耗尽。剩余: ${remainingAmount}, 每人可领取: ${airdrop.perUserAmount}`
+        );
+      }
+
+      // 🔒 在锁内创建领取记录，确保原子性
+      const claim = airdropModel.createClaim(airdropId, userId, airdrop.perUserAmount);
+
+      // 增加用户代币
+      const result = await accountService.addTokens(
+        userId,
+        airdrop.perUserAmount,
+        TransactionType.AIRDROP,
+        `空投奖励: ${airdrop.name}`,
+        claim.id
       );
-    }
 
-    // 创建领取记录
-    const claim = airdropModel.createClaim(airdropId, userId, airdrop.perUserAmount);
-
-    // 增加用户代币
-    const result = await accountService.addTokens(
-      userId,
-      airdrop.perUserAmount,
-      TransactionType.AIRDROP,
-      `空投奖励: ${airdrop.name}`,
-      claim.id
-    );
-
-    return {
-      success: true,
-      amount: airdrop.perUserAmount,
-      claimId: claim.id,
-      newBalance: result.newBalance,
-    };
+      return {
+        success: true,
+        amount: airdrop.perUserAmount,
+        claimId: claim.id,
+        newBalance: result.newBalance,
+      };
+    });
   }
 
   /**
