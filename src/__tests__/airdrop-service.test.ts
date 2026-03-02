@@ -5,13 +5,11 @@
 
 import { describe, test, expect, beforeEach } from 'vitest';
 import { airdropService } from '../services/airdrop.service';
-import { airdropModel } from '../models/Airdrop';
 import { accountModel } from '../models/Account';
 import { AirdropStatus } from '../types';
 
 describe('空投服务测试', () => {
   const testUserId = 'test-user-airdrop';
-  const adminUserId = 'admin-user';
 
   beforeEach(() => {
     // 重置测试数据
