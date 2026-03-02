@@ -27,11 +27,50 @@ function safeSubtract(a: number, b: number): number {
   return result;
 }
 
+/**
+ * 🔥 P1 并发安全：简单的异步互斥锁
+ * 使用 Promise 实现公平锁，避免自旋锁的 CPU 浪费
+ */
+class AsyncMutex {
+  private locked = false;
+  private queue: Array<() => void> = [];
+
+  async acquire(): Promise<void> {
+    if (!this.locked) {
+      this.locked = true;
+      return;
+    }
+
+    return new Promise<void>((resolve) => {
+      this.queue.push(resolve);
+    });
+  }
+
+  release(): void {
+    const next = this.queue.shift();
+    if (next) {
+      next();
+    } else {
+      this.locked = false;
+    }
+  }
+}
+
 export class AirdropModel {
   private airdrops: Map<string, Airdrop> = new Map();
   private claims: Map<string, AirdropClaim> = new Map();
   private userClaims: Map<string, Set<string>> = new Map(); // userId -> Set<airdropId>
-  private airdropLocks: Map<string, boolean> = new Map(); // 🔥 P0修复: 空投锁机制（并发安全）
+  private airdropLocks: Map<string, AsyncMutex> = new Map(); // 🔥 P1 修复：使用异步互斥锁替代自旋锁
+
+  /**
+   * 获取或创建空投锁
+   */
+  private getAirdropLock(airdropId: string): AsyncMutex {
+    if (!this.airdropLocks.has(airdropId)) {
+      this.airdropLocks.set(airdropId, new AsyncMutex());
+    }
+    return this.airdropLocks.get(airdropId)!;
+  }
 
   /**
    * 创建空投活动
@@ -112,32 +151,28 @@ export class AirdropModel {
    */
   hasUserClaimed(userId: string, airdropId: string): boolean {
     const userClaimSet = this.userClaims.get(userId);
-    if (!userClaimSet) return false;
+    if (!userClaimSet) {
+      return false;
+    }
     return userClaimSet.has(airdropId);
   }
 
   /**
    * 记录空投领取（P0 并发安全修复 + 余额超发漏洞修复）
+   * 🔥 P1 修复：使用异步互斥锁替代自旋锁，避免 CPU 浪费和潜在的竞态条件
    */
-  createClaim(airdropId: string, userId: string, _amount: number): AirdropClaim {
-    // 🔥 P0 修复：获取空投级别的锁，防止并发问题
-    while (this.airdropLocks.get(airdropId)) {
-      // 简单的自旋锁等待（生产环境建议使用 async-mutex）
-      // 这里因为单线程环境，短暂等待即可
-      const wait = new Int32Array(new SharedArrayBuffer(4));
-      Atomics.wait(wait, 0, 0, 10);
-    }
+  async createClaim(airdropId: string, userId: string, _amount: number): Promise<AirdropClaim> {
+    const lock = this.getAirdropLock(airdropId);
+
+    await lock.acquire();
 
     try {
-      // 加锁
-      this.airdropLocks.set(airdropId, true);
-
       const airdrop = this.getAirdrop(airdropId);
       if (!airdrop) {
         throw new Error('Airdrop not found');
       }
 
-      // 检查是否已领取（幂等性检查 - 防重放攻击）
+      // 🔥 P1 修复：在锁内检查是否已领取，防止并发重复领取
       if (this.hasUserClaimed(userId, airdropId)) {
         throw new Error('User has already claimed this airdrop');
       }
@@ -156,7 +191,7 @@ export class AirdropModel {
       // 🔥 P0 超发漏洞修复：强制使用 perUserAmount，忽略传入的 amount
       const claimAmount = airdrop.perUserAmount;
 
-      // 🔥 P0 修复：检查剩余余额（基于 claims 的总额检查）
+      // 🔥 P1 修复：在锁内检查剩余余额，防止并发超发
       const claims = this.getAirdropClaims(airdropId);
       // 🔥 P0 溢出保护：使用安全加法
       const totalClaimed = claims.reduce((sum, claim) => safeAdd(sum, claim.amount), 0);
@@ -195,8 +230,7 @@ export class AirdropModel {
 
       return claim;
     } finally {
-      // 解锁
-      this.airdropLocks.delete(airdropId);
+      lock.release();
     }
   }
 
