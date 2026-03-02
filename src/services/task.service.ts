@@ -162,8 +162,8 @@ export class TaskService {
       throw new Error('任务已完成次数已达上限');
     }
 
-    // 创建完成记录
-    const completion = taskModel.createCompletion(taskId, userId);
+    // 创建完成记录（异步，带并发保护）
+    const completion = await taskModel.createCompletion(taskId, userId);
 
     // 发放奖励
     const result = await accountService.addTokens(
@@ -322,14 +322,22 @@ export class TaskService {
         const completions = taskModel.getTaskCompletions(taskId);
         totalRewardsDistributed = completions.reduce((sum, c) => sum + c.reward, 0);
 
-        if (task.status === TaskStatus.ACTIVE) activeTasks = 1;
-        if (task.status === TaskStatus.COMPLETED) completedTasks = 1;
+        if (task.status === TaskStatus.ACTIVE) {
+          activeTasks = 1;
+        }
+        if (task.status === TaskStatus.COMPLETED) {
+          completedTasks = 1;
+        }
       }
     } else {
       // 所有任务统计
       for (const task of allTasks) {
-        if (task.status === TaskStatus.ACTIVE) activeTasks++;
-        if (task.status === TaskStatus.COMPLETED) completedTasks++;
+        if (task.status === TaskStatus.ACTIVE) {
+          activeTasks++;
+        }
+        if (task.status === TaskStatus.COMPLETED) {
+          completedTasks++;
+        }
 
         const completions = taskModel.getTaskCompletions(task.id);
         totalRewardsDistributed += completions.reduce((sum, c) => sum + c.reward, 0);
