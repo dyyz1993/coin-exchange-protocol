@@ -78,7 +78,7 @@ export class OrderModel {
    */
   getOrder(orderId: string): Order | undefined {
     const order = this.orders.get(orderId);
-    if (!order) return undefined;
+    if (!order) {return undefined;}
 
     // 返回深拷贝，防止外部修改影响内部数据，确保乐观锁机制有效
     return JSON.parse(JSON.stringify(order));
@@ -323,7 +323,7 @@ export class OrderModel {
    */
   getDispute(disputeId: string): Dispute | undefined {
     const dispute = this.disputes.get(disputeId);
-    if (!dispute) return undefined;
+    if (!dispute) {return undefined;}
 
     // 返回深拷贝，防止外部修改影响内部数据
     return JSON.parse(JSON.stringify(dispute));

@@ -14,7 +14,7 @@ describe('TaskModel Concurrency Safety Tests', () => {
   });
 
   describe('⚠️ CRITICAL: Race Condition in createCompletion', () => {
-    test('BUG: 并发完成任务可能导致超出最大完成次数（竞态条件）', async () => {
+    test('✅ 修复后：并发完成任务不会超出最大完成次数', async () => {
       // 创建一个只允许完成 2 次的任务
       const task = taskModel.createTask({
         title: 'Limited Task',
@@ -32,39 +32,30 @@ describe('TaskModel Concurrency Safety Tests', () => {
       const concurrentCompletions = Array(10)
         .fill(null)
         .map((_, index) => {
-          return new Promise<{ success: boolean; userId: string }>((resolve) => {
-            try {
-              const userId = `user_${index}`;
-              taskModel.createCompletion(task.id, userId);
-              resolve({ success: true, userId });
-            } catch (error) {
-              resolve({ success: false, userId: `user_${index}` });
-            }
-          });
+          return taskModel
+            .createCompletion(task.id, `user_${index}`)
+            .then(() => ({ success: true, userId: `user_${index}` }))
+            .catch(() => ({ success: false, userId: `user_${index}` }));
         });
 
       const results = await Promise.all(concurrentCompletions);
       const successCount = results.filter((r) => r.success).length;
 
-      // 🔴 BUG: currentCompletions 可能超过 maxCompletions
+      // ✅ 修复后：currentCompletions 应该等于 maxCompletions
       const finalTask = taskModel.getTask(task.id);
 
       console.log('Success count:', successCount);
       console.log('Final currentCompletions:', finalTask?.currentCompletions);
       console.log('Max completions:', finalTask?.maxCompletions);
 
-      // 这个断言可能会失败，因为存在竞态条件
-      // 预期: successCount <= 2
-      // 实际: successCount 可能 > 2
-      if (finalTask!.currentCompletions > finalTask!.maxCompletions) {
-        console.error('🔴 CRITICAL BUG DETECTED: Task completions exceeded maximum!');
-        console.error(
-          `Expected: <= ${finalTask!.maxCompletions}, Actual: ${finalTask!.currentCompletions}`
-        );
-      }
+      // ✅ 断言：成功次数应该 <= maxCompletions
+      expect(successCount).toBeLessThanOrEqual(2);
+      expect(finalTask?.currentCompletions).toBeLessThanOrEqual(2);
+
+      console.log('✅ 并发控制生效：没有超出最大完成次数');
     });
 
-    test('BUG: 并发时用户可能重复完成同一任务', async () => {
+    test('✅ 修复后：并发时用户不能重复完成同一任务', async () => {
       const task = taskModel.createTask({
         title: 'Test Task',
         description: 'Test task',
@@ -81,28 +72,23 @@ describe('TaskModel Concurrency Safety Tests', () => {
       const concurrentCompletions = Array(5)
         .fill(null)
         .map(() => {
-          return new Promise<{ success: boolean }>((resolve) => {
-            try {
-              taskModel.createCompletion(task.id, userId);
-              resolve({ success: true });
-            } catch (error) {
-              resolve({ success: false });
-            }
-          });
+          return taskModel
+            .createCompletion(task.id, userId)
+            .then(() => ({ success: true }))
+            .catch(() => ({ success: false }));
         });
 
       const results = await Promise.all(concurrentCompletions);
       const successCount = results.filter((r) => r.success).length;
 
-      // 🔴 BUG: 同一用户可能多次成功完成任务
-      if (successCount > 1) {
-        console.error('🔴 CRITICAL BUG DETECTED: User completed same task multiple times!');
-        console.error(`Expected: 1 success, Actual: ${successCount} successes`);
-      }
+      // ✅ 修复后：只有 1 个请求成功
+      expect(successCount).toBe(1);
 
       // 检查用户的完成记录
       const userCompletions = taskModel.getUserCompletions(userId);
-      console.log('User completion count:', userCompletions.length);
+      expect(userCompletions.length).toBe(1);
+
+      console.log('✅ 并发控制生效：用户只能完成一次任务');
     });
   });
 
@@ -132,7 +118,7 @@ describe('TaskModel Concurrency Safety Tests', () => {
   });
 
   describe('Data Integrity Tests', () => {
-    test('任务完成计数器应该准确反映实际完成次数', () => {
+    test('任务完成计数器应该准确反映实际完成次数', async () => {
       const task = taskModel.createTask({
         title: 'Test Task',
         description: 'Test task',
@@ -146,7 +132,7 @@ describe('TaskModel Concurrency Safety Tests', () => {
 
       // 串行完成 5 次
       for (let i = 0; i < 5; i++) {
-        taskModel.createCompletion(task.id, `user_${i}`);
+        await taskModel.createCompletion(task.id, `user_${i}`);
       }
 
       const finalTask = taskModel.getTask(task.id);
@@ -156,7 +142,7 @@ describe('TaskModel Concurrency Safety Tests', () => {
       expect(completions.length).toBe(5);
     });
 
-    test('用户不能重复完成同一任务（串行场景）', () => {
+    test('用户不能重复完成同一任务（串行场景）', async () => {
       const task = taskModel.createTask({
         title: 'Test Task',
         description: 'Test task',
@@ -171,18 +157,18 @@ describe('TaskModel Concurrency Safety Tests', () => {
       const userId = 'user_123';
 
       // 第一次应该成功
-      const completion1 = taskModel.createCompletion(task.id, userId);
+      const completion1 = await taskModel.createCompletion(task.id, userId);
       expect(completion1).toBeDefined();
 
       // 第二次应该失败
-      expect(() => {
-        taskModel.createCompletion(task.id, userId);
-      }).toThrow('User has already completed this task');
+      await expect(taskModel.createCompletion(task.id, userId)).rejects.toThrow(
+        'User has already completed this task'
+      );
     });
   });
 
   describe('Boundary Condition Tests', () => {
-    test('达到最大完成次数后应该拒绝新的完成请求', () => {
+    test('达到最大完成次数后应该拒绝新的完成请求', async () => {
       const task = taskModel.createTask({
         title: 'Limited Task',
         description: 'Only 2 completions allowed',
@@ -195,16 +181,16 @@ describe('TaskModel Concurrency Safety Tests', () => {
       taskModel.updateTaskStatus(task.id, TaskStatus.ACTIVE);
 
       // 完成 2 次
-      taskModel.createCompletion(task.id, 'user_1');
-      taskModel.createCompletion(task.id, 'user_2');
+      await taskModel.createCompletion(task.id, 'user_1');
+      await taskModel.createCompletion(task.id, 'user_2');
 
       // 第 3 次应该失败
-      expect(() => {
-        taskModel.createCompletion(task.id, 'user_3');
-      }).toThrow('Task has reached maximum completions');
+      await expect(taskModel.createCompletion(task.id, 'user_3')).rejects.toThrow(
+        'Task has reached maximum completions'
+      );
     });
 
-    test('任务不在有效时间内应该拒绝完成', () => {
+    test('任务不在有效时间内应该拒绝完成', async () => {
       const task = taskModel.createTask({
         title: 'Expired Task',
         description: 'Task in the past',
@@ -216,9 +202,9 @@ describe('TaskModel Concurrency Safety Tests', () => {
 
       taskModel.updateTaskStatus(task.id, TaskStatus.ACTIVE);
 
-      expect(() => {
-        taskModel.createCompletion(task.id, 'user_1');
-      }).toThrow('Task is not within the valid time range');
+      await expect(taskModel.createCompletion(task.id, 'user_1')).rejects.toThrow(
+        'Task is not within the valid time range'
+      );
     });
   });
 });

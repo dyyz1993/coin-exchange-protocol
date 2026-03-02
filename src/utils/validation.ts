@@ -14,16 +14,16 @@ export const validateAmount = (value: string, maxDecimalPlaces: number = 2): num
   const trimmed = value.trim();
 
   // 空值返回0
-  if (!trimmed) return 0;
+  if (!trimmed) {return 0;}
 
   // 尝试解析为数字
   const amount = parseFloat(trimmed);
 
   // 非数字返回0
-  if (isNaN(amount)) return 0;
+  if (isNaN(amount)) {return 0;}
 
   // 负数返回0
-  if (amount < 0) return 0;
+  if (amount < 0) {return 0;}
 
   // 检查小数位数
   const decimalPart = trimmed.split('.')[1];

@@ -203,12 +203,12 @@ export const routes: Route[] = [
  */
 export function matchRoute(method: string, path: string): { route: Route; params: any } | null {
   for (const route of routes) {
-    if (route.method !== method) continue;
+    if (route.method !== method) {continue;}
 
     const routeParts = route.path.split('/');
     const pathParts = path.split('/');
 
-    if (routeParts.length !== pathParts.length) continue;
+    if (routeParts.length !== pathParts.length) {continue;}
 
     const params: any = {};
     let match = true;

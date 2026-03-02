@@ -38,6 +38,55 @@ export class TaskModel {
   private userTaskCompletions: Map<string, Set<string>> = new Map(); // userId -> Set<taskId>
   private taskLocks: Map<string, Mutex> = new Map(); // 每个任务一个锁
   private userTaskLocks: Map<string, Mutex> = new Map(); // 每个用户-任务组合一个锁
+  private mutexCreationLock = new Mutex(); // 全局锁保护 Mutex 创建（修复 TOCTOU 竞态）
+
+  /**
+   * 获取任务级别的互斥锁（全局锁保护）
+   * 🔥 P0 修复：解决锁创建的 TOCTOU 竞态条件（Issue #410）
+   */
+  private async getTaskMutex(taskId: string): Promise<Mutex> {
+    // 快速路径：如果已存在直接返回
+    if (this.taskLocks.has(taskId)) {
+      return this.taskLocks.get(taskId)!;
+    }
+
+    // 慢路径：使用全局锁保护创建
+    await this.mutexCreationLock.lock();
+    try {
+      // 双重检查
+      if (!this.taskLocks.has(taskId)) {
+        this.taskLocks.set(taskId, new Mutex());
+      }
+      return this.taskLocks.get(taskId)!;
+    } finally {
+      this.mutexCreationLock.unlock();
+    }
+  }
+
+  /**
+   * 获取用户-任务级别的互斥锁（全局锁保护）
+   * 🔥 P0 修复：解决锁创建的 TOCTOU 竞态条件（Issue #410）
+   */
+  private async getUserTaskMutex(userId: string, taskId: string): Promise<Mutex> {
+    const userTaskKey = `${userId}:${taskId}`;
+
+    // 快速路径：如果已存在直接返回
+    if (this.userTaskLocks.has(userTaskKey)) {
+      return this.userTaskLocks.get(userTaskKey)!;
+    }
+
+    // 慢路径：使用全局锁保护创建
+    await this.mutexCreationLock.lock();
+    try {
+      // 双重检查
+      if (!this.userTaskLocks.has(userTaskKey)) {
+        this.userTaskLocks.set(userTaskKey, new Mutex());
+      }
+      return this.userTaskLocks.get(userTaskKey)!;
+    } finally {
+      this.mutexCreationLock.unlock();
+    }
+  }
 
   /**
    * 创建任务
@@ -155,18 +204,9 @@ export class TaskModel {
     userId: string,
     expectedVersion?: number
   ): Promise<TaskCompletion> {
-    // 获取任务锁
-    if (!this.taskLocks.has(taskId)) {
-      this.taskLocks.set(taskId, new Mutex());
-    }
-    const taskLock = this.taskLocks.get(taskId)!;
-
-    // 获取用户-任务锁（防止同一用户并发完成同一任务）
-    const userTaskKey = `${userId}:${taskId}`;
-    if (!this.userTaskLocks.has(userTaskKey)) {
-      this.userTaskLocks.set(userTaskKey, new Mutex());
-    }
-    const userTaskLock = this.userTaskLocks.get(userTaskKey)!;
+    // 🔥 P0 修复：使用全局锁保护的 Mutex 获取方法（解决 TOCTOU 竞态）
+    const taskLock = await this.getTaskMutex(taskId);
+    const userTaskLock = await this.getUserTaskMutex(userId, taskId);
 
     // 先获取用户-任务锁，再获取任务锁（避免死锁）
     await userTaskLock.lock();

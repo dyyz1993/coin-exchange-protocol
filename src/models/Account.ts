@@ -97,7 +97,7 @@ export class AccountModel {
    */
   getAccountByUserId(userId: string): Account | undefined {
     const accountId = this.userAccounts.get(userId);
-    if (!accountId) return undefined;
+    if (!accountId) {return undefined;}
     return this.accounts.get(accountId);
   }
 
