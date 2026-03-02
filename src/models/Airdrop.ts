@@ -4,6 +4,29 @@
 
 import { Airdrop, AirdropClaim, AirdropStatus } from '../types';
 
+/**
+ * 🔥 P0 溢出保护：安全加法函数
+ * 检查加法是否会超过 Number.MAX_SAFE_INTEGER
+ */
+function safeAdd(a: number, b: number): number {
+  if (a > Number.MAX_SAFE_INTEGER - b) {
+    throw new Error(`Overflow detected: ${a} + ${b} exceeds Number.MAX_SAFE_INTEGER`);
+  }
+  return a + b;
+}
+
+/**
+ * 🔥 P0 溢出保护：安全减法函数
+ * 检查减法结果是否为负数
+ */
+function safeSubtract(a: number, b: number): number {
+  const result = a - b;
+  if (result < 0) {
+    throw new Error(`Underflow detected: ${a} - ${b} results in negative value`);
+  }
+  return result;
+}
+
 export class AirdropModel {
   private airdrops: Map<string, Airdrop> = new Map();
   private claims: Map<string, AirdropClaim> = new Map();
@@ -135,8 +158,10 @@ export class AirdropModel {
 
       // 🔥 P0 修复：检查剩余余额（基于 claims 的总额检查）
       const claims = this.getAirdropClaims(airdropId);
-      const totalClaimed = claims.reduce((sum, claim) => sum + claim.amount, 0);
-      const remainingAmount = airdrop.totalAmount - totalClaimed;
+      // 🔥 P0 溢出保护：使用安全加法
+      const totalClaimed = claims.reduce((sum, claim) => safeAdd(sum, claim.amount), 0);
+      // 🔥 P0 溢出保护：使用安全减法
+      const remainingAmount = safeSubtract(airdrop.totalAmount, totalClaimed);
 
       if (remainingAmount < claimAmount) {
         throw new Error(
@@ -163,7 +188,8 @@ export class AirdropModel {
       this.userClaims.get(userId)!.add(airdropId);
 
       // 更新已领取金额和领取人数
-      airdrop.claimedAmount = totalClaimed + claimAmount; // 🔥 P0修复：使用准确值
+      // 🔥 P0 溢出保护：使用安全加法
+      airdrop.claimedAmount = safeAdd(totalClaimed, claimAmount);
       airdrop.currentClaims = claims.length + 1;
       airdrop.updatedAt = new Date();
 
@@ -217,8 +243,10 @@ export class AirdropModel {
     }
 
     const claims = this.getAirdropClaims(airdropId);
-    const totalClaimed = claims.reduce((sum, claim) => sum + claim.amount, 0);
-    return airdrop.totalAmount - totalClaimed;
+    // 🔥 P0 溢出保护：使用安全加法
+    const totalClaimed = claims.reduce((sum, claim) => safeAdd(sum, claim.amount), 0);
+    // 🔥 P0 溢出保护：使用安全减法
+    return safeSubtract(airdrop.totalAmount, totalClaimed);
   }
 
   /**
