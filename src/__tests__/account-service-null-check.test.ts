@@ -9,6 +9,7 @@ import {
   InsufficientBalanceError,
 } from '../services/account.service';
 import { accountModel } from '../models/Account';
+import { TransactionType } from '../types/common';
 
 // Mock AccountModel
 jest.mock('../models/Account');
@@ -30,7 +31,7 @@ describe('AccountService - 空值检查测试', () => {
       (accountModel.addBalance as jest.Mock).mockResolvedValue({
         id: 'tx-123',
         amount: amount,
-        type: 'REWARD',
+        type: TransactionType.REWARD,
         description: '测试添加',
         createdAt: new Date(),
       });
@@ -39,13 +40,13 @@ describe('AccountService - 空值检查测试', () => {
       (accountModel.getAccountByUserId as jest.Mock).mockReturnValue(null);
 
       // 验证抛出 AccountNotFoundError
-      await expect(accountService.addTokens(userId, amount, 'REWARD', '测试添加')).rejects.toThrow(
-        AccountNotFoundError
-      );
+      await expect(
+        accountService.addTokens(userId, amount, TransactionType.REWARD, '测试添加')
+      ).rejects.toThrow(AccountNotFoundError);
 
-      await expect(accountService.addTokens(userId, amount, 'REWARD', '测试添加')).rejects.toThrow(
-        `账户不存在: 用户ID ${userId}`
-      );
+      await expect(
+        accountService.addTokens(userId, amount, TransactionType.REWARD, '测试添加')
+      ).rejects.toThrow(`账户不存在: 用户ID ${userId}`);
     });
 
     it('当账户存在时应该成功添加代币', async () => {
@@ -56,7 +57,7 @@ describe('AccountService - 空值检查测试', () => {
       (accountModel.addBalance as jest.Mock).mockResolvedValue({
         id: 'tx-123',
         amount: amount,
-        type: 'REWARD',
+        type: TransactionType.REWARD,
         description: '测试添加',
         createdAt: new Date(),
       });
@@ -70,7 +71,12 @@ describe('AccountService - 空值检查测试', () => {
         createdAt: new Date(),
       });
 
-      const result = await accountService.addTokens(userId, amount, 'REWARD', '测试添加');
+      const result = await accountService.addTokens(
+        userId,
+        amount,
+        TransactionType.REWARD,
+        '测试添加'
+      );
 
       expect(result.success).toBe(true);
       expect(result.newBalance).toBe(200);
@@ -87,7 +93,7 @@ describe('AccountService - 空值检查测试', () => {
       (accountModel.deductBalance as jest.Mock).mockResolvedValue({
         id: 'tx-456',
         amount: amount,
-        type: 'PENALTY',
+        type: TransactionType.PENALTY,
         description: '测试扣除',
         createdAt: new Date(),
       });
@@ -97,7 +103,7 @@ describe('AccountService - 空值检查测试', () => {
 
       // 验证抛出 AccountNotFoundError
       await expect(
-        accountService.deductTokens(userId, amount, 'PENALTY', '测试扣除')
+        accountService.deductTokens(userId, amount, TransactionType.PENALTY, '测试扣除')
       ).rejects.toThrow(AccountNotFoundError);
     });
 
@@ -109,7 +115,7 @@ describe('AccountService - 空值检查测试', () => {
       (accountModel.deductBalance as jest.Mock).mockResolvedValue({
         id: 'tx-456',
         amount: amount,
-        type: 'PENALTY',
+        type: TransactionType.PENALTY,
         description: '测试扣除',
         createdAt: new Date(),
       });
@@ -123,7 +129,12 @@ describe('AccountService - 空值检查测试', () => {
         createdAt: new Date(),
       });
 
-      const result = await accountService.deductTokens(userId, amount, 'PENALTY', '测试扣除');
+      const result = await accountService.deductTokens(
+        userId,
+        amount,
+        TransactionType.PENALTY,
+        '测试扣除'
+      );
 
       expect(result.success).toBe(true);
       expect(result.newBalance).toBe(50);
