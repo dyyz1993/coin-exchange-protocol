@@ -46,7 +46,7 @@ describe('AirdropModel 并发安全测试', () => {
       const successCount = results.filter((r) => !('error' in r)).length;
       const failCount = results.filter((r) => 'error' in r).length;
 
-      // console.log 已移除以符合 ESLint 规则
+      // // console.log 已移除以符合 ESLint 规则
 
       // 应该只有 1 个成功，其余 9 个失败
       expect(successCount).toBe(1);
@@ -90,7 +90,7 @@ describe('AirdropModel 并发安全测试', () => {
       const successCount = results.filter((r) => !('error' in r)).length;
       const failCount = results.filter((r) => 'error' in r).length;
 
-      // console.log 已移除以符合 ESLint 规则
+      // // console.log 已移除以符合 ESLint 规则
 
       // 应该只有 5 个成功，5 个失败
       expect(successCount).toBe(5);
@@ -135,7 +135,7 @@ describe('AirdropModel 并发安全测试', () => {
       const results = await Promise.all(promises);
       const successCount = results.filter((r) => !('error' in r)).length;
 
-      // // console.log 已移除以符合 ESLint 规则
+      // // // console.log 已移除以符合 ESLint 规则
 
       // 验证不超过最大限额
       expect(successCount).toBeLessThanOrEqual(1000); // 10000 / 10
@@ -170,7 +170,7 @@ describe('AirdropModel 并发安全测试', () => {
       const fulfilled = promises.filter((p) => p.status === 'fulfilled').length;
       const rejected = promises.filter((p) => p.status === 'rejected').length;
 
-      // // console.log 已移除以符合 ESLint 规则
+      // // // console.log 已移除以符合 ESLint 规则
 
       expect(fulfilled).toBe(2);
       expect(rejected).toBe(1);
