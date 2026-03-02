@@ -134,7 +134,7 @@ describe('Task Concurrency Tests', () => {
       const successes = results.filter((r) => !(r instanceof Error)).length;
       const failures = results.filter((r) => r instanceof Error).length;
 
-      console.log(`高并发测试结果 - 成功: ${successes}/1000`);
+      console.log(`高并发测试结果 - 成功: ${successes}, 失败: ${failures}`);
 
       const finalTask = taskModel.getTask(task.id);
       expect(finalTask!.currentCompletions).toBeLessThanOrEqual(100);
