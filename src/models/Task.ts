@@ -4,10 +4,40 @@
 
 import { Task, TaskCompletion, TaskStatus, TaskCompletionStatus, TaskType } from '../types';
 
+/**
+ * 简单的互斥锁实现，用于防止并发操作
+ */
+class Mutex {
+  private locked = false;
+  private queue: Array<() => void> = [];
+
+  async lock(): Promise<void> {
+    if (!this.locked) {
+      this.locked = true;
+      return;
+    }
+
+    return new Promise<void>((resolve) => {
+      this.queue.push(resolve);
+    });
+  }
+
+  unlock(): void {
+    const next = this.queue.shift();
+    if (next) {
+      next();
+    } else {
+      this.locked = false;
+    }
+  }
+}
+
 export class TaskModel {
   private tasks: Map<string, Task> = new Map();
   private completions: Map<string, TaskCompletion> = new Map();
   private userTaskCompletions: Map<string, Set<string>> = new Map(); // userId -> Set<taskId>
+  private taskLocks: Map<string, Mutex> = new Map(); // 每个任务一个锁
+  private userTaskLocks: Map<string, Mutex> = new Map(); // 每个用户-任务组合一个锁
 
   /**
    * 创建任务
@@ -34,6 +64,7 @@ export class TaskModel {
       status: TaskStatus.DRAFT,
       startTime: params.startTime,
       endTime: params.endTime,
+      version: 0, // 初始版本号
       createdAt: new Date(),
       updatedAt: new Date(),
     };
@@ -75,14 +106,34 @@ export class TaskModel {
   /**
    * 更新任务状态
    */
-  updateTaskStatus(taskId: string, status: TaskStatus): Task {
+  updateTaskStatus(taskId: string, status: TaskStatus, expectedVersion?: number): Task {
     const task = this.tasks.get(taskId);
     if (!task) {
       throw new Error('Task not found');
     }
 
+    // 乐观锁检查
+    if (expectedVersion !== undefined && task.version !== expectedVersion) {
+      throw new Error(
+        `Optimistic lock failed: expected version ${expectedVersion}, but got ${task.version}`
+      );
+    }
+
     task.status = status;
+    task.version++;
+    task.updatedAt = new Date();
     return task;
+  }
+
+  /**
+   * 获取任务当前版本号（用于乐观锁）
+   */
+  getTaskVersion(taskId: string): number {
+    const task = this.tasks.get(taskId);
+    if (!task) {
+      throw new Error('Task not found');
+    }
+    return task.version;
   }
 
   /**
@@ -90,63 +141,106 @@ export class TaskModel {
    */
   hasUserCompleted(userId: string, taskId: string): boolean {
     const userTaskSet = this.userTaskCompletions.get(userId);
-    if (!userTaskSet) return false;
+    if (!userTaskSet) {
+      return false;
+    }
     return userTaskSet.has(taskId);
   }
 
   /**
-   * 创建任务完成记录
+   * 创建任务完成记录 - 使用乐观锁和互斥锁防止并发问题
    */
-  createCompletion(taskId: string, userId: string): TaskCompletion {
-    const task = this.getTask(taskId);
-    if (!task) {
-      throw new Error('Task not found');
+  async createCompletion(
+    taskId: string,
+    userId: string,
+    expectedVersion?: number
+  ): Promise<TaskCompletion> {
+    // 获取任务锁
+    if (!this.taskLocks.has(taskId)) {
+      this.taskLocks.set(taskId, new Mutex());
     }
+    const taskLock = this.taskLocks.get(taskId)!;
 
-    // 检查任务状态
-    if (task.status !== TaskStatus.ACTIVE) {
-      throw new Error('Task is not active');
+    // 获取用户-任务锁（防止同一用户并发完成同一任务）
+    const userTaskKey = `${userId}:${taskId}`;
+    if (!this.userTaskLocks.has(userTaskKey)) {
+      this.userTaskLocks.set(userTaskKey, new Mutex());
     }
+    const userTaskLock = this.userTaskLocks.get(userTaskKey)!;
 
-    // 检查时间
-    const now = new Date();
-    if (now < task.startTime || now > task.endTime) {
-      throw new Error('Task is not within the valid time range');
+    // 先获取用户-任务锁，再获取任务锁（避免死锁）
+    await userTaskLock.lock();
+    await taskLock.lock();
+
+    try {
+      const task = this.getTask(taskId);
+      if (!task) {
+        throw new Error('Task not found');
+      }
+
+      // 乐观锁检查：验证版本号
+      if (expectedVersion !== undefined && task.version !== expectedVersion) {
+        throw new Error(
+          `Optimistic lock failed: expected version ${expectedVersion}, but got ${task.version}`
+        );
+      }
+
+      // 检查任务状态
+      if (task.status !== TaskStatus.ACTIVE) {
+        throw new Error('Task is not active');
+      }
+
+      // 检查时间
+      const now = new Date();
+      if (now < task.startTime || now > task.endTime) {
+        throw new Error('Task is not within the valid time range');
+      }
+
+      // 检查完成次数（互斥锁保护）
+      if (task.currentCompletions >= task.maxCompletions) {
+        throw new Error('Task has reached maximum completions');
+      }
+
+      // 检查用户是否已完成（每个用户只能完成一次）
+      if (!this.userTaskCompletions.has(userId)) {
+        this.userTaskCompletions.set(userId, new Set());
+      }
+
+      const userTaskSet = this.userTaskCompletions.get(userId)!;
+      if (userTaskSet.has(taskId)) {
+        throw new Error('User has already completed this task');
+      }
+
+      // 创建完成记录
+      const completionId = `completion_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+
+      const completion: TaskCompletion = {
+        id: completionId,
+        taskId,
+        userId,
+        reward: task.reward,
+        status: TaskCompletionStatus.APPROVED, // 自动审批
+        completedAt: new Date(),
+      };
+
+      // 原子性操作：按正确顺序更新状态
+      // 1. 添加完成记录
+      this.completions.set(completionId, completion);
+
+      // 2. 记录用户完成（防止重复）
+      userTaskSet.add(taskId);
+
+      // 3. 更新任务完成次数和版本号（乐观锁）
+      task.currentCompletions++;
+      task.version++;
+      task.updatedAt = new Date();
+
+      return completion;
+    } finally {
+      // 释放锁（按相反顺序）
+      taskLock.unlock();
+      userTaskLock.unlock();
     }
-
-    // 检查完成次数
-    if (task.currentCompletions >= task.maxCompletions) {
-      throw new Error('Task has reached maximum completions');
-    }
-
-    // 检查用户是否已完成（每个用户只能完成一次）
-    if (this.hasUserCompleted(userId, taskId)) {
-      throw new Error('User has already completed this task');
-    }
-
-    const completionId = `completion_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
-
-    const completion: TaskCompletion = {
-      id: completionId,
-      taskId,
-      userId,
-      reward: task.reward,
-      status: TaskCompletionStatus.APPROVED, // 自动审批
-      completedAt: new Date(),
-    };
-
-    this.completions.set(completionId, completion);
-
-    // 记录用户完成
-    if (!this.userTaskCompletions.has(userId)) {
-      this.userTaskCompletions.set(userId, new Set());
-    }
-    this.userTaskCompletions.get(userId)!.add(taskId);
-
-    // 更新任务完成次数
-    task.currentCompletions++;
-
-    return completion;
   }
 
   /**
