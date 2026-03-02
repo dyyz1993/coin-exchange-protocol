@@ -1,13 +1,108 @@
 /**
  * 订单模型 - 管理订单和争议记录
+ *
+ * 修复并发安全问题 (Issue #312)：
+ * 1. 添加 Mutex 锁确保同一订单操作串行化
+ * 2. 强制版本号检查（expectedVersion 改为必填）
+ * 3. 为 Dispute 操作添加并发控制
+ * 4. 转换为异步 API
  */
 
 import { Order, Dispute, OrderStatus, DisputeStatus } from '../types';
 import { randomUUID } from 'crypto';
+import { Mutex } from 'async-mutex';
 
 export class OrderModel {
   private orders: Map<string, Order> = new Map();
   private disputes: Map<string, Dispute> = new Map();
+
+  // 并发控制：使用 async-mutex 替代 busy wait
+  private orderMutexes: Map<string, Mutex> = new Map(); // orderId -> Mutex
+  private disputeMutexes: Map<string, Mutex> = new Map(); // disputeId -> Mutex
+
+  /**
+   * 获取或创建订单的 Mutex
+   */
+  private getOrderMutex(orderId: string): Mutex {
+    if (!this.orderMutexes.has(orderId)) {
+      this.orderMutexes.set(orderId, new Mutex());
+    }
+    return this.orderMutexes.get(orderId)!;
+  }
+
+  /**
+   * 获取或创建争议的 Mutex
+   */
+  private getDisputeMutex(disputeId: string): Mutex {
+    if (!this.disputeMutexes.has(disputeId)) {
+      this.disputeMutexes.set(disputeId, new Mutex());
+    }
+    return this.disputeMutexes.get(disputeId)!;
+  }
+
+  /**
+   * 使用锁执行订单操作
+   */
+  private async withOrderLock<T>(orderId: string, operation: () => T | Promise<T>): Promise<T> {
+    const mutex = this.getOrderMutex(orderId);
+    const release = await mutex.acquire();
+    try {
+      return await operation();
+    } finally {
+      release();
+    }
+  }
+
+  /**
+   * 使用锁执行争议操作
+   */
+  private async withDisputeLock<T>(disputeId: string, operation: () => T | Promise<T>): Promise<T> {
+    const mutex = this.getDisputeMutex(disputeId);
+    const release = await mutex.acquire();
+    try {
+      return await operation();
+    } finally {
+      release();
+    }
+  }
+
+  /**
+   * 验证订单版本号并更新（CAS 操作）
+   */
+  private validateAndUpdateOrder(
+    order: Order,
+    expectedVersion: number,
+    updateFn: () => void
+  ): void {
+    if (order.version !== expectedVersion) {
+      throw new Error(
+        `Concurrent modification detected for order ${order.id}. ` +
+          `Expected version ${expectedVersion}, but got ${order.version}`
+      );
+    }
+    updateFn();
+    order.version++;
+    order.updatedAt = new Date();
+  }
+
+  /**
+   * 验证争议版本号并更新（CAS 操作）
+   */
+  private validateAndUpdateDispute(
+    dispute: Dispute,
+    expectedVersion: number,
+    updateFn: () => void
+  ): void {
+    if (dispute.version !== expectedVersion) {
+      throw new Error(
+        `Concurrent modification detected for dispute ${dispute.id}. ` +
+          `Expected version ${expectedVersion}, but got ${dispute.version}`
+      );
+    }
+    updateFn();
+    dispute.version++;
+    dispute.updatedAt = new Date();
+  }
 
   /**
    * 生成订单号（使用 UUID v4 的一部分）
@@ -41,7 +136,7 @@ export class OrderModel {
   /**
    * 创建订单
    */
-  createOrder(params: {
+  async createOrder(params: {
     buyerId: string;
     sellerId: string;
     amount: number;
@@ -49,7 +144,7 @@ export class OrderModel {
     currency: string;
     description: string;
     buyerInfo: Order['buyerInfo'];
-  }): Order {
+  }): Promise<Order> {
     const orderId = `order_${Date.now()}_${randomUUID()}`;
 
     const order: Order = {
@@ -63,7 +158,7 @@ export class OrderModel {
       status: OrderStatus.DRAFT,
       description: params.description,
       buyerInfo: params.buyerInfo,
-      version: 1, // 初始版本号
+      version: 0, // 初始版本号
       createdAt: new Date(),
       updatedAt: new Date(),
     };
@@ -126,163 +221,150 @@ export class OrderModel {
   }
 
   /**
-   * 更新订单状态（带乐观锁）
+   * 更新订单状态（带乐观锁，强制版本号检查）
    * @param orderId 订单ID
    * @param status 新状态
-   * @param expectedVersion 预期版本号（乐观锁）
+   * @param expectedVersion 预期版本号（必填，乐观锁）
    * @returns 更新后的订单
    * @throws 如果订单不存在、版本号不匹配或状态转换非法
    */
-  updateOrderStatus(orderId: string, status: OrderStatus, expectedVersion?: number): Order {
-    const order = this.orders.get(orderId);
-    if (!order) {
-      throw new Error('Order not found');
-    }
+  async updateOrderStatus(
+    orderId: string,
+    status: OrderStatus,
+    expectedVersion: number
+  ): Promise<Order> {
+    return this.withOrderLock(orderId, () => {
+      const order = this.orders.get(orderId);
+      if (!order) {
+        throw new Error('Order not found');
+      }
 
-    // 乐观锁验证
-    if (expectedVersion !== undefined && order.version !== expectedVersion) {
-      throw new Error(
-        `Concurrent modification detected. Expected version ${expectedVersion}, but current is ${order.version}`
-      );
-    }
+      // 乐观锁验证（强制检查）
+      this.validateAndUpdateOrder(order, expectedVersion, () => {
+        // 状态转换验证
+        if (!this.isValidTransition(order.status, status)) {
+          throw new Error(`Invalid status transition from ${order.status} to ${status}`);
+        }
 
-    // 状态转换验证
-    if (!this.isValidTransition(order.status, status)) {
-      throw new Error(`Invalid status transition from ${order.status} to ${status}`);
-    }
+        order.status = status;
 
-    // 更新状态和版本号
-    order.status = status;
-    order.version++;
-    order.updatedAt = new Date();
+        // 根据状态设置时间戳
+        const now = new Date();
+        if (status === OrderStatus.PAID && !order.paidAt) {
+          order.paidAt = now;
+        }
+        if (status === OrderStatus.CONFIRMED && !order.confirmedAt) {
+          order.confirmedAt = now;
+        }
+        if (status === OrderStatus.COMPLETED && !order.completedAt) {
+          order.completedAt = now;
+        }
+      });
 
-    // 根据状态设置时间戳
-    const now = new Date();
-    if (status === OrderStatus.PAID && !order.paidAt) {
-      order.paidAt = now;
-    }
-    if (status === OrderStatus.CONFIRMED && !order.confirmedAt) {
-      order.confirmedAt = now;
-    }
-    if (status === OrderStatus.COMPLETED && !order.completedAt) {
-      order.completedAt = now;
-    }
-
-    return order;
+      return order;
+    });
   }
 
   /**
-   * 设置冻结金额（带乐观锁）
+   * 设置冻结金额（带乐观锁，强制版本号检查）
    */
-  setFrozenAmount(orderId: string, frozenAmount: number, expectedVersion?: number): Order {
-    const order = this.orders.get(orderId);
-    if (!order) {
-      throw new Error('Order not found');
-    }
+  async setFrozenAmount(
+    orderId: string,
+    frozenAmount: number,
+    expectedVersion: number
+  ): Promise<Order> {
+    return this.withOrderLock(orderId, () => {
+      const order = this.orders.get(orderId);
+      if (!order) {
+        throw new Error('Order not found');
+      }
 
-    // 乐观锁验证
-    if (expectedVersion !== undefined && order.version !== expectedVersion) {
-      throw new Error(
-        `Concurrent modification detected. Expected version ${expectedVersion}, but current is ${order.version}`
-      );
-    }
+      this.validateAndUpdateOrder(order, expectedVersion, () => {
+        order.frozenAmount = frozenAmount;
+      });
 
-    order.frozenAmount = frozenAmount;
-    order.version++;
-    order.updatedAt = new Date();
-
-    return order;
+      return order;
+    });
   }
 
   /**
-   * 设置代币交易ID（带乐观锁）
+   * 设置代币交易ID（带乐观锁，强制版本号检查）
    */
-  setTransactionId(orderId: string, transactionId: string, expectedVersion?: number): Order {
-    const order = this.orders.get(orderId);
-    if (!order) {
-      throw new Error('Order not found');
-    }
+  async setTransactionId(
+    orderId: string,
+    transactionId: string,
+    expectedVersion: number
+  ): Promise<Order> {
+    return this.withOrderLock(orderId, () => {
+      const order = this.orders.get(orderId);
+      if (!order) {
+        throw new Error('Order not found');
+      }
 
-    // 乐观锁验证
-    if (expectedVersion !== undefined && order.version !== expectedVersion) {
-      throw new Error(
-        `Concurrent modification detected. Expected version ${expectedVersion}, but current is ${order.version}`
-      );
-    }
+      this.validateAndUpdateOrder(order, expectedVersion, () => {
+        order.transactionId = transactionId;
+      });
 
-    order.transactionId = transactionId;
-    order.version++;
-    order.updatedAt = new Date();
-
-    return order;
+      return order;
+    });
   }
 
   /**
-   * 设置外部支付ID（带乐观锁）
+   * 设置外部支付ID（带乐观锁，强制版本号检查）
    */
-  setExternalPaymentId(
+  async setExternalPaymentId(
     orderId: string,
     externalPaymentId: string,
-    expectedVersion?: number
-  ): Order {
-    const order = this.orders.get(orderId);
-    if (!order) {
-      throw new Error('Order not found');
-    }
+    expectedVersion: number
+  ): Promise<Order> {
+    return this.withOrderLock(orderId, () => {
+      const order = this.orders.get(orderId);
+      if (!order) {
+        throw new Error('Order not found');
+      }
 
-    // 乐观锁验证
-    if (expectedVersion !== undefined && order.version !== expectedVersion) {
-      throw new Error(
-        `Concurrent modification detected. Expected version ${expectedVersion}, but current is ${order.version}`
-      );
-    }
+      this.validateAndUpdateOrder(order, expectedVersion, () => {
+        order.externalPaymentId = externalPaymentId;
+      });
 
-    order.externalPaymentId = externalPaymentId;
-    order.version++;
-    order.updatedAt = new Date();
-
-    return order;
+      return order;
+    });
   }
 
   /**
-   * 设置争议ID（带乐观锁）
+   * 设置争议ID（带乐观锁，强制版本号检查）
    */
-  setDisputeId(orderId: string, disputeId: string, expectedVersion?: number): Order {
-    const order = this.orders.get(orderId);
-    if (!order) {
-      throw new Error('Order not found');
-    }
+  async setDisputeId(orderId: string, disputeId: string, expectedVersion: number): Promise<Order> {
+    return this.withOrderLock(orderId, () => {
+      const order = this.orders.get(orderId);
+      if (!order) {
+        throw new Error('Order not found');
+      }
 
-    // 乐观锁验证
-    if (expectedVersion !== undefined && order.version !== expectedVersion) {
-      throw new Error(
-        `Concurrent modification detected. Expected version ${expectedVersion}, but current is ${order.version}`
-      );
-    }
+      this.validateAndUpdateOrder(order, expectedVersion, () => {
+        // 状态转换验证
+        if (!this.isValidTransition(order.status, OrderStatus.DISPUTED)) {
+          throw new Error(`Invalid status transition from ${order.status} to disputed`);
+        }
 
-    // 状态转换验证
-    if (!this.isValidTransition(order.status, OrderStatus.DISPUTED)) {
-      throw new Error(`Invalid status transition from ${order.status} to disputed`);
-    }
+        order.disputeId = disputeId;
+        order.status = OrderStatus.DISPUTED;
+      });
 
-    order.disputeId = disputeId;
-    order.status = OrderStatus.DISPUTED;
-    order.version++;
-    order.updatedAt = new Date();
-
-    return order;
+      return order;
+    });
   }
 
   /**
    * 创建争议
    */
-  createDispute(params: {
+  async createDispute(params: {
     orderId: string;
     raisedBy: string;
     reason: string;
     description: string;
     evidence?: string[];
-  }): Dispute {
+  }): Promise<Dispute> {
     const disputeId = `dispute_${Date.now()}_${randomUUID()}`;
 
     const order = this.getOrder(params.orderId);
@@ -298,6 +380,7 @@ export class OrderModel {
       description: params.description,
       evidence: params.evidence,
       status: DisputeStatus.PENDING,
+      version: 0, // 初始版本号
       createdAt: new Date(),
       updatedAt: new Date(),
     };
@@ -305,7 +388,7 @@ export class OrderModel {
     this.disputes.set(disputeId, dispute);
 
     // 更新订单状态（带乐观锁）
-    this.setDisputeId(params.orderId, disputeId, order.version);
+    await this.setDisputeId(params.orderId, disputeId, order.version);
 
     return dispute;
   }
@@ -330,36 +413,51 @@ export class OrderModel {
   }
 
   /**
-   * 更新争议状态
+   * 更新争议状态（带乐观锁，强制版本号检查）
    */
-  updateDisputeStatus(disputeId: string, status: DisputeStatus): Dispute {
-    const dispute = this.disputes.get(disputeId);
-    if (!dispute) {
-      throw new Error('Dispute not found');
-    }
+  async updateDisputeStatus(
+    disputeId: string,
+    status: DisputeStatus,
+    expectedVersion: number
+  ): Promise<Dispute> {
+    return this.withDisputeLock(disputeId, () => {
+      const dispute = this.disputes.get(disputeId);
+      if (!dispute) {
+        throw new Error('Dispute not found');
+      }
 
-    dispute.status = status;
-    dispute.updatedAt = new Date();
+      this.validateAndUpdateDispute(dispute, expectedVersion, () => {
+        dispute.status = status;
+      });
 
-    return dispute;
+      return dispute;
+    });
   }
 
   /**
-   * 解决争议
+   * 解决争议（带乐观锁，强制版本号检查）
    */
-  resolveDispute(disputeId: string, resolution: string, resolvedBy: string): Dispute {
-    const dispute = this.disputes.get(disputeId);
-    if (!dispute) {
-      throw new Error('Dispute not found');
-    }
+  async resolveDispute(
+    disputeId: string,
+    resolution: string,
+    resolvedBy: string,
+    expectedVersion: number
+  ): Promise<Dispute> {
+    return this.withDisputeLock(disputeId, () => {
+      const dispute = this.disputes.get(disputeId);
+      if (!dispute) {
+        throw new Error('Dispute not found');
+      }
 
-    dispute.status = DisputeStatus.RESOLVED;
-    dispute.resolution = resolution;
-    dispute.resolvedBy = resolvedBy;
-    dispute.resolvedAt = new Date();
-    dispute.updatedAt = new Date();
+      this.validateAndUpdateDispute(dispute, expectedVersion, () => {
+        dispute.status = DisputeStatus.RESOLVED;
+        dispute.resolution = resolution;
+        dispute.resolvedBy = resolvedBy;
+        dispute.resolvedAt = new Date();
+      });
 
-    return dispute;
+      return dispute;
+    });
   }
 
   /**

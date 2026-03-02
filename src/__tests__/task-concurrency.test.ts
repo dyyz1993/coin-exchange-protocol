@@ -19,7 +19,7 @@ describe('Task Concurrency Tests', () => {
   describe('基本并发测试', () => {
     it('should not exceed maxCompletions under concurrent access', async () => {
       // 创建任务，maxCompletions = 10
-      const task = taskModel.createTask({
+      const task = await taskModel.createTask({
         title: '并发测试任务',
         description: '测试并发完成',
         reward: 100,
@@ -29,7 +29,7 @@ describe('Task Concurrency Tests', () => {
       });
 
       // 激活任务
-      taskModel.updateTaskStatus(task.id, TaskStatus.ACTIVE);
+      await taskModel.updateTaskStatus(task.id, TaskStatus.ACTIVE, task.version);
 
       // 模拟 20 个用户并发完成
       const userIds = Array.from({ length: 20 }, (_, i) => `user_${i}`);
@@ -54,7 +54,7 @@ describe('Task Concurrency Tests', () => {
     });
 
     it('should prevent duplicate completions from same user', async () => {
-      const task = taskModel.createTask({
+      const task = await taskModel.createTask({
         title: '重复完成测试',
         description: '测试用户重复完成',
         reward: 50,
@@ -63,7 +63,7 @@ describe('Task Concurrency Tests', () => {
         endTime: new Date(Date.now() + 10000),
       });
 
-      taskModel.updateTaskStatus(task.id, TaskStatus.ACTIVE);
+      await taskModel.updateTaskStatus(task.id, TaskStatus.ACTIVE, task.version);
 
       const userId = 'test_user_123';
 
@@ -79,7 +79,7 @@ describe('Task Concurrency Tests', () => {
     });
 
     it('should handle concurrent requests from same user', async () => {
-      const task = taskModel.createTask({
+      const task = await taskModel.createTask({
         title: '同用户并发测试',
         description: '测试同一用户并发请求',
         reward: 50,
@@ -88,7 +88,7 @@ describe('Task Concurrency Tests', () => {
         endTime: new Date(Date.now() + 10000),
       });
 
-      taskModel.updateTaskStatus(task.id, TaskStatus.ACTIVE);
+      await taskModel.updateTaskStatus(task.id, TaskStatus.ACTIVE, task.version);
 
       const userId = 'concurrent_user_456';
 
@@ -114,7 +114,7 @@ describe('Task Concurrency Tests', () => {
 
   describe('高并发测试', () => {
     it('should handle high concurrency with 1000 simultaneous requests', async () => {
-      const task = taskModel.createTask({
+      const task = await taskModel.createTask({
         title: '高并发测试',
         description: '测试 1000 个并发请求',
         reward: 10,
@@ -123,7 +123,7 @@ describe('Task Concurrency Tests', () => {
         endTime: new Date(Date.now() + 10000),
       });
 
-      taskModel.updateTaskStatus(task.id, TaskStatus.ACTIVE);
+      await taskModel.updateTaskStatus(task.id, TaskStatus.ACTIVE, task.version);
 
       // 1000 个并发请求
       const promises = Array.from({ length: 1000 }, (_, i) =>
@@ -148,7 +148,7 @@ describe('Task Concurrency Tests', () => {
     });
 
     it('should handle burst traffic pattern', async () => {
-      const task = taskModel.createTask({
+      const task = await taskModel.createTask({
         title: '突发流量测试',
         description: '测试突发流量模式',
         reward: 5,
@@ -157,7 +157,7 @@ describe('Task Concurrency Tests', () => {
         endTime: new Date(Date.now() + 10000),
       });
 
-      taskModel.updateTaskStatus(task.id, TaskStatus.ACTIVE);
+      await taskModel.updateTaskStatus(task.id, TaskStatus.ACTIVE, task.version);
 
       // 第一波：50 个并发请求
       const wave1 = Array.from({ length: 50 }, (_, i) =>
@@ -187,7 +187,7 @@ describe('Task Concurrency Tests', () => {
 
   describe('压力测试', () => {
     it('should maintain consistency under stress', async () => {
-      const task = taskModel.createTask({
+      const task = await taskModel.createTask({
         title: '压力测试',
         description: '持续压力测试',
         reward: 1,
@@ -196,7 +196,7 @@ describe('Task Concurrency Tests', () => {
         endTime: new Date(Date.now() + 10000),
       });
 
-      taskModel.updateTaskStatus(task.id, TaskStatus.ACTIVE);
+      await taskModel.updateTaskStatus(task.id, TaskStatus.ACTIVE, task.version);
 
       // 分批执行，每批 100 个
       const batches = 10;
@@ -227,7 +227,7 @@ describe('Task Concurrency Tests', () => {
     });
 
     it('should handle mixed concurrent operations', async () => {
-      const task = taskModel.createTask({
+      const task = await taskModel.createTask({
         title: '混合操作测试',
         description: '测试读取和写入混合并发',
         reward: 10,
@@ -236,7 +236,7 @@ describe('Task Concurrency Tests', () => {
         endTime: new Date(Date.now() + 10000),
       });
 
-      taskModel.updateTaskStatus(task.id, TaskStatus.ACTIVE);
+      await taskModel.updateTaskStatus(task.id, TaskStatus.ACTIVE, task.version);
 
       // 混合操作：50 个完成请求 + 100 个读取请求
       const completionPromises = Array.from({ length: 50 }, (_, i) =>
@@ -263,7 +263,7 @@ describe('Task Concurrency Tests', () => {
 
   describe('边界条件测试', () => {
     it('should handle task with maxCompletions = 1', async () => {
-      const task = taskModel.createTask({
+      const task = await taskModel.createTask({
         title: '单人任务',
         description: '只能完成一次',
         reward: 1000,
@@ -272,7 +272,7 @@ describe('Task Concurrency Tests', () => {
         endTime: new Date(Date.now() + 10000),
       });
 
-      taskModel.updateTaskStatus(task.id, TaskStatus.ACTIVE);
+      await taskModel.updateTaskStatus(task.id, TaskStatus.ACTIVE, task.version);
 
       // 10 个用户并发完成
       const promises = Array.from({ length: 10 }, (_, i) =>
@@ -290,7 +290,7 @@ describe('Task Concurrency Tests', () => {
     });
 
     it('should handle task completion exactly at limit', async () => {
-      const task = taskModel.createTask({
+      const task = await taskModel.createTask({
         title: '精确限制测试',
         description: '测试达到限制边界',
         reward: 100,
@@ -299,7 +299,7 @@ describe('Task Concurrency Tests', () => {
         endTime: new Date(Date.now() + 10000),
       });
 
-      taskModel.updateTaskStatus(task.id, TaskStatus.ACTIVE);
+      await taskModel.updateTaskStatus(task.id, TaskStatus.ACTIVE, task.version);
 
       // 第一轮：5 个用户（应该全部成功）
       const round1 = Array.from({ length: 5 }, (_, i) =>
@@ -328,7 +328,7 @@ describe('Task Concurrency Tests', () => {
 
   describe('性能测试', () => {
     it('should complete operations within acceptable time', async () => {
-      const task = taskModel.createTask({
+      const task = await taskModel.createTask({
         title: '性能测试',
         description: '测试操作耗时',
         reward: 10,
@@ -337,7 +337,7 @@ describe('Task Concurrency Tests', () => {
         endTime: new Date(Date.now() + 10000),
       });
 
-      taskModel.updateTaskStatus(task.id, TaskStatus.ACTIVE);
+      await taskModel.updateTaskStatus(task.id, TaskStatus.ACTIVE, task.version);
 
       const startTime = Date.now();
 
