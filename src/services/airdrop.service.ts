@@ -116,7 +116,7 @@ export class AirdropService {
     }
 
     // 创建领取记录
-    const claim = airdropModel.createClaim(airdropId, userId, airdrop.perUserAmount);
+    const claim = await airdropModel.createClaim(airdropId, userId, airdrop.perUserAmount);
 
     // 增加用户代币
     const result = await accountService.addTokens(
@@ -276,14 +276,22 @@ export class AirdropService {
         const claims = airdropModel.getAirdropClaims(airdropId);
         totalDistributed = claims.reduce((sum, claim) => sum + claim.amount, 0);
 
-        if (airdrop.status === AirdropStatus.ACTIVE) activeAirdrops = 1;
-        if (airdrop.status === AirdropStatus.COMPLETED) completedAirdrops = 1;
+        if (airdrop.status === AirdropStatus.ACTIVE) {
+          activeAirdrops = 1;
+        }
+        if (airdrop.status === AirdropStatus.COMPLETED) {
+          completedAirdrops = 1;
+        }
       }
     } else {
       // 所有空投统计
       for (const airdrop of allAirdrops) {
-        if (airdrop.status === AirdropStatus.ACTIVE) activeAirdrops++;
-        if (airdrop.status === AirdropStatus.COMPLETED) completedAirdrops++;
+        if (airdrop.status === AirdropStatus.ACTIVE) {
+          activeAirdrops++;
+        }
+        if (airdrop.status === AirdropStatus.COMPLETED) {
+          completedAirdrops++;
+        }
 
         const claims = airdropModel.getAirdropClaims(airdrop.id);
         totalDistributed += claims.reduce((sum, claim) => sum + claim.amount, 0);
