@@ -47,7 +47,13 @@ export interface Transaction {
   createdAt: Date;
 }
 
-// 注意: ApiResponse 类型已在 ./responses.ts 中定义，避免重复导出
+// ApiResponse 已在 responses.ts 中定义，这里移除重复定义
+// export interface ApiResponse<T = any> {
+//   success: boolean;
+//   data?: T;
+//   error?: string;
+//   message?: string;
+// }
 
 export interface PaginationParams {
   page?: number;

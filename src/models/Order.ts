@@ -8,7 +8,6 @@ import { randomUUID } from 'crypto';
 export class OrderModel {
   private orders: Map<string, Order> = new Map();
   private disputes: Map<string, Dispute> = new Map();
-  private orderCounter = 1;
 
   /**
    * 生成订单号（使用 UUID v4 的一部分）

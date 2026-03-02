@@ -3,7 +3,6 @@
  * 测试范围：所有 REST API 端点、错误处理、边界条件
  */
 
-import { describe, test, expect, beforeEach, afterEach } from 'bun:test';
 import { AccountService } from '../../src/services/account.service';
 import { AirdropService } from '../../src/services/airdrop.service';
 import { TaskService } from '../../src/services/task.service';
@@ -26,7 +25,7 @@ describe('API Integration Tests', () => {
     airdropService = new AirdropService();
     taskService = new TaskService();
     freezeService = new FreezeService();
-    
+
     // 清空所有测试数据
     (AccountModel as any).accounts.clear();
     (TokenAccountModel as any).tokenAccounts.clear();
@@ -39,7 +38,7 @@ describe('API Integration Tests', () => {
 
   afterEach(() => {
     freezeService.stopAutoUnfreeze();
-    
+
     // 清理所有测试数据
     (AccountModel as any).accounts.clear();
     (TokenAccountModel as any).tokenAccounts.clear();
@@ -56,7 +55,7 @@ describe('API Integration Tests', () => {
         const userId = 'api-user-001';
         const result = await accountService.createAccount(userId, {
           email: 'api@example.com',
-          nickname: 'API User'
+          nickname: 'API User',
         });
 
         expect(result.accountId).toBeDefined();
@@ -94,7 +93,7 @@ describe('API Integration Tests', () => {
       test('应该成功转账', async () => {
         const fromUserId = 'api-user-004';
         const toUserId = 'api-user-005';
-        
+
         await accountService.createAccount(fromUserId);
         await accountService.createAccount(toUserId);
         await accountService.addTokens(fromUserId, 1000, TransactionType.REWARD, '初始奖励');
@@ -109,7 +108,7 @@ describe('API Integration Tests', () => {
       test('应该在余额不足时返回错误', async () => {
         const fromUserId = 'api-user-006';
         const toUserId = 'api-user-007';
-        
+
         await accountService.createAccount(fromUserId);
         await accountService.createAccount(toUserId);
         await accountService.addTokens(fromUserId, 100, TransactionType.REWARD, '初始奖励');
@@ -134,7 +133,7 @@ describe('API Integration Tests', () => {
           totalAmount: 10000,
           perUserAmount: 100,
           startTime,
-          endTime
+          endTime,
         });
 
         expect(result.airdropId).toBeDefined();
@@ -153,7 +152,7 @@ describe('API Integration Tests', () => {
             totalAmount: 0,
             perUserAmount: 100,
             startTime,
-            endTime
+            endTime,
           });
         }).toThrow();
       });
@@ -171,7 +170,7 @@ describe('API Integration Tests', () => {
           totalAmount: 10000,
           perUserAmount: 100,
           startTime,
-          endTime
+          endTime,
         });
 
         const result = await airdropService.startAirdrop(airdrop.airdropId);
@@ -195,7 +194,7 @@ describe('API Integration Tests', () => {
           totalAmount: 10000,
           perUserAmount: 100,
           startTime,
-          endTime
+          endTime,
         });
 
         await airdropService.startAirdrop(airdrop.airdropId);
@@ -219,7 +218,7 @@ describe('API Integration Tests', () => {
           totalAmount: 10000,
           perUserAmount: 100,
           startTime,
-          endTime
+          endTime,
         });
 
         await airdropService.startAirdrop(airdrop.airdropId);
@@ -243,7 +242,7 @@ describe('API Integration Tests', () => {
           totalAmount: 10000,
           perUserAmount: 100,
           startTime,
-          endTime
+          endTime,
         });
 
         await airdropService.createAirdrop({
@@ -252,7 +251,7 @@ describe('API Integration Tests', () => {
           totalAmount: 10000,
           perUserAmount: 100,
           startTime,
-          endTime
+          endTime,
         });
 
         const stats = airdropService.getAirdropStats();
@@ -274,7 +273,7 @@ describe('API Integration Tests', () => {
           reward: 100,
           maxCompletions: 10,
           startTime,
-          endTime
+          endTime,
         });
 
         expect(result.taskId).toBeDefined();
@@ -294,7 +293,7 @@ describe('API Integration Tests', () => {
           reward: 100,
           maxCompletions: 10,
           startTime,
-          endTime
+          endTime,
         });
 
         const result = await taskService.activateTask(task.taskId);
@@ -318,7 +317,7 @@ describe('API Integration Tests', () => {
           reward: 100,
           maxCompletions: 10,
           startTime,
-          endTime
+          endTime,
         });
 
         await taskService.activateTask(task.taskId);
@@ -343,7 +342,7 @@ describe('API Integration Tests', () => {
           reward: 100,
           maxCompletions: 10,
           startTime,
-          endTime
+          endTime,
         });
 
         await taskService.activateTask(task.taskId);
@@ -367,7 +366,7 @@ describe('API Integration Tests', () => {
           reward: 100,
           maxCompletions: 10,
           startTime,
-          endTime
+          endTime,
         });
 
         await taskService.createTask({
@@ -376,7 +375,7 @@ describe('API Integration Tests', () => {
           reward: 100,
           maxCompletions: 10,
           startTime,
-          endTime
+          endTime,
         });
 
         const allTasks = taskService.getAllTasks();
@@ -395,7 +394,7 @@ describe('API Integration Tests', () => {
         const freeze = freezeService.createInitialFreeze({
           userId,
           amount: 500,
-          transactionId: 'api-tx-001'
+          transactionId: 'api-tx-001',
         });
 
         expect(freeze).toBeDefined();
@@ -411,7 +410,7 @@ describe('API Integration Tests', () => {
           freezeService.createInitialFreeze({
             userId,
             amount: 200,
-            transactionId: 'api-tx-002'
+            transactionId: 'api-tx-002',
           });
         }).toThrow();
       });
@@ -426,7 +425,7 @@ describe('API Integration Tests', () => {
         const freeze = freezeService.createInitialFreeze({
           userId,
           amount: 500,
-          transactionId: 'api-tx-003'
+          transactionId: 'api-tx-003',
         });
 
         const result = freezeService.unfreeze(freeze.id, 'API解冻');
@@ -444,7 +443,7 @@ describe('API Integration Tests', () => {
         const freeze = freezeService.createInitialFreeze({
           userId,
           amount: 500,
-          transactionId: 'api-tx-004'
+          transactionId: 'api-tx-004',
         });
 
         const status = freezeService.getFreezeStatus(freeze.id);
@@ -478,9 +477,9 @@ describe('API Integration Tests', () => {
       await accountService.createAccount(userId);
 
       // 并发添加代币
-      const promises = Array(10).fill(null).map(() =>
-        accountService.addTokens(userId, 100, TransactionType.REWARD, '并发')
-      );
+      const promises = Array(10)
+        .fill(null)
+        .map(() => accountService.addTokens(userId, 100, TransactionType.REWARD, '并发'));
 
       await Promise.all(promises);
 
@@ -496,11 +495,11 @@ describe('API Integration Tests', () => {
       await accountService.addTokens(userId, 1000, TransactionType.REWARD, '初始奖励');
 
       const startTime = Date.now();
-      
+
       for (let i = 0; i < 1000; i++) {
         accountService.getTokenBalance(userId);
       }
-      
+
       const endTime = Date.now();
       const duration = endTime - startTime;
 
@@ -510,7 +509,7 @@ describe('API Integration Tests', () => {
 
     test('应该快速处理批量操作', async () => {
       const userIds = [];
-      
+
       // 创建 100 个账户
       for (let i = 0; i < 100; i++) {
         const userId = `perf-user-${i + 10}`;
@@ -519,12 +518,12 @@ describe('API Integration Tests', () => {
       }
 
       const startTime = Date.now();
-      
+
       // 批量添加代币
       for (const userId of userIds) {
         await accountService.addTokens(userId, 100, TransactionType.REWARD, '批量');
       }
-      
+
       const endTime = Date.now();
       const duration = endTime - startTime;
 
@@ -550,7 +549,7 @@ describe('API Integration Tests', () => {
         totalAmount: 10000,
         perUserAmount: 500,
         startTime: new Date(now.getTime() - 1000 * 60),
-        endTime: new Date(now.getTime() + 1000 * 60 * 60)
+        endTime: new Date(now.getTime() + 1000 * 60 * 60),
       });
       await airdropService.startAirdrop(airdrop.airdropId);
       await airdropService.claimAirdrop(airdrop.airdropId, user1);
@@ -565,7 +564,7 @@ describe('API Integration Tests', () => {
         reward: 200,
         maxCompletions: 10,
         startTime: new Date(now.getTime() - 1000 * 60),
-        endTime: new Date(now.getTime() + 1000 * 60 * 60)
+        endTime: new Date(now.getTime() + 1000 * 60 * 60),
       });
       await taskService.activateTask(task.taskId);
       await taskService.completeTask(task.taskId, user1);
@@ -578,7 +577,7 @@ describe('API Integration Tests', () => {
 
       balance1 = accountService.getTokenBalance(user1);
       const balance2 = accountService.getTokenBalance(user2);
-      
+
       expect(balance1?.balance).toBe(400);
       expect(balance2?.balance).toBe(300);
     });
@@ -592,7 +591,7 @@ describe('API Integration Tests', () => {
       const freeze = freezeService.createInitialFreeze({
         userId: user,
         amount: 500,
-        transactionId: 'scenario-tx-001'
+        transactionId: 'scenario-tx-001',
       });
 
       let available = freezeService.getAvailableBalance(user);

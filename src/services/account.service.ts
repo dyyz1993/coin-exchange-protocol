@@ -56,10 +56,9 @@ export class AccountService {
       throw new Error('创建账户失败：无法获取账户ID');
     }
 
-    // 如果有初始余额，记录交易
-    if (initialBalance > 0) {
-      await this.addTokens(userId, initialBalance, TransactionType.REWARD, '初始余额');
-    }
+    // ❌ 已移除重复的 addTokens 调用
+    // accountModel.createAccount 已经设置了初始余额，不需要再次增加
+    // 修复 Issue #236: 账户创建时初始余额重复计算导致双倍余额的 Bug
 
     return {
       accountId: account.id,
@@ -120,7 +119,7 @@ export class AccountService {
     amount: number,
     type: TransactionType,
     description: string,
-    relatedId?: string
+    _relatedId?: string
   ): Promise<{
     success: boolean;
     newBalance: number;
@@ -148,7 +147,7 @@ export class AccountService {
     amount: number,
     type: TransactionType,
     description: string,
-    relatedId?: string
+    _relatedId?: string
   ): Promise<{
     success: boolean;
     newBalance: number;
@@ -174,14 +173,14 @@ export class AccountService {
   async freezeTokens(
     userId: string,
     amount: number,
-    reason: string,
-    relatedId?: string
+    _reason: string,
+    _relatedId?: string
   ): Promise<{
     success: boolean;
     frozenAmount: number;
     availableBalance: number;
   }> {
-    const transaction = await accountModel.freezeBalance(userId, amount);
+    await accountModel.freezeBalance(userId, amount);
     const account = accountModel.getAccountByUserId(userId);
 
     if (!account) {
@@ -201,13 +200,13 @@ export class AccountService {
   async unfreezeTokens(
     userId: string,
     amount: number,
-    reason: string
+    _reason: string
   ): Promise<{
     success: boolean;
     unfrozenAmount: number;
     availableBalance: number;
   }> {
-    const transaction = await accountModel.unfreezeBalance(userId, amount);
+    await accountModel.unfreezeBalance(userId, amount);
     const account = accountModel.getAccountByUserId(userId);
 
     if (!account) {
@@ -344,7 +343,7 @@ export class AccountService {
    */
   updateAccountInfo(
     userId: string,
-    updates: {
+    _updates: {
       email?: string;
       phone?: string;
       nickname?: string;
@@ -360,7 +359,7 @@ export class AccountService {
    * 停用账户
    * 注意：当前 AccountModel 没有 status 字段，这里只是占位
    */
-  async deactivateAccount(userId: string, reason: string): Promise<boolean> {
+  async deactivateAccount(userId: string, _reason: string): Promise<boolean> {
     const account = accountModel.getAccountByUserId(userId);
     if (!account) {
       throw new Error('账户不存在');
@@ -435,7 +434,7 @@ export class AccountService {
   async freezeAccount(
     userId: string,
     reason: string,
-    duration?: number
+    _duration?: number
   ): Promise<{
     success: boolean;
     frozenAmount: number;

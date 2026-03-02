@@ -105,13 +105,14 @@ export class AirdropService {
       throw new Error('空投活动已结束');
     }
 
-    // 检查总金额是否足够
-    const claims = airdropModel.getAirdropClaims(airdropId);
-    const totalClaimed = claims.reduce((sum, claim) => sum + claim.amount, 0);
-    const remainingAmount = airdrop.totalAmount - totalClaimed;
+    // 🔥 修复 Issue #201：直接使用 Model 维护的 claimedAmount，避免重复计算
+    // Model.createClaim() 内部会进行更严格的检查
+    const remainingAmount = airdrop.totalAmount - airdrop.claimedAmount;
 
     if (remainingAmount < airdrop.perUserAmount) {
-      throw new Error('空投金额已耗尽');
+      throw new Error(
+        `空投金额已耗尽。剩余: ${remainingAmount}, 每人可领取: ${airdrop.perUserAmount}`
+      );
     }
 
     // 创建领取记录
@@ -166,7 +167,7 @@ export class AirdropService {
    */
   async cancelAirdrop(
     airdropId: string,
-    reason: string
+    _reason: string
   ): Promise<{
     success: boolean;
     status: AirdropStatus;
