@@ -13,6 +13,8 @@ describe('空投超额领取修复测试 (Issue #201)', () => {
     (airdropModel as any).airdrops.clear();
     (airdropModel as any).claims.clear();
     (airdropModel as any).userClaims.clear();
+    // 🔥 清空 mutex 状态（避免锁残留）
+    (airdropModel as any).airdropMutexes.clear();
   });
 
   test('✅ 正常领取 - 额度充足时应成功', async () => {

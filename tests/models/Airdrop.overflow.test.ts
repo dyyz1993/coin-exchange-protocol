@@ -14,7 +14,7 @@ describe('AirdropModel - Overflow Protection (P0)', () => {
   });
 
   describe('safeAdd - 溢出保护', () => {
-    it('应该在加法溢出时抛出错误', () => {
+    it('应该在加法溢出时抛出错误', async () => {
       const largeAmount = Number.MAX_SAFE_INTEGER - 10;
       const airdrop = airdropModel.createAirdrop({
         name: 'Overflow Test Airdrop',
@@ -30,7 +30,7 @@ describe('AirdropModel - Overflow Protection (P0)', () => {
       // 创建大量领取记录以触发溢出
       for (let i = 0; i < 20; i++) {
         try {
-          airdropModel.createClaim(airdrop.id, `user_${i}`, 100);
+          await airdropModel.createClaim(airdrop.id, `user_${i}`, 100);
         } catch (error) {
           // 预期会失败，因为余额不足
           expect(error).toBeInstanceOf(Error);
@@ -38,7 +38,7 @@ describe('AirdropModel - Overflow Protection (P0)', () => {
       }
     });
 
-    it('应该正确处理接近 MAX_SAFE_INTEGER 的金额', () => {
+    it('应该正确处理接近 MAX_SAFE_INTEGER 的金额', async () => {
       const nearMax = Number.MAX_SAFE_INTEGER - 1000;
       const airdrop = airdropModel.createAirdrop({
         name: 'Near Max Test',
@@ -52,13 +52,13 @@ describe('AirdropModel - Overflow Protection (P0)', () => {
       airdropModel.updateAirdropStatus(airdrop.id, AirdropStatus.ACTIVE);
 
       // 正常领取应该成功
-      const claim = airdropModel.createClaim(airdrop.id, 'user_1', 100);
+      const claim = await airdropModel.createClaim(airdrop.id, 'user_1', 100);
       expect(claim.amount).toBe(100);
     });
   });
 
   describe('safeSubtract - 下溢保护', () => {
-    it('应该在减法结果为负数时抛出错误', () => {
+    it('应该在减法结果为负数时抛出错误', async () => {
       const smallAmount = 100;
       const airdrop = airdropModel.createAirdrop({
         name: 'Small Amount Test',
@@ -72,12 +72,12 @@ describe('AirdropModel - Overflow Protection (P0)', () => {
       airdropModel.updateAirdropStatus(airdrop.id, AirdropStatus.ACTIVE);
 
       // 尝试领取超过总额的金额
-      expect(() => {
-        airdropModel.createClaim(airdrop.id, 'user_1', 150);
-      }).toThrow('Insufficient airdrop balance');
+      await expect(airdropModel.createClaim(airdrop.id, 'user_1', 150)).rejects.toThrow(
+        'Insufficient airdrop balance'
+      );
     });
 
-    it('应该正确处理余额耗尽的情况', () => {
+    it('应该正确处理余额耗尽的情况', async () => {
       const totalAmount = 100;
       const perUserAmount = 60;
       const airdrop = airdropModel.createAirdrop({
@@ -92,18 +92,18 @@ describe('AirdropModel - Overflow Protection (P0)', () => {
       airdropModel.updateAirdropStatus(airdrop.id, AirdropStatus.ACTIVE);
 
       // 第一个用户领取成功
-      const claim1 = airdropModel.createClaim(airdrop.id, 'user_1', perUserAmount);
+      const claim1 = await airdropModel.createClaim(airdrop.id, 'user_1', perUserAmount);
       expect(claim1.amount).toBe(perUserAmount);
 
       // 第二个用户应该失败（余额不足）
-      expect(() => {
-        airdropModel.createClaim(airdrop.id, 'user_2', perUserAmount);
-      }).toThrow('Insufficient airdrop balance');
+      await expect(airdropModel.createClaim(airdrop.id, 'user_2', perUserAmount)).rejects.toThrow(
+        'Insufficient airdrop balance'
+      );
     });
   });
 
   describe('getRemainingAmount - 剩余金额计算', () => {
-    it('应该正确计算剩余金额并防止溢出', () => {
+    it('应该正确计算剩余金额并防止溢出', async () => {
       const airdrop = airdropModel.createAirdrop({
         name: 'Remaining Amount Test',
         description: 'Testing remaining amount calculation',
@@ -119,15 +119,15 @@ describe('AirdropModel - Overflow Protection (P0)', () => {
       expect(airdropModel.getRemainingAmount(airdrop.id)).toBe(1000);
 
       // 领取一次
-      airdropModel.createClaim(airdrop.id, 'user_1', 100);
+      await airdropModel.createClaim(airdrop.id, 'user_1', 100);
       expect(airdropModel.getRemainingAmount(airdrop.id)).toBe(900);
 
       // 再领取一次
-      airdropModel.createClaim(airdrop.id, 'user_2', 100);
+      await airdropModel.createClaim(airdrop.id, 'user_2', 100);
       expect(airdropModel.getRemainingAmount(airdrop.id)).toBe(800);
     });
 
-    it('应该在大量领取后正确计算剩余金额', () => {
+    it('应该在大量领取后正确计算剩余金额', async () => {
       const totalAmount = 10000;
       const perUserAmount = 100;
       const userCount = 50;
@@ -144,7 +144,7 @@ describe('AirdropModel - Overflow Protection (P0)', () => {
 
       // 创建大量领取
       for (let i = 0; i < userCount; i++) {
-        airdropModel.createClaim(airdrop.id, `user_${i}`, perUserAmount);
+        await airdropModel.createClaim(airdrop.id, `user_${i}`, perUserAmount);
       }
 
       // 验证剩余金额
@@ -154,7 +154,7 @@ describe('AirdropModel - Overflow Protection (P0)', () => {
   });
 
   describe('isAirdropExhausted - 空投耗尽检查', () => {
-    it('应该正确识别空投已耗尽', () => {
+    it('应该正确识别空投已耗尽', async () => {
       const airdrop = airdropModel.createAirdrop({
         name: 'Exhaustion Check Test',
         description: 'Testing exhaustion check',
@@ -170,11 +170,11 @@ describe('AirdropModel - Overflow Protection (P0)', () => {
       expect(airdropModel.isAirdropExhausted(airdrop.id)).toBe(false);
 
       // 领取一次后仍未耗尽
-      airdropModel.createClaim(airdrop.id, 'user_1', 100);
+      await airdropModel.createClaim(airdrop.id, 'user_1', 100);
       expect(airdropModel.isAirdropExhausted(airdrop.id)).toBe(false);
 
       // 再领取一次后耗尽
-      airdropModel.createClaim(airdrop.id, 'user_2', 100);
+      await airdropModel.createClaim(airdrop.id, 'user_2', 100);
       expect(airdropModel.isAirdropExhausted(airdrop.id)).toBe(true);
     });
   });
@@ -196,7 +196,7 @@ describe('AirdropModel - Overflow Protection (P0)', () => {
       const claims = [];
       for (let i = 0; i < 15; i++) {
         try {
-          const claim = airdropModel.createClaim(airdrop.id, `user_${i}`, 100);
+          const claim = await airdropModel.createClaim(airdrop.id, `user_${i}`, 100);
           claims.push(claim);
         } catch (error) {
           // 预期部分会失败
