@@ -74,52 +74,62 @@ export class OrderModel {
   }
 
   /**
-   * 获取订单
+   * 获取订单（返回深拷贝，防止外部修改影响内部数据）
    */
   getOrder(orderId: string): Order | undefined {
-    return this.orders.get(orderId);
+    const order = this.orders.get(orderId);
+    if (!order) {
+      return undefined;
+    }
+
+    // 返回深拷贝，防止外部修改影响内部数据，确保乐观锁机制有效
+    return JSON.parse(JSON.stringify(order));
   }
 
   /**
-   * 根据订单号获取订单
+   * 根据订单号获取订单（返回深拷贝）
    */
   getOrderByOrderNo(orderNo: string): Order | undefined {
     for (const order of this.orders.values()) {
       if (order.orderNo === orderNo) {
-        return order;
+        // 返回深拷贝，防止外部修改影响内部数据
+        return JSON.parse(JSON.stringify(order));
       }
     }
     return undefined;
   }
 
   /**
-   * 获取所有订单
+   * 获取所有订单（返回深拷贝数组）
    */
   getAllOrders(): Order[] {
-    return Array.from(this.orders.values());
+    // 返回深拷贝数组，防止外部修改影响内部数据
+    return Array.from(this.orders.values()).map((order) => JSON.parse(JSON.stringify(order)));
   }
 
   /**
-   * 获取买家订单
+   * 获取买家订单（返回深拷贝数组）
    */
   getBuyerOrders(buyerId: string): Order[] {
     const orders: Order[] = [];
     for (const order of this.orders.values()) {
       if (order.buyerId === buyerId) {
-        orders.push(order);
+        // 深拷贝每个订单
+        orders.push(JSON.parse(JSON.stringify(order)));
       }
     }
     return orders.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
   }
 
   /**
-   * 获取卖家订单
+   * 获取卖家订单（返回深拷贝数组）
    */
   getSellerOrders(sellerId: string): Order[] {
     const orders: Order[] = [];
     for (const order of this.orders.values()) {
       if (order.sellerId === sellerId) {
-        orders.push(order);
+        // 深拷贝每个订单
+        orders.push(JSON.parse(JSON.stringify(order)));
       }
     }
     return orders.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
@@ -129,18 +139,18 @@ export class OrderModel {
    * 更新订单状态（带乐观锁）
    * @param orderId 订单ID
    * @param status 新状态
-   * @param expectedVersion 预期版本号（乐观锁）
+   * @param expectedVersion 预期版本号（乐观锁）- 必需参数
    * @returns 更新后的订单
    * @throws 如果订单不存在、版本号不匹配或状态转换非法
    */
-  updateOrderStatus(orderId: string, status: OrderStatus, expectedVersion?: number): Order {
+  updateOrderStatus(orderId: string, status: OrderStatus, expectedVersion: number): Order {
     const order = this.orders.get(orderId);
     if (!order) {
       throw new Error('Order not found');
     }
 
     // 乐观锁验证
-    if (expectedVersion !== undefined && order.version !== expectedVersion) {
+    if (order.version !== expectedVersion) {
       throw new Error(
         `Concurrent modification detected. Expected version ${expectedVersion}, but current is ${order.version}`
       );
@@ -173,15 +183,16 @@ export class OrderModel {
 
   /**
    * 设置冻结金额（带乐观锁）
+   * @param expectedVersion 预期版本号（乐观锁）- 必需参数
    */
-  setFrozenAmount(orderId: string, frozenAmount: number, expectedVersion?: number): Order {
+  setFrozenAmount(orderId: string, frozenAmount: number, expectedVersion: number): Order {
     const order = this.orders.get(orderId);
     if (!order) {
       throw new Error('Order not found');
     }
 
     // 乐观锁验证
-    if (expectedVersion !== undefined && order.version !== expectedVersion) {
+    if (order.version !== expectedVersion) {
       throw new Error(
         `Concurrent modification detected. Expected version ${expectedVersion}, but current is ${order.version}`
       );
@@ -196,15 +207,16 @@ export class OrderModel {
 
   /**
    * 设置代币交易ID（带乐观锁）
+   * @param expectedVersion 预期版本号（乐观锁）- 必需参数
    */
-  setTransactionId(orderId: string, transactionId: string, expectedVersion?: number): Order {
+  setTransactionId(orderId: string, transactionId: string, expectedVersion: number): Order {
     const order = this.orders.get(orderId);
     if (!order) {
       throw new Error('Order not found');
     }
 
     // 乐观锁验证
-    if (expectedVersion !== undefined && order.version !== expectedVersion) {
+    if (order.version !== expectedVersion) {
       throw new Error(
         `Concurrent modification detected. Expected version ${expectedVersion}, but current is ${order.version}`
       );
@@ -219,19 +231,16 @@ export class OrderModel {
 
   /**
    * 设置外部支付ID（带乐观锁）
+   * @param expectedVersion 预期版本号（乐观锁）- 必需参数
    */
-  setExternalPaymentId(
-    orderId: string,
-    externalPaymentId: string,
-    expectedVersion?: number
-  ): Order {
+  setExternalPaymentId(orderId: string, externalPaymentId: string, expectedVersion: number): Order {
     const order = this.orders.get(orderId);
     if (!order) {
       throw new Error('Order not found');
     }
 
     // 乐观锁验证
-    if (expectedVersion !== undefined && order.version !== expectedVersion) {
+    if (order.version !== expectedVersion) {
       throw new Error(
         `Concurrent modification detected. Expected version ${expectedVersion}, but current is ${order.version}`
       );
@@ -246,15 +255,16 @@ export class OrderModel {
 
   /**
    * 设置争议ID（带乐观锁）
+   * @param expectedVersion 预期版本号（乐观锁）- 必需参数
    */
-  setDisputeId(orderId: string, disputeId: string, expectedVersion?: number): Order {
+  setDisputeId(orderId: string, disputeId: string, expectedVersion: number): Order {
     const order = this.orders.get(orderId);
     if (!order) {
       throw new Error('Order not found');
     }
 
     // 乐观锁验证
-    if (expectedVersion !== undefined && order.version !== expectedVersion) {
+    if (order.version !== expectedVersion) {
       throw new Error(
         `Concurrent modification detected. Expected version ${expectedVersion}, but current is ${order.version}`
       );
@@ -311,19 +321,26 @@ export class OrderModel {
   }
 
   /**
-   * 获取争议
+   * 获取争议（返回深拷贝）
    */
   getDispute(disputeId: string): Dispute | undefined {
-    return this.disputes.get(disputeId);
+    const dispute = this.disputes.get(disputeId);
+    if (!dispute) {
+      return undefined;
+    }
+
+    // 返回深拷贝，防止外部修改影响内部数据
+    return JSON.parse(JSON.stringify(dispute));
   }
 
   /**
-   * 根据订单ID获取争议
+   * 根据订单ID获取争议（返回深拷贝）
    */
   getDisputeByOrderId(orderId: string): Dispute | undefined {
     for (const dispute of this.disputes.values()) {
       if (dispute.orderId === orderId) {
-        return dispute;
+        // 返回深拷贝，防止外部修改影响内部数据
+        return JSON.parse(JSON.stringify(dispute));
       }
     }
     return undefined;
@@ -363,21 +380,23 @@ export class OrderModel {
   }
 
   /**
-   * 获取所有争议
+   * 获取所有争议（返回深拷贝数组）
    */
   getAllDisputes(): Dispute[] {
-    return Array.from(this.disputes.values());
+    // 返回深拷贝数组，防止外部修改影响内部数据
+    return Array.from(this.disputes.values()).map((dispute) => JSON.parse(JSON.stringify(dispute)));
   }
 
   /**
-   * 获取用户的争议
+   * 获取用户的争议（返回深拷贝数组）
    */
   getUserDisputes(userId: string): Dispute[] {
     const disputes: Dispute[] = [];
     for (const dispute of this.disputes.values()) {
       const order = this.getOrder(dispute.orderId);
       if (order && (order.buyerId === userId || order.sellerId === userId)) {
-        disputes.push(dispute);
+        // 深拷贝每个争议
+        disputes.push(JSON.parse(JSON.stringify(dispute)));
       }
     }
     return disputes.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
