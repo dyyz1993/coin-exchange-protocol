@@ -119,7 +119,7 @@ export class AccountService {
     amount: number,
     type: TransactionType,
     description: string,
-    relatedId?: string
+    _relatedId?: string
   ): Promise<{
     success: boolean;
     newBalance: number;
@@ -147,7 +147,7 @@ export class AccountService {
     amount: number,
     type: TransactionType,
     description: string,
-    relatedId?: string
+    _relatedId?: string
   ): Promise<{
     success: boolean;
     newBalance: number;
@@ -173,14 +173,14 @@ export class AccountService {
   async freezeTokens(
     userId: string,
     amount: number,
-    reason: string,
-    relatedId?: string
+    _reason: string,
+    _relatedId?: string
   ): Promise<{
     success: boolean;
     frozenAmount: number;
     availableBalance: number;
   }> {
-    const transaction = await accountModel.freezeBalance(userId, amount);
+    await accountModel.freezeBalance(userId, amount);
     const account = accountModel.getAccountByUserId(userId);
 
     if (!account) {
@@ -200,13 +200,13 @@ export class AccountService {
   async unfreezeTokens(
     userId: string,
     amount: number,
-    reason: string
+    _reason: string
   ): Promise<{
     success: boolean;
     unfrozenAmount: number;
     availableBalance: number;
   }> {
-    const transaction = await accountModel.unfreezeBalance(userId, amount);
+    await accountModel.unfreezeBalance(userId, amount);
     const account = accountModel.getAccountByUserId(userId);
 
     if (!account) {
@@ -343,7 +343,7 @@ export class AccountService {
    */
   updateAccountInfo(
     userId: string,
-    updates: {
+    _updates: {
       email?: string;
       phone?: string;
       nickname?: string;
@@ -359,7 +359,7 @@ export class AccountService {
    * 停用账户
    * 注意：当前 AccountModel 没有 status 字段，这里只是占位
    */
-  async deactivateAccount(userId: string, reason: string): Promise<boolean> {
+  async deactivateAccount(userId: string, _reason: string): Promise<boolean> {
     const account = accountModel.getAccountByUserId(userId);
     if (!account) {
       throw new Error('账户不存在');
@@ -434,7 +434,7 @@ export class AccountService {
   async freezeAccount(
     userId: string,
     reason: string,
-    duration?: number
+    _duration?: number
   ): Promise<{
     success: boolean;
     frozenAmount: number;

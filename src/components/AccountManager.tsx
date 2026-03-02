@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { toast } from '../utils/toast';
+import { confirm } from '../utils/confirm';
 import { validateAmount, validateAddress, isAmountInRange } from '../utils/validation';
 
 // 类型定义
@@ -163,8 +164,15 @@ export const AccountManager: React.FC = () => {
 
   // 冻结账户
   const handleFreeze = async (accountId: string) => {
-    // 使用自定义确认对话框（这里简化处理，实际项目中应该创建一个确认对话框组件）
-    const confirmed = window.confirm('确定要冻结此账户吗？');
+    const confirmed = await confirm.show(
+      '确定要冻结此账户吗？冻结后该账户将无法进行任何交易操作。',
+      {
+        title: '冻结账户',
+        type: 'danger',
+        confirmText: '冻结',
+        cancelText: '取消',
+      }
+    );
     if (!confirmed) return;
 
     setLoading(true);
@@ -181,7 +189,12 @@ export const AccountManager: React.FC = () => {
 
   // 解冻账户
   const handleUnfreeze = async (accountId: string) => {
-    const confirmed = window.confirm('确定要解冻此账户吗？');
+    const confirmed = await confirm.show('确定要解冻此账户吗？解冻后该账户将恢复正常交易。', {
+      title: '解冻账户',
+      type: 'info',
+      confirmText: '解冻',
+      cancelText: '取消',
+    });
     if (!confirmed) return;
 
     setLoading(true);

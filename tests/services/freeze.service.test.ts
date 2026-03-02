@@ -415,7 +415,7 @@ describe('FreezeService', () => {
       await accountService.createAccount(userId);
       await accountService.addTokens(userId, 2000, TransactionType.REWARD, '初始奖励');
 
-      const freeze1 = freezeService.createInitialFreeze({
+      const freeze1 = await freezeService.createInitialFreeze({
         userId,
         amount: 500,
         transactionId: 'tx-024',
@@ -442,7 +442,7 @@ describe('FreezeService', () => {
       await accountService.createAccount(userId);
       await accountService.addTokens(userId, 1000, TransactionType.REWARD, '初始奖励');
 
-      const freeze = freezeService.createInitialFreeze({
+      const freeze = await freezeService.createInitialFreeze({
         userId,
         amount: 500,
         transactionId: 'tx-026',
@@ -573,25 +573,25 @@ describe('FreezeService', () => {
       await accountService.createAccount(userId);
       await accountService.addTokens(userId, 3000, TransactionType.REWARD, '初始奖励');
 
-      const freeze1 = freezeService.createInitialFreeze({
+      const freeze1 = await freezeService.createInitialFreeze({
         userId,
         amount: 500,
         transactionId: 'tx-033',
       });
 
-      const freeze2 = freezeService.createInitialFreeze({
+      const freeze2 = await freezeService.createInitialFreeze({
         userId,
         amount: 500,
         transactionId: 'tx-034',
       });
 
-      const freeze3 = freezeService.createInitialFreeze({
+      const freeze3 = await freezeService.createInitialFreeze({
         userId,
         amount: 500,
         transactionId: 'tx-035',
       });
 
-      const results = freezeService.unfreezeMultiple(
+      const results = await freezeService.unfreezeMultiple(
         [freeze1.id, freeze2.id, freeze3.id],
         '批量解冻'
       );
@@ -605,13 +605,16 @@ describe('FreezeService', () => {
       await accountService.createAccount(userId);
       await accountService.addTokens(userId, 1000, TransactionType.REWARD, '初始奖励');
 
-      const freeze1 = freezeService.createInitialFreeze({
+      const freeze1 = await freezeService.createInitialFreeze({
         userId,
         amount: 500,
         transactionId: 'tx-036',
       });
 
-      const results = freezeService.unfreezeMultiple([freeze1.id, 'non-existent'], '批量解冻');
+      const results = await freezeService.unfreezeMultiple(
+        [freeze1.id, 'non-existent'],
+        '批量解冻'
+      );
 
       expect(results.length).toBe(2);
       expect(results[0].success).toBe(true);
@@ -648,7 +651,7 @@ describe('FreezeService', () => {
       const largeAmount = Number.MAX_SAFE_INTEGER / 2;
       await accountService.addTokens(userId, largeAmount, TransactionType.REWARD, '大额奖励');
 
-      const freeze = freezeService.createInitialFreeze({
+      const freeze = await freezeService.createInitialFreeze({
         userId,
         amount: largeAmount / 2,
         transactionId: 'tx-large',
@@ -692,7 +695,7 @@ describe('FreezeService', () => {
       await accountService.addTokens(userId, 10000, TransactionType.REWARD, '初始奖励');
 
       for (let i = 0; i < 10; i++) {
-        const freeze = freezeService.createInitialFreeze({
+        const freeze = await freezeService.createInitialFreeze({
           userId,
           amount: 100,
           transactionId: `tx-fast-${i}`,

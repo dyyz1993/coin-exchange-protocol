@@ -1,10 +1,31 @@
 /**
  * 代币账户模型
  * 管理用户的代币余额和交易记录
+ *
+ * @deprecated ⚠️ 此类存在严重的并发安全问题，不应在新代码中使用
+ *
+ * **已知问题**：
+ * 1. 缺少并发控制机制（没有锁、没有版本号）
+ * 2. 低效的账户查找（O(n) 遍历）
+ * 3. 不安全的ID生成（简单计数器）
+ * 4. 缺少冻结余额支持
+ *
+ * **替代方案**：请使用 `AccountModel` (src/models/Account.ts)
+ * - AccountModel 正确实现了并发控制（Mutex 锁 + 乐观锁）
+ * - 支持冻结余额管理
+ * - 高效的索引查找
+ *
+ * **计划**：将在下一个主版本中删除此类
+ *
+ * @see Issue #311
+ * @see AccountModel
  */
 
 import type { TokenAccount, Transaction } from '../types';
 
+/**
+ * @deprecated 使用 AccountModel 代替
+ */
 export class TokenAccountModel {
   private accounts: Map<string, TokenAccount> = new Map();
   private transactions: Map<string, Transaction> = new Map();
@@ -24,7 +45,7 @@ export class TokenAccountModel {
       createdAt: new Date(),
       updatedAt: new Date(),
     };
-    
+
     this.accounts.set(account.id, account);
     return account;
   }
@@ -129,7 +150,7 @@ export class TokenAccountModel {
    */
   getTransactions(accountId: string, limit = 20, offset = 0): Transaction[] {
     const accountTransactions: Transaction[] = [];
-    
+
     for (const transaction of this.transactions.values()) {
       if (transaction.accountId === accountId) {
         accountTransactions.push(transaction);
@@ -150,5 +171,7 @@ export class TokenAccountModel {
   }
 }
 
-// 单例实例
+/**
+ * @deprecated 使用 AccountModel 代替，不要使用此单例
+ */
 export const tokenAccountModel = new TokenAccountModel();

@@ -22,8 +22,9 @@ module.exports = {
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
-    '@typescript-eslint/no-floating-promises': 'warn',
-    '@typescript-eslint/no-misused-promises': 'warn',
+    // 临时禁用需要 parserOptions.project 的规则
+    // '@typescript-eslint/no-floating-promises': 'warn',
+    // '@typescript-eslint/no-misused-promises': 'warn',
     
     // 通用规则
     'no-console': ['warn', { allow: ['warn', 'error', 'info'] }],
@@ -48,7 +49,7 @@ module.exports = {
     'dist',
     'node_modules',
     'coverage',
-    '*.js',
+    '*.config.js',
     '!.eslintrc.js',
   ],
 };
