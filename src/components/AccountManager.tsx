@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { toast } from '../utils/toast';
 import { confirm } from '../utils/confirm';
-import { validateAmount, validateAddress, isAmountInRange } from '../utils/validation';
+import { validateAmount, validateAddress } from '../utils/validation';
 
 // 类型定义
 interface Account {
@@ -13,19 +13,11 @@ interface Account {
   createdAt: string;
 }
 
-interface Transaction {
-  id: string;
-  type: 'deposit' | 'withdraw' | 'transfer';
-  amount: number;
-  from?: string;
-  to?: string;
-  timestamp: string;
-  status: 'pending' | 'completed' | 'failed';
-}
+// Transaction interface unused
 
 export const AccountManager: React.FC = () => {
   const [accounts, setAccounts] = useState<Account[]>([]);
-  const [selectedAccount, setSelectedAccount] = useState<Account | null>(null);
+  // const [selectedAccount, setSelectedAccount] = useState<Account | null>(null); // Unused
   const [showTransferForm, setShowTransferForm] = useState(false);
   const [showDepositForm, setShowDepositForm] = useState(false);
   const [showWithdrawForm, setShowWithdrawForm] = useState(false);
@@ -163,7 +155,7 @@ export const AccountManager: React.FC = () => {
   };
 
   // 冻结账户
-  const handleFreeze = async (accountId: string) => {
+  const handleFreeze = async (_accountId: string) => {
     const confirmed = await confirm.show(
       '确定要冻结此账户吗？冻结后该账户将无法进行任何交易操作。',
       {
@@ -173,7 +165,7 @@ export const AccountManager: React.FC = () => {
         cancelText: '取消',
       }
     );
-    if (!confirmed) return;
+    if (!confirmed) {return;}
 
     setLoading(true);
     try {
@@ -188,14 +180,14 @@ export const AccountManager: React.FC = () => {
   };
 
   // 解冻账户
-  const handleUnfreeze = async (accountId: string) => {
+  const handleUnfreeze = async (_accountId: string) => {
     const confirmed = await confirm.show('确定要解冻此账户吗？解冻后该账户将恢复正常交易。', {
       title: '解冻账户',
       type: 'info',
       confirmText: '解冻',
       cancelText: '取消',
     });
-    if (!confirmed) return;
+    if (!confirmed) {return;}
 
     setLoading(true);
     try {

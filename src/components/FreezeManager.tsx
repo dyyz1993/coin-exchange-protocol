@@ -172,14 +172,14 @@ export const FreezeManager: React.FC = () => {
   };
 
   // 审核通过
-  const handleApprove = async (requestId: string) => {
+  const handleApprove = async (_requestId: string) => {
     const confirmed = await confirm.show('确定要通过此冻结申请吗？', {
       title: '审核确认',
       type: 'warning',
       confirmText: '通过',
       cancelText: '取消',
     });
-    if (!confirmed) return;
+    if (!confirmed) {return;}
 
     setLoading(true);
     try {
@@ -195,14 +195,14 @@ export const FreezeManager: React.FC = () => {
   };
 
   // 审核拒绝
-  const handleReject = async (requestId: string) => {
+  const handleReject = async (_requestId: string) => {
     const confirmed = await confirm.show('确定要拒绝此冻结申请吗？', {
       title: '审核确认',
       type: 'danger',
       confirmText: '拒绝',
       cancelText: '取消',
     });
-    if (!confirmed) return;
+    if (!confirmed) {return;}
 
     setLoading(true);
     try {
@@ -217,14 +217,14 @@ export const FreezeManager: React.FC = () => {
   };
 
   // 解冻账户
-  const handleUnfreeze = async (recordId: string) => {
+  const handleUnfreeze = async (_recordId: string) => {
     const confirmed = await confirm.show('确定要解冻此账户吗？', {
       title: '解冻确认',
       type: 'info',
       confirmText: '解冻',
       cancelText: '取消',
     });
-    if (!confirmed) return;
+    if (!confirmed) {return;}
 
     setLoading(true);
     try {
@@ -240,25 +240,25 @@ export const FreezeManager: React.FC = () => {
 
   // 获取状态徽章
   const getStatusBadge = (status: FreezeRequest['status'] | FreezeRecord['status']) => {
-    if (status === 'pending') return 'bg-yellow-100 text-yellow-800';
-    if (status === 'approved' || status === 'active') return 'bg-green-100 text-green-800';
-    if (status === 'rejected' || status === 'unfrozen') return 'bg-red-100 text-red-800';
+    if (status === 'pending') {return 'bg-yellow-100 text-yellow-800';}
+    if (status === 'approved' || status === 'active') {return 'bg-green-100 text-green-800';}
+    if (status === 'rejected' || status === 'unfrozen') {return 'bg-red-100 text-red-800';}
     return 'bg-gray-100 text-gray-800';
   };
 
   // 获取状态文本
   const getStatusText = (status: FreezeRequest['status'] | FreezeRecord['status']) => {
-    if (status === 'pending') return '待审核';
-    if (status === 'approved') return '已通过';
-    if (status === 'rejected') return '已拒绝';
-    if (status === 'active') return '冻结中';
-    if (status === 'unfrozen') return '已解冻';
+    if (status === 'pending') {return '待审核';}
+    if (status === 'approved') {return '已通过';}
+    if (status === 'rejected') {return '已拒绝';}
+    if (status === 'active') {return '冻结中';}
+    if (status === 'unfrozen') {return '已解冻';}
     return status;
   };
 
   // 筛选申请
   const filteredRequests = freezeRequests.filter((req) => {
-    if (statusFilter === 'all') return true;
+    if (statusFilter === 'all') {return true;}
     return req.status === statusFilter;
   });
 

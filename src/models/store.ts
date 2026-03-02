@@ -46,7 +46,7 @@ class DataStore {
   
   updateAccount(userId: string, updates: Partial<UserAccount>): UserAccount | undefined {
     const account = this.accounts.get(userId);
-    if (!account) return undefined;
+    if (!account) {return undefined;}
     
     const updated = {
       ...account,
@@ -90,7 +90,7 @@ class DataStore {
   
   getUserTransactions(userId: string): Transaction[] {
     const transactionIds = this.userTransactions.get(userId);
-    if (!transactionIds) return [];
+    if (!transactionIds) {return [];}
     
     return Array.from(transactionIds)
       .map(id => this.transactions.get(id)!)
@@ -127,7 +127,7 @@ class DataStore {
   
   updateAirdrop(airdropId: string, updates: Partial<Airdrop>): Airdrop | undefined {
     const airdrop = this.airdrops.get(airdropId);
-    if (!airdrop) return undefined;
+    if (!airdrop) {return undefined;}
     
     const updated = { ...airdrop, ...updates };
     this.airdrops.set(airdropId, updated);
@@ -162,7 +162,7 @@ class DataStore {
   
   getUserAirdropClaims(userId: string): AirdropClaim[] {
     const claimIds = this.userAirdropClaims.get(userId);
-    if (!claimIds) return [];
+    if (!claimIds) {return [];}
     
     return Array.from(claimIds)
       .map(id => this.airdropClaims.get(id)!)
@@ -195,7 +195,7 @@ class DataStore {
   
   updateTask(taskId: string, updates: Partial<Task>): Task | undefined {
     const task = this.tasks.get(taskId);
-    if (!task) return undefined;
+    if (!task) {return undefined;}
     
     const updated = { ...task, ...updates };
     this.tasks.set(taskId, updated);
@@ -230,7 +230,7 @@ class DataStore {
   
   getUserTaskCompletions(userId: string): TaskCompletion[] {
     const completionIds = this.userTaskCompletions.get(userId);
-    if (!completionIds) return [];
+    if (!completionIds) {return [];}
     
     return Array.from(completionIds)
       .map(id => this.taskCompletions.get(id)!)

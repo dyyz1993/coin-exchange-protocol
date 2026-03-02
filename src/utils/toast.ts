@@ -39,7 +39,7 @@ class ToastManager {
       this.createContainer();
     }
 
-    if (!this.container) return;
+    if (!this.container) {return;}
 
     const toast = document.createElement('div');
     const bgColor = this.getBackgroundColor(type);
