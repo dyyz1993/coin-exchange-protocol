@@ -9,19 +9,7 @@ import { FreezeService } from '../../src/services/freeze.service';
 import { AccountModel } from '../../src/models/Account';
 import { TokenAccountModel } from '../../src/models/TokenAccount';
 import { freezeModel } from '../../src/models/Freeze';
-
-// 使用字符串常量避免导入问题
-const TransactionType = {
-  REWARD: 'reward',
-  AIRDROP: 'airdrop',
-  TASK_REWARD: 'task_reward',
-  TRANSFER: 'transfer',
-  TRANSFER_IN: 'transfer_in',
-  TRANSFER_OUT: 'transfer_out',
-  PENALTY: 'penalty',
-  FROZEN: 'frozen',
-  UNFROZEN: 'unfrozen',
-};
+import { TransactionType } from '../../src/types';
 
 describe('FreezeController Integration Tests', () => {
   let freezeController: FreezeController;

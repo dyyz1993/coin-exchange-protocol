@@ -22,6 +22,7 @@
  */
 
 import type { TokenAccount, Transaction } from '../types';
+import { TransactionType } from '../types';
 
 /**
  * @deprecated 使用 AccountModel 代替
@@ -91,7 +92,9 @@ export class TokenAccountModel {
     referenceId?: string
   ): { account: TokenAccount; transaction: Transaction } | null {
     const account = this.accounts.get(accountId);
-    if (!account) return null;
+    if (!account) {
+      return null;
+    }
 
     // 创建交易记录
     const transaction: Transaction = {
@@ -123,13 +126,15 @@ export class TokenAccountModel {
     description: string
   ): { account: TokenAccount; transaction: Transaction } | null {
     const account = this.accounts.get(accountId);
-    if (!account || account.balance < amount) return null;
+    if (!account || account.balance < amount) {
+      return null;
+    }
 
     // 创建交易记录
     const transaction: Transaction = {
       id: `tx_${this.transactionCounter++}`,
       accountId,
-      type: 'spend',
+      type: TransactionType.PENALTY,
       amount: -amount,
       description,
       createdAt: new Date(),
