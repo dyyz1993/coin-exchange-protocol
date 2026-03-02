@@ -3,7 +3,6 @@
  * 测试范围：余额查询、转账、冻结、解冻、交易历史
  */
 
-// Jest globals (no import needed)
 import { TokenService } from '../../src/services/TokenService';
 import { AccountModel } from '../../src/models/Account';
 import { TransactionType } from '../../src/types/common';

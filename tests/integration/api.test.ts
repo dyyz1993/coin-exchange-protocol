@@ -3,7 +3,6 @@
  * 测试范围：所有 REST API 端点、错误处理、边界条件
  */
 
-// Jest globals (no import needed)
 import { AccountService } from '../../src/services/account.service';
 import { AirdropService } from '../../src/services/airdrop.service';
 import { TaskService } from '../../src/services/task.service';

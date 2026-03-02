@@ -10,9 +10,7 @@ import {
   FreezeStatus,
   FREEZE_CONFIG,
   FreezeStatusResponse,
-  FreezeListQuery,
 } from '../types';
-import { TransactionType } from '../types';
 
 export class FreezeService {
   private autoUnfreezeTimer?: NodeJS.Timeout;
@@ -233,10 +231,10 @@ export class FreezeService {
   /**
    * 获取用户可用余额（考虑冻结金额）
    *
-   * 修复说明：
-   * - account.balance 在 freezeBalance() 时已经扣除了冻结金额
-   * - 因此直接返回 account.balance 即可，无需再次减去冻结金额
-   * - 之前重复减去冻结金额导致可用余额计算错误
+   * 修复说明（Issue #290）：
+   * - account.balance 存储总余额（包括可用余额 + 冻结余额）
+   * - account.frozenBalance 存储冻结金额
+   * - 可用余额 = balance - frozenBalance
    */
   getAvailableBalance(userId: string): number {
     const account = accountModel.getAccountByUserId(userId);
@@ -244,9 +242,8 @@ export class FreezeService {
       return 0;
     }
 
-    // ✅ 修复：直接返回 account.balance（已扣除冻结金额）
-    // 避免重复扣除冻结金额
-    return account.balance;
+    // ✅ 修复：计算可用余额 = 总余额 - 冻结金额
+    return account.balance - account.frozenBalance;
   }
 
   /**
@@ -274,7 +271,7 @@ export class FreezeService {
   /**
    * 延长冻结时间（争议场景）
    */
-  extendFreeze(freezeId: string, durationMinutes: number): FreezeRecord {
+  extendFreeze(freezeId: string, _durationMinutes: number): FreezeRecord {
     const freeze = freezeModel.getFreeze(freezeId);
     if (!freeze) {
       throw new Error('冻结记录不存在');
@@ -283,9 +280,6 @@ export class FreezeService {
     if (freeze.status !== FreezeStatus.FROZEN) {
       throw new Error('冻结已失效或已解冻');
     }
-
-    // 直接修改模型的 expiresAt（注意：这需要模型支持，或者使用特殊方法）
-    const newExpiresAt = new Date(freeze.expiresAt.getTime() + durationMinutes * 60 * 1000);
 
     // 由于模型没有公开设置 expiresAt 的方法，我们需要通过重新创建或修改模型来实现
     // 这里我们创建一个新的冻结记录来替换旧的

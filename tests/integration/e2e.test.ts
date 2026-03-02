@@ -3,7 +3,6 @@
  * 测试范围：完整业务流程、边界条件、错误处理
  */
 
-// Jest globals (no import needed)
 import { AccountService } from '../../src/services/account.service';
 import { AirdropService } from '../../src/services/airdrop.service';
 import { TaskService } from '../../src/services/task.service';
@@ -132,7 +131,7 @@ describe('端到端业务流程测试', () => {
 
       // 2. 创建冻结（模拟交易过程中的保证金冻结）
       const freezeAmount = 400;
-      const freeze = freezeService.createInitialFreeze({
+      const freeze = await freezeService.createInitialFreeze({
         userId: user,
         amount: freezeAmount,
         transactionId: 'tx-freeze-001',

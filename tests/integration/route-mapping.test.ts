@@ -3,7 +3,6 @@
  * 确保所有路由都有对应的控制器方法实现
  */
 
-// Jest globals (no import needed)
 import { routes, matchRoute } from '../../src/routes/index';
 import { accountController } from '../../src/controllers/account.controller';
 import { airdropController } from '../../src/controllers/airdrop.controller';

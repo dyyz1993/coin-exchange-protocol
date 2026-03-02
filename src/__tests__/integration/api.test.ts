@@ -1,5 +1,3 @@
-// Jest globals (no import needed)
-
 describe('API Integration Tests', () => {
   it('should create account', async () => {
     // 测试创建账户功能

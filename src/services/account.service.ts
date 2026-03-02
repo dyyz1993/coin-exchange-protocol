@@ -56,8 +56,9 @@ export class AccountService {
       throw new Error('创建账户失败：无法获取账户ID');
     }
 
-    // 注意：不再调用 addTokens，因为 accountModel.createAccount 已经正确设置了初始余额
-    // 避免余额重复计算（Issue #236）
+    // ❌ 已移除重复的 addTokens 调用
+    // accountModel.createAccount 已经设置了初始余额，不需要再次增加
+    // 修复 Issue #236: 账户创建时初始余额重复计算导致双倍余额的 Bug
 
     return {
       accountId: account.id,
@@ -106,7 +107,7 @@ export class AccountService {
     return {
       balance: account.balance,
       frozenBalance: account.frozenBalance,
-      availableBalance: account.balance - account.frozenBalance, // 可用余额 = 总余额 - 冻结余额
+      availableBalance: account.balance - account.frozenBalance,
     };
   }
 

@@ -3,7 +3,6 @@
  * 测试范围：账户创建、余额查询、转账、冻结/解冻
  */
 
-// Jest globals (no import needed)
 import { AccountService } from '../../src/services/account.service';
 import { AccountModel } from '../../src/models/Account';
 import { TokenAccountModel } from '../../src/models/TokenAccount';

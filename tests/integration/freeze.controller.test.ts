@@ -3,7 +3,6 @@
  * 测试范围：冻结控制器的所有方法、参数验证、错误处理
  */
 
-// Jest globals (no import needed)
 import { FreezeController } from '../../src/controllers/freeze.controller';
 import { AccountService } from '../../src/services/account.service';
 import { FreezeService } from '../../src/services/freeze.service';
