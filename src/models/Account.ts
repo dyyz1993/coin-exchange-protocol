@@ -97,7 +97,9 @@ export class AccountModel {
    */
   getAccountByUserId(userId: string): Account | undefined {
     const accountId = this.userAccounts.get(userId);
-    if (!accountId) {return undefined;}
+    if (!accountId) {
+      return undefined;
+    }
     return this.accounts.get(accountId);
   }
 
@@ -379,6 +381,29 @@ export class AccountModel {
       }
     }
     return transactions.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
+  }
+
+  /**
+   * 重置账户状态（仅用于测试）
+   *
+   * 用途：
+   * - 在 beforeEach 钩子中重置账户状态
+   * - 确保测试隔离，避免测试之间的状态污染
+   *
+   * @param userId 用户 ID
+   * @param initialBalance 初始余额（默认 0）
+   */
+  resetAccount(userId: string, initialBalance: number = 0): void {
+    const account = this.getAccountByUserId(userId);
+    if (account) {
+      account.balance = initialBalance;
+      account.frozenBalance = 0;
+      account.version = 0;
+      account.updatedAt = new Date();
+    } else {
+      // 如果账户不存在，创建一个新账户
+      this.createAccount(userId, initialBalance);
+    }
   }
 }
 

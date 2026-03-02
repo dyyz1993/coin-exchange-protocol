@@ -11,11 +11,9 @@ describe('冻结余额计算修复测试 (Issue #200)', () => {
   const testUserId = 'test-user-frozen-fix';
 
   beforeEach(async () => {
-    // 每个测试前重置账户状态
-    const existingAccount = accountModel.getAccountByUserId(testUserId);
-    if (!existingAccount) {
-      await accountModel.createAccount(testUserId, 1000);
-    }
+    // ✅ 修复：使用 resetAccount 确保测试隔离
+    // 每个测试前重置账户状态为 1000 余额，0 冻结金额
+    accountModel.resetAccount(testUserId, 1000);
   });
 
   describe('场景1: 用户A有1000金币，全部被冻结', () => {
