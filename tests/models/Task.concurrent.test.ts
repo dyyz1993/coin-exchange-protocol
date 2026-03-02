@@ -37,11 +37,11 @@ describe('Task 并发测试', () => {
       // 模拟 5 个并发完成请求（超过 requiredCount）
       const completionPromises = Array(5)
         .fill(null)
-        .map((_, index) =>
+        .map((_, _index) =>
           Task.findByIdAndUpdate(task._id, { $inc: { completedCount: 1 } }, { new: true })
         );
 
-      const results = await Promise.all(completionPromises);
+      await Promise.all(completionPromises);
 
       // 验证完成次数不超过 requiredCount
       const updatedTask = await Task.findById(task._id);

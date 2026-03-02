@@ -284,7 +284,7 @@ export class AccountController {
    * 获取冻结账户列表
    * GET /api/account/frozen
    */
-  async getFrozenAccounts(params: any): Promise<ApiResponse> {
+  async getFrozenAccounts(_params: any): Promise<ApiResponse> {
     try {
       // 调用服务层获取冻结账户列表
       return accountService.getFrozenAccounts();

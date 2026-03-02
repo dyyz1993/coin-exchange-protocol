@@ -507,7 +507,7 @@ describe('端到端业务流程测试', () => {
       const now = new Date();
 
       // 创建已过期的空投
-      const expiredAirdrop = await airdropService.createAirdrop({
+      await airdropService.createAirdrop({
         name: '已过期空投',
         description: '测试',
         totalAmount: 1000,
