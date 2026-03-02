@@ -4,6 +4,11 @@
 
 import { Airdrop, AirdropClaim, AirdropStatus } from '../types';
 
+// 🔥 P0 溢出保护常量
+const MAX_SAFE_AMOUNT = Number.MAX_SAFE_INTEGER / 2; // 4503599627370496 - 安全边界
+const MAX_TOTAL_AMOUNT = 1e15; // 1,000,000,000,000,000 - 最大总额限制
+const MAX_PER_USER_AMOUNT = 1e12; // 1,000,000,000,000 - 最大单人限制
+
 export class AirdropModel {
   private airdrops: Map<string, Airdrop> = new Map();
   private claims: Map<string, AirdropClaim> = new Map();
@@ -21,6 +26,30 @@ export class AirdropModel {
     startTime: Date;
     endTime: Date;
   }): Airdrop {
+    // 🔥 P0 溢出保护：验证数值范围
+    if (params.totalAmount <= 0) {
+      throw new Error('totalAmount must be positive');
+    }
+    if (params.perUserAmount <= 0) {
+      throw new Error('perUserAmount must be positive');
+    }
+    if (params.totalAmount > MAX_TOTAL_AMOUNT) {
+      throw new Error(
+        `totalAmount exceeds maximum limit: ${MAX_TOTAL_AMOUNT}. Provided: ${params.totalAmount}`
+      );
+    }
+    if (params.perUserAmount > MAX_PER_USER_AMOUNT) {
+      throw new Error(
+        `perUserAmount exceeds maximum limit: ${MAX_PER_USER_AMOUNT}. Provided: ${params.perUserAmount}`
+      );
+    }
+    if (params.perUserAmount > params.totalAmount) {
+      throw new Error('perUserAmount cannot exceed totalAmount');
+    }
+    if (!Number.isSafeInteger(params.totalAmount) || !Number.isSafeInteger(params.perUserAmount)) {
+      throw new Error('Amount values must be safe integers');
+    }
+
     const airdropId = `airdrop_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
 
     const airdrop: Airdrop = {
@@ -136,6 +165,23 @@ export class AirdropModel {
       // 🔥 P0 修复：检查剩余余额（基于 claims 的总额检查）
       const claims = this.getAirdropClaims(airdropId);
       const totalClaimed = claims.reduce((sum, claim) => sum + claim.amount, 0);
+
+      // 🔥 P0 溢出保护：检查累加是否会溢出
+      const newClaimedAmount = totalClaimed + claimAmount;
+      if (newClaimedAmount > MAX_SAFE_AMOUNT) {
+        throw new Error(
+          `Overflow detected: claimedAmount would exceed safe limit. ` +
+            `Current: ${totalClaimed}, Adding: ${claimAmount}, Limit: ${MAX_SAFE_AMOUNT}`
+        );
+      }
+
+      // 🔥 P0 溢出保护：使用 Number.isSafeInteger 验证结果
+      if (!Number.isSafeInteger(newClaimedAmount)) {
+        throw new Error(
+          `Unsafe integer detected after claim. Total claimed would be: ${newClaimedAmount}`
+        );
+      }
+
       const remainingAmount = airdrop.totalAmount - totalClaimed;
 
       if (remainingAmount < claimAmount) {
