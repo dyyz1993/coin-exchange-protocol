@@ -235,6 +235,7 @@ export class FreezeService {
    * - account.balance 存储总余额（包括可用余额 + 冻结余额）
    * - account.frozenBalance 存储冻结金额
    * - 可用余额 = balance - frozenBalance
+   * - 添加边界检查：确保可用余额 >= 0
    */
   getAvailableBalance(userId: string): number {
     const account = accountModel.getAccountByUserId(userId);
@@ -243,7 +244,17 @@ export class FreezeService {
     }
 
     // ✅ 修复：计算可用余额 = 总余额 - 冻结金额
-    return account.balance - account.frozenBalance;
+    const availableBalance = account.balance - account.frozenBalance;
+
+    // ✅ 边界检查：确保可用余额 >= 0（防止数据异常导致负数）
+    if (availableBalance < 0) {
+      console.error(
+        `⚠️ [FreezeService] 检测到异常数据：用户 ${userId} 的冻结余额 (${account.frozenBalance}) 大于总余额 (${account.balance})，返回 0`
+      );
+      return 0;
+    }
+
+    return availableBalance;
   }
 
   /**
