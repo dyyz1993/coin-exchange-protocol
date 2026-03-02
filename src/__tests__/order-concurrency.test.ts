@@ -106,7 +106,7 @@ describe('OrderModel Concurrency Tests', () => {
       const finalOrder = orderModel.getOrder(order.id);
       expect(finalOrder?.disputeId).toBe(dispute.id);
       expect(finalOrder?.status).toBe(OrderStatus.DISPUTED);
-      expect(finalOrder?.version).toBe(4); // version 应该增加
+      expect(finalOrder?.version).toBe(5); // version 应该增加（1->2->3->4->5）
 
       // 验证 Dispute 存在
       const savedDispute = orderModel.getDispute(dispute.id);
