@@ -483,6 +483,46 @@ describe('FreezeService', () => {
       const available = freezeService.getAvailableBalance('non-existent');
       expect(available).toBe(0);
     });
+
+    test('应该确保可用余额不为负数（边界保护）', async () => {
+      const userId = 'test-user-boundary';
+      await accountService.createAccount(userId);
+      await accountService.addTokens(userId, 100, TransactionType.REWARD, '初始奖励');
+
+      // 手动设置异常状态：冻结金额 > 总余额
+      const account = (AccountModel as any).accounts.get(userId);
+      account.frozenBalance = 150; // 冻结金额大于总余额
+
+      const available = freezeService.getAvailableBalance(userId);
+      // ✅ 边界保护：确保可用余额不为负数
+      expect(available).toBe(0);
+      expect(available).toBeGreaterThanOrEqual(0);
+    });
+
+    test('应该正确处理余额为0的情况', async () => {
+      const userId = 'test-user-zero';
+      await accountService.createAccount(userId);
+      // 不添加任何余额
+
+      const available = freezeService.getAvailableBalance(userId);
+      expect(available).toBe(0);
+    });
+
+    test('应该正确处理全部冻结的情况', async () => {
+      const userId = 'test-user-fully-frozen';
+      await accountService.createAccount(userId);
+      await accountService.addTokens(userId, 500, TransactionType.REWARD, '初始奖励');
+
+      // 冻结全部余额
+      await freezeService.createInitialFreeze({
+        userId,
+        amount: 500,
+        transactionId: 'tx-full-freeze',
+      });
+
+      const available = freezeService.getAvailableBalance(userId);
+      expect(available).toBe(0);
+    });
   });
 
   describe('canFreeze', () => {
