@@ -68,11 +68,21 @@ module.exports = [
       ...js.configs.recommended.rules,
       ...tsPlugin.configs.recommended.rules,
 
-      // TypeScript 相关规则
-      '@typescript-eslint/no-explicit-any': 'warn',
+      // TypeScript 严格规则
+      '@typescript-eslint/no-explicit-any': 'error', // 改为 error
       '@typescript-eslint/explicit-module-boundary-types': 'off',
       '@typescript-eslint/explicit-function-return-type': 'off',
       '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
+      '@typescript-eslint/no-floating-promises': 'error', // 新增：Promise 必须处理
+      '@typescript-eslint/no-misused-promises': 'error', // 新增：禁止在条件中使用 Promise
+      '@typescript-eslint/strict-boolean-expressions': ['error', { // 新增：严格布尔表达式
+        allowString: true,
+        allowNumber: true,
+        allowNullableObject: true,
+      }],
+      '@typescript-eslint/no-unnecessary-type-assertion': 'error', // 新增：禁止不必要的类型断言
+      '@typescript-eslint/prefer-nullish-coalescing': 'error', // 新增：优先使用 ?? 而不是 ||
+      '@typescript-eslint/prefer-optional-chain': 'error', // 新增：优先使用可选链
 
       // 通用规则
       'no-console': ['warn', { allow: ['warn', 'error', 'info'] }],
@@ -88,6 +98,9 @@ module.exports = [
     rules: {
       '@typescript-eslint/no-explicit-any': 'off',
       '@typescript-eslint/no-non-null-assertion': 'off',
+      '@typescript-eslint/no-floating-promises': 'off', // 测试中允许未处理的 Promise
+      '@typescript-eslint/no-misused-promises': 'off', // 测试中允许
+      '@typescript-eslint/strict-boolean-expressions': 'off', // 测试中放宽
     },
   },
 ];
