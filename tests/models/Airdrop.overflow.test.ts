@@ -14,7 +14,7 @@ describe('AirdropModel - Overflow Protection (P0)', () => {
   });
 
   describe('safeAdd - 溢出保护', () => {
-    it('应该在加法溢出时抛出错误', () => {
+    it('应该在加法溢出时抛出错误', async () => {
       const largeAmount = Number.MAX_SAFE_INTEGER - 10;
       const airdrop = airdropModel.createAirdrop({
         name: 'Overflow Test Airdrop',
@@ -38,7 +38,7 @@ describe('AirdropModel - Overflow Protection (P0)', () => {
       }
     });
 
-    it('应该正确处理接近 MAX_SAFE_INTEGER 的金额', () => {
+    it('应该正确处理接近 MAX_SAFE_INTEGER 的金额', async () => {
       const nearMax = Number.MAX_SAFE_INTEGER - 1000;
       const airdrop = airdropModel.createAirdrop({
         name: 'Near Max Test',
@@ -58,7 +58,7 @@ describe('AirdropModel - Overflow Protection (P0)', () => {
   });
 
   describe('safeSubtract - 下溢保护', () => {
-    it('应该在减法结果为负数时抛出错误', () => {
+    it('应该在减法结果为负数时抛出错误', async () => {
       const smallAmount = 100;
       const airdrop = airdropModel.createAirdrop({
         name: 'Small Amount Test',
@@ -77,7 +77,7 @@ describe('AirdropModel - Overflow Protection (P0)', () => {
       );
     });
 
-    it('应该正确处理余额耗尽的情况', () => {
+    it('应该正确处理余额耗尽的情况', async () => {
       const totalAmount = 100;
       const perUserAmount = 60;
       const airdrop = airdropModel.createAirdrop({
@@ -103,7 +103,7 @@ describe('AirdropModel - Overflow Protection (P0)', () => {
   });
 
   describe('getRemainingAmount - 剩余金额计算', () => {
-    it('应该正确计算剩余金额并防止溢出', () => {
+    it('应该正确计算剩余金额并防止溢出', async () => {
       const airdrop = airdropModel.createAirdrop({
         name: 'Remaining Amount Test',
         description: 'Testing remaining amount calculation',
@@ -127,7 +127,7 @@ describe('AirdropModel - Overflow Protection (P0)', () => {
       expect(airdropModel.getRemainingAmount(airdrop.id)).toBe(800);
     });
 
-    it('应该在大量领取后正确计算剩余金额', () => {
+    it('应该在大量领取后正确计算剩余金额', async () => {
       const totalAmount = 10000;
       const perUserAmount = 100;
       const userCount = 50;
@@ -154,7 +154,7 @@ describe('AirdropModel - Overflow Protection (P0)', () => {
   });
 
   describe('isAirdropExhausted - 空投耗尽检查', () => {
-    it('应该正确识别空投已耗尽', () => {
+    it('应该正确识别空投已耗尽', async () => {
       const airdrop = airdropModel.createAirdrop({
         name: 'Exhaustion Check Test',
         description: 'Testing exhaustion check',
