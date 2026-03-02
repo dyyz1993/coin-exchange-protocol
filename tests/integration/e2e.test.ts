@@ -131,7 +131,7 @@ describe('端到端业务流程测试', () => {
 
       // 2. 创建冻结（模拟交易过程中的保证金冻结）
       const freezeAmount = 400;
-      const freeze = freezeService.createInitialFreeze({
+      const freeze = await freezeService.createInitialFreeze({
         userId: user,
         amount: freezeAmount,
         transactionId: 'tx-freeze-001',
