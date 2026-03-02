@@ -420,7 +420,7 @@ describe('Task 并发测试', () => {
       // 并发完成，最后一次应设置为 COMPLETED
       const completionPromises = Array(3)
         .fill(null)
-        .map((_, index) =>
+        .map(() =>
           Task.findOneAndUpdate(
             {
               _id: task._id,
@@ -447,6 +447,7 @@ describe('Task 并发测试', () => {
         );
 
       const results = await Promise.all(completionPromises);
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const successResults = results.filter((r) => r !== null);
 
       // 验证最终状态
