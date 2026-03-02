@@ -132,7 +132,6 @@ describe('Task Concurrency Tests', () => {
 
       const results = await Promise.all(promises);
       const successes = results.filter((r) => !(r instanceof Error)).length;
-      // const failures = results.filter((r) => r instanceof Error).length; // Unused
 
       console.log(`高并发测试结果 - 成功: ${successes}/1000`);
 
