@@ -34,6 +34,7 @@ export class TaskModel {
       status: TaskStatus.DRAFT,
       startTime: params.startTime,
       endTime: params.endTime,
+      version: 1, // 初始版本号
       createdAt: new Date(),
       updatedAt: new Date(),
     };
@@ -44,44 +45,69 @@ export class TaskModel {
   }
 
   /**
-   * 获取任务
+   * 获取任务（返回深拷贝，防止外部修改影响内部数据）
    */
   getTask(taskId: string): Task | undefined {
-    return this.tasks.get(taskId);
+    const task = this.tasks.get(taskId);
+    if (!task) {
+      return undefined;
+    }
+
+    // 返回深拷贝，防止外部修改影响内部数据，确保乐观锁机制有效
+    return JSON.parse(JSON.stringify(task));
   }
 
   /**
-   * 获取所有任务
+   * 获取所有任务（返回深拷贝数组）
    */
   getAllTasks(): Task[] {
-    return Array.from(this.tasks.values());
+    // 返回深拷贝数组，防止外部修改影响内部数据
+    return Array.from(this.tasks.values()).map((task) => JSON.parse(JSON.stringify(task)));
   }
 
   /**
-   * 获取活跃任务
+   * 获取活跃任务（返回深拷贝数组）
    */
   getActiveTasks(): Task[] {
     const now = new Date();
-    return Array.from(this.tasks.values()).filter((task) => {
-      return (
-        task.status === TaskStatus.ACTIVE &&
-        task.startTime <= now &&
-        task.endTime >= now &&
-        task.currentCompletions < task.maxCompletions
-      );
-    });
+    return Array.from(this.tasks.values())
+      .filter((task) => {
+        return (
+          task.status === TaskStatus.ACTIVE &&
+          task.startTime <= now &&
+          task.endTime >= now &&
+          task.currentCompletions < task.maxCompletions
+        );
+      })
+      .map((task) => JSON.parse(JSON.stringify(task))); // 深拷贝每个任务
   }
 
   /**
-   * 更新任务状态
+   * 更新任务状态（带乐观锁）
+   * @param taskId 任务ID
+   * @param status 新状态
+   * @param expectedVersion 预期版本号（乐观锁）
+   * @returns 更新后的任务
+   * @throws 如果任务不存在或版本号不匹配
    */
-  updateTaskStatus(taskId: string, status: TaskStatus): Task {
+  updateTaskStatus(taskId: string, status: TaskStatus, expectedVersion?: number): Task {
     const task = this.tasks.get(taskId);
     if (!task) {
       throw new Error('Task not found');
     }
 
+    // 乐观锁验证
+    if (expectedVersion !== undefined && task.version !== expectedVersion) {
+      throw new Error(
+        `Concurrent modification detected. Expected version ${expectedVersion}, but current is ${task.version}`
+      );
+    }
+
+    // 更新状态和版本号
     task.status = status;
+    task.version++;
+    task.updatedAt = new Date();
+
     return task;
   }
 
@@ -90,17 +116,31 @@ export class TaskModel {
    */
   hasUserCompleted(userId: string, taskId: string): boolean {
     const userTaskSet = this.userTaskCompletions.get(userId);
-    if (!userTaskSet) return false;
+    if (!userTaskSet) {
+      return false;
+    }
     return userTaskSet.has(taskId);
   }
 
   /**
-   * 创建任务完成记录
+   * 创建任务完成记录（带乐观锁）
+   * @param taskId 任务ID
+   * @param userId 用户ID
+   * @param expectedVersion 预期版本号（乐观锁，可选）
+   * @returns 任务完成记录
+   * @throws 如果任务不存在、状态不合法、版本号不匹配或其他验证失败
    */
-  createCompletion(taskId: string, userId: string): TaskCompletion {
-    const task = this.getTask(taskId);
+  createCompletion(taskId: string, userId: string, expectedVersion?: number): TaskCompletion {
+    const task = this.tasks.get(taskId);
     if (!task) {
       throw new Error('Task not found');
+    }
+
+    // 乐观锁验证（在更新 currentCompletions 之前）
+    if (expectedVersion !== undefined && task.version !== expectedVersion) {
+      throw new Error(
+        `Concurrent modification detected. Expected version ${expectedVersion}, but current is ${task.version}`
+      );
     }
 
     // 检查任务状态
@@ -143,40 +183,50 @@ export class TaskModel {
     }
     this.userTaskCompletions.get(userId)!.add(taskId);
 
-    // 更新任务完成次数
+    // 更新任务完成次数和版本号（乐观锁保护）
     task.currentCompletions++;
+    task.version++;
+    task.updatedAt = new Date();
 
     return completion;
   }
 
   /**
-   * 获取完成记录
+   * 获取完成记录（返回深拷贝）
    */
   getCompletion(completionId: string): TaskCompletion | undefined {
-    return this.completions.get(completionId);
+    const completion = this.completions.get(completionId);
+    if (!completion) {
+      return undefined;
+    }
+
+    // 返回深拷贝，防止外部修改影响内部数据
+    return JSON.parse(JSON.stringify(completion));
   }
 
   /**
-   * 获取用户的所有完成记录
+   * 获取用户的所有完成记录（返回深拷贝数组）
    */
   getUserCompletions(userId: string): TaskCompletion[] {
     const completions: TaskCompletion[] = [];
     for (const completion of this.completions.values()) {
       if (completion.userId === userId) {
-        completions.push(completion);
+        // 深拷贝每个完成记录
+        completions.push(JSON.parse(JSON.stringify(completion)));
       }
     }
     return completions.sort((a, b) => b.completedAt.getTime() - a.completedAt.getTime());
   }
 
   /**
-   * 获取任务的所有完成记录
+   * 获取任务的所有完成记录（返回深拷贝数组）
    */
   getTaskCompletions(taskId: string): TaskCompletion[] {
     const completions: TaskCompletion[] = [];
     for (const completion of this.completions.values()) {
       if (completion.taskId === taskId) {
-        completions.push(completion);
+        // 深拷贝每个完成记录
+        completions.push(JSON.parse(JSON.stringify(completion)));
       }
     }
     return completions.sort((a, b) => b.completedAt.getTime() - a.completedAt.getTime());
