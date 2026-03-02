@@ -4,10 +4,35 @@
 
 import { Order, Dispute, OrderStatus, DisputeStatus } from '../types';
 import { randomUUID } from 'crypto';
+import { Mutex } from 'async-mutex';
 
 export class OrderModel {
   private orders: Map<string, Order> = new Map();
   private disputes: Map<string, Dispute> = new Map();
+  private orderMutexes: Map<string, Mutex> = new Map();
+
+  /**
+   * 获取订单级别的互斥锁
+   */
+  private getOrderMutex(orderId: string): Mutex {
+    if (!this.orderMutexes.has(orderId)) {
+      this.orderMutexes.set(orderId, new Mutex());
+    }
+    return this.orderMutexes.get(orderId)!;
+  }
+
+  /**
+   * 在订单锁内执行操作
+   */
+  private async withOrderLock<T>(orderId: string, fn: () => Promise<T>): Promise<T> {
+    const mutex = this.getOrderMutex(orderId);
+    const release = await mutex.acquire();
+    try {
+      return await fn();
+    } finally {
+      release();
+    }
+  }
 
   /**
    * 生成订单号（使用 UUID v4 的一部分）
@@ -74,52 +99,62 @@ export class OrderModel {
   }
 
   /**
-   * 获取订单
+   * 获取订单（返回深拷贝，防止外部修改影响内部数据）
    */
   getOrder(orderId: string): Order | undefined {
-    return this.orders.get(orderId);
+    const order = this.orders.get(orderId);
+    if (!order) {
+      return undefined;
+    }
+
+    // 返回深拷贝，防止外部修改影响内部数据，确保乐观锁机制有效
+    return JSON.parse(JSON.stringify(order));
   }
 
   /**
-   * 根据订单号获取订单
+   * 根据订单号获取订单（返回深拷贝）
    */
   getOrderByOrderNo(orderNo: string): Order | undefined {
     for (const order of this.orders.values()) {
       if (order.orderNo === orderNo) {
-        return order;
+        // 返回深拷贝，防止外部修改影响内部数据
+        return JSON.parse(JSON.stringify(order));
       }
     }
     return undefined;
   }
 
   /**
-   * 获取所有订单
+   * 获取所有订单（返回深拷贝数组）
    */
   getAllOrders(): Order[] {
-    return Array.from(this.orders.values());
+    // 返回深拷贝数组，防止外部修改影响内部数据
+    return Array.from(this.orders.values()).map((order) => JSON.parse(JSON.stringify(order)));
   }
 
   /**
-   * 获取买家订单
+   * 获取买家订单（返回深拷贝数组）
    */
   getBuyerOrders(buyerId: string): Order[] {
     const orders: Order[] = [];
     for (const order of this.orders.values()) {
       if (order.buyerId === buyerId) {
-        orders.push(order);
+        // 深拷贝每个订单
+        orders.push(JSON.parse(JSON.stringify(order)));
       }
     }
     return orders.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
   }
 
   /**
-   * 获取卖家订单
+   * 获取卖家订单（返回深拷贝数组）
    */
   getSellerOrders(sellerId: string): Order[] {
     const orders: Order[] = [];
     for (const order of this.orders.values()) {
       if (order.sellerId === sellerId) {
-        orders.push(order);
+        // 深拷贝每个订单
+        orders.push(JSON.parse(JSON.stringify(order)));
       }
     }
     return orders.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
@@ -274,56 +309,79 @@ export class OrderModel {
   }
 
   /**
-   * 创建争议
+   * 创建争议（带并发控制）
    */
-  createDispute(params: {
+  async createDispute(params: {
     orderId: string;
     raisedBy: string;
     reason: string;
     description: string;
     evidence?: string[];
-  }): Dispute {
-    const disputeId = `dispute_${Date.now()}_${randomUUID()}`;
+  }): Promise<Dispute> {
+    return this.withOrderLock(params.orderId, async () => {
+      // 在锁内获取订单（确保数据一致性）
+      const order = this.orders.get(params.orderId);
+      if (!order) {
+        throw new Error('Order not found');
+      }
 
-    const order = this.getOrder(params.orderId);
-    if (!order) {
-      throw new Error('Order not found');
-    }
+      // 幂等性检查：防止重复创建
+      if (order.disputeId) {
+        throw new Error('Order already has a dispute');
+      }
 
-    const dispute: Dispute = {
-      id: disputeId,
-      orderId: params.orderId,
-      raisedBy: params.raisedBy,
-      reason: params.reason,
-      description: params.description,
-      evidence: params.evidence,
-      status: DisputeStatus.PENDING,
-      createdAt: new Date(),
-      updatedAt: new Date(),
-    };
+      // 验证状态转换是否合法
+      if (!this.isValidTransition(order.status, OrderStatus.DISPUTED)) {
+        throw new Error(`Invalid status transition from ${order.status} to disputed`);
+      }
 
-    this.disputes.set(disputeId, dispute);
+      const disputeId = `dispute_${Date.now()}_${randomUUID()}`;
 
-    // 更新订单状态（带乐观锁）
-    this.setDisputeId(params.orderId, disputeId, order.version);
+      const dispute: Dispute = {
+        id: disputeId,
+        orderId: params.orderId,
+        raisedBy: params.raisedBy,
+        reason: params.reason,
+        description: params.description,
+        evidence: params.evidence,
+        status: DisputeStatus.PENDING,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      };
 
-    return dispute;
+      // 原子操作：创建 Dispute + 更新 Order
+      this.disputes.set(disputeId, dispute);
+
+      order.disputeId = disputeId;
+      order.status = OrderStatus.DISPUTED;
+      order.version++;
+      order.updatedAt = new Date();
+
+      return dispute;
+    });
   }
 
   /**
-   * 获取争议
+   * 获取争议（返回深拷贝）
    */
   getDispute(disputeId: string): Dispute | undefined {
-    return this.disputes.get(disputeId);
+    const dispute = this.disputes.get(disputeId);
+    if (!dispute) {
+      return undefined;
+    }
+
+    // 返回深拷贝，防止外部修改影响内部数据
+    return JSON.parse(JSON.stringify(dispute));
   }
 
   /**
-   * 根据订单ID获取争议
+   * 根据订单ID获取争议（返回深拷贝）
    */
   getDisputeByOrderId(orderId: string): Dispute | undefined {
     for (const dispute of this.disputes.values()) {
       if (dispute.orderId === orderId) {
-        return dispute;
+        // 返回深拷贝，防止外部修改影响内部数据
+        return JSON.parse(JSON.stringify(dispute));
       }
     }
     return undefined;
@@ -363,21 +421,23 @@ export class OrderModel {
   }
 
   /**
-   * 获取所有争议
+   * 获取所有争议（返回深拷贝数组）
    */
   getAllDisputes(): Dispute[] {
-    return Array.from(this.disputes.values());
+    // 返回深拷贝数组，防止外部修改影响内部数据
+    return Array.from(this.disputes.values()).map((dispute) => JSON.parse(JSON.stringify(dispute)));
   }
 
   /**
-   * 获取用户的争议
+   * 获取用户的争议（返回深拷贝数组）
    */
   getUserDisputes(userId: string): Dispute[] {
     const disputes: Dispute[] = [];
     for (const dispute of this.disputes.values()) {
       const order = this.getOrder(dispute.orderId);
       if (order && (order.buyerId === userId || order.sellerId === userId)) {
-        disputes.push(dispute);
+        // 深拷贝每个争议
+        disputes.push(JSON.parse(JSON.stringify(dispute)));
       }
     }
     return disputes.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());

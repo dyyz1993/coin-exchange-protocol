@@ -32,15 +32,11 @@ describe('TaskModel Concurrency Safety Tests', () => {
       const concurrentCompletions = Array(10)
         .fill(null)
         .map((_, index) => {
-          return new Promise<{ success: boolean; userId: string }>((resolve) => {
-            try {
-              const userId = `user_${index}`;
-              taskModel.createCompletion(task.id, userId);
-              resolve({ success: true, userId });
-            } catch (error) {
-              resolve({ success: false, userId: `user_${index}` });
-            }
-          });
+          const userId = `user_${index}`;
+          return taskModel
+            .createCompletion(task.id, userId)
+            .then(() => ({ success: true, userId }))
+            .catch(() => ({ success: false, userId }));
         });
 
       const results = await Promise.all(concurrentCompletions);
@@ -81,14 +77,10 @@ describe('TaskModel Concurrency Safety Tests', () => {
       const concurrentCompletions = Array(5)
         .fill(null)
         .map(() => {
-          return new Promise<{ success: boolean }>((resolve) => {
-            try {
-              taskModel.createCompletion(task.id, userId);
-              resolve({ success: true });
-            } catch (error) {
-              resolve({ success: false });
-            }
-          });
+          return taskModel
+            .createCompletion(task.id, userId)
+            .then(() => ({ success: true }))
+            .catch(() => ({ success: false }));
         });
 
       const results = await Promise.all(concurrentCompletions);
