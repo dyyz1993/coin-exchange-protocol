@@ -78,7 +78,9 @@ export class OrderModel {
    */
   getOrder(orderId: string): Order | undefined {
     const order = this.orders.get(orderId);
-    if (!order) return undefined;
+    if (!order) {
+      return undefined;
+    }
 
     // 返回深拷贝，防止外部修改影响内部数据，确保乐观锁机制有效
     return JSON.parse(JSON.stringify(order));
@@ -137,18 +139,18 @@ export class OrderModel {
    * 更新订单状态（带乐观锁）
    * @param orderId 订单ID
    * @param status 新状态
-   * @param expectedVersion 预期版本号（乐观锁）
+   * @param expectedVersion 预期版本号（乐观锁）- 必需参数
    * @returns 更新后的订单
    * @throws 如果订单不存在、版本号不匹配或状态转换非法
    */
-  updateOrderStatus(orderId: string, status: OrderStatus, expectedVersion?: number): Order {
+  updateOrderStatus(orderId: string, status: OrderStatus, expectedVersion: number): Order {
     const order = this.orders.get(orderId);
     if (!order) {
       throw new Error('Order not found');
     }
 
     // 乐观锁验证
-    if (expectedVersion !== undefined && order.version !== expectedVersion) {
+    if (order.version !== expectedVersion) {
       throw new Error(
         `Concurrent modification detected. Expected version ${expectedVersion}, but current is ${order.version}`
       );
@@ -181,15 +183,16 @@ export class OrderModel {
 
   /**
    * 设置冻结金额（带乐观锁）
+   * @param expectedVersion 预期版本号（乐观锁）- 必需参数
    */
-  setFrozenAmount(orderId: string, frozenAmount: number, expectedVersion?: number): Order {
+  setFrozenAmount(orderId: string, frozenAmount: number, expectedVersion: number): Order {
     const order = this.orders.get(orderId);
     if (!order) {
       throw new Error('Order not found');
     }
 
     // 乐观锁验证
-    if (expectedVersion !== undefined && order.version !== expectedVersion) {
+    if (order.version !== expectedVersion) {
       throw new Error(
         `Concurrent modification detected. Expected version ${expectedVersion}, but current is ${order.version}`
       );
@@ -204,15 +207,16 @@ export class OrderModel {
 
   /**
    * 设置代币交易ID（带乐观锁）
+   * @param expectedVersion 预期版本号（乐观锁）- 必需参数
    */
-  setTransactionId(orderId: string, transactionId: string, expectedVersion?: number): Order {
+  setTransactionId(orderId: string, transactionId: string, expectedVersion: number): Order {
     const order = this.orders.get(orderId);
     if (!order) {
       throw new Error('Order not found');
     }
 
     // 乐观锁验证
-    if (expectedVersion !== undefined && order.version !== expectedVersion) {
+    if (order.version !== expectedVersion) {
       throw new Error(
         `Concurrent modification detected. Expected version ${expectedVersion}, but current is ${order.version}`
       );
@@ -227,19 +231,16 @@ export class OrderModel {
 
   /**
    * 设置外部支付ID（带乐观锁）
+   * @param expectedVersion 预期版本号（乐观锁）- 必需参数
    */
-  setExternalPaymentId(
-    orderId: string,
-    externalPaymentId: string,
-    expectedVersion?: number
-  ): Order {
+  setExternalPaymentId(orderId: string, externalPaymentId: string, expectedVersion: number): Order {
     const order = this.orders.get(orderId);
     if (!order) {
       throw new Error('Order not found');
     }
 
     // 乐观锁验证
-    if (expectedVersion !== undefined && order.version !== expectedVersion) {
+    if (order.version !== expectedVersion) {
       throw new Error(
         `Concurrent modification detected. Expected version ${expectedVersion}, but current is ${order.version}`
       );
@@ -254,15 +255,16 @@ export class OrderModel {
 
   /**
    * 设置争议ID（带乐观锁）
+   * @param expectedVersion 预期版本号（乐观锁）- 必需参数
    */
-  setDisputeId(orderId: string, disputeId: string, expectedVersion?: number): Order {
+  setDisputeId(orderId: string, disputeId: string, expectedVersion: number): Order {
     const order = this.orders.get(orderId);
     if (!order) {
       throw new Error('Order not found');
     }
 
     // 乐观锁验证
-    if (expectedVersion !== undefined && order.version !== expectedVersion) {
+    if (order.version !== expectedVersion) {
       throw new Error(
         `Concurrent modification detected. Expected version ${expectedVersion}, but current is ${order.version}`
       );
@@ -323,7 +325,9 @@ export class OrderModel {
    */
   getDispute(disputeId: string): Dispute | undefined {
     const dispute = this.disputes.get(disputeId);
-    if (!dispute) return undefined;
+    if (!dispute) {
+      return undefined;
+    }
 
     // 返回深拷贝，防止外部修改影响内部数据
     return JSON.parse(JSON.stringify(dispute));

@@ -44,7 +44,7 @@ describe('OrderModel Concurrency Safety Tests', () => {
       }).toThrow('Concurrent modification detected');
     });
 
-    test('无版本号时应该允许更新（向后兼容）', () => {
+    test('版本号必需 - 不提供版本号应该抛出错误', () => {
       const order = orderModel.createOrder({
         buyerId: 'user1',
         sellerId: 'user2',
@@ -55,10 +55,11 @@ describe('OrderModel Concurrency Safety Tests', () => {
         buyerInfo: { name: 'Buyer', contact: 'buyer@test.com' },
       });
 
-      // 不提供版本号，应该允许更新
-      const updated = orderModel.updateOrderStatus(order.id, OrderStatus.PENDING_PAYMENT);
-      expect(updated.status).toBe(OrderStatus.PENDING_PAYMENT);
-      expect(updated.version).toBe(2);
+      // 不提供版本号，应该抛出错误（参数必需）
+      expect(() => {
+        // @ts-expect-error - 测试必需参数
+        orderModel.updateOrderStatus(order.id, OrderStatus.PENDING_PAYMENT);
+      }).toThrow();
     });
   });
 
@@ -76,7 +77,7 @@ describe('OrderModel Concurrency Safety Tests', () => {
 
       // DRAFT -> COMPLETED 是非法转换
       expect(() => {
-        orderModel.updateOrderStatus(order.id, OrderStatus.COMPLETED);
+        orderModel.updateOrderStatus(order.id, OrderStatus.COMPLETED, 1);
       }).toThrow('Invalid status transition');
     });
 
@@ -92,16 +93,16 @@ describe('OrderModel Concurrency Safety Tests', () => {
       });
 
       // DRAFT -> PENDING_PAYMENT -> PAID -> CONFIRMED -> COMPLETED
-      let updated = orderModel.updateOrderStatus(order.id, OrderStatus.PENDING_PAYMENT);
+      let updated = orderModel.updateOrderStatus(order.id, OrderStatus.PENDING_PAYMENT, 1);
       expect(updated.status).toBe(OrderStatus.PENDING_PAYMENT);
 
-      updated = orderModel.updateOrderStatus(order.id, OrderStatus.PAID);
+      updated = orderModel.updateOrderStatus(order.id, OrderStatus.PAID, 2);
       expect(updated.status).toBe(OrderStatus.PAID);
 
-      updated = orderModel.updateOrderStatus(order.id, OrderStatus.CONFIRMED);
+      updated = orderModel.updateOrderStatus(order.id, OrderStatus.CONFIRMED, 3);
       expect(updated.status).toBe(OrderStatus.CONFIRMED);
 
-      updated = orderModel.updateOrderStatus(order.id, OrderStatus.COMPLETED);
+      updated = orderModel.updateOrderStatus(order.id, OrderStatus.COMPLETED, 4);
       expect(updated.status).toBe(OrderStatus.COMPLETED);
     });
   });
@@ -187,9 +188,9 @@ describe('OrderModel Concurrency Safety Tests', () => {
       });
 
       // 先将订单状态改为 CONFIRMED
-      orderModel.updateOrderStatus(order.id, OrderStatus.PENDING_PAYMENT);
-      orderModel.updateOrderStatus(order.id, OrderStatus.PAID);
-      orderModel.updateOrderStatus(order.id, OrderStatus.CONFIRMED);
+      orderModel.updateOrderStatus(order.id, OrderStatus.PENDING_PAYMENT, 1);
+      orderModel.updateOrderStatus(order.id, OrderStatus.PAID, 2);
+      orderModel.updateOrderStatus(order.id, OrderStatus.CONFIRMED, 3);
 
       // 创建争议
       const dispute = orderModel.createDispute({
