@@ -461,13 +461,19 @@ describe('FreezeService', () => {
   });
 
   describe('getAvailableBalance', () => {
-    test('应该正确计算可用余额', async () => {
+    test('应该正确计算可用余额（无冻结）', async () => {
       const userId = 'test-user-020';
       await accountService.createAccount(userId);
       await accountService.addTokens(userId, 1000, TransactionType.REWARD, '初始奖励');
 
-      let available = freezeService.getAvailableBalance(userId);
+      const available = freezeService.getAvailableBalance(userId);
       expect(available).toBe(1000);
+    });
+
+    test('应该正确计算可用余额（部分冻结）', async () => {
+      const userId = 'test-user-021';
+      await accountService.createAccount(userId);
+      await accountService.addTokens(userId, 1000, TransactionType.REWARD, '初始奖励');
 
       await freezeService.createInitialFreeze({
         userId,
@@ -475,8 +481,39 @@ describe('FreezeService', () => {
         transactionId: 'tx-027',
       });
 
-      available = freezeService.getAvailableBalance(userId);
+      const available = freezeService.getAvailableBalance(userId);
       expect(available).toBe(700);
+    });
+
+    test('应该正确计算可用余额（全额冻结）', async () => {
+      const userId = 'test-user-022';
+      await accountService.createAccount(userId);
+      await accountService.addTokens(userId, 1000, TransactionType.REWARD, '初始奖励');
+
+      await freezeService.createInitialFreeze({
+        userId,
+        amount: 1000,
+        transactionId: 'tx-028',
+      });
+
+      const available = freezeService.getAvailableBalance(userId);
+      expect(available).toBe(0);
+    });
+
+    test('应该防止负数可用余额（数据异常保护）', async () => {
+      const userId = 'test-user-023';
+      await accountService.createAccount(userId);
+      await accountService.addTokens(userId, 500, TransactionType.REWARD, '初始奖励');
+
+      // 模拟数据异常：frozenBalance > balance
+      const account = AccountModel.getAccountByUserId(userId);
+      if (account) {
+        (account as any).frozenBalance = 800; // 故意设置为大于 balance
+      }
+
+      const available = freezeService.getAvailableBalance(userId);
+      // ✅ 应该返回 0，而不是 -300
+      expect(available).toBe(0);
     });
 
     test('对不存在的用户应返回0', () => {

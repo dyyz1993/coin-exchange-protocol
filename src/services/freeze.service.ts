@@ -231,10 +231,11 @@ export class FreezeService {
   /**
    * 获取用户可用余额（考虑冻结金额）
    *
-   * 修复说明（Issue #290）：
+   * 修复说明（Issue #299, #290）：
    * - account.balance 存储总余额（包括可用余额 + 冻结余额）
    * - account.frozenBalance 存储冻结金额
    * - 可用余额 = balance - frozenBalance
+   * - 使用 Math.max(0, ...) 防止数据异常导致负数
    */
   getAvailableBalance(userId: string): number {
     const account = accountModel.getAccountByUserId(userId);
@@ -243,7 +244,10 @@ export class FreezeService {
     }
 
     // ✅ 修复：计算可用余额 = 总余额 - 冻结金额
-    return account.balance - account.frozenBalance;
+    const availableBalance = account.balance - account.frozenBalance;
+
+    // ✅ 防止负数（数据异常保护）
+    return Math.max(0, availableBalance);
   }
 
   /**
