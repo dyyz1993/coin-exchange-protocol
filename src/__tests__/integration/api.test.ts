@@ -1,3 +1,5 @@
+// Jest 全局变量，无需导入
+
 describe('API Integration Tests', () => {
   it('should create account', async () => {
     // 测试创建账户功能

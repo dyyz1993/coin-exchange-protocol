@@ -3,6 +3,7 @@
  * 测试范围：冻结创建、自动解冻、冻结查询
  */
 
+// Jest 全局变量，无需导入
 import { FreezeService } from '../../src/services/freeze.service';
 import { AccountService } from '../../src/services/account.service';
 import { freezeModel } from '../../src/models/Freeze';
@@ -671,7 +672,7 @@ describe('FreezeService', () => {
         .map((_, i) => {
           return new Promise((resolve) => {
             try {
-              const freeze = freezeService.createInitialFreeze({
+              const freeze = await freezeService.createInitialFreeze({
                 userId,
                 amount: 100,
                 transactionId: `tx-concurrent-${i}`,

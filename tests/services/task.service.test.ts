@@ -3,6 +3,7 @@
  * 测试范围：任务创建、完成、奖励发放
  */
 
+// Jest 全局变量，无需导入
 import { TaskService } from '../../src/services/task.service';
 import { AccountService } from '../../src/services/account.service';
 import { taskModel } from '../../src/models/Task';
