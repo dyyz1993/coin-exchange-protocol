@@ -94,3 +94,18 @@ jobs:
           tags: coin-exchange-protocol:test
           cache-from: type=gha
           cache-to: type=gha,mode=max
+
+  feishu-notify:
+    name: Feishu Notification
+    if: always()
+    needs: [lint, test, build, docker-build]
+    uses: dyyz1993/ci-tools/.github/workflows/feishu-notify.yml@main
+    with:
+      jobs: '{"lint":"${{ needs.lint.result }}","test":"${{ needs.test.result }}","build":"${{ needs.build.result }}","docker-build":"${{ needs.docker-build.result }}"}'
+      sha: ${{ github.sha }}
+      ref: ${{ github.ref_name }}
+      actor: ${{ github.actor }}
+      repo: ${{ github.repository }}
+      run-id: ${{ github.run_id }}
+    secrets:
+      FEISHU_WEBHOOK_URL: ${{ secrets.FEISHU_WEBHOOK_URL }}
